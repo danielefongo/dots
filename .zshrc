@@ -14,3 +14,8 @@ setopt appendhistory
 setopt SHARE_HISTORY
 setopt hist_ignore_space
 setopt histignoredups
+
+# fzf
+export FZF_COMPLETION_TRIGGER=''
+bindkey '^T' fzf-completion
+bindkey '^I' $fzf_default_completion
