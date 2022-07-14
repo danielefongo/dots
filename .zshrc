@@ -1,5 +1,6 @@
 # antigen
 source "$HOME/dotfiles/dots/antigen/antigen.zsh"
+antigen bundle asdf-vm/asdf
 antigen bundle git
 antigen bundle autojump
 antigen bundle fzf
