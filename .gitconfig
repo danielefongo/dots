@@ -3,3 +3,4 @@
   email = danielefongo@gmail.com
 [core]
   excludesfile = "~/.gitignore_global"
+  pager = delta
