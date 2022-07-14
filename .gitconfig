@@ -2,5 +2,6 @@
   name = danielefongo
   email = danielefongo@gmail.com
 [core]
+  editor = 'vim'
   excludesfile = "~/.gitignore_global"
   pager = delta
