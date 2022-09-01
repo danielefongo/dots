@@ -1,0 +1,166 @@
+[colors]
+black = #000000
+red = #eb6e67
+green = #95ee8f
+yellow = #f8c456
+blue = #6eaafb
+magenta = #d886f3
+cyan = #6cdcf7
+emphasis = #50536b
+text = #dfdfdf
+text-alt = #b2b2b2
+fg = #abb2bf
+bg = #282c34
+
+[bar/top]
+monitor = ${env:MONITOR:}
+width = 100%
+height = 28
+radius = 0.0
+fixed-center = false
+
+background = ${colors.bg}
+foreground = ${colors.fg}
+
+line-size = 3
+line-color = #f00
+
+border-size = 1
+border-color = #00000000
+
+padding-left = 0
+padding-right = 1
+
+module-margin-left = 1
+module-margin-right = 1
+
+font-0 = Hasklig:size=12
+font-1 = FontAwesome:style=Regular
+font-2 = Material Icons:style=Regular
+
+modules-left = i3
+modules-right = memory cpu battery temperature eth wlan date
+
+tray-position = right
+tray-padding = 2
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+
+pin-workspaces = true
+
+label-mode-padding = 2
+label-mode-foreground = #000
+label-mode-background = ${colors.blue}
+
+label-focused = %index%
+label-focused-foreground = ${colors.bg}
+label-focused-background = ${colors.yellow}
+label-focused-padding = 2
+
+label-unfocused = %index%
+label-unfocused-padding = 2
+
+label-visible = %index%
+label-visible-foreground = ${self.label-focused-foreground}
+label-visible-background = ${self.label-focused-background}
+label-visible-padding = ${self.label-focused-padding}
+
+label-urgent = %index%
+label-urgent-foreground = ${colors.bg}
+label-urgent-background = ${colors.red}
+label-urgent-padding = 2
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = "CPU "
+format-prefix-foreground = ${colors.fg}
+format-underline = ${colors.cyan}
+label = %percentage:2%%
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = "MEM "
+format-prefix-foreground = ${colors.fg}
+format-underline = ${colors.yellow}
+label = %percentage_used%%
+
+[module/wlan]
+type = internal/network
+interface = ${env:WLAN:}
+interval = 3.0
+
+format-connected = WLAN <label-connected>
+format-connected-underline = ${colors.magenta}
+label-connected = %essid%
+
+format-disconnected =
+
+[module/eth]
+type = internal/network
+interface = enp0s31f6
+interval = 3.0
+
+format-connected-underline = ${colors.magenta}
+format-connected-prefix-foreground = ${colors.foreground-alt}
+label-connected = ETH %local_ip%
+
+format-disconnected =
+
+[module/date]
+type = internal/date
+interval = 1
+
+date = "%Y-%m-%d"
+time = %H:%M:%S
+
+format-prefix-foreground = ${colors.fg}
+format-underline = ${colors.red}
+
+label = %date% %time%
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = AC
+full-at = 98
+
+format-charging = <label-charging>
+format-charging-underline = ${colors.green}
+
+format-discharging = <label-discharging>
+format-discharging-underline = ${self.format-charging-underline}
+
+format-full-prefix = "BAT "
+format-full-prefix-foreground = ${colors.foreground-alt}
+format-full-underline = ${self.format-charging-underline}
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+
+format = <label>
+format-prefix = "TEMP "
+format-underline = ${colors.red}
+format-warn = <ramp> <label-warn>
+format-warn-underline = ${self.format-underline}
+
+label = %temperature-c%
+label-warn = %temperature-c%
+label-warn-foreground = ${colors.fg}
+
+[settings]
+screenchange-reload = true
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5

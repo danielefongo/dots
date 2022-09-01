@@ -1,0 +1,153 @@
+# vars
+set $mod Mod4
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+set $black #000000
+set $red #eb6e67
+set $green #95ee8f
+set $yellow #f8c456
+set $blue #6eaafb
+set $mangenta #d886f3
+set $cyan #6cdcf7
+set $emphasis #50536b
+set $text #dfdfdf
+set $text-alt #b2b2b2
+set $fg #abb2bf
+set $bg #282c34
+
+# miscellaneous
+font pango:hasklig 12
+floating_modifier $mod
+
+# xdg autostart
+exec --no-startup-id dex --autostart --environment i3
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id nm-applet
+
+# pulse audio
+set $refresh_i3status killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+# menu
+bindsym $mod+d exec rofi -show combi
+
+# terminal
+bindsym $mod+Return exec i3-sensible-terminal
+
+# kill window
+bindsym $mod+q kill
+bindsym $mod+Shift+q focus parent,kill
+
+# focus window
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+bindsym $mod+a focus parent
+
+# move window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# split
+bindsym $mod+Shift+v split h
+bindsym $mod+v split v
+
+# fullscreen
+bindsym $mod+f fullscreen toggle
+
+# layout
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# floating
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+
+# focus workspace
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+
+# move container to workspace
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+
+# rename workspace
+bindsym $mod+Ctrl+r exec i3-input -F 'rename workspace to "%s"' -P 'Destination: '
+
+# move workspace
+bindsym $mod+Left move workspace to output left
+bindsym $mod+Right move workspace to output right
+
+# i3
+bindsym $mod+Ctrl+l exec i3lock -c 000000
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you really want to exit i3?' -B 'Yes, exit i3' 'i3-msg exit'"
+
+# resize mode
+bindsym $mod+r mode "resize"
+mode "resize" {
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+# bar
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
+# window interface
+client.focused $bg $yellow $bg $green
+client.focused_inactive $bg $bg $fg $green
+client.unfocused $bg $bg $fg $green
+hide_edge_borders none
+for_window [class=".*"] border pixel 2
+default_border pixel 2
+default_floating_border pixel 2
+
+# window tags
+bindsym $mod+Shift+z exec i3-input -F 'mark %s' -l 1 -P 'Mark: '
+bindsym $mod+Ctrl+Shift+z; unmark
+bindsym $mod+z; exec i3-input -F '[con_mark="%s"] focus' -l 1 -P 'Goto: '
+
+# screenshots
+bindsym Print exec flameshot gui
+
+# notifications
+bindsym $mod+Shift+n exec ~/dotfiles/dots/dunst/pause.sh
