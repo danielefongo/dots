@@ -8,6 +8,9 @@ antigen bundle fzf
 antigen bundle danielefongo/shapeshift
 antigen apply
 
+# asdf
+source "$HOME/dotfiles/dots/asdf/asdf.sh"
+
 # history
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
