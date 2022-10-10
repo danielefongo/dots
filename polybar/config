@@ -1,16 +1,4 @@
-[colors]
-black = #000000
-red = #eb6e67
-green = #95ee8f
-yellow = #f8c456
-blue = #6eaafb
-magenta = #d886f3
-cyan = #6cdcf7
-emphasis = #50536b
-text = #dfdfdf
-text-alt = #b2b2b2
-fg = #abb2bf
-bg = #282c34
+include-file = ~/dotfiles/dots/polybar/colors.polybar
 
 [bar/top]
 monitor = ${env:MONITOR:}
@@ -19,14 +7,14 @@ height = 28
 radius = 0.0
 fixed-center = false
 
-background = ${colors.bg}
-foreground = ${colors.fg}
+background = ${colors.dark_black}
+foreground = ${colors.grey9}
 
 line-size = 3
 line-color = #f00
 
 border-size = 1
-border-color = #00000000
+border-color = ${colors.black}
 
 padding-left = 0
 padding-right = 1
@@ -56,15 +44,17 @@ wrapping-scroll = false
 pin-workspaces = true
 
 label-mode-padding = 2
-label-mode-foreground = #000
+label-mode-foreground = ${colors.white}
 label-mode-background = ${colors.blue}
 
 label-focused = %index%
-label-focused-foreground = ${colors.bg}
+label-focused-foreground = ${colors.dark_black}
 label-focused-background = ${colors.yellow}
 label-focused-padding = 2
 
 label-unfocused = %index%
+label-unfocused-foreground = ${colors.grey9}
+label-unfocused-background = ${colors.black}
 label-unfocused-padding = 2
 
 label-visible = %index%
@@ -73,7 +63,7 @@ label-visible-background = ${self.label-focused-background}
 label-visible-padding = ${self.label-focused-padding}
 
 label-urgent = %index%
-label-urgent-foreground = ${colors.bg}
+label-urgent-foreground = ${colors.dark_black}
 label-urgent-background = ${colors.red}
 label-urgent-padding = 2
 
@@ -81,7 +71,7 @@ label-urgent-padding = 2
 type = internal/cpu
 interval = 2
 format-prefix = "CPU "
-format-prefix-foreground = ${colors.fg}
+format-prefix-foreground = ${colors.grey9}
 format-underline = ${colors.cyan}
 label = %percentage:2%%
 
@@ -89,7 +79,7 @@ label = %percentage:2%%
 type = internal/memory
 interval = 2
 format-prefix = "MEM "
-format-prefix-foreground = ${colors.fg}
+format-prefix-foreground = ${colors.grey9}
 format-underline = ${colors.yellow}
 label = %percentage_used%%
 
@@ -122,7 +112,7 @@ interval = 1
 date = "%Y-%m-%d"
 time = %H:%M:%S
 
-format-prefix-foreground = ${colors.fg}
+format-prefix-foreground = ${colors.grey9}
 format-underline = ${colors.red}
 
 label = %date% %time%
@@ -156,7 +146,7 @@ format-warn-underline = ${self.format-underline}
 
 label = %temperature-c%
 label-warn = %temperature-c%
-label-warn-foreground = ${colors.fg}
+label-warn-foreground = ${colors.grey9}
 
 [settings]
 screenchange-reload = true

@@ -11,18 +11,8 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
-set $black #000000
-set $red #eb6e67
-set $green #95ee8f
-set $yellow #f8c456
-set $blue #6eaafb
-set $mangenta #d886f3
-set $cyan #6cdcf7
-set $emphasis #50536b
-set $text #dfdfdf
-set $text-alt #b2b2b2
-set $fg #abb2bf
-set $bg #282c34
+# theme
+include theme.conf
 
 # miscellaneous
 font pango:hasklig 12
@@ -45,6 +35,7 @@ bindsym $mod+d exec rofi -show combi
 
 # terminal
 bindsym $mod+Return exec kitty
+bindsym $mod+Shift+Return exec i3-input -F 'exec kitty --title "%s"' -P 'Terminal name: '
 
 # kill window
 bindsym $mod+q kill
@@ -132,15 +123,6 @@ mode "resize" {
 # bar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
-# window interface
-client.focused $bg $yellow $bg $green
-client.focused_inactive $bg $bg $fg $green
-client.unfocused $bg $bg $fg $green
-hide_edge_borders none
-for_window [class=".*"] border pixel 2
-default_border pixel 2
-default_floating_border pixel 2
-
 # window tags
 bindsym $mod+Shift+z exec i3-input -F 'mark %s' -l 1 -P 'Mark: '
 bindsym $mod+Ctrl+Shift+z; unmark
@@ -151,3 +133,6 @@ bindsym Print exec flameshot gui
 
 # notifications
 bindsym $mod+Shift+n exec ~/dotfiles/dots/dunst/pause.sh
+
+# theme
+bindsym $mod+Shift+t exec rofi -modi theme:~/dotfiles/dots/rofi/theme.py -show theme

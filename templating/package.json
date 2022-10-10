@@ -1,0 +1,17 @@
+{
+  "name": "template_colors",
+  "version": "0.0.1",
+  "main": "index.js",
+  "scripts": {},
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "tinycolor2": "^1.4.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.24.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-standard": "^5.0.0"
+  }
+}

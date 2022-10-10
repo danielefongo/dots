@@ -1,0 +1,13 @@
+{
+  "black": "#1b2b34",
+  "white": "#ffffff",
+  "palette": {
+    "red": "#ec5f67",
+    "orange": "#f99157",
+    "yellow": "#fac863",
+    "green": "#99c794",
+    "cyan": "#62b3b2",
+    "blue": "#6699cc",
+    "magenta": "#c594c5"
+  }
+}

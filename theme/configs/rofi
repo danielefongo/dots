@@ -1,17 +1,17 @@
 * {
-  black: #000000;
-  red: #eb6e67;
-  green: #95ee8f;
-  yellow: #f8c456;
-  blue: #6eaafb;
-  magenta: #d886f3;
-  cyan: #6cdcf7;
-  emphasis: #50536b;
-  text: #dfdfdf;
-  text-alt: #b2b2b2;
-  fg: #abb2bf;
-  bg: #282c34;
-  bg-dark: #282c34dd;
+  black: $COLOR_DARK_BLACK;
+  red: $COLOR_RED;
+  green: $COLOR_GREEN;
+  yellow: $COLOR_YELLOW;
+  blue: $COLOR_BLUE;
+  magenta: $COLOR_MAGENTA;
+  cyan: $COLOR_CYAN;
+  emphasis: $COLOR_GREY1;
+  text: $COLOR_WHITE;
+  text-alt: $COLOR_WHITE;
+  fg: $COLOR_GREY9;
+  bg: $COLOR_BLACK;
+  bg-dark: $COLOR_DARK_BLACK;
 
   spacing: 0;
   background-color: transparent;

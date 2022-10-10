@@ -1,0 +1,18 @@
+[delta]
+  syntax-theme                  = "ansi-dark"
+  commit-style                  = raw
+  file-style                    = "$COLOR_BLUE"
+  hunk-header-style             = syntax
+  minus-style                   = normal "$COLOR_DARK_RED"
+  minus-non-emph-style          = normal "$COLOR_DARK_RED"
+  minus-emph-style              = reverse "$COLOR_STRONG_RED"
+  minus-empty-line-marker-style = normal "$COLOR_DARK_RED"
+  zero-style                    = syntax
+  plus-style                    = normal "$COLOR_DARK_GREEN"
+  plus-non-emph-style           = normal "$COLOR_DARK_GREEN"
+  plus-emph-style               = reverse "$COLOR_STRONG_GREEN"
+  plus-empty-line-marker-style  = normal "$COLOR_DARK_GREEN"
+  grep-file-style               = "$COLOR_BLUE"
+  grep-line-number-style        = "$COLOR_BLUE"
+  whitespace-error-style        = reverse "$COLOR_STRONG_MAGENTA"
+  blame-palette                 = $COLOR_DARK_BLACK $COLOR_GREY2 $COLOR_GREY4

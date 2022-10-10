@@ -5,3 +5,5 @@
   editor = 'vim'
   excludesfile = "~/.gitignore_global"
   pager = delta
+[include]
+  path = ~/dotfiles/dots/.delta

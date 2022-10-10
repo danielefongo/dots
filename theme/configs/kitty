@@ -1,0 +1,40 @@
+# color scheme
+cursor $COLOR_GREY4
+cursor_text_color $COLOR_GREY9
+
+foreground $COLOR_WHITE
+background $COLOR_BLACK
+
+selection_foreground $COLOR_DARK_BLACK
+selection_background $COLOR_GREY9
+
+color0 $COLOR_GREY8
+color8 $COLOR_GREY9
+
+color1 $COLOR_RED
+color9 $COLOR_LIGHT_RED
+
+color2  $COLOR_GREEN
+color10 $COLOR_LIGHT_GREEN
+
+color3  $COLOR_YELLOW
+color11 $COLOR_LIGHT_YELLOW
+
+color4  $COLOR_BLUE
+color12 $COLOR_LIGHT_BLUE
+
+color5  $COLOR_MAGENTA
+color13 $COLOR_LIGHT_MAGENTA
+
+color6  $COLOR_CYAN
+color14 $COLOR_LIGHT_CYAN
+
+color7  $COLOR_WHITE
+color15 $COLOR_WHITE
+
+mark1_foreground $COLOR_DARK_BLACK
+mark1_background $COLOR_STRONG_BLUE
+mark2_foreground $COLOR_DARK_BLACK
+mark2_background $COLOR_STRONG_GREEN
+mark3_foreground $COLOR_DARK_BLACK
+mark3_background $COLOR_STRONG_YELLOW

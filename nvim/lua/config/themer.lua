@@ -1,44 +1,9 @@
-local colors = {
-  strong_blue = "#6caafd",
-  strong_green = "#8cf885",
-  strong_red = "#f6635b",
-  strong_yellow = "#fcc652",
-
-  dark_red = "#bc5852",
-  red = "#eb6e67",
-  light_red = "#ef8b85",
-  dark_green = "#77be72",
-  green = "#95ee8f",
-  light_green = "#aaF1a5",
-  dark_yellow = "#c69d45",
-  yellow = "#f8c456",
-  light_yellow = "#f9d078",
-  dark_blue = "#5888c9",
-  blue = "#6eaafb",
-  light_blue = "#8bbbfc",
-  dark_magenta = "#ad6bc2",
-  magenta = "#d886f3",
-  light_magenta = "#e09ef5",
-  dark_cyan = "#56b0c6",
-  cyan = "#6cdcf7",
-  light_cyan = "#89e3f9",
-
-  black = "#282c34",
-  dark_black = "#1b1f27",
-
-  dark_grey1 = "#353b45",
-  dark_grey2 = "#3e4451",
-
-  grey = "#565c64",
-
-  light_grey1 = "#b6bdca",
-  light_grey2 = "#c8ccd4",
-
-  white = "#eeeeee",
-}
+local theme = require("config.theme")
+local colors = theme.colors
+local syntax = theme.syntax
 
 local cp = {
-  red = colors.strong_red,
+  red = colors.dark_red,
   yellow = colors.yellow,
   orange = colors.dark_yellow,
   magenta = colors.magenta,
@@ -55,70 +20,63 @@ local cp = {
     change = colors.dark_yellow,
   },
   accent = colors.cyan,
-  search_result = { fg = colors.dark_grey1, bg = colors.cyan, telescope = colors.cyan },
-  match = colors.light_grey2,
+  search_result = { fg = colors.dark_black, bg = colors.blue, telescope = colors.blue },
+  match = colors.grey9,
   dimmed = {
-    inactive = colors.grey,
-    subtle = colors.grey,
+    inactive = colors.grey4,
+    subtle = colors.grey4,
   },
   bg = {
-    base = colors.background,
-    alt = colors.dark_background,
-    selected = colors.dark_grey2,
+    base = colors.black,
+    alt = colors.dark_black,
+    selected = colors.grey2,
   },
   border = colors.blue,
-  syntax = {
-    statement = colors.dark_yellow,
-    ["function"] = colors.blue,
-    variable = colors.light_grey1,
-    include = colors.magenta,
-    keyword = colors.magenta,
-    struct = colors.red,
-    string = colors.light_green,
-    identifier = colors.cyan,
-    field = colors.cyan,
-    parameter = colors.red,
-    property = colors.dark_yellow,
-    punctuation = colors.white,
-    constructor = colors.cyan,
-    operator = colors.light_grey1,
-    preproc = colors.cyan,
-    constant = colors.dark_yellow,
-    todo = { fg = colors.cyan, bg = colors.dark_grey1 },
-    number = colors.dark_yellow,
-    comment = colors.grey,
-    type = colors.light_yellow,
-    conditional = colors.red,
-  },
-  built_in = {
-    ["function"] = colors.blue,
-    type = colors.cyan,
-    variable = colors.strong_red,
-    keyword = colors.magenta,
-    constant = colors.dark_yellow,
-  },
+  syntax = syntax,
+  built_in = syntax,
   diagnostic = {
     error = colors.strong_red,
     warn = colors.strong_yellow,
     info = colors.strong_green,
     hint = colors.magenta,
   },
-  inc_search = { fg = colors.dark_grey1, bg = colors.magenta },
+  inc_search = { fg = colors.dark_black, bg = colors.blue },
   uri = colors.dark_yellow,
   pum = {
-    fg = colors.light_grey2,
-    bg = colors.dark_grey1,
-    sbar = colors.dark_grey2,
-    thumb = colors.magenta,
-    sel = {
-      bg = colors.magenta,
-      fg = colors.light_grey1,
-    },
+    fg = colors.grey9,
+    bg = colors.grey1,
+    sbar = colors.grey2,
+    thumb = colors.blue,
+    sel = { bg = colors.blue, fg = colors.dark_black },
   },
   heading = {
     h1 = colors.blue,
     h2 = colors.blue,
-  },
+  }
 }
 
 require("themer").setup({ colorscheme = cp })
+
+function _G.last_theme_update()
+  local f = io.popen("stat -c %Y ~/dotfiles/dots/nvim/lua/config/theme.lua")
+  if f then
+    local last_modified = f:read()
+    f:close()
+    return last_modified
+  else
+    return 0
+  end
+end
+
+LAST_THEME_UPDATE = last_theme_update()
+function _G.update_theme()
+  local timer = vim.loop.new_timer()
+  timer:start(1000, 500, vim.schedule_wrap(function()
+    if LAST_THEME_UPDATE < last_theme_update() then
+      LAST_THEME_UPDATE = last_theme_update()
+      reload_config()
+    end
+  end))
+end
+
+vim.cmd([[ au VimEnter * nested lua update_theme() ]])

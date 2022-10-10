@@ -1,0 +1,19 @@
+[colors]
+red = $COLOR_RED
+green = $COLOR_GREEN
+yellow = $COLOR_YELLOW
+blue = $COLOR_BLUE
+magenta = $COLOR_MAGENTA
+cyan = $COLOR_CYAN
+dark_black = $COLOR_DARK_BLACK
+black = $COLOR_BLACK
+grey1 = $COLOR_GREY1
+grey2 = $COLOR_GREY2
+grey3 = $COLOR_GREY3
+grey4 = $COLOR_GREY4
+grey5 = $COLOR_GREY5
+grey6 = $COLOR_GREY6
+grey7 = $COLOR_GREY7
+grey8 = $COLOR_GREY8
+grey9 = $COLOR_GREY9
+white = $COLOR_WHITE

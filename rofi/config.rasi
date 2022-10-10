@@ -17,4 +17,4 @@ configuration {
   }
 }
 
-@theme "onedark"
+@theme "theme"

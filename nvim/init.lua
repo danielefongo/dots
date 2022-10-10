@@ -2,7 +2,6 @@ require("utils")
 
 opt.autoindent = true
 opt.cc = "120"
-opt.clipboard = vim.o.clipboard .. "unnamedplus"
 opt.completeopt = "menuone,noinsert,noselect"
 opt.cursorline = true
 opt.expandtab = true
