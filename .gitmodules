@@ -1,9 +1,6 @@
 [submodule "antigen"]
 	path = antigen
 	url = git@github.com:zsh-users/antigen
-[submodule "doom-emacs"]
-	path = doom-emacs
-	url = git@github.com:hlissner/doom-emacs
 [submodule "asdf"]
 	path = asdf
 	url = git@github.com:asdf-vm/asdf
