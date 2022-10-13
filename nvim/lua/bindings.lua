@@ -21,7 +21,7 @@ set_key('n', '<leader>g[', '<C-o><cr>')
 set_key('n', '<leader>g]', '<C-i><cr>')
 
 -- comments
-set_key("n", "<A-;>", ":commentary<cr>")
+set_key("n", "<A-;>", ":Commentary<cr>")
 set_key("v", "<A-;>", ":Commentary<cr>")
 
 -- files
@@ -34,7 +34,7 @@ set_key('n', '<leader>sk', ":FzfLua keymaps<cr>")
 set_key('n', '<leader>sc', ":FzfLua command_history<cr>")
 set_key('n', '<leader>sb', ":FzfLua grep_curbuf<cr>")
 set_key('n', '<leader>sw', ":FzfLua grep_project<cr>")
-set_key('n', '<leader>sr', ':lua require("spectre").open_visual()<cr>')
+set_key("n", '<leader>r', ':lua require("replacer").run()<cr>')
 
 -- code
 set_key('n', '<leader>ca', ":FzfLua lsp_code_actions<cr>")

@@ -11,7 +11,6 @@ opt.number = true
 opt.preserveindent = true
 opt.shiftwidth = 2
 opt.smarttab = true
-opt.softtabstop = 2
 opt.softtabstop = 4
 opt.syntax = "on"
 opt.tabstop = 2

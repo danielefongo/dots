@@ -27,10 +27,7 @@ return require("packer").startup(
     use { "ibhagwan/fzf-lua", config = [[require("config.fzflua")]] }
 
     -- search/replace
-    use { 'windwp/nvim-spectre',
-      requires = { 'nvim-lua/plenary.nvim' },
-      config = [[require("config.spectre")]]
-    }
+    use { 'gabrielpoca/replacer.nvim' }
 
     -- theme
     use { "themercorp/themer.lua", config = [[require("config.themer")]] }
