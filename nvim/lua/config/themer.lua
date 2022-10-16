@@ -22,13 +22,10 @@ local cp = {
   accent = colors.cyan,
   search_result = { fg = colors.dark_black, bg = colors.blue, telescope = colors.blue },
   match = colors.grey9,
-  dimmed = {
-    inactive = colors.grey4,
-    subtle = colors.grey4,
-  },
+  dimmed = { bg = colors.grey4, fg = colors.grey4 },
   bg = {
     base = colors.black,
-    alt = colors.dark_black,
+    alt = colors.grey1,
     selected = colors.grey2,
   },
   border = colors.blue,
@@ -55,7 +52,10 @@ local cp = {
   }
 }
 
-require("themer").setup({ colorscheme = cp })
+require("themer").setup({
+  colorscheme = cp,
+  dim_inactive = true
+})
 
 function _G.last_theme_update()
   local f = io.popen("stat -c %Y ~/dotfiles/dots/nvim/lua/config/theme.lua")
