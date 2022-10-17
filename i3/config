@@ -20,7 +20,7 @@ floating_modifier $mod
 
 # xdg autostart
 exec --no-startup-id dex --autostart --environment i3
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock-fancy --nofork
 exec --no-startup-id nm-applet
 
 # pulse audio
@@ -102,22 +102,28 @@ bindsym $mod+Left move workspace to output left
 bindsym $mod+Right move workspace to output right
 
 # i3
-bindsym $mod+Ctrl+l exec i3lock -c 000000
-bindsym $mod+Shift+c reload
-bindsym $mod+Shift+r restart
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you really want to exit i3?' -B 'Yes, exit i3' 'i3-msg exit'"
+set $mode_system System (l) lock, (e) logout, (r) reload, (Shift+r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+  bindsym l exec --no-startup-id i3lock-fancy, mode "default"
+  bindsym e exec --no-startup-id i3-msg exit, mode "default"
+  bindsym r reload, mode "default"
+  bindsym Shift+r exec --no-startup-id shutdown now -r, mode "default"
+  bindsym Shift+s exec --no-startup-id shutdown now, mode "default"
+  bindsym Escape mode "default"
+}
+bindsym $mod+i mode "$mode_system"
 
 # resize mode
 bindsym $mod+r mode "resize"
 mode "resize" {
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym j resize grow height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
+  bindsym h resize shrink width 10 px or 10 ppt
+  bindsym j resize grow height 10 px or 10 ppt
+  bindsym k resize shrink height 10 px or 10 ppt
+  bindsym l resize grow width 10 px or 10 ppt
 
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+  bindsym $mod+r mode "default"
 }
 
 # bar
