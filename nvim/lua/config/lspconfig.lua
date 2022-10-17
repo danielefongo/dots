@@ -3,7 +3,7 @@ local cmp = require("cmp_nvim_lsp")
 local signature = require("lsp_signature")
 
 local flags = { debounce_text_changes = 150 }
-local capabilities = cmp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = cmp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 local function full_path(server, path)
   return fn.glob(fn.stdpath("data") .. "/lsp" .. "/" .. server .. "/" .. path)
@@ -46,7 +46,8 @@ lsp["elmls"].setup({
 lsp["eslint"].setup({
   capabilities = capabilities,
   on_attach = on_attach_eslint,
-  flags = flags
+  flags = flags,
+  cmd = { full_path("eslint", "node_modules/.bin/vscode-eslint-language-server"), "--stdio" }
 })
 
 lsp["jsonls"].setup({
