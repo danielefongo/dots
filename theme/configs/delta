@@ -1,5 +1,5 @@
 [delta]
-  syntax-theme                  = "ansi-dark"
+  syntax-theme                  = "ansi"
   commit-style                  = raw
   file-style                    = "$COLOR_BLUE"
   hunk-header-style             = syntax
