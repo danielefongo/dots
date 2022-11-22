@@ -22,7 +22,7 @@ const defaultSyntax = {
   todo_fg: 'cyan',
   todo_bg: 'dark_grey1',
   number: 'orange',
-  comment: 'grey',
+  comment: 'grey4',
   type: 'yellow',
   conditional: 'red'
 }
