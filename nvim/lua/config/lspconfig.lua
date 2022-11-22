@@ -5,8 +5,8 @@ local signature = require("lsp_signature")
 local flags = { debounce_text_changes = 150 }
 local capabilities = cmp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-local function full_path(server, path)
-  return fn.glob(fn.stdpath("data") .. "/lsp" .. "/" .. server .. "/" .. path)
+local function cmd_path(server)
+  return fn.glob(fn.stdpath("data") .. "/lsp/bin/" .. server)
 end
 
 local function on_attach_common(_, bufnr)
@@ -27,7 +27,7 @@ lsp["elixirls"].setup({
   capabilities = capabilities,
   on_attach = on_attach,
   flags = flags,
-  cmd = { full_path("elixirls", "elixir-ls/language_server.sh") },
+  cmd = { cmd_path("elixir-ls") },
   settings = {
     elixirLS = {
       fetchDeps = false,
@@ -39,15 +39,13 @@ lsp["elixirls"].setup({
 lsp["elmls"].setup({
   capabilities = capabilities,
   on_attach = on_attach,
-  flags = flags,
-  cmd = { full_path("elmls", "node_modules/@elm-tooling/elm-language-server/out/index.js") }
+  flags = flags
 })
 
 lsp["eslint"].setup({
   capabilities = capabilities,
   on_attach = on_attach_eslint,
-  flags = flags,
-  cmd = { full_path("eslint", "node_modules/.bin/vscode-eslint-language-server"), "--stdio" }
+  flags = flags
 })
 
 lsp["jsonls"].setup({
@@ -59,22 +57,19 @@ lsp["jsonls"].setup({
 lsp["pylsp"].setup({
   capabilities = capabilities,
   on_attach = on_attach,
-  flags = flags,
-  cmd = { full_path("pylsp", "venv/bin/pylsp") }
+  flags = flags
 })
 
 lsp["rust_analyzer"].setup({
   capabilities = capabilities,
   on_attach = on_attach,
-  flags = flags,
-  cmd = { full_path("rust_analyzer", "rust-analyzer") }
+  flags = flags
 })
 
 lsp["sumneko_lua"].setup({
   capabilities = capabilities,
   on_attach = on_attach,
   flags = flags,
-  cmd = { full_path("sumneko_lua", "extension/server/bin/lua-language-server") },
   settings = {
     Lua = {
       diagnostics = {
@@ -87,8 +82,7 @@ lsp["sumneko_lua"].setup({
 lsp["tsserver"].setup({
   capabilities = capabilities,
   on_attach = on_attach_common,
-  flags = flags,
-  cmd = { full_path("tsserver", "node_modules/typescript-language-server/lib/cli.js"), "--stdio" }
+  flags = flags
 })
 
 vim.diagnostic.config({ virtual_text = false })
