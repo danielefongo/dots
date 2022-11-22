@@ -60,10 +60,12 @@ lsp["pylsp"].setup({
   flags = flags
 })
 
-lsp["rust_analyzer"].setup({
-  capabilities = capabilities,
-  on_attach = on_attach,
-  flags = flags
+require("rust-tools").setup({
+  server = {
+    capabilities = capabilities,
+    on_attach = on_attach,
+    flags = flags
+  }
 })
 
 lsp["sumneko_lua"].setup({

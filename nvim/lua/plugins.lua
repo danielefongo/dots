@@ -49,6 +49,7 @@ return require("packer").startup(
       requires = { "neovim/nvim-lspconfig" },
       config = [[require("config.fidget")]]
     }
+    use { "simrat39/rust-tools.nvim" }
     use { "neovim/nvim-lspconfig",
       requires = { "hrsh7th/nvim-cmp", "ray-x/lsp_signature.nvim" },
       config = [[require("config.lspconfig")]]
