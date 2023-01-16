@@ -52,10 +52,7 @@ local cp = {
   }
 }
 
-require("themer").setup({
-  colorscheme = cp,
-  dim_inactive = true
-})
+require("themer").setup({ colorscheme = cp })
 
 function _G.last_theme_update()
   local f = io.popen("stat -c %Y ~/dotfiles/dots/nvim/lua/config/theme.lua")
