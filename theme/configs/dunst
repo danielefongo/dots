@@ -44,12 +44,12 @@
 [urgency_low]
     background = "$COLOR_DARK_BLACK"
     foreground = "$COLOR_WHITE"
-    timeout = 10
+    timeout = 5
 
 [urgency_normal]
     background = "$COLOR_DARK_BLACK"
     foreground = "$COLOR_WHITE"
-    timeout = 0
+    timeout = 10
 
 [urgency_critical]
     background = "$COLOR_DARK_BLACK"
