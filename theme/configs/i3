@@ -1,8 +1,6 @@
 # window interface
 client.focused $COLOR_BLACK $COLOR_YELLOW $COLOR_BLACK $COLOR_GREEN
-client.focused_inactive $COLOR_BLACK $COLOR_GREY1 $COLOR_GREY9 $COLOR_GREEN
-client.unfocused $COLOR_BLACK $COLOR_GREY1 $COLOR_GREY9 $COLOR_GREEN
+client.focused_inactive $COLOR_BLACK $COLOR_BLACK $COLOR_GREY9 $COLOR_GREEN
+client.unfocused $COLOR_BLACK $COLOR_BLACK $COLOR_GREY9 $COLOR_GREEN
 hide_edge_borders none
-for_window [class=".*"] border pixel 2
-default_border pixel 2
-default_floating_border pixel 2
+for_window [class=".*"] border pixel 0

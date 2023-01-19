@@ -103,11 +103,12 @@ bindsym $mod+Left move workspace to output left
 bindsym $mod+Right move workspace to output right
 
 # i3
-set $mode_system System (l) lock, (e) logout, (r) reload, (Shift+r) reboot, (Shift+s) shutdown
+set $mode_system System (l) lock, (e) logout, (r) reload, (k) restart i3, (Shift+r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
   bindsym l exec --no-startup-id i3lock-fancy, mode "default"
   bindsym e exec --no-startup-id i3-msg exit, mode "default"
   bindsym r reload, mode "default"
+  bindsym k restart, mode "default"
   bindsym Shift+r exec --no-startup-id shutdown now -r, mode "default"
   bindsym Shift+s exec --no-startup-id shutdown now, mode "default"
   bindsym Escape mode "default"
@@ -130,6 +131,9 @@ mode "resize" {
 # bar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
+# picom
+exec_always --no-startup-id picom --experimental-backends
+
 # window tags
 bindsym $mod+Shift+z exec i3-input -F 'mark %s' -l 1 -P 'Mark: '
 bindsym $mod+Ctrl+Shift+z; unmark
@@ -145,5 +149,7 @@ bindsym $mod+Shift+n exec ~/dotfiles/dots/dunst/pause.sh
 bindsym $mod+Shift+t exec rofi -modi theme:~/dotfiles/dots/rofi/theme.py -show theme
 
 # gaps
-gaps inner 15px
-smart_gaps on
+gaps inner 16px
+gaps top 52px
+gaps bottom 0px
+smart_gaps off

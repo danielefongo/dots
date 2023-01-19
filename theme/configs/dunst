@@ -1,14 +1,13 @@
 [global]
     monitor = 0
     follow = mouse
-    geometry = "300x5-25+50"
+    geometry = "300x5-15+68"
     indicate_hidden = yes
     shrink = no
-    separator_height = 2
     padding = 10
     horizontal_padding = 8
     frame_width = 2
-    frame_color = "$COLOR_YELLOW"
+    frame_color = "$COLOR_WHITE"
     separator_color = frame
     sort = yes
     idle_threshold = 120
@@ -32,7 +31,7 @@
     always_run_script = true
     startup_notification = false
     verbosity = mesg
-    corner_radius = 0
+    corner_radius = 16
     ignore_dbusclose = false
     mouse_left_click = do_action, close_current
     mouse_middle_click = close_current
@@ -42,17 +41,19 @@
     per_monitor_dpi = false
 
 [urgency_low]
-    background = "$COLOR_DARK_BLACK"
+    background = "$COLOR_BLACK"
     foreground = "$COLOR_WHITE"
+    frame_color = "$COLOR_YELLOW"
     timeout = 5
 
 [urgency_normal]
-    background = "$COLOR_DARK_BLACK"
+    background = "$COLOR_BLACK"
     foreground = "$COLOR_WHITE"
+    frame_color = "$COLOR_YELLOW"
     timeout = 10
 
 [urgency_critical]
-    background = "$COLOR_DARK_BLACK"
+    background = "$COLOR_BLACK"
     foreground = "$COLOR_WHITE"
     frame_color = "$COLOR_STRONG_RED"
     timeout = 0

@@ -23,8 +23,9 @@
 window {
   transparency: "real";
   fullscreen: false;
-  background-color: @bg-dark;
+  background-color: @bg;
   border: 2px;
+  border-radius: 16px;
   border-color: @yellow;
 }
 

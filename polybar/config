@@ -2,12 +2,17 @@ include-file = ~/dotfiles/dots/polybar/colors.polybar
 
 [bar/top]
 monitor = ${env:MONITOR:}
-width = 100%
-height = 28
-radius = 0.0
-fixed-center = false
+width = 100%:-32
+height = 36
+radius = 10
+fixed-center = true
+offset-y = 16
+offset-x = 16
+override-redirect = true
+wm-restack = i3
 
-background = ${colors.dark_black}
+tray-background = ${colors.black}
+background = ${colors.black}
 foreground = ${colors.grey9}
 
 line-size = 3
@@ -17,7 +22,7 @@ border-size = 1
 border-color = ${colors.black}
 
 padding-left = 0
-padding-right = 1
+padding-right = 2
 
 module-margin-left = 1
 module-margin-right = 1
@@ -29,7 +34,7 @@ font-2 = Material Icons:style=Regular
 modules-left = i3
 modules-right = memory cpu battery temperature eth wlan date
 
-tray-position = right
+tray-position = center
 tray-padding = 2
 
 cursor-click = pointer
