@@ -1,90 +1,44 @@
 local lsp = require("lspconfig")
 local cmp = require("cmp_nvim_lsp")
 local signature = require("lsp_signature")
+local inlay = require("lsp-inlayhints")
 
 local flags = { debounce_text_changes = 150 }
 local capabilities = cmp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
+local settings = {
+  elixirLS = {
+    fetchDeps = false,
+    mixEnv = "dev",
+  },
+  Lua = {
+    diagnostics = { globals = { "vim" } }
+  },
+}
 
 local function cmd_path(server)
   return fn.glob(fn.stdpath("data") .. "/lsp/bin/" .. server)
 end
 
-local function on_attach_common(_, bufnr)
+local function on_attach(client, bufnr)
   signature.on_attach({ bind = true }, bufnr)
+  inlay.on_attach(client, bufnr)
+
   buffer_code_bindings(bufnr)
 end
 
-local function on_attach(client, bufnr)
-  on_attach_common(client, bufnr)
-  vim.cmd([[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 5000)]])
-end
-
-local function on_attach_eslint(_, _)
-  vim.cmd([[autocmd BufWritePre <buffer> EslintFixAll]])
-end
-
-lsp["elixirls"].setup({
-  capabilities = capabilities,
-  on_attach = on_attach,
-  flags = flags,
-  cmd = { cmd_path("elixir-ls") },
-  settings = {
-    elixirLS = {
-      fetchDeps = false,
-      mixEnv = "dev"
-    }
-  }
-})
-
-lsp["elmls"].setup({
-  capabilities = capabilities,
-  on_attach = on_attach,
-  flags = flags
-})
-
-lsp["eslint"].setup({
-  capabilities = capabilities,
-  on_attach = on_attach_eslint,
-  flags = flags
-})
-
-lsp["jsonls"].setup({
-  capabilities = capabilities,
-  on_attach = on_attach,
-  flags = flags
-})
-
-lsp["pylsp"].setup({
-  capabilities = capabilities,
-  on_attach = on_attach,
-  flags = flags
-})
-
-require("rust-tools").setup({
-  server = {
+local function setup(lsp_name, command)
+  lsp[lsp_name].setup({
     capabilities = capabilities,
     on_attach = on_attach,
-    flags = flags
-  }
-})
+    flags = flags,
+    cmd = command,
+    settings = settings,
+  })
+end
 
-lsp["sumneko_lua"].setup({
-  capabilities = capabilities,
-  on_attach = on_attach,
-  flags = flags,
-  settings = {
-    Lua = {
-      diagnostics = {
-        globals = { "vim" }
-      }
-    }
-  }
-})
-
-lsp["tsserver"].setup({
-  capabilities = capabilities,
-  on_attach = on_attach_common,
-  flags = flags
-})
-
-vim.diagnostic.config({ virtual_text = false })
+setup("elixirls", { cmd_path("elixir-ls") })
+setup("elmls")
+setup("sumneko_lua")
+setup("pylsp")
+setup("tsserver")
+setup("rust_analyzer")

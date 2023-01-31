@@ -49,15 +49,15 @@ return require("packer").startup(
       requires = { "neovim/nvim-lspconfig" },
       config = [[require("config.fidget")]]
     }
-    use { "simrat39/rust-tools.nvim" }
     use { "neovim/nvim-lspconfig",
-      requires = { "hrsh7th/nvim-cmp", "ray-x/lsp_signature.nvim" },
+      requires = { "hrsh7th/nvim-cmp", "ray-x/lsp_signature.nvim", "lvimuser/lsp-inlayhints.nvim" },
       config = [[require("config.lspconfig")]]
     }
-    use {
-      "williamboman/mason.nvim",
-      requires = { "neovim/nvim-lspconfig" },
-      config = [[require("config.mason")]]
+    use { "lvimuser/lsp-inlayhints.nvim", config = [[require("config.inlay")]] }
+    use { "jose-elias-alvarez/null-ls.nvim", config = [[require("config.null")]] }
+    use { "williamboman/mason.nvim",
+      requires = { "williamboman/mason-lspconfig.nvim", "jay-babu/mason-null-ls.nvim" },
+      config = [[require("config.mason")]],
     }
     use { 'hrsh7th/nvim-cmp',
       requires = {
