@@ -18,6 +18,5 @@ opt.clipboard = "unnamed,unnamedplus"
 
 vim.g.mapleader = " "
 
-require("bindings")
 require("plugins")
 require("autocmd")
