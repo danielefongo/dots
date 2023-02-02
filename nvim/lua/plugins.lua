@@ -13,6 +13,9 @@ local packer_bootstrap = ensure_packer()
 return require("packer").startup(function(use)
   use({ "wbthomason/packer.nvim" })
 
+  -- speed up load
+  use({ "lewis6991/impatient.nvim" })
+
   -- keymap
   use({ "folke/which-key.nvim", config = [[require("config.whichkey")]] })
 
