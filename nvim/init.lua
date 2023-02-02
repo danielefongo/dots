@@ -14,7 +14,7 @@ opt.smarttab = true
 opt.softtabstop = 4
 opt.syntax = "on"
 opt.tabstop = 2
-opt.clipboard = 'unnamed,unnamedplus'
+opt.clipboard = "unnamed,unnamedplus"
 
 vim.g.mapleader = " "
 

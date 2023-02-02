@@ -7,11 +7,11 @@ mason.setup({
 })
 
 mason_lsp_config.setup({
-  automatic_installation = true
+  automatic_installation = true,
 })
 
 mason_null_ls.setup({
   automatic_installation = true,
-  automatic_setup = true
+  automatic_setup = true,
 })
 mason_null_ls.setup_handlers()

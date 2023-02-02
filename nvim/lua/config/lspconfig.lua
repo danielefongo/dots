@@ -11,7 +11,7 @@ local settings = {
     mixEnv = "dev",
   },
   Lua = {
-    diagnostics = { globals = { "vim" } }
+    diagnostics = { globals = { "vim" } },
   },
 }
 

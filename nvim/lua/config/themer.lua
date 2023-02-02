@@ -49,7 +49,7 @@ local cp = {
   heading = {
     h1 = colors.blue,
     h2 = colors.blue,
-  }
+  },
 }
 
 require("themer").setup({ colorscheme = cp })
@@ -68,12 +68,16 @@ end
 LAST_THEME_UPDATE = last_theme_update()
 function _G.update_theme()
   local timer = vim.loop.new_timer()
-  timer:start(1000, 500, vim.schedule_wrap(function()
-    if LAST_THEME_UPDATE < last_theme_update() then
-      LAST_THEME_UPDATE = last_theme_update()
-      reload_config()
-    end
-  end))
+  timer:start(
+    1000,
+    500,
+    vim.schedule_wrap(function()
+      if LAST_THEME_UPDATE < last_theme_update() then
+        LAST_THEME_UPDATE = last_theme_update()
+        reload_config()
+      end
+    end)
+  )
 end
 
 vim.cmd([[ au VimEnter * nested lua update_theme() ]])

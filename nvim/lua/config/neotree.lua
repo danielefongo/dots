@@ -4,13 +4,13 @@ require("neo-tree").setup({
       event = "neo_tree_window_after_open",
       handler = function(_)
         vim.cmd("wincmd =")
-      end
+      end,
     },
     {
       event = "neo_tree_window_after_close",
       handler = function(_)
         vim.cmd("wincmd =")
-      end
-    }
-  }
+      end,
+    },
+  },
 })

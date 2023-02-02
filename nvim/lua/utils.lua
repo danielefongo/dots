@@ -5,8 +5,8 @@ opt = vim.opt
 fn = vim.fn
 
 function _G.reload_config()
-  vim.cmd [[Reload]]
-  vim.cmd [[PackerCompile]]
+  vim.cmd([[Reload]])
+  vim.cmd([[PackerCompile]])
 end
 
 function _G.set_key(mode, keys, command)
