@@ -15,6 +15,7 @@ opt.softtabstop = 4
 opt.syntax = "on"
 opt.tabstop = 2
 opt.clipboard = "unnamed,unnamedplus"
+opt.undofile = true
 
 vim.g.mapleader = " "
 

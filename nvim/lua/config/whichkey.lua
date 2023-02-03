@@ -34,6 +34,18 @@ wk.register({
     t = { ":TroubleToggle document_diagnostics<cr>", "trouble buffer" },
     T = { ":TroubleToggle workspace_diagnostics<cr>", "trouble workspace" },
   },
+  f = {
+    name = "find",
+    b = { ":FzfLua grep_curbuf<cr>", "buffer text" },
+    c = { ":FzfLua command_history<cr>", "commands" },
+    k = { ":FzfLua keymaps<cr>", "keymaps" },
+    w = { ":FzfLua grep_project<cr>", "workspace text" },
+    s = {
+      name = "symbol",
+      b = { ":FzfLua lsp_document_symbols<cr>", "buffer symbol" },
+      w = { ":FzfLua lsp_live_workspace_symbols<cr>", "workspace symbol" },
+    },
+  },
   g = {
     name = "git",
     g = { ":Neogit<cr>", "neo" },
@@ -47,15 +59,10 @@ wk.register({
   },
   r = { ":lua require('replacer').run()<cr>", "replace" },
   s = {
-    b = { ":FzfLua grep_curbuf<cr>", "buffer text" },
-    c = { ":FzfLua command_history<cr>", "commands" },
-    k = { ":FzfLua keymaps<cr>", "keymaps" },
-    w = { ":FzfLua grep_project<cr>", "workspace text" },
-    s = {
-      name = "symbol",
-      b = { ":FzfLua lsp_document_symbols<cr>", "buffer symbol" },
-      w = { ":FzfLua lsp_live_workspace_symbols<cr>", "workspace symbol" },
-    },
+    name = "session",
+    d = { ":DeleteSession<cr>", "delete" },
+    l = { ":lua require('session-lens').search_session()<cr>", "load" },
+    s = { ":SaveSession<cr>", "save" },
   },
   v = {
     name = "vim",

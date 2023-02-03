@@ -94,6 +94,14 @@ return require("packer").startup(function(use)
     config = [[require("config.neogit")]],
   })
 
+  -- session
+  use({
+    "rmagatti/session-lens",
+    requires = { "rmagatti/auto-session", "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
+    after = "plenary.nvim",
+    config = [[require("config.autosession")]],
+  })
+
   if packer_bootstrap then
     require("packer").sync()
   end
