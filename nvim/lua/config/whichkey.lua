@@ -54,8 +54,7 @@ wk.register({
     name = "open",
     b = { ":FzfLua buffers<cr>", "buffer" },
     f = { ":FzfLua files<cr>", "file" },
-    t = { ":NeoTreeFocusToggle<cr>", "tree" },
-    T = { ":NeoTreeReveal!<cr>", "tree (focus file)" },
+    t = { ":NvimTreeToggle<cr>", "tree" },
   },
   r = { ":lua require('replacer').run()<cr>", "replace" },
   s = {

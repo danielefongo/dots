@@ -51,6 +51,26 @@ local cp = {
     h2 = colors.blue,
   },
 }
+cp.remaps = {
+  plugins = {
+    nvim_tree = {
+      NVimTreeNormal = { fg = colors.white, bg = colors.dark_black },
+      NvimTreeGitDeleted = { fg = colors.red },
+      NvimTreeGitDirty = { fg = colors.yellow },
+      NvimTreeGitStaged = { fg = colors.green },
+      NvimTreeGitMerge = { fg = colors.yellow },
+      NvimTreeGitNew = { fg = colors.red },
+      NvimTreeGitRenamed = { fg = colors.white },
+      NvimTreeSpecialFile = { fg = colors.white },
+      NvimTreeImageFile = { fg = colors.white },
+      NvimTreeOpenedFile = { fg = colors.white },
+      NvimTreeModifiedFile = { fg = colors.white },
+      NvimTreeIndentMarker = { fg = colors.white },
+      NvimTreeSymlink = { fg = colors.white },
+      NvimTreeExecFile = { fg = colors.white },
+    },
+  },
+}
 
 require("themer").setup({ colorscheme = cp })
 

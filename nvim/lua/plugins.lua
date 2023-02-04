@@ -24,10 +24,9 @@ return require("packer").startup(function(use)
 
   -- files
   use({
-    "nvim-neo-tree/neo-tree.nvim",
-    branch = "v2.x",
-    requires = { "nvim-lua/plenary.nvim", "kyazdani42/nvim-web-devicons", "MunifTanjim/nui.nvim" },
-    config = [[require("config.neotree")]],
+    "nvim-tree/nvim-tree.lua",
+    requires = { "nvim-tree/nvim-web-devicons" },
+    config = [[require("config.nvimtree")]],
   })
   use({ "ibhagwan/fzf-lua", config = [[require("config.fzflua")]] })
 
