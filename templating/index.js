@@ -41,20 +41,34 @@ const template = require(`../theme/scheme/${process.argv.slice(2)[0]}.json`)
 const mapping = {}
 
 Object.entries(template.palette).forEach(([key, color]) => {
-  mapping[`strong_${key}`] = tinycolor(color).darken(5).saturate(50).toHexString()
-  mapping[`dark_${key}`] = tinycolor(color).darken(10).desaturate(15).toHexString()
+  mapping[`strong_${key}`] = tinycolor(color)
+    .darken(5)
+    .saturate(50)
+    .toHexString()
+  mapping[`dark_${key}`] = tinycolor(color)
+    .darken(10)
+    .desaturate(15)
+    .toHexString()
   mapping[`${key}`] = color
-  mapping[`light_${key}`] = tinycolor(color).lighten(10).saturate(15).toHexString()
+  mapping[`light_${key}`] = tinycolor(color)
+    .lighten(10)
+    .saturate(15)
+    .toHexString()
 })
 
 const black = template.black
 const white = template.white
 
-mapping.dark_black = tinycolor(black).darken(6).toHexString()
+mapping.dark_black = tinycolor(black).darken(3).toHexString()
 mapping.black = black
-Array.from({ length: 10 }, (x, i) => i).slice(1).forEach(greyScale => {
-  mapping[`grey${greyScale}`] = tinycolor.mix(black, white, (100 - 100 / 9) / 9 * greyScale).toHexString()
-})
+mapping.light_black = tinycolor(black).lighten(3).toHexString()
+Array.from({ length: 10 }, (x, i) => i)
+  .slice(1)
+  .forEach((greyScale) => {
+    mapping[`grey${greyScale}`] = tinycolor
+      .mix(black, white, ((100 - 100 / 9) / 9) * greyScale)
+      .toHexString()
+  })
 mapping.white = white
 
 const customSyntax = template.syntax || {}
