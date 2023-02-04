@@ -1,9 +1,8 @@
 require("utils")
 
+opt.ruler = false
 opt.autoindent = true
-opt.cc = "120"
 opt.completeopt = "menuone,noinsert,noselect"
-opt.cursorline = true
 opt.expandtab = true
 opt.hidden = true
 opt.mouse = "a"
@@ -17,6 +16,7 @@ opt.tabstop = 2
 opt.clipboard = "unnamed,unnamedplus"
 opt.undofile = true
 
+vim.o.pumheight = 20
 vim.g.mapleader = " "
 
 require("plugins")

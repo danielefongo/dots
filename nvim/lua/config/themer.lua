@@ -25,7 +25,7 @@ local cp = {
   dimmed = { bg = colors.grey4, fg = colors.grey4 },
   bg = {
     base = colors.black,
-    alt = colors.grey1,
+    alt = colors.light_black,
     selected = colors.grey2,
   },
   border = colors.blue,
@@ -41,10 +41,10 @@ local cp = {
   uri = colors.dark_yellow,
   pum = {
     fg = colors.grey9,
-    bg = colors.grey1,
-    sbar = colors.grey2,
+    bg = colors.dark_black,
+    sbar = colors.light_black,
     thumb = colors.blue,
-    sel = { bg = colors.blue, fg = colors.dark_black },
+    sel = { bg = colors.grey2, fg = colors.white },
   },
   heading = {
     h1 = colors.blue,
@@ -52,6 +52,12 @@ local cp = {
   },
 }
 cp.remaps = {
+  base = {
+    WinSeparator = { fg = colors.grey2, bg = colors.black },
+    DiffAdd = { fg = colors.dark_green, bg = colors.black },
+    DiffChange = { fg = colors.dark_yellow, bg = colors.black },
+    DiffDelete = { fg = colors.dark_red, bg = colors.black },
+  },
   plugins = {
     nvim_tree = {
       NVimTreeNormal = { fg = colors.white, bg = colors.dark_black },
