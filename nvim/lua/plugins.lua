@@ -16,6 +16,9 @@ return require("packer").startup(function(use)
   -- speed up load
   use({ "lewis6991/impatient.nvim" })
 
+  -- wildmenu
+  use({ "gelguy/wilder.nvim", config = [[require("config.wilder")]] })
+
   -- keymap
   use({ "folke/which-key.nvim", config = [[require("config.whichkey")]] })
 

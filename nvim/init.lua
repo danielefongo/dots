@@ -16,7 +16,6 @@ opt.tabstop = 2
 opt.clipboard = "unnamed,unnamedplus"
 opt.undofile = true
 
-vim.o.pumheight = 20
 vim.g.mapleader = " "
 
 require("plugins")
