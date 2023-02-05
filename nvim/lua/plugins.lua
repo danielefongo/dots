@@ -49,6 +49,9 @@ return require("packer").startup(function(use)
   -- reload
   use({ "famiu/nvim-reload", requires = { "nvim-lua/plenary.nvim" } })
 
+  -- misc
+  use({ "windwp/nvim-autopairs", config = [[require("config.autopairs")]] })
+
   -- languages
   use({ "nvim-treesitter/nvim-treesitter", config = [[require("config.treesitter")]] })
   use({ "elixir-editors/vim-elixir" })
