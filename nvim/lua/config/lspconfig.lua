@@ -36,6 +36,9 @@ local function setup(lsp_name, command)
   })
 end
 
+require("mason-lspconfig").setup({
+  automatic_installation = true,
+})
 setup("elixirls", { cmd_path("elixir-ls") })
 setup("elmls")
 setup("sumneko_lua")

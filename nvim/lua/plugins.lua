@@ -52,18 +52,25 @@ return require("packer").startup(function(use)
     requires = { "neovim/nvim-lspconfig" },
     config = [[require("config.fidget")]],
   })
+  use({ "williamboman/mason.nvim", config = [[require("config.mason")]] })
   use({
     "neovim/nvim-lspconfig",
-    requires = { "hrsh7th/nvim-cmp", "ray-x/lsp_signature.nvim", "lvimuser/lsp-inlayhints.nvim" },
+    requires = {
+      "williamboman/mason-lspconfig.nvim",
+      "hrsh7th/nvim-cmp",
+      "ray-x/lsp_signature.nvim",
+      "lvimuser/lsp-inlayhints.nvim",
+    },
+    after = { "mason.nvim" },
     config = [[require("config.lspconfig")]],
   })
-  use({ "lvimuser/lsp-inlayhints.nvim", config = [[require("config.inlay")]] })
-  use({ "jose-elias-alvarez/null-ls.nvim", config = [[require("config.null")]] })
   use({
-    "williamboman/mason.nvim",
-    requires = { "williamboman/mason-lspconfig.nvim", "jay-babu/mason-null-ls.nvim" },
-    config = [[require("config.mason")]],
+    "jose-elias-alvarez/null-ls.nvim",
+    requires = { "jay-babu/mason-null-ls.nvim" },
+    after = { "mason.nvim" },
+    config = [[require("config.null")]],
   })
+  use({ "lvimuser/lsp-inlayhints.nvim", config = [[require("config.inlay")]] })
   use({
     "hrsh7th/nvim-cmp",
     requires = {
