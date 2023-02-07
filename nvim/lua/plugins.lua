@@ -16,8 +16,12 @@ return require("packer").startup(function(use)
   -- speed up load
   use({ "lewis6991/impatient.nvim" })
 
-  -- wildmenu
+  -- ui
   use({ "gelguy/wilder.nvim", config = [[require("config.wilder")]] })
+  use({ "b0o/incline.nvim", config = [[require("config.incline")]] })
+  use({ "themercorp/themer.lua", config = [[require("config.themer")]] })
+  use({ "norcalli/nvim-colorizer.lua" })
+  use({ "nvim-lualine/lualine.nvim", config = [[require("config.lualine")]] })
 
   -- keymap
   use({ "folke/which-key.nvim", config = [[require("config.whichkey")]] })
@@ -36,23 +40,11 @@ return require("packer").startup(function(use)
   -- search/replace
   use({ "gabrielpoca/replacer.nvim" })
 
-  -- theme
-  use({ "themercorp/themer.lua", config = [[require("config.themer")]] })
-  use({ "norcalli/nvim-colorizer.lua" })
-
-  -- linebar
-  use({
-    "nvim-lualine/lualine.nvim",
-    config = [[require("config.lualine")]],
-  })
-
   -- reload
   use({ "famiu/nvim-reload", requires = { "nvim-lua/plenary.nvim" } })
 
-  -- misc
-  use({ "windwp/nvim-autopairs", config = [[require("config.autopairs")]] })
-
   -- languages
+  use({ "windwp/nvim-autopairs", config = [[require("config.autopairs")]] })
   use({ "nvim-treesitter/nvim-treesitter", config = [[require("config.treesitter")]] })
   use({ "elixir-editors/vim-elixir" })
   use({
