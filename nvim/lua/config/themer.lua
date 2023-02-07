@@ -28,7 +28,7 @@ local cp = {
     alt = colors.light_black,
     selected = colors.grey2,
   },
-  border = colors.blue,
+  border = colors.white,
   syntax = syntax,
   built_in = syntax,
   diagnostic = {
