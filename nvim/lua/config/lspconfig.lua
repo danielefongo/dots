@@ -5,15 +5,6 @@ local inlay = require("lsp-inlayhints")
 
 local flags = { debounce_text_changes = 150 }
 local capabilities = cmp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
-local settings = {
-  elixirLS = {
-    fetchDeps = false,
-    mixEnv = "dev",
-  },
-  Lua = {
-    diagnostics = { globals = { "vim" } },
-  },
-}
 
 local function cmd_path(server)
   return fn.glob(fn.stdpath("data") .. "/lsp/bin/" .. server)
@@ -26,22 +17,40 @@ local function on_attach(client, bufnr)
   buffer_code_bindings(bufnr)
 end
 
-local function setup(lsp_name, command)
-  lsp[lsp_name].setup({
-    capabilities = capabilities,
-    on_attach = on_attach,
-    flags = flags,
-    cmd = command,
-    settings = settings,
-  })
-end
+local lsps = {
+  elixirls = {
+    cmd = { cmd_path("elixir-ls") },
+    settings = {
+      elixirLS = {
+        fetchDeps = false,
+        mixEnv = "dev",
+      },
+    },
+  },
+  elmls = {},
+  sumneko_lua = {
+    settings = {
+      Lua = {
+        diagnostics = { globals = { "vim" } },
+        format = { enable = false },
+      },
+    },
+  },
+  pylsp = {},
+  tsserver = {},
+  rust_analyzer = {},
+}
 
 require("mason-lspconfig").setup({
   automatic_installation = true,
 })
-setup("elixirls", { cmd_path("elixir-ls") })
-setup("elmls")
-setup("sumneko_lua")
-setup("pylsp")
-setup("tsserver")
-setup("rust_analyzer")
+
+for lsp_name, config in pairs(lsps) do
+  lsp[lsp_name].setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
+    flags = flags,
+    cmd = config.cmd,
+    settings = config.settings or {},
+  })
+end
