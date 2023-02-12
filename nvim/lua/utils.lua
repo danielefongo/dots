@@ -4,11 +4,6 @@ exec = vim.api.nvim_command
 opt = vim.opt
 fn = vim.fn
 
-function _G.reload_config()
-  vim.cmd([[Reload]])
-  vim.cmd([[PackerCompile]])
-end
-
 function _G.set_key(mode, keys, command)
   vim.api.nvim_set_keymap(mode, keys, command, key_opts)
 end

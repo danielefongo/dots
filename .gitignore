@@ -1,5 +1,5 @@
 fonts/.uuid
-nvim/plugin/
+nvim/lazy-lock.json
 
 templating/node_modules
 .delta

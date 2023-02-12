@@ -1,112 +1,150 @@
-local ensure_packer = function()
-  local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-  if vim.fn.empty(fn.glob(install_path)) > 0 then
-    vim.fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
-    vim.cmd("packadd packer.nvim")
-    return true
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+
+local function required(name)
+  return function()
+    require(name)
   end
-  return false
 end
 
-local packer_bootstrap = ensure_packer()
-
-return require("packer").startup(function(use)
-  use({ "wbthomason/packer.nvim" })
-
+require("lazy").setup({
   -- speed up load
-  use({ "lewis6991/impatient.nvim" })
+  { "lewis6991/impatient.nvim" },
 
   -- ui
-  use({ "gelguy/wilder.nvim", config = [[require("config.wilder")]] })
-  use({ "b0o/incline.nvim", config = [[require("config.incline")]] })
-  use({ "themercorp/themer.lua", config = [[require("config.themer")]] })
-  use({ "norcalli/nvim-colorizer.lua" })
-  use({ "nvim-lualine/lualine.nvim", config = [[require("config.lualine")]] })
+  {
+    "gelguy/wilder.nvim",
+    config = required("config.wilder"),
+  },
+  {
+    "b0o/incline.nvim",
+    config = required("config.incline"),
+  },
+  {
+    "themercorp/themer.lua",
+    config = required("config.themer"),
+  },
+  {
+    "norcalli/nvim-colorizer.lua",
+  },
+  {
+    "nvim-lualine/lualine.nvim",
+    config = required("config.lualine"),
+  },
 
   -- keymap
-  use({ "folke/which-key.nvim", config = [[require("config.whichkey")]] })
+  {
+    "folke/which-key.nvim",
+    config = required("config.whichkey"),
+  },
 
   -- comments
-  use({ "tpope/vim-commentary" })
+  { "tpope/vim-commentary" },
 
   -- files
-  use({
+  {
     "nvim-tree/nvim-tree.lua",
-    requires = { "nvim-tree/nvim-web-devicons" },
-    config = [[require("config.nvimtree")]],
-  })
-  use({ "ibhagwan/fzf-lua", config = [[require("config.fzflua")]] })
+    config = required("config.nvimtree"),
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+  },
+  {
+    "ibhagwan/fzf-lua",
+    config = required("config.fzflua"),
+  },
 
   -- search/replace
-  use({ "gabrielpoca/replacer.nvim" })
+  { "gabrielpoca/replacer.nvim" },
 
   -- reload
-  use({ "famiu/nvim-reload", requires = { "nvim-lua/plenary.nvim" } })
+  {
+    "famiu/nvim-reload",
+    dependencies = { "nvim-lua/plenary.nvim" },
+  },
 
   -- languages
-  use({ "windwp/nvim-autopairs", config = [[require("config.autopairs")]] })
-  use({ "nvim-treesitter/nvim-treesitter", config = [[require("config.treesitter")]] })
-  use({ "elixir-editors/vim-elixir" })
-  use({
+  {
+    "windwp/nvim-autopairs",
+    config = required("config.autopairs"),
+  },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    config = required("config.treesitter"),
+  },
+  {
+    "elixir-editors/vim-elixir",
+  },
+  {
     "j-hui/fidget.nvim",
-    requires = { "neovim/nvim-lspconfig" },
-    config = [[require("config.fidget")]],
-  })
-  use({ "williamboman/mason.nvim", config = [[require("config.mason")]] })
-  use({
+    config = required("config.fidget"),
+    dependencies = { "neovim/nvim-lspconfig" },
+  },
+  {
+    "williamboman/mason.nvim",
+    config = required("config.mason"),
+  },
+  {
     "neovim/nvim-lspconfig",
-    requires = {
+    config = required("config.lspconfig"),
+    dependencies = {
       "williamboman/mason-lspconfig.nvim",
-      "hrsh7th/nvim-cmp",
       "ray-x/lsp_signature.nvim",
       "lvimuser/lsp-inlayhints.nvim",
+      "mason.nvim",
     },
-    after = { "mason.nvim" },
-    config = [[require("config.lspconfig")]],
-  })
-  use({
+  },
+  {
     "jose-elias-alvarez/null-ls.nvim",
-    requires = { "jay-babu/mason-null-ls.nvim" },
-    after = { "mason.nvim" },
-    config = [[require("config.null")]],
-  })
-  use({ "lvimuser/lsp-inlayhints.nvim", config = [[require("config.inlay")]] })
-  use({
+    config = required("config.null"),
+    dependencies = { "jay-babu/mason-null-ls.nvim", "mason.nvim" },
+  },
+  {
+    "lvimuser/lsp-inlayhints.nvim",
+    config = required("config.inlay"),
+  },
+  {
     "hrsh7th/nvim-cmp",
-    requires = {
+    config = required("config.nvimcmp"),
+    dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-buffer",
       "hrsh7th/vim-vsnip",
     },
-    config = [[require("config.nvimcmp")]],
-  })
-  use({
+  },
+  {
     "folke/trouble.nvim",
-    requires = "kyazdani42/nvim-web-devicons",
-    config = [[require("config.trouble")]],
-  })
+    config = required("config.trouble"),
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+  },
 
   -- buffers
-  use({ "kazhala/close-buffers.nvim" })
+  { "kazhala/close-buffers.nvim" },
 
   -- git
-  use({ "lewis6991/gitsigns.nvim", config = [[require("config.gitsigns")]] })
-  use({
+  {
+    "lewis6991/gitsigns.nvim",
+    config = required("config.gitsigns"),
+  },
+  {
     "TimUntersberger/neogit",
-    requires = "nvim-lua/plenary.nvim",
-    config = [[require("config.neogit")]],
-  })
+    config = required("config.neogit"),
+    dependencies = { "nvim-lua/plenary.nvim" },
+  },
 
   -- session
-  use({
+  {
     "rmagatti/session-lens",
-    requires = { "rmagatti/auto-session", "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
-    after = "plenary.nvim",
-    config = [[require("config.autosession")]],
-  })
-
-  if packer_bootstrap then
-    require("packer").sync()
-  end
-end)
+    config = required("config.autosession"),
+    dependencies = { "rmagatti/auto-session", "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim", "plenary.nvim" },
+  },
+})
