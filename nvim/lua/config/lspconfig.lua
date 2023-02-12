@@ -28,7 +28,7 @@ local lsps = {
     },
   },
   elmls = {},
-  sumneko_lua = {
+  lua_ls = {
     settings = {
       Lua = {
         diagnostics = { globals = { "vim" } },
