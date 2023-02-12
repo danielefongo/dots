@@ -79,31 +79,3 @@ cp.remaps = {
 }
 
 require("themer").setup({ colorscheme = cp })
-
-function _G.last_theme_update()
-  local f = io.popen("stat -c %Y ~/dotfiles/dots/nvim/lua/config/theme.lua")
-  if f then
-    local last_modified = f:read()
-    f:close()
-    return last_modified
-  else
-    return 0
-  end
-end
-
-LAST_THEME_UPDATE = last_theme_update()
-function _G.update_theme()
-  local timer = vim.loop.new_timer()
-  timer:start(
-    1000,
-    500,
-    vim.schedule_wrap(function()
-      if LAST_THEME_UPDATE < last_theme_update() then
-        LAST_THEME_UPDATE = last_theme_update()
-        reload_config()
-      end
-    end)
-  )
-end
-
-vim.cmd([[ au VimEnter * nested lua update_theme() ]])
