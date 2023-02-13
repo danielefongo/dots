@@ -18,6 +18,9 @@ local function on_attach(client, bufnr)
 end
 
 local lsps = {
+  bashls = {},
+  cssls = {},
+  dockerls = {},
   elixirls = {
     cmd = { cmd_path("elixir-ls") },
     settings = {
@@ -28,6 +31,7 @@ local lsps = {
     },
   },
   elmls = {},
+  html = {},
   lua_ls = {
     settings = {
       Lua = {
@@ -36,7 +40,9 @@ local lsps = {
       },
     },
   },
+  marksman = {},
   pylsp = {},
+  taplo = {},
   tsserver = {},
   rust_analyzer = {},
 }
