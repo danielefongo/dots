@@ -57,12 +57,20 @@ require("lazy").setup({
     config = required("config.nvimtree"),
     dependencies = { "nvim-tree/nvim-web-devicons" },
   },
+
+  -- search
+  { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
   {
-    "ibhagwan/fzf-lua",
-    config = required("config.fzflua"),
+    "nvim-telescope/telescope.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope-ui-select.nvim",
+      "nvim-telescope/telescope-fzf-native.nvim",
+    },
+    config = required("config.telescope"),
   },
 
-  -- search/replace
+  -- replace
   { "gabrielpoca/replacer.nvim" },
 
   -- reload
