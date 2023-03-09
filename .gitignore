@@ -2,10 +2,3 @@ fonts/.uuid
 nvim/lazy-lock.json
 
 templating/node_modules
-.delta
-dunst/dunstrc
-i3/theme.conf
-kitty/colors.conf
-nvim/lua/config/theme.lua
-polybar/colors.polybar
-rofi/theme.rasi
