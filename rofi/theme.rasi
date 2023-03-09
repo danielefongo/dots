@@ -1,0 +1,92 @@
+* {
+  black: #191d27;
+  red: #f45c7f;
+  green: #addb67;
+  yellow: #ecc48d;
+  blue: #6cbeff;
+  magenta: #c792ea;
+  cyan: #9fd4ff;
+  emphasis: #333843;
+  text: #e9ebf0;
+  text-alt: #e9ebf0;
+  fg: #d3d5db;
+  bg: #1f2430;
+  bg-dark: #191d27;
+
+  spacing: 0;
+  background-color: transparent;
+
+  font: "Hasklig 14";
+  text-color: @text;
+}
+
+window {
+  transparency: "real";
+  fullscreen: false;
+  background-color: @bg;
+  border: 2px;
+  border-radius: 16px;
+  border-color: @yellow;
+}
+
+mainbox {
+  padding: 10px 10px;
+}
+
+inputbar {
+  margin: 0px 0px 20px 0px;
+  children: [prompt, textbox-prompt-colon, entry, case-indicator];
+}
+
+prompt {
+  text-color: @yellow;
+}
+
+textbox-prompt-colon {
+  expand: false;
+  str: ":";
+  text-color: @text-alt;
+}
+
+entry {
+  margin: 0px 10px;
+}
+
+listview {
+  spacing: 5px;
+  dynamic: true;
+  scrollbar: false;
+}
+
+element {
+  padding: 5px;
+  text-color: @text-alt;
+  border-radius: 3px;
+}
+
+element selected {
+  background-color: @emphasis;
+  text-color: @text;
+}
+
+element urgent, element selected urgent {
+  text-color: @red;
+}
+
+element active, element selected active {
+  text-color: @magenta;
+}
+
+message {
+  padding: 5px;
+  border-radius: 3px;
+  background-color: @emphasis;
+  border: 1px;
+  border-color: @cyan;
+}
+
+button selected {
+  padding: 5px;
+  border-radius: 3px;
+  background-color: @emphasis;
+}

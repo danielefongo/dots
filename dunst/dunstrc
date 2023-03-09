@@ -1,0 +1,59 @@
+[global]
+    monitor = 0
+    follow = mouse
+    geometry = "300x5-15+68"
+    indicate_hidden = yes
+    shrink = no
+    padding = 10
+    horizontal_padding = 8
+    frame_width = 2
+    frame_color = "#e9ebf0"
+    separator_color = frame
+    sort = yes
+    idle_threshold = 120
+    font = Hasklig 12
+    line_height = 0
+    markup = full
+    format = "<b>%a - %s</b>\n%b"
+    alignment = left
+    vertical_alignment = center
+    show_age_threshold = 60
+    word_wrap = yes
+    ignore_newline = no
+    stack_duplicates = true
+    hide_duplicate_count = false
+    show_indicators = yes
+    icon_position = left
+    min_icon_size = 0
+    max_icon_size = 32
+    sticky_history = yes
+    history_length = 0
+    always_run_script = true
+    startup_notification = false
+    verbosity = mesg
+    corner_radius = 16
+    ignore_dbusclose = false
+    mouse_left_click = do_action, close_current
+    mouse_middle_click = close_current
+    mouse_right_click = close_all
+
+[experimental]
+    per_monitor_dpi = false
+
+[urgency_low]
+    background = "#1f2430"
+    foreground = "#e9ebf0"
+    frame_color = "#ecc48d"
+    timeout = 5
+
+[urgency_normal]
+    background = "#1f2430"
+    foreground = "#e9ebf0"
+    frame_color = "#ecc48d"
+    timeout = 10
+
+[urgency_critical]
+    background = "#1f2430"
+    foreground = "#e9ebf0"
+    frame_color = "#ff3765"
+    timeout = 0
