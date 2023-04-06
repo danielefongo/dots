@@ -1,5 +1,6 @@
 # antigen
 source "$HOME/dotfiles/dots/antigen/antigen.zsh"
+antigen use oh-my-zsh
 antigen bundle asdf-vm/asdf
 antigen bundle git
 antigen bundle scmbreeze/scm_breeze
