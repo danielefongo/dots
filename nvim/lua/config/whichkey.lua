@@ -53,7 +53,7 @@ wk.register({
     name = "open",
     b = { ":lua require('telescope.builtin').buffers()<cr>", "buffer" },
     f = { ":lua require('telescope.builtin').find_files()<cr>", "file" },
-    t = { ":lua require('nvim-tree').toggle()<cr>", "tree" },
+    t = { ":NvimTreeToggle<cr>", "tree" },
   },
   r = { ":lua require('replacer').run()<cr>", "replace" },
   s = {
