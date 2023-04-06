@@ -47,3 +47,8 @@ theme_watcher &!
 TRAPUSR1() {
   kitty @ set-colors --all --configured $KITTY_THEME_FILE > /dev/null;
 }
+
+# others
+if [ -f ~/.custom_zshrc.sh ]; then
+  source ~/.custom_zshrc.sh
+fi
