@@ -1,8 +1,9 @@
 return {
-  { "elixir-editors/vim-elixir" },
+  { "elixir-editors/vim-elixir", event = "BufReadPre" },
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
+    event = "BufReadPost",
     config = function()
       require("nvim-treesitter.configs").setup({
         ensure_installed = {
@@ -32,12 +33,9 @@ return {
   },
   {
     "j-hui/fidget.nvim",
+    event = "BufReadPre",
     opts = { window = { relative = "editor" } },
     dependencies = { "neovim/nvim-lspconfig" },
-  },
-  {
-    "williamboman/mason.nvim",
-    opts = { install_root_dir = fn.stdpath("data") .. "/lsp/" },
   },
   {
     "neovim/nvim-lspconfig",
@@ -47,13 +45,15 @@ return {
       "lvimuser/lsp-inlayhints.nvim",
       "hrsh7th/nvim-cmp",
       "hrsh7th/cmp-nvim-lsp",
-      "mason.nvim",
+      "williamboman/mason.nvim",
     },
+    event = "BufReadPre",
     config = function()
       local lsp = require("lspconfig")
       local cmp = require("cmp_nvim_lsp")
       local signature = require("lsp_signature")
       local inlay = require("lsp-inlayhints")
+      require("mason").setup({ install_root_dir = fn.stdpath("data") .. "/lsp/" })
 
       local flags = { debounce_text_changes = 150 }
       local capabilities = cmp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -114,9 +114,15 @@ return {
   },
   {
     "jose-elias-alvarez/null-ls.nvim",
-    dependencies = { "jay-babu/mason-null-ls.nvim", "nvim-lua/plenary.nvim", "mason.nvim" },
+    dependencies = {
+      "jay-babu/mason-null-ls.nvim",
+      "nvim-lua/plenary.nvim",
+      "williamboman/mason.nvim",
+    },
+    event = "BufReadPre",
     config = function()
       local null_ls = require("null-ls")
+      require("mason").setup({ install_root_dir = fn.stdpath("data") .. "/lsp/" })
 
       null_ls.setup({
         sources = {
@@ -159,15 +165,18 @@ return {
   },
   {
     "lvimuser/lsp-inlayhints.nvim",
+    event = "BufReadPost",
     opts = { inlay_hints = { highlight = "Comment" } },
   },
   {
     "folke/trouble.nvim",
+    event = "BufReadPost",
     opts = { position = "bottom", height = 10 },
     dependencies = { "nvim-tree/nvim-web-devicons" },
   },
   {
     "hrsh7th/nvim-cmp",
+    event = "BufReadPost",
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-path",

@@ -1,7 +1,13 @@
 return {
   {
     "rmagatti/session-lens",
-    dependencies = { "rmagatti/auto-session", "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim", "plenary.nvim" },
+    lazy = false,
+    dependencies = {
+      "rmagatti/auto-session",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+      "plenary.nvim",
+    },
     config = function()
       local function close_nvim_tree()
         vim.cmd("NvimTreeClose")

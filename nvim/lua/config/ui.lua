@@ -5,6 +5,7 @@ local syntax = theme.syntax
 return {
   {
     "themercorp/themer.lua",
+    event = "VeryLazy",
     opts = {
       colorscheme = {
         red = colors.dark_red,
@@ -85,6 +86,7 @@ return {
   },
   {
     "b0o/incline.nvim",
+    event = "VeryLazy",
     opts = {
       highlight = {
         groups = {
@@ -102,6 +104,7 @@ return {
   },
   {
     "nvim-lualine/lualine.nvim",
+    event = "VeryLazy",
     opts = {
       options = {
         theme = {
@@ -144,6 +147,7 @@ return {
   },
   {
     "gelguy/wilder.nvim",
+    event = "VeryLazy",
     config = function()
       local wilder = require("wilder")
 

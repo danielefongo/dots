@@ -1,5 +1,6 @@
 return {
   "folke/which-key.nvim",
+  event = "VeryLazy",
   config = function()
     vim.o.timeout = true
     vim.o.timeoutlen = 100
@@ -22,12 +23,12 @@ return {
         ["["] = { "<C-o><cr>", "previous" },
         ["]"] = { "<C-i><cr>", "next" },
         a = { ":lua vim.lsp.buf.code_action()<cr>", "actions" },
-        d = { ":lua require('telescope.builtin').lsp_definitions()<cr>", "definitions" },
+        d = { ":Telescope lsp_definitions<cr>", "definitions" },
         h = { ":lua vim.lsp.buf.signature_help()<cr>", "signature" },
-        i = { ":lua require('telescope.builtin').lsp_implementations()<cr>", "implementations" },
-        r = { ":lua require('telescope.builtin').lsp_references()<cr>", "references" },
+        i = { ":Telescope lsp_implementations<cr>", "implementations" },
+        r = { ":Telescope lsp_references<cr>", "references" },
         R = { ":lua vim.lsp.buf.rename()<cr>", "rename" },
-        t = { ":lua require('telescope.builtin').lsp_type_definitions()<cr>", "typedefs" },
+        t = { ":Telescope lsp_type_definitions<cr>", "typedefs" },
       },
       d = {
         name = "diagnostic",
@@ -39,24 +40,24 @@ return {
       },
       f = {
         name = "find",
-        b = { ":lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>", "buffer text" },
-        c = { ":lua require('telescope.builtin').command_history()<cr>", "commands" },
-        k = { ":lua require('telescope.builtin').keymaps()<cr>", "keymaps" },
-        w = { ":lua require('telescope.builtin').live_grep()<cr>", "workspace text" },
+        b = { ":Telescope current_buffer_fuzzy_find<cr>", "buffer text" },
+        c = { ":Telescope command_history<cr>", "commands" },
+        k = { ":Telescope keymaps<cr>", "keymaps" },
+        w = { ":Telescope live_grep<cr>", "workspace text" },
         s = {
           name = "symbol",
-          b = { ":lua require('telescope.builtin').lsp_document_symbols()<cr>", "buffer symbol" },
-          w = { ":lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>", "workspace symbol" },
+          b = { ":Telescope lsp_document_symbols<cr>", "buffer symbol" },
+          w = { ":Telescope lsp_dynamic_workspace_symbols<cr>", "workspace symbol" },
         },
       },
       g = {
         name = "git",
-        g = { ":lua require('neogit').open()<cr>", "neo" },
+        g = { ":Neogit<cr>", "neo" },
       },
       o = {
         name = "open",
-        b = { ":lua require('telescope.builtin').buffers()<cr>", "buffer" },
-        f = { ":lua require('telescope.builtin').find_files()<cr>", "file" },
+        b = { ":Telescope buffers<cr>", "buffer" },
+        f = { ":Telescope find_files<cr>", "file" },
         t = { ":NvimTreeToggle<cr>", "tree" },
       },
       r = { ":lua require('replacer').run()<cr>", "replace" },

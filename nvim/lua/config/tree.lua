@@ -2,6 +2,7 @@ return {
   {
     "nvim-tree/nvim-tree.lua",
     dependencies = { "nvim-tree/nvim-web-devicons" },
+    cmd = { "NvimTreeToggle", "NvimTreeOpen" },
     opts = {
       update_cwd = true,
       update_focused_file = {

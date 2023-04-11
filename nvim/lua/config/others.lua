@@ -1,7 +1,7 @@
 return {
   { "norcalli/nvim-colorizer.lua" },
-  { "tpope/vim-commentary" },
-  { "gabrielpoca/replacer.nvim" },
-  { "windwp/nvim-autopairs", opts = {} },
-  { "kazhala/close-buffers.nvim" },
+  { "tpope/vim-commentary", cmd = "Commentary" },
+  { "gabrielpoca/replacer.nvim", cmd = { "ColorizerToggle", "ColorizerAttachToBuffer" } },
+  { "windwp/nvim-autopairs", opts = {}, event = "BufReadPre" },
+  { "kazhala/close-buffers.nvim", event = "VeryLazy" },
 }
