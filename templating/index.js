@@ -34,7 +34,7 @@ const files = {
   'theme/configs/kitty': 'kitty/colors.conf',
   'theme/configs/polybar': 'polybar/colors.polybar',
   'theme/configs/rofi': 'rofi/theme.rasi',
-  'theme/configs/vim': 'nvim/lua/config/theme.lua'
+  'theme/configs/vim': 'nvim/lua/theme.lua'
 }
 
 const template = require(`../theme/scheme/${process.argv.slice(2)[0]}.json`)
