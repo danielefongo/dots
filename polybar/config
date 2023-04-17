@@ -2,12 +2,12 @@ include-file = ~/dotfiles/dots/polybar/colors.polybar
 
 [bar/top]
 monitor = ${env:MONITOR:}
-width = 100%:-32
+width = 100%:-16
 height = 36
 radius = 10
 fixed-center = true
-offset-y = 16
-offset-x = 16
+offset-y = 8
+offset-x = 8
 override-redirect = true
 wm-restack = i3
 

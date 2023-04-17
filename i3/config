@@ -149,7 +149,7 @@ bindsym $mod+Shift+n exec ~/dotfiles/dots/dunst/pause.sh
 bindsym $mod+Shift+t exec rofi -modi theme:~/dotfiles/dots/rofi/theme.py -show theme
 
 # gaps
-gaps inner 16px
-gaps top 52px
+gaps inner 8px
+gaps top 44px
 gaps bottom 0px
 smart_gaps off
