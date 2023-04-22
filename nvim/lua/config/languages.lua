@@ -214,7 +214,24 @@ return {
           { name = "nvim_lsp" },
           { name = "vsnip" },
           { name = "path" },
-          { name = "buffer" },
+          { name = "buffer", keyword_length = 2, max_item_count = 8 },
+        },
+        formatting = {
+          fields = { "abbr", "kind" },
+          max_width = 0,
+          format = function(_, vim_item)
+            local function trim(text)
+              local max = 40
+              if text and #text > max then
+                text = text:sub(1, max) .. "..."
+              end
+              return text
+            end
+
+            vim_item.menu = ""
+            vim_item.abbr = trim(vim_item.abbr)
+            return vim_item
+          end,
         },
       })
     end,
