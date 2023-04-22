@@ -40,20 +40,22 @@ return {
   {
     "neovim/nvim-lspconfig",
     dependencies = {
+      "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
       "ray-x/lsp_signature.nvim",
       "lvimuser/lsp-inlayhints.nvim",
       "hrsh7th/nvim-cmp",
       "hrsh7th/cmp-nvim-lsp",
-      "williamboman/mason.nvim",
     },
-    event = "BufReadPre",
+    event = "VeryLazy",
     config = function()
       local lsp = require("lspconfig")
       local cmp = require("cmp_nvim_lsp")
       local signature = require("lsp_signature")
       local inlay = require("lsp-inlayhints")
-      require("mason").setup({ install_root_dir = fn.stdpath("data") .. "/lsp/" })
+
+      local mason = require("mason")
+      local mason_lsp_config = require("mason-lspconfig")
 
       local flags = { debounce_text_changes = 150 }
       local capabilities = cmp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -97,7 +99,10 @@ return {
         rust_analyzer = {},
       }
 
-      require("mason-lspconfig").setup({
+      mason.setup({ install_root_dir = fn.stdpath("data") .. "/lsp/" })
+
+      mason_lsp_config.setup({
+        ensure_installed = vim.tbl_keys(lsps),
         automatic_installation = true,
       })
 
@@ -115,30 +120,35 @@ return {
   {
     "jose-elias-alvarez/null-ls.nvim",
     dependencies = {
+      "williamboman/mason.nvim",
       "jay-babu/mason-null-ls.nvim",
       "nvim-lua/plenary.nvim",
-      "williamboman/mason.nvim",
     },
-    event = "BufReadPre",
+    event = "VeryLazy",
     config = function()
+      local mason = require("mason")
       local null_ls = require("null-ls")
-      require("mason").setup({ install_root_dir = fn.stdpath("data") .. "/lsp/" })
+      local mason_null_ls = require("mason-null-ls")
+
+      local null_sources = {
+        shfmt = null_ls.builtins.formatting.shfmt, -- bash / sh
+        mix = null_ls.builtins.formatting.mix, -- elixir
+        elm_format = null_ls.builtins.formatting.elm_format, -- elm
+        prettier = null_ls.builtins.formatting.prettier, -- html stuff
+        stylua = null_ls.builtins.formatting.stylua.with({
+          extra_args = { "--indent-type", "Spaces", "--indent-width", "2" },
+        }), -- lua
+        markdownlint = null_ls.builtins.formatting.markdownlint, -- markdown
+        black = null_ls.builtins.formatting.black, -- python
+        rustfmt = null_ls.builtins.formatting.rustfmt, -- rust
+        taplo = null_ls.builtins.formatting.taplo, -- toml
+        eslint = null_ls.builtins.formatting.eslint, -- ts (js)
+      }
+
+      mason.setup({ install_root_dir = fn.stdpath("data") .. "/lsp/" })
 
       null_ls.setup({
-        sources = {
-          null_ls.builtins.formatting.shfmt, -- bash / sh
-          null_ls.builtins.formatting.mix, -- elixir
-          null_ls.builtins.formatting.elm_format, -- elm
-          null_ls.builtins.formatting.prettier, -- html stuff
-          null_ls.builtins.formatting.stylua.with({
-            extra_args = { "--indent-type", "Spaces", "--indent-width", "2" },
-          }), -- lua
-          null_ls.builtins.formatting.markdownlint, -- markdown
-          null_ls.builtins.formatting.black, -- python
-          null_ls.builtins.formatting.rustfmt, -- rust
-          null_ls.builtins.formatting.taplo, -- toml
-          null_ls.builtins.formatting.eslint, -- ts (js)
-        },
+        sources = vim.tbl_values(null_sources),
         on_attach = function(client, bufnr)
           if client.supports_method("textDocument/formatting") then
             vim.api.nvim_create_autocmd("BufWritePre", {
@@ -155,12 +165,10 @@ return {
         end,
       })
 
-      local mason_null_ls = require("mason-null-ls")
       mason_null_ls.setup({
+        ensure_installed = vim.tbl_keys(null_sources),
         automatic_installation = true,
-        automatic_setup = true,
       })
-      mason_null_ls.setup_handlers()
     end,
   },
   {
