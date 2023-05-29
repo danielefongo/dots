@@ -15,6 +15,7 @@ require("lazy").setup("config", {
   defaults = { lazy = true },
   change_detection = { notify = false },
   debug = false,
+  dev = { path = "~/nvim_plugins/", patterns = {}, fallback = true },
   performance = {
     rtp = {
       disabled_plugins = {

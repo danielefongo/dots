@@ -79,6 +79,11 @@ return {
               NvimTreeSymlink = { fg = colors.white },
               NvimTreeExecFile = { fg = colors.white },
             },
+            microscope = {
+              MicroscopeMatch = { fg = colors.blue },
+              MicroscopeColor1 = { fg = colors.red },
+              MicroscopeColor2 = { fg = colors.green },
+            },
           },
         },
       },
