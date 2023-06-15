@@ -1,40 +1,40 @@
 # color scheme
-cursor $COLOR_GREY4
-cursor_text_color $COLOR_GREY9
+cursor {{ colors.grey4 }}
+cursor_text_color {{ colors.grey9 }}
 
-foreground $COLOR_WHITE
-background $COLOR_BLACK
+foreground {{ colors.white }}
+background {{ colors.black }}
 
-selection_foreground $COLOR_DARK_BLACK
-selection_background $COLOR_GREY9
+selection_foreground {{ colors.dark_black }}
+selection_background {{ colors.grey9 }}
 
-color0 $COLOR_GREY8
-color8 $COLOR_GREY9
+color0 {{ colors.grey8 }}
+color8 {{ colors.grey9 }}
 
-color1 $COLOR_RED
-color9 $COLOR_LIGHT_RED
+color1 {{ colors.red }}
+color9 {{ colors.light_red }}
 
-color2  $COLOR_GREEN
-color10 $COLOR_LIGHT_GREEN
+color2  {{ colors.green }}
+color10 {{ colors.light_green }}
 
-color3  $COLOR_YELLOW
-color11 $COLOR_LIGHT_YELLOW
+color3  {{ colors.yellow }}
+color11 {{ colors.light_yellow }}
 
-color4  $COLOR_BLUE
-color12 $COLOR_LIGHT_BLUE
+color4  {{ colors.blue }}
+color12 {{ colors.light_blue }}
 
-color5  $COLOR_MAGENTA
-color13 $COLOR_LIGHT_MAGENTA
+color5  {{ colors.magenta }}
+color13 {{ colors.light_magenta }}
 
-color6  $COLOR_CYAN
-color14 $COLOR_LIGHT_CYAN
+color6  {{ colors.cyan }}
+color14 {{ colors.light_cyan }}
 
-color7  $COLOR_WHITE
-color15 $COLOR_WHITE
+color7  {{ colors.white }}
+color15 {{ colors.white }}
 
-mark1_foreground $COLOR_DARK_BLACK
-mark1_background $COLOR_STRONG_BLUE
-mark2_foreground $COLOR_DARK_BLACK
-mark2_background $COLOR_STRONG_GREEN
-mark3_foreground $COLOR_DARK_BLACK
-mark3_background $COLOR_STRONG_YELLOW
+mark1_foreground {{ colors.dark_black }}
+mark1_background {{ colors.strong_blue }}
+mark2_foreground {{ colors.dark_black }}
+mark2_background {{ colors.strong_green }}
+mark3_foreground {{ colors.dark_black }}
+mark3_background {{ colors.strong_yellow }}

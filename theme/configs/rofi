@@ -1,17 +1,17 @@
 * {
-  black: $COLOR_DARK_BLACK;
-  red: $COLOR_RED;
-  green: $COLOR_GREEN;
-  yellow: $COLOR_YELLOW;
-  blue: $COLOR_BLUE;
-  magenta: $COLOR_MAGENTA;
-  cyan: $COLOR_CYAN;
-  emphasis: $COLOR_GREY1;
-  text: $COLOR_WHITE;
-  text-alt: $COLOR_WHITE;
-  fg: $COLOR_GREY9;
-  bg: $COLOR_BLACK;
-  bg-dark: $COLOR_DARK_BLACK;
+  black: {{ colors.dark_black }};
+  red: {{ colors.red }};
+  green: {{ colors.green }};
+  yellow: {{ colors.yellow }};
+  blue: {{ colors.blue }};
+  magenta: {{ colors.magenta }};
+  cyan: {{ colors.cyan }};
+  emphasis: {{ colors.grey1 }};
+  text: {{ colors.white }};
+  text-alt: {{ colors.white }};
+  fg: {{ colors.grey9 }};
+  bg: {{ colors.black }};
+  bg-dark: {{ colors.dark_black }};
 
   spacing: 0;
   background-color: transparent;

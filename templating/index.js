@@ -1,5 +1,8 @@
 const tinycolor = require('tinycolor2')
+const nunjucks = require('nunjucks')
 const fs = require('fs')
+
+nunjucks.configure('.')
 
 const defaultSyntax = {
   statement: 'orange',
@@ -20,7 +23,7 @@ const defaultSyntax = {
   constant: 'orange',
   tag: 'red',
   todo_fg: 'cyan',
-  todo_bg: 'dark_grey1',
+  todo_bg: 'grey1',
   number: 'orange',
   comment: 'grey4',
   type: 'yellow',
@@ -38,19 +41,19 @@ const files = {
 }
 
 const template = require(`../theme/scheme/${process.argv.slice(2)[0]}.json`)
-const mapping = {}
+const colors = {}
 
 Object.entries(template.palette).forEach(([key, color]) => {
-  mapping[`strong_${key}`] = tinycolor(color)
+  colors[`strong_${key}`] = tinycolor(color)
     .darken(5)
     .saturate(50)
     .toHexString()
-  mapping[`dark_${key}`] = tinycolor(color)
+  colors[`dark_${key}`] = tinycolor(color)
     .darken(10)
     .desaturate(15)
     .toHexString()
-  mapping[`${key}`] = color
-  mapping[`light_${key}`] = tinycolor(color)
+  colors[`${key}`] = color
+  colors[`light_${key}`] = tinycolor(color)
     .lighten(10)
     .saturate(15)
     .toHexString()
@@ -59,36 +62,29 @@ Object.entries(template.palette).forEach(([key, color]) => {
 const black = template.black
 const white = template.white
 
-mapping.dark_black = tinycolor(black).darken(3).toHexString()
-mapping.black = black
-mapping.light_black = tinycolor(black).lighten(3).toHexString()
+colors.dark_black = tinycolor(black).darken(3).toHexString()
+colors.black = black
+colors.light_black = tinycolor(black).lighten(3).toHexString()
 Array.from({ length: 10 }, (x, i) => i)
   .slice(1)
   .forEach((greyScale) => {
-    mapping[`grey${greyScale}`] = tinycolor
+    colors[`grey${greyScale}`] = tinycolor
       .mix(black, white, ((100 - 100 / 9) / 9) * greyScale)
       .toHexString()
   })
-mapping.white = white
+colors.white = white
 
 const customSyntax = template.syntax || {}
 const syntax = { ...defaultSyntax, ...customSyntax }
 Object.entries(syntax).forEach(([key, value]) => {
-  syntax[key] = mapping[value]
+  syntax[key] = colors[value]
 })
 
 Object.entries(files).forEach(([from, to]) => {
-  fs.readFile(from, 'utf8', (err, data) => {
-    if (err) return console.log(err)
-
-    Object.entries(mapping).forEach(([key, value]) => {
-      data = data.replaceAll(`$COLOR_${key.toUpperCase()}`, value)
-    })
-
-    Object.entries(syntax).forEach(([key, value]) => {
-      data = data.replaceAll(`$SYNTAX_${key.toUpperCase()}`, value)
-    })
-
-    fs.writeFile(to, data, 'utf8', () => { })
+  const renderedTemplate = nunjucks.render(from, {
+    colors,
+    syntax
   })
+
+  fs.writeFileSync(to, renderedTemplate)
 })

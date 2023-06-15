@@ -7,7 +7,7 @@
     padding = 10
     horizontal_padding = 8
     frame_width = 2
-    frame_color = "$COLOR_WHITE"
+    frame_color = "{{ colors.white }}"
     separator_color = frame
     sort = yes
     idle_threshold = 120
@@ -41,19 +41,19 @@
     per_monitor_dpi = false
 
 [urgency_low]
-    background = "$COLOR_BLACK"
-    foreground = "$COLOR_WHITE"
-    frame_color = "$COLOR_YELLOW"
+    background = "{{ colors.black }}"
+    foreground = "{{ colors.white }}"
+    frame_color = "{{ colors.yellow }}"
     timeout = 5
 
 [urgency_normal]
-    background = "$COLOR_BLACK"
-    foreground = "$COLOR_WHITE"
-    frame_color = "$COLOR_YELLOW"
+    background = "{{ colors.black }}"
+    foreground = "{{ colors.white }}"
+    frame_color = "{{ colors.yellow }}"
     timeout = 10
 
 [urgency_critical]
-    background = "$COLOR_BLACK"
-    foreground = "$COLOR_WHITE"
-    frame_color = "$COLOR_STRONG_RED"
+    background = "{{ colors.black }}"
+    foreground = "{{ colors.white }}"
+    frame_color = "{{ colors.strong_red }}"
     timeout = 0
