@@ -1,5 +1,5 @@
 configuration {
-  combi-modi: "window,drun"; 
+  combi-modi: "window,drun";
   combi-hide-mode-prefix: true;
   display-combi: "Switch to";
   font: "hasklig 12";

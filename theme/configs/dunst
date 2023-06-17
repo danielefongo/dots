@@ -1,17 +1,19 @@
+# vim:ft=dosini
+
 [global]
     monitor = 0
     follow = mouse
-    geometry = "300x5-15+68"
+    geometry = "{{ 300 * scaleRatio // 1 }}x{{ 8 * scaleRatio // 1 }}-{{ 10 + gap * 2 + border }}+{{ 10 + fontSize * 3 + gap * 3 + border }}"
     indicate_hidden = yes
     shrink = no
     padding = 10
     horizontal_padding = 8
-    frame_width = 2
-    frame_color = "{{ colors.white }}"
+    frame_width = {{ border + 1 }}
+    frame_color = "{{ colors.foreground }}"
     separator_color = frame
     sort = yes
     idle_threshold = 120
-    font = Hasklig 12
+    font = Hasklug Nerd Font {{ fontSize }}
     line_height = 0
     markup = full
     format = "<b>%a - %s</b>\n%b"
@@ -31,7 +33,8 @@
     always_run_script = true
     startup_notification = false
     verbosity = mesg
-    corner_radius = 16
+    corner_radius = {{ round }}
+
     ignore_dbusclose = false
     mouse_left_click = do_action, close_current
     mouse_middle_click = close_current
@@ -41,19 +44,19 @@
     per_monitor_dpi = false
 
 [urgency_low]
-    background = "{{ colors.black }}"
-    foreground = "{{ colors.white }}"
+    background = "{{ colors.background if transparency else colors.background_alt1 }}"
+    foreground = "{{ colors.foreground }}"
     frame_color = "{{ colors.yellow }}"
     timeout = 5
 
 [urgency_normal]
-    background = "{{ colors.black }}"
-    foreground = "{{ colors.white }}"
+    background = "{{ colors.background if transparency else colors.background_alt1 }}"
+    foreground = "{{ colors.foreground }}"
     frame_color = "{{ colors.yellow }}"
     timeout = 10
 
 [urgency_critical]
-    background = "{{ colors.black }}"
-    foreground = "{{ colors.white }}"
+    background = "{{ colors.background if transparency else colors.background_alt1 }}"
+    foreground = "{{ colors.foreground }}"
     frame_color = "{{ colors.strong_red }}"
     timeout = 0

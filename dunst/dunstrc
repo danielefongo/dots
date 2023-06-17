@@ -1,17 +1,19 @@
+# vim:ft=dosini
+
 [global]
     monitor = 0
     follow = mouse
-    geometry = "300x5-15+68"
+    geometry = "300x8-26+64"
     indicate_hidden = yes
     shrink = no
     padding = 10
     horizontal_padding = 8
-    frame_width = 2
+    frame_width = 1
     frame_color = "#e9ebf0"
     separator_color = frame
     sort = yes
     idle_threshold = 120
-    font = Hasklig 12
+    font = Hasklug Nerd Font 10
     line_height = 0
     markup = full
     format = "<b>%a - %s</b>\n%b"
@@ -31,7 +33,8 @@
     always_run_script = true
     startup_notification = false
     verbosity = mesg
-    corner_radius = 16
+    corner_radius = 10
+
     ignore_dbusclose = false
     mouse_left_click = do_action, close_current
     mouse_middle_click = close_current

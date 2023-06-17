@@ -28,9 +28,9 @@ bindkey '^I' $fzf_default_completion
 
 # kitty
 pid=$$
-KITTY_THEME_FILE=~/dotfiles/dots/kitty/colors.conf
+KITTY_CONFIG_FILE=~/dotfiles/dots/kitty/kitty.conf
 last_theme_update() {
-  stat -c %Y $KITTY_THEME_FILE
+  stat -c %Y $KITTY_CONFIG_FILE
 }
 theme_watcher() {
   LAST_THEME_UPDATE=$(last_theme_update)
@@ -45,7 +45,7 @@ theme_watcher() {
 }
 theme_watcher &!
 TRAPUSR1() {
-  kitty @ set-colors --all --configured $KITTY_THEME_FILE > /dev/null;
+  kitty @ set-colors --all --configured $KITTY_CONFIG_FILE > /dev/null;
 }
 
 # others

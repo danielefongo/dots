@@ -1,3 +1,5 @@
+# vim:ft=i3config
+
 # vars
 set $mod Mod4
 set $ws1 "1"
@@ -11,11 +13,22 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
-# theme
-include theme.conf
+# window interface
+client.focused #1f2430 #ecc48d #1f2430 #addb67
+client.focused_inactive #1f2430 #333843 #d3d5db #addb67
+client.unfocused #1f2430 #333843 #d3d5db #addb67
+
+hide_edge_borders none
+for_window [class=".*"] border pixel 0
+
+# gaps
+gaps inner 8px
+gaps top 38px
+gaps bottom 0px
+smart_gaps off
 
 # miscellaneous
-font pango:hasklig 14
+font pango:Hasklug Nerd Font 10
 floating_modifier $mod
 
 # xdg autostart
@@ -108,7 +121,7 @@ mode "$mode_system" {
   bindsym l exec --no-startup-id i3lock-fancy, mode "default"
   bindsym e exec --no-startup-id i3-msg exit, mode "default"
   bindsym r reload, mode "default"
-  bindsym k restart, mode "default"
+  bindsym k exec polybar-msg cmd restart, restart, mode "default"
   bindsym Shift+r exec --no-startup-id shutdown now -r, mode "default"
   bindsym Shift+s exec --no-startup-id shutdown now, mode "default"
   bindsym Escape mode "default"
@@ -129,7 +142,7 @@ mode "resize" {
 }
 
 # bar
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec --no-startup-id $HOME/.config/polybar/launch.sh
 
 # picom
 exec_always --no-startup-id picom --experimental-backends
@@ -147,9 +160,3 @@ bindsym $mod+Shift+n exec ~/dotfiles/dots/dunst/pause.sh
 
 # theme
 bindsym $mod+Shift+t exec rofi -modi theme:~/dotfiles/dots/rofi/theme.py -show theme
-
-# gaps
-gaps inner 8px
-gaps top 44px
-gaps bottom 0px
-smart_gaps off

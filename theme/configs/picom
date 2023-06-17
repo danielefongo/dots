@@ -3,6 +3,7 @@
 fading = false;
 shadow = false;
 
+{% if transparency %}
 active-opacity = 0.95;
 inactive-opacity = 0.85;
 inactive-opacity-override = false;
@@ -22,6 +23,7 @@ opacity-rule = [
   "95:_NET_WM_STATE@[3]:32a *= '_NET_WM_STATE_FULLSCREEN'",
   "95:_NET_WM_STATE@[4]:32a *= '_NET_WM_STATE_FULLSCREEN'"
 ];
+{% endif %}
 
 blur: {
   method = "dual_kawase";
@@ -38,7 +40,7 @@ detect-transient = true;
 use-damage = true;
 log-level = "warn";
 
-corner-radius = 10;
+corner-radius = {{ round }};
 round-borders = 1;
 rounded-corners-exclude = [
   "class_i = 'polybar'",

@@ -1,5 +1,7 @@
+// vim:ft=rasi
+
 * {
-  black: #191d27;
+  background: #191d27;
   red: #f45c7f;
   green: #addb67;
   yellow: #ecc48d;
@@ -11,12 +13,11 @@
   text-alt: #e9ebf0;
   fg: #d3d5db;
   bg: #1f2430;
-  bg-dark: #191d27;
 
   spacing: 0;
   background-color: transparent;
 
-  font: "Hasklig 14";
+  font: "Hasklug Nerd Font 10";
   text-color: @text;
 }
 
@@ -24,8 +25,8 @@ window {
   transparency: "real";
   fullscreen: false;
   background-color: @bg;
-  border: 2px;
-  border-radius: 16px;
+  border: 1px;
+  border-radius: 20px;
   border-color: @yellow;
 }
 
@@ -61,7 +62,7 @@ listview {
 element {
   padding: 5px;
   text-color: @text-alt;
-  border-radius: 3px;
+  border-radius: 10px;
 }
 
 element selected {

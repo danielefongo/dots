@@ -1,3 +1,5 @@
+# vim:ft=dosini
+
 [delta]
   syntax-theme                  = "ansi"
   commit-style                  = raw

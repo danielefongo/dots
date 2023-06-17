@@ -1,19 +1,163 @@
-[colors]
-red = {{ colors.red }}
-green = {{ colors.green }}
-yellow = {{ colors.yellow }}
-blue = {{ colors.blue }}
-magenta = {{ colors.magenta }}
-cyan = {{ colors.cyan }}
-dark_black = {{ colors.dark_black }}
-black = {{ colors.black }}
-grey1 = {{ colors.grey1 }}
-grey2 = {{ colors.grey2 }}
-grey3 = {{ colors.grey3 }}
-grey4 = {{ colors.grey4 }}
-grey5 = {{ colors.grey5 }}
-grey6 = {{ colors.grey6 }}
-grey7 = {{ colors.grey7 }}
-grey8 = {{ colors.grey8 }}
-grey9 = {{ colors.grey9 }}
-white = {{ colors.white }}
+# vim:ft=dosini
+
+[bar/top]
+monitor = ${env:MONITOR:}
+
+radius = {{ round }}
+
+width = 100%:-{{ gap * 2 }}
+height = {{ fontSize * 3 }}
+fixed-center = true
+offset-y = {{ gap }}
+offset-x = {{ gap }}
+override-redirect = true
+wm-restack = i3
+border-size = 0
+
+tray-background = {{ colors.background if transparency else colors.background_alt1 }}
+background = {{ colors.background if transparency else colors.background_alt1 }}
+foreground = {{ colors.grey9 }}
+
+line-size = {{ fontSize // 3 }}
+line-color = #f00
+
+padding-left = 0
+padding-right = 2
+
+module-margin-left = 1
+module-margin-right = 1
+
+font-0 = Hasklug Nerd Font:size={{ fontSize }}
+font-1 = FontAwesome:style=Regular
+font-2 = Material Icons:style=Regular
+
+modules-left = i3
+modules-right = memory cpu battery temperature eth wlan date
+
+tray-position = center
+tray-padding = 2
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+enable-ipc = true
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+
+pin-workspaces = true
+
+label-mode-padding = 2
+label-mode-foreground = {{ colors.foreground }}
+label-mode-background = {{ colors.blue }}
+
+label-focused = %index%
+label-focused-foreground = {{ colors.background }}
+label-focused-background = {{ colors.yellow }}
+label-focused-padding = 2
+
+label-unfocused = %index%
+label-unfocused-foreground = {{ colors.grey9 }}
+label-unfocused-background = {{ colors.background }}
+label-unfocused-padding = 2
+
+label-visible = %index%
+label-visible-foreground = ${self.label-focused-foreground}
+label-visible-background = ${self.label-focused-background}
+label-visible-padding = ${self.label-focused-padding}
+
+label-urgent = %index%
+label-urgent-foreground = {{ colors.background }}
+label-urgent-background = {{ colors.red }}
+label-urgent-padding = 2
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = "CPU "
+format-prefix-foreground = {{ colors.grey9 }}
+format-underline = {{ colors.cyan }}
+label = %percentage:2%%
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = "MEM "
+format-prefix-foreground = {{ colors.grey9 }}
+format-underline = {{ colors.yellow }}
+label = %percentage_used%%
+
+[module/wlan]
+type = internal/network
+interface = ${env:WLAN:}
+interval = 3.0
+
+format-connected = WLAN <label-connected>
+format-connected-underline = {{ colors.magenta }}
+label-connected = %essid%
+
+format-disconnected = ""
+
+[module/eth]
+type = internal/network
+interface = enp0s31f6
+interval = 3.0
+
+format-connected-underline = {{ colors.magenta }}
+format-connected-prefix-foreground = {{ colors.foreground-alt }}
+label-connected = ETH %local_ip%
+
+format-disconnected =
+
+[module/date]
+type = internal/date
+interval = 1
+
+date = "%Y-%m-%d"
+time = %H:%M:%S
+
+format-prefix-foreground = {{ colors.grey9 }}
+format-underline = {{ colors.red }}
+
+label = %date% %time%
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = AC
+full-at = 98
+
+format-charging = <label-charging>
+format-charging-underline = {{ colors.green }}
+
+format-discharging = <label-discharging>
+format-discharging-underline = ${self.format-charging-underline}
+
+format-full-prefix = "BAT "
+format-full-prefix-foreground = {{ colors.foreground-alt }}
+format-full-underline = ${self.format-charging-underline}
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+
+format = <label>
+format-prefix = "TEMP "
+format-underline = {{ colors.red }}
+format-warn = <ramp> <label-warn>
+format-warn-underline = ${self.format-underline}
+
+label = %temperature-c%
+label-warn = %temperature-c%
+label-warn-foreground = {{ colors.grey9 }}
+
+[settings]
+screenchange-reload = true
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5

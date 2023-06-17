@@ -1,13 +1,15 @@
 {
-  "black": "#171831",
-  "white": "#fcfdff",
   "palette": {
-    "red": "#ff3c41",
-    "orange": "#f79617",
-    "green": "#84ce5c",
-    "yellow": "#ffc24b",
-    "cyan": "#50eafa",
-    "blue": "#32b4ff",
-    "magenta": "#a884f3"
+    "background": "#fcfdff",
+    "foreground": "#171831",
+    "colors": {
+      "red": "#ff3c41",
+      "orange": "#f79617",
+      "green": "#84ce5c",
+      "yellow": "#ffc24b",
+      "cyan": "#50eafa",
+      "blue": "#32b4ff",
+      "magenta": "#a884f3"
+    }
   }
 }

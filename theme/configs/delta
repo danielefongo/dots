@@ -1,3 +1,5 @@
+# vim:ft=dosini
+
 [delta]
   syntax-theme                  = "ansi"
   commit-style                  = raw
@@ -15,4 +17,4 @@
   grep-file-style               = "{{ colors.blue }}"
   grep-line-number-style        = "{{ colors.blue }}"
   whitespace-error-style        = reverse "{{ colors.strong_magenta }}"
-  blame-palette                 = {{ colors.dark_black }} {{ colors.grey2 }} {{ colors.grey4 }}
+  blame-palette                 = {{ colors.background_alt1 }} {{ colors.grey2 }} {{ colors.grey4 }}
