@@ -137,7 +137,7 @@ format-discharging = <label-discharging>
 format-discharging-underline = ${self.format-charging-underline}
 
 format-full-prefix = "BAT "
-format-full-prefix-foreground = NaN
+format-full-prefix-foreground = #e9ebf0
 format-full-underline = ${self.format-charging-underline}
 
 [module/temperature]
