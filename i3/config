@@ -2,6 +2,7 @@
 
 # vars
 set $mod Mod4
+set $alt Mod1
 set $ws1 "1"
 set $ws2 "2"
 set $ws3 "3"
@@ -67,6 +68,12 @@ bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
+
+# resize
+bindsym $mod+$alt+h exec --no-startup-id ~/dotfiles/dots/scripts/i3resize left
+bindsym $mod+$alt+j exec --no-startup-id ~/dotfiles/dots/scripts/i3resize down
+bindsym $mod+$alt+k exec --no-startup-id ~/dotfiles/dots/scripts/i3resize up
+bindsym $mod+$alt+l exec --no-startup-id ~/dotfiles/dots/scripts/i3resize right
 
 # split
 bindsym $mod+Shift+v split h
