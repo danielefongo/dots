@@ -33,6 +33,8 @@ const defaultSyntax = {
 };
 
 const files = {
+  "theme/configs/alacritty": "alacritty/alacritty.yml",
+  "theme/configs/tmux": "tmux/tmux.conf",
   "theme/configs/delta": ".delta",
   "theme/configs/dunst": "dunst/dunstrc",
   "theme/configs/i3": "i3/config",

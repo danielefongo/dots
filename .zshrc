@@ -26,29 +26,16 @@ export FZF_COMPLETION_TRIGGER=''
 bindkey '^T' fzf-completion
 bindkey '^I' $fzf_default_completion
 
-# kitty
-pid=$$
-KITTY_CONFIG_FILE=~/dotfiles/dots/kitty/kitty.conf
-last_theme_update() {
-  stat -c %Y $KITTY_CONFIG_FILE
-}
-theme_watcher() {
-  LAST_THEME_UPDATE=$(last_theme_update)
-  while true; do
-    edit_time=$(last_theme_update)
-    if [[ $LAST_THEME_UPDATE -lt $edit_time ]]; then
-      kill -USR1 $pid
-      LAST_THEME_UPDATE=$(last_theme_update)
-    fi
-    sleep 0.5
-  done
-}
-theme_watcher &!
-TRAPUSR1() {
-  kitty @ set-colors --all --configured $KITTY_CONFIG_FILE > /dev/null;
-}
-
 # others
 if [ -f ~/.custom_zshrc.sh ]; then
   source ~/.custom_zshrc.sh
 fi
+
+command -v tmux >/dev/null && case "${TERM_PROGRAM}" in
+  "tmux") ;;
+  *)
+    session_name="workspace"
+    tmux new -s "${session_name}"
+    tmux attach -t "${session_name}"
+    ;;
+esac

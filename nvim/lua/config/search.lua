@@ -70,14 +70,13 @@ return {
         bindings = {
           ["<c-j>"] = actions.next,
           ["<c-k>"] = actions.previous,
-          ["<a-j>"] = actions.scroll_down,
-          ["<a-k>"] = actions.scroll_up,
+          ["<c-n>"] = actions.scroll_down,
+          ["<c-p>"] = actions.scroll_up,
           ["<cr>"] = actions.open,
           ["<esc>"] = actions.close,
           ["<tab>"] = actions.select,
           ["<c-f>"] = actions.toggle_full_screen,
-          ["<a-cr>"] = actions.refine,
-          ["<a-s>"] = actions.undo_refine,
+          ["<c-r>"] = actions.refine,
           ["<c-q>"] = files.actions.quickfix,
         },
       })

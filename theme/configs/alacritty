@@ -1,0 +1,57 @@
+# vim:ft=yaml
+
+live_config_reload: true
+
+colors:
+  primary:
+    background: "{{ colors.background }}"
+    foreground: "{{ colors.foreground }}"
+
+  normal:
+    black: "{{ colors.background }}"
+    blue: "{{ colors.blue }}"
+    cyan: "{{ colors.cyan }}"
+    green: "{{ colors.green }}"
+    magenta: "{{ colors.magenta }}"
+    red: "{{ colors.red }}"
+    white: "{{ colors.foreground }}"
+    yellow: "{{ colors.yellow }}"
+
+  bright:
+    black: "{{ colors.background_alt2 }}"
+    blue: "{{ colors.light_blue }}"
+    cyan: "{{ colors.light_cyan }}"
+    green: "{{ colors.light_green }}"
+    magenta: "{{ colors.light_magenta }}"
+    red: "{{ colors.light_red }}"
+    white: "{{ colors.foreground }}"
+    yellow: "{{ colors.light_yellow }}"
+
+window:
+  decorations: None
+  startup_mode: Windowed
+
+font:
+  normal:
+    family: "Hasklug Nerd Font"
+    style: Regular
+  size: {{ fontSize }}
+
+cursor:
+  style:
+    shape: Beam
+    blinking: On
+
+shell:
+  program: /usr/bin/zsh
+  args:
+    - -l
+    - -c
+    - "tmux || tmux source ~/.tmux.conf"
+
+key_bindings:
+  - { key: P, mods: Alt, action: Paste }
+  - { key: Y, mods: Alt, action: Copy }
+
+env:
+  TERM: xterm-256color
