@@ -42,6 +42,7 @@ return {
     dependencies = {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
+      "folke/neodev.nvim",
       "ray-x/lsp_signature.nvim",
       "lvimuser/lsp-inlayhints.nvim",
       "hrsh7th/nvim-cmp",
@@ -53,6 +54,7 @@ return {
       local cmp = require("cmp_nvim_lsp")
       local signature = require("lsp_signature")
       local inlay = require("lsp-inlayhints")
+      require("neodev").setup({})
 
       local mason = require("mason")
       local mason_lsp_config = require("mason-lspconfig")
@@ -66,7 +68,7 @@ return {
 
       local function on_attach(client, bufnr)
         signature.on_attach({ bind = true }, bufnr)
-        inlay.on_attach(client, bufnr)
+        inlay.on_attach(client, bufnr, true)
       end
 
       local lsps = {
@@ -87,6 +89,7 @@ return {
         lua_ls = {
           settings = {
             Lua = {
+              callSnippet = "Replace",
               diagnostics = { globals = { "vim" } },
               format = { enable = false },
             },
