@@ -1,0 +1,28 @@
+#!/bin/bash
+
+DOTS_PATH=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)/..
+THEME_STORAGE="$HOME/.dots_theme"
+DEFAULT_THEME="aylin"
+
+cd "$DOTS_PATH"
+
+if [[ -n "$1" ]]; then
+	if ! [[ -f "$DOTS_PATH/theme/scheme/$1.json" ]]; then
+		echo "Invalid theme $1"
+		exit 1
+	fi
+	theme=$1
+elif [[ -f "$THEME_STORAGE" ]]; then
+	theme=$(cat "$THEME_STORAGE")
+else
+	theme=$DEFAULT_THEME
+fi
+
+echo $theme >"$THEME_STORAGE"
+
+node templating/index.js $theme || exit 1
+
+killall dunst 2>/dev/null && notify-send "Dunst" "Restarted" >/dev/null || true
+polybar-msg cmd restart >/dev/null
+[ $(pidof picom) ] || picom --experimental-backends -b
+i3-msg reload >/dev/null || true

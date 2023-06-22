@@ -1,0 +1,6 @@
+#!/bin/bash
+
+DOTS_PATH=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)/..
+
+npm install --prefix $DOTS_PATH/templating
+$DOTS_PATH/scripts/set_theme

@@ -14,7 +14,7 @@ class Themes(rofi_menu.Menu):
         self.items = map(self._gen, themes)
 
     def _gen(self, theme):
-        return rofi_menu.ShellItem(theme, dots_path + "set_theme.sh " + theme)
+        return rofi_menu.ShellItem(theme, dots_path + "/scripts/set_theme " + theme)
 
 
 if __name__ == "__main__":
