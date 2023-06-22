@@ -102,7 +102,7 @@ local themer = {
   uri = colors.dark_yellow,
   pum = {
     fg = colors.grey9,
-    bg = colors.dark_blac,
+    bg = colors.background_alt1,
     sbar = colors.background_alt2,
     thumb = colors.blue,
     sel = { bg = colors.grey2, fg = colors.foreground },
@@ -148,7 +148,7 @@ local lualine = {
   normal = {
     a = { fg = colors.background, bg = colors.green, gui = "bold" },
     b = { fg = colors.foreground, bg = colors.grey3 },
-    c = { fg = colors.foreground, bg = colors.light_black },
+    c = { fg = colors.foreground, bg = colors.background_alt2 },
   },
   command = { a = { fg = colors.background, bg = colors.yellow, gui = "bold" } },
   insert = { a = { fg = colors.background, bg = colors.blue, gui = "bold" } },
