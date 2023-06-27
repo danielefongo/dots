@@ -3,7 +3,7 @@
   email = danielefongo@gmail.com
 [core]
   editor = 'vim'
-  excludesfile = "~/.gitignore_global"
+  excludesfile = "~/.config/git/ignore"
   pager = delta
 [include]
-  path = ~/dotfiles/dots/.delta
+  path = ~/.config/git/delta
