@@ -1,5 +1,9 @@
 # antigen
-source "$HOME/dotfiles/dots/antigen/antigen.zsh"
+if ! [ -f "$HOME/antigen.zsh" ]; then
+  curl -L git.io/antigen -s > "$HOME/antigen.zsh"
+fi
+source "$HOME/antigen.zsh"
+
 antigen use oh-my-zsh
 antigen bundle asdf-vm/asdf
 antigen bundle git
@@ -10,7 +14,17 @@ antigen bundle danielefongo/shapeshift
 antigen apply
 
 # asdf
-source "$HOME/dotfiles/dots/asdf/asdf.sh"
+asdf_install_all() {
+  cat ~/.tool-versions | cut -f1 -d' ' | grep -ve '^$' | while read package; do
+    asdf plugin add $package
+  done
+  asdf install
+}
+if ! [ -d "$HOME/.asdf" ]; then
+  git clone https://github.com/asdf-vm/asdf.git ~/.asdf
+  echo "\nRun asdf_install_all to install dependencies"
+fi
+source "$HOME/.asdf/asdf.sh"
 
 # history
 HISTFILE=~/.zsh_history

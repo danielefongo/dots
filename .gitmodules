@@ -1,6 +1,0 @@
-[submodule "antigen"]
-	path = antigen
-	url = git@github.com:zsh-users/antigen
-[submodule "asdf"]
-	path = asdf
-	url = git@github.com:asdf-vm/asdf
