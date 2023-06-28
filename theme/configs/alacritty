@@ -43,7 +43,7 @@ cursor:
     blinking: On
 
 shell:
-  program: /usr/bin/zsh
+  program: zsh
   args:
     - -l
     - -c
