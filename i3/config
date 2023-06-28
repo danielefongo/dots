@@ -154,7 +154,7 @@ mode "resize" {
 exec --no-startup-id $HOME/.config/polybar/launch.sh
 
 # picom
-exec_always --no-startup-id picom --experimental-backends
+exec --no-startup-id picom -b
 
 # window tags
 bindsym $mod+$shift+z exec i3-input -F 'mark %s' -l 1 -P 'Mark: '
