@@ -20,11 +20,6 @@ asdf_install_all() {
   done
   asdf install
 }
-if ! [ -d "$HOME/.asdf" ]; then
-  git clone https://github.com/asdf-vm/asdf.git ~/.asdf
-  echo "\nRun asdf_install_all to install dependencies"
-fi
-source "$HOME/.asdf/asdf.sh"
 
 # history
 HISTFILE=~/.zsh_history
