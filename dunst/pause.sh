@@ -1,4 +1,4 @@
-#!/usr/bin/env bashbash
+#!/usr/bin/env bash
 
 notify="notify-send -u low dunst"
 
