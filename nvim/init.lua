@@ -1,3 +1,5 @@
+theme = require("theme")
+
 require("utils")
 
 opt.ruler = false

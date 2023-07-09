@@ -1,5 +1,3 @@
-local theme = require("theme")
-
 return {
   {
     "themercorp/themer.lua",
