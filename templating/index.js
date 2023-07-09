@@ -1,6 +1,11 @@
 const tinycolor = require("tinycolor2");
 const nunjucks = require("nunjucks");
+const path = require("path");
 const fs = require("fs");
+const childProcess = require("child_process");
+
+const execSync = childProcess.execSync;
+const exec = childProcess.exec;
 
 nunjucks.configure(".", {
   trimBlocks: true,
@@ -32,25 +37,28 @@ const defaultSyntax = {
   conditional: "red",
 };
 
-const files = {
-  "theme/configs/alacritty": "alacritty/alacritty.yml",
-  "theme/configs/tmux": "tmux/tmux.conf",
-  "theme/configs/delta": ".delta",
-  "theme/configs/dunst": "dunst/dunstrc",
-  "theme/configs/i3": "i3/config",
-  "theme/configs/kitty": "kitty/kitty.conf",
-  "theme/configs/polybar": "polybar/config",
-  "theme/configs/picom": "picom/picom.conf",
-  "theme/configs/rofi": "rofi/theme.rasi",
-  "theme/configs/vim": "nvim/lua/theme.lua",
-};
+const files = {};
+exec(
+  `find . -type f -name "*.template" -mindepth 1 -printf "%P\n"`,
+  function(_, stdout, _) {
+    stdout
+      .split("\n")
+      .filter((it) => it !== "")
+      .forEach((it) => {
+        const content = fs.readFileSync(path.resolve(it), "utf8");
+        const renderedTemplate = nunjucks.renderString(content, data);
 
-const template = require(`../theme/scheme/${process.argv.slice(2)[0]}.json`);
+        fs.writeFileSync(it.replace(".template", ""), renderedTemplate);
+      });
+  }
+);
 
-let colors = generateColors(template.palette);
-let scaleRatio = getOrDefault(template.scaleRatio, 1.0)
+const template = require(`../theme/${process.argv.slice(2)[0]}.json`);
 
-let data = {
+const colors = generateColors(template.palette);
+const scaleRatio = getOrDefault(template.scaleRatio, 1.0);
+
+const data = {
   colors,
   scaleRatio,
   syntax: generateSyntax(template.syntax, colors),
@@ -61,12 +69,6 @@ let data = {
   fontSize: scale(getOrDefault(template.fontSize, 12), scaleRatio),
 };
 
-Object.entries(files).forEach(([from, to]) => {
-  const renderedTemplate = nunjucks.render(from, data);
-
-  fs.writeFileSync(to, renderedTemplate);
-});
-
 function getOrDefault(value, fallback) {
   if (value == undefined) {
     return fallback;
@@ -75,7 +77,7 @@ function getOrDefault(value, fallback) {
 }
 
 function generateColors(palette) {
-  let colors = {};
+  const colors = {};
 
   Object.entries(palette.colors).forEach(([key, color]) => {
     colors[`strong_${key}`] = tinycolor(color)
@@ -112,7 +114,7 @@ function generateColors(palette) {
 }
 
 function generateSyntax(customSyntax, colors) {
-  let syntax = { ...defaultSyntax, ...customSyntax };
+  const syntax = { ...defaultSyntax, ...customSyntax };
 
   Object.entries(syntax).forEach(([key, value]) => {
     syntax[key] = colors[value];
@@ -122,5 +124,5 @@ function generateSyntax(customSyntax, colors) {
 }
 
 function scale(value, ratio) {
-  return Math.floor(value * ratio)
+  return Math.floor(value * ratio);
 }

@@ -7,7 +7,7 @@ DEFAULT_THEME="aylin"
 cd "$DOTS_PATH"
 
 if [[ -n "$1" ]]; then
-	if ! [[ -f "$DOTS_PATH/theme/scheme/$1.json" ]]; then
+	if ! [[ -f "$DOTS_PATH/theme/$1.json" ]]; then
 		echo "Invalid theme $1"
 		exit 1
 	fi

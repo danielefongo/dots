@@ -18,7 +18,7 @@ class Themes(rofi_menu.Menu):
 
 
 if __name__ == "__main__":
-    os.chdir(dots_path + "./theme/scheme/")
+    os.chdir(dots_path + "./theme/")
     files = glob.glob("*.json")
 
     themes = list(map(lambda x: x.replace(".json", ""), files))
