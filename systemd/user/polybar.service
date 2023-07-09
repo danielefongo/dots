@@ -1,0 +1,12 @@
+[Install]
+WantedBy=graphical-session.target
+
+[Service]
+ExecStart=bash %E/polybar/launch.sh
+Restart=always
+RestartSec=0
+
+[Unit]
+After=graphical-session-pre.target
+Description=Polybar
+PartOf=graphical-session.target

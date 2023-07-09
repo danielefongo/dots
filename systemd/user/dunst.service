@@ -1,0 +1,12 @@
+[Service]
+BusName=org.freedesktop.Notifications
+Environment=
+ExecStart=dunst --config ~/.config/dunst/dunstrc
+Type=dbus
+Restart=always
+RestartSec=0
+
+[Unit]
+After=graphical-session-pre.target
+Description=Dunst notification daemon
+PartOf=graphical-session.target

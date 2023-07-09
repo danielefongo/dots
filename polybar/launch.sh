@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-killall polybar
-
 CONFIG_FILE=$HOME/.config/polybar/config
 
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
@@ -14,3 +12,5 @@ if type "xrandr"; then
 else
 	polybar top -c $CONFIG_FILE &
 fi
+
+sleep infinity

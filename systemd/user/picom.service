@@ -1,0 +1,12 @@
+[Install]
+WantedBy=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/picom
+Restart=always
+RestartSec=0
+
+[Unit]
+After=graphical-session-pre.target
+Description=Picom
+PartOf=graphical-session.target
