@@ -1,0 +1,6 @@
+[Service]
+ExecStart=/usr/bin/picom --experimental-backends
+Restart=always
+
+[Unit]
+Description=Picom

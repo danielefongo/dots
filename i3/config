@@ -38,7 +38,6 @@ floating_modifier $mod
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock-fancy --nofork
 exec --no-startup-id nm-applet
-exec --no-startup-id feh --bg-scale ~/dotfiles/dots/wallpaper.jpg
 
 # pulse audio
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -125,12 +124,11 @@ bindsym $mod+Left move workspace to output left
 bindsym $mod+Right move workspace to output right
 
 # i3
-set $mode_system System (l) lock, (e) logout, (r) reload, (k) restart i3, ($shift+r) reboot, ($shift+s) shutdown
+set $mode_system System (l) lock, (e) logout, (r) reload, ($shift+r) reboot, ($shift+s) shutdown
 mode "$mode_system" {
   bindsym l exec --no-startup-id i3lock-fancy, mode "default"
-  bindsym e exec --no-startup-id i3-msg exit, mode "default"
+  bindsym e exec --no-startup-id systemctl --user stop i3.service
   bindsym r reload, mode "default"
-  bindsym k exec polybar-msg cmd restart, restart, mode "default"
   bindsym $shift+r exec --no-startup-id shutdown now -r, mode "default"
   bindsym $shift+s exec --no-startup-id shutdown now, mode "default"
   bindsym Escape mode "default"
@@ -150,12 +148,6 @@ mode "resize" {
   bindsym $mod+r mode "default"
 }
 
-# bar
-exec --no-startup-id $HOME/.config/polybar/launch.sh
-
-# picom
-exec --no-startup-id picom -b
-
 # window tags
 bindsym $mod+$shift+z exec i3-input -F 'mark %s' -l 1 -P 'Mark: '
 bindsym $mod+Ctrl+$shift+z; unmark
@@ -165,7 +157,7 @@ bindsym $mod+z; exec i3-input -F '[con_mark="%s"] focus' -l 1 -P 'Goto: '
 bindsym Print exec flameshot gui
 
 # notifications
-bindsym $mod+$shift+n exec ~/dotfiles/dots/dunst/pause.sh
+bindsym $mod+$shift+n exec dunstctl set-paused toggle
 
 # theme
 bindsym $mod+$shift+t exec rofi -modi theme:~/dotfiles/dots/rofi/theme.py -show theme
