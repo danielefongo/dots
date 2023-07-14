@@ -137,6 +137,7 @@ return {
         shfmt = null_ls.builtins.formatting.shfmt, -- bash / sh
         mix = null_ls.builtins.formatting.mix, -- elixir
         elm_format = null_ls.builtins.formatting.elm_format, -- elm
+        nixfmt = null_ls.builtins.formatting.nixfmt, -- nix
         prettier = null_ls.builtins.formatting.prettier, -- html stuff
         stylua = null_ls.builtins.formatting.stylua.with({
           extra_args = { "--indent-type", "Spaces", "--indent-width", "2" },
