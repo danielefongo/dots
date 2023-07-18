@@ -33,7 +33,7 @@ window:
 
 font:
   normal:
-    family: "Hasklug Nerd Font"
+    family: "{{ font }}"
     style: Regular
   size: {{ fontSize }}
 

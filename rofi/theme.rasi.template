@@ -17,7 +17,7 @@
   spacing: 0;
   background-color: transparent;
 
-  font: "Hasklug Nerd Font {{ fontSize }}";
+  font: "{{ font }} {{ fontSize }}";
   text-color: @text;
 }
 

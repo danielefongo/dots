@@ -62,6 +62,7 @@ const data = {
   colors,
   scaleRatio,
   syntax: generateSyntax(template.syntax, colors),
+  font: getOrDefault(template.font, "Hasklug Nerd Font"),
   gap: scale(getOrDefault(template.gap, 0), scaleRatio),
   transparency: getOrDefault(template.transparency, false),
   round: scale(getOrDefault(template.round, 0), scaleRatio),

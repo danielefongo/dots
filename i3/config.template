@@ -31,7 +31,7 @@ gaps bottom 0px
 smart_gaps off
 
 # miscellaneous
-font pango:Hasklug Nerd Font {{ fontSize }}
+font pango:{{ font }} {{ fontSize }}
 floating_modifier $mod
 
 # xdg autostart
