@@ -2,7 +2,6 @@ configuration {
   combi-modi: "window,drun";
   combi-hide-mode-prefix: true;
   display-combi: "Switch to";
-  font: "hasklig 12";
   kb-remove-to-eol: "";
   kb-accept-entry: "Return,KP_Enter";
   kb-row-up: "Up,Control+k";
