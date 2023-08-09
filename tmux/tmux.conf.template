@@ -29,7 +29,9 @@ bind -n 'M-.' command-prompt -I '#S' "rename-session '%%'"
 bind -n 'M-,' command-prompt -I '#W' "rename-window '%%'"
 
 bind -n 'M-w' choose-window
+bind -n 'M-W' new-window
 bind -n 'M-s' choose-session
+bind -n 'M-S' command-prompt "new-session -s '%%'"
 
 bind -n 'M-q' kill-pane
 bind -n 'M-Q' kill-session
@@ -54,6 +56,7 @@ bind -n 'M-C-h' resize-pane -L 2
 bind -n 'M-C-j' resize-pane -D 2
 bind -n 'M-C-k' resize-pane -U 2
 bind -n 'M-C-l' resize-pane -R 2
+bind -n 'M-f' resize-pane -Z
 
 bind -n 'M->' next-layout
 bind -n 'M-<' previous-layout
