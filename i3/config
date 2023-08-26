@@ -71,10 +71,10 @@ bindsym $mod+$shift+k move up
 bindsym $mod+$shift+l move right
 
 # resize
-bindsym $mod+$ctrl+h exec --no-startup-id ~/dotfiles/dots/scripts/i3resize left
-bindsym $mod+$ctrl+j exec --no-startup-id ~/dotfiles/dots/scripts/i3resize down
-bindsym $mod+$ctrl+k exec --no-startup-id ~/dotfiles/dots/scripts/i3resize up
-bindsym $mod+$ctrl+l exec --no-startup-id ~/dotfiles/dots/scripts/i3resize right
+bindsym $mod+$ctrl+h exec --no-startup-id i3resize left
+bindsym $mod+$ctrl+j exec --no-startup-id i3resize down
+bindsym $mod+$ctrl+k exec --no-startup-id i3resize up
+bindsym $mod+$ctrl+l exec --no-startup-id i3resize right
 
 # split
 bindsym $mod+$shift+v split h
@@ -161,4 +161,4 @@ bindsym Print exec flameshot gui
 bindsym $mod+$shift+n exec dunstctl set-paused toggle
 
 # theme
-bindsym $mod+$shift+t exec rofi -modi theme:~/dotfiles/dots/rofi/theme.py -show theme
+bindsym $mod+$shift+t exec rofi -modi theme:rofi_theme -show theme

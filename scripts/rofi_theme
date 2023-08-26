@@ -1,10 +1,11 @@
 #!/usr/bin/env python
+
 import glob
 import os
 import rofi_menu
-from pathlib import Path
+import sys
 
-dots_path = str(Path.home()) + "/dotfiles/dots/"
+themes_path = os.path.dirname(os.path.realpath(sys.argv[0])) + "/../theme/"
 
 
 class Themes(rofi_menu.Menu):
@@ -14,11 +15,11 @@ class Themes(rofi_menu.Menu):
         self.items = map(self._gen, themes)
 
     def _gen(self, theme):
-        return rofi_menu.ShellItem(theme, dots_path + "/scripts/set_theme " + theme)
+        return rofi_menu.ShellItem(theme, "set_theme " + theme)
 
 
 if __name__ == "__main__":
-    os.chdir(dots_path + "./theme/")
+    os.chdir(themes_path)
     files = glob.glob("*.json")
 
     themes = list(map(lambda x: x.replace(".json", ""), files))
