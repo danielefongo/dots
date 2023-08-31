@@ -120,7 +120,7 @@ local themer = {
     },
     plugins = {
       nvim_tree = {
-        NVimTreeNormal = { fg = colors.foreground, bg = colors.background_alt1 },
+        NVimTreeNormal = { fg = colors.foreground, bg = colors.background },
         NvimTreeGitDeleted = { fg = colors.red },
         NvimTreeGitDirty = { fg = colors.yellow },
         NvimTreeGitStaged = { fg = colors.green },
