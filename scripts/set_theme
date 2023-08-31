@@ -21,6 +21,3 @@ fi
 echo $theme >"$THEME_STORAGE"
 
 node templating/index.js $theme || exit 1
-
-systemctl --user restart dunst polybar picom
-i3-msg restart >/dev/null || true

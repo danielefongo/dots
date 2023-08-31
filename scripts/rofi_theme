@@ -15,7 +15,9 @@ class Themes(rofi_menu.Menu):
         self.items = map(self._gen, themes)
 
     def _gen(self, theme):
-        return rofi_menu.ShellItem(theme, "set_theme " + theme)
+        return rofi_menu.ShellItem(
+            theme, "set_theme " + theme + "; service_restart all"
+        )
 
 
 if __name__ == "__main__":
