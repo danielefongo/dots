@@ -1,9 +1,9 @@
 {
   "font": "Hasklug Nerd Font",
-  "gap": 8,
-  "transparency": true,
-  "round": 10,
-  "border": 0,
+  "gap": 0,
+  "transparency": false,
+  "round": 0,
+  "border": 4,
   "fontSize": 10,
   "scaleRatio": 1,
   "palette": {

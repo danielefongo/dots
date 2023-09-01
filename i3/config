@@ -22,11 +22,11 @@ client.focused_inactive #1f2430 #333843 #d3d5db #addb67
 client.unfocused #1f2430 #333843 #d3d5db #addb67
 
 hide_edge_borders none
-for_window [class=".*"] border pixel 0
+for_window [class=".*"] border pixel 4
 
 # gaps
-gaps inner 8px
-gaps top 38px
+gaps inner 0px
+gaps top 30px
 gaps bottom 0px
 smart_gaps off
 

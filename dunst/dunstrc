@@ -3,12 +3,12 @@
 [global]
     monitor = 0
     follow = mouse
-    geometry = "300x8-26+64"
+    geometry = "300x8-14+44"
     indicate_hidden = yes
     shrink = no
     padding = 10
     horizontal_padding = 8
-    frame_width = 1
+    frame_width = 5
     frame_color = "#e9ebf0"
     separator_color = frame
     sort = yes
@@ -33,7 +33,7 @@
     always_run_script = true
     startup_notification = false
     verbosity = mesg
-    corner_radius = 10
+    corner_radius = 0
 
     ignore_dbusclose = false
     mouse_left_click = do_action, close_current
@@ -44,19 +44,19 @@
     per_monitor_dpi = false
 
 [urgency_low]
-    background = "#1f2430"
+    background = "#191d27"
     foreground = "#e9ebf0"
     frame_color = "#ecc48d"
     timeout = 5
 
 [urgency_normal]
-    background = "#1f2430"
+    background = "#191d27"
     foreground = "#e9ebf0"
     frame_color = "#ecc48d"
     timeout = 10
 
 [urgency_critical]
-    background = "#1f2430"
+    background = "#191d27"
     foreground = "#e9ebf0"
     frame_color = "#ff3765"
     timeout = 0

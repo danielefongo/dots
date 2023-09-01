@@ -3,19 +3,19 @@
 [bar/top]
 monitor = ${env:MONITOR:}
 
-radius = 10
+radius = 0
 
-width = 100%:-16
+width = 100%:-0
 height = 30
 fixed-center = true
-offset-y = 8
-offset-x = 8
+offset-y = 0
+offset-x = 0
 override-redirect = true
 wm-restack = i3
 border-size = 0
 
-tray-background = #1f2430
-background = #1f2430
+tray-background = #191d27
+background = #191d27
 foreground = #d3d5db
 
 line-size = 3
