@@ -1,0 +1,12 @@
+[tools]
+erlang = "25.2.2"
+elixir = "1.14.3-otp-25"
+elm = "latest"
+lua = "latest"
+nodejs = "latest"
+python = "latest"
+rust = "latest"
+
+# tools
+delta = "latest"
+neovim = "0.9.1"
