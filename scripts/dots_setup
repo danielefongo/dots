@@ -2,6 +2,5 @@
 
 DOTS_PATH="$(dirname "$(readlink -f "$0")")/.."
 
-pip install rofi_menu
 npm install --prefix $DOTS_PATH/templating
 $DOTS_PATH/scripts/set_theme

@@ -159,6 +159,3 @@ bindsym Print exec flameshot gui
 
 # notifications
 bindsym $mod+$shift+n exec dunstctl set-paused toggle
-
-# theme
-bindsym $mod+$shift+t exec rofi -modi theme:rofi_theme -show theme

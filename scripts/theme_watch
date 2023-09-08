@@ -3,7 +3,7 @@
 DOTS_PATH="$(dirname "$(readlink -f "$0")")/.."
 
 while true; do
-	files=$(inotifywait -r -e modify,create,delete $DOTS_PATH --include "(.*\.template|theme/)" --format '%w%f')
+	files=$(inotifywait -r -e modify,create,delete $DOTS_PATH --include "(.*\.template|theme.js)" --format '%w%f')
 
 	set_theme
 	echo -e $files | while read line; do
@@ -12,7 +12,7 @@ while true; do
 		*"polybar"*) service_restart polybar ;;
 		*"picom"*) service_restart picom ;;
 		*"i3"*) service_restart i3 ;;
-		*"theme/"*) service_restart all ;;
+		*"theme.js"*) service_restart all ;;
 		*) echo "NOPE $line -> .${line#"$DOTS_PATH"}" ;;
 		esac
 	done
