@@ -3,10 +3,12 @@ Description=i3 window manager
 Wants=polybar.service
 Wants=picom.service
 Wants=wallpaper.service
+Wants=theme.service
 
 Before=polybar.service
 Before=picom.service
 Before=wallpaper.service
+Before=theme.service
 
 [Service]
 Type=notify

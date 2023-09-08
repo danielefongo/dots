@@ -1,0 +1,6 @@
+[Service]
+ExecStart=%h/.local/bin/theme_watch
+Restart=always
+
+[Unit]
+Description=Theme hot reload
