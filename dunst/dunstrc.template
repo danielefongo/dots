@@ -3,14 +3,18 @@
 [global]
     monitor = 0
     follow = mouse
-    geometry = "{{ 300 * scaleRatio // 1 }}x{{ 8 * scaleRatio // 1 }}-{{ 10 + gap * 2 + border }}+{{ 10 + fontSize * 3 + gap * 3 + border }}"
+    width = "{{ 300 * scaleRatio // 1 }}"
+    height = "{{ 80 * scaleRatio // 1 }}"
+    origin = "top-right"
+    offset = "{{ 8 + gap + border }}x{{ 10 + fontSize * 3 + gap * 2 + border }}"
     indicate_hidden = yes
     shrink = no
     padding = 10
     horizontal_padding = 8
     frame_width = {{ border + 1 }}
     frame_color = "{{ colors.foreground }}"
-    separator_color = frame
+    separator_color = auto
+    gap_size = "{{ 4 * scaleRatio }}"
     sort = yes
     idle_threshold = 120
     font = {{ font }} {{ fontSize }}
@@ -28,7 +32,7 @@
     icon_position = left
     min_icon_size = 0
     max_icon_size = 32
-    sticky_history = yes
+    sticky_history = true
     history_length = 0
     always_run_script = true
     startup_notification = false
