@@ -27,9 +27,7 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 1
 
-font-0 = {{ font }}:size={{ fontSize }}
-font-1 = FontAwesome:style=Regular
-font-2 = Material Icons:style=Regular
+font-0 = {{ font }}:size={{ fontSize }};2
 
 modules-left = i3
 modules-right = memory cpu battery temperature eth wlan date
@@ -48,19 +46,19 @@ wrapping-scroll = false
 
 pin-workspaces = true
 
-label-mode-padding = 2
+label-mode-padding = 1
 label-mode-foreground = {{ colors.foreground }}
 label-mode-background = {{ colors.blue }}
 
 label-focused = %index%
 label-focused-foreground = {{ colors.background }}
 label-focused-background = {{ colors.yellow }}
-label-focused-padding = 2
+label-focused-padding = 1
 
 label-unfocused = %index%
 label-unfocused-foreground = {{ colors.grey9 }}
 label-unfocused-background = {{ colors.background }}
-label-unfocused-padding = 2
+label-unfocused-padding = 1
 
 label-visible = %index%
 label-visible-foreground = ${self.label-focused-foreground}
@@ -70,22 +68,20 @@ label-visible-padding = ${self.label-focused-padding}
 label-urgent = %index%
 label-urgent-foreground = {{ colors.background }}
 label-urgent-background = {{ colors.red }}
-label-urgent-padding = 2
+label-urgent-padding = 1
 
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = "CPU "
-format-prefix-foreground = {{ colors.grey9 }}
-format-underline = {{ colors.cyan }}
+format-prefix = "󰘚 "
+format-foreground = {{ colors.cyan }}
 label = %percentage:2%%
 
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = "MEM "
-format-prefix-foreground = {{ colors.grey9 }}
-format-underline = {{ colors.yellow }}
+format-prefix = " "
+format-foreground = {{ colors.yellow }}
 label = %percentage_used%%
 
 [module/wlan]
@@ -93,8 +89,8 @@ type = internal/network
 interface = ${env:WLAN:}
 interval = 3.0
 
-format-connected = WLAN <label-connected>
-format-connected-underline = {{ colors.magenta }}
+format-connected = "󰖩 <label-connected>"
+format-connected-foreground = {{ colors.magenta }}
 label-connected = %essid%
 
 format-disconnected = ""
@@ -104,8 +100,7 @@ type = internal/network
 interface = enp0s31f6
 interval = 3.0
 
-format-connected-underline = {{ colors.magenta }}
-format-connected-prefix-foreground = {{ colors.foreground-alt }}
+format-connected-foreground = {{ colors.magenta }}
 label-connected = ETH %local_ip%
 
 format-disconnected =
@@ -114,11 +109,10 @@ format-disconnected =
 type = internal/date
 interval = 1
 
-date = "%Y-%m-%d"
+date = "󰃭 %Y-%m-%d"
 time = %H:%M:%S
 
-format-prefix-foreground = {{ colors.grey9 }}
-format-underline = {{ colors.red }}
+format-foreground = {{ colors.grey9 }}
 
 label = %date% %time%
 
@@ -128,30 +122,32 @@ battery = BAT0
 adapter = AC
 full-at = 98
 
+format-charging-prefix = "󰂄 "
 format-charging = <label-charging>
-format-charging-underline = {{ colors.green }}
+format-charging-foreground = {{ colors.green }}
 
+format-discharging-prefix = "󰂀 "
 format-discharging = <label-discharging>
-format-discharging-underline = ${self.format-charging-underline}
+format-discharging-foreground = {{ colors.green }}
 
-format-full-prefix = "BAT "
-format-full-prefix-foreground = {{ colors.foreground }}
-format-full-underline = ${self.format-charging-underline}
+format-full-prefix = "󰁹 "
+format-full-foreground = {{ colors.green }}
 
 [module/temperature]
 type = internal/temperature
 thermal-zone = 0
-warn-temperature = 60
+warn-temperature = 70
 
 format = <label>
-format-prefix = "TEMP "
-format-underline = {{ colors.red }}
-format-warn = "TEMP <label-warn>"
-format-warn-underline = ${self.format-underline}
+format-prefix = " "
+format-foreground = {{ colors.red }}
+format-warn-prefix = " "
+format-warn-prefix-foreground = {{ colors.strong_red }}
+format-warn = "<label-warn>"
 
 label = %temperature-c%
 label-warn = %temperature-c%
-label-warn-foreground = {{ colors.grey9 }}
+label-warn-foreground = {{ colors.strong_red }}
 
 [settings]
 screenchange-reload = true
