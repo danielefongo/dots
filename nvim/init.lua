@@ -20,6 +20,7 @@ opt.undofile = true
 opt.pumheight = 12
 
 vim.g.mapleader = " "
+vim.g.tmux_navigator_no_mappings = true
 
 require("plugins")
 require("autocmd")

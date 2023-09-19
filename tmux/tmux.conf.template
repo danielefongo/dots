@@ -9,7 +9,6 @@ set -g @plugin 'tmux-plugins/tmux-continuum'
 set -g @plugin 'tmux-plugins/tmux-resurrect'
 set -g @plugin 'tmux-plugins/tmux-sensible'
 set -g @plugin 'b0o/tmux-autoreload'
-set -g @plugin 'christoomey/vim-tmux-navigator'
 
 # ----- BINDINGS -----
 set -g prefix M-Space
