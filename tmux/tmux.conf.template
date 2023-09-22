@@ -44,10 +44,10 @@ bind -n 'M-]' next-window
 bind -n 'M-{' swap-window -t -1 \; previous-window
 bind -n 'M-}' swap-window -t +1 \; next-window
 
-bind -n 'M-C-h' resize-pane -L 2
+bind -n 'M-C-h' resize-pane -L 4
 bind -n 'M-C-j' resize-pane -D 2
 bind -n 'M-C-k' resize-pane -U 2
-bind -n 'M-C-l' resize-pane -R 2
+bind -n 'M-C-l' resize-pane -R 4
 bind -n 'M-f' resize-pane -Z
 
 bind -n 'M->' next-layout
