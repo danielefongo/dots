@@ -67,6 +67,9 @@ return {
       end
 
       local function on_attach(client, bufnr)
+        client.server_capabilities.documentFormattingProvider = false
+        client.server_capabilities.documentRangeFormattingProvider = false
+
         signature.on_attach({ bind = true }, bufnr)
         inlay.on_attach(client, bufnr, true)
       end
@@ -153,14 +156,15 @@ return {
       null_ls.setup({
         sources = vim.tbl_values(null_sources),
         on_attach = function(client, bufnr)
+          local fmt_group = vim.api.nvim_create_augroup("FORMATTING", { clear = true })
           if client.supports_method("textDocument/formatting") then
             vim.api.nvim_create_autocmd("BufWritePre", {
+              group = fmt_group,
               buffer = bufnr,
               callback = function()
                 vim.lsp.buf.format({
-                  filter = function()
-                    return client.name == "null-ls"
-                  end,
+                  timeout_ms = 3000,
+                  buffer = bufnr,
                 })
               end,
             })
