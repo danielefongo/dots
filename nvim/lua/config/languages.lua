@@ -145,7 +145,7 @@ return {
         black = null_ls.builtins.formatting.black, -- python
         rustfmt = null_ls.builtins.formatting.rustfmt, -- rust
         taplo = null_ls.builtins.formatting.taplo, -- toml
-        eslint = null_ls.builtins.formatting.eslint, -- ts (js)
+        eslint = null_ls.builtins.formatting.eslint_d, -- ts (js)
       }
 
       mason.setup({ install_root_dir = fn.stdpath("data") .. "/lsp/" })
