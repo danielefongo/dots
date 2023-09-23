@@ -28,15 +28,18 @@ const data = {
 
 exec(
   `find . -type f -name "*.template" -mindepth 1 -printf "%P\n"`,
-  function(_, stdout, _) {
+  function (_, stdout, _) {
     stdout
       .split("\n")
       .filter((it) => it !== "")
       .forEach((it) => {
         const content = fs.readFileSync(path.resolve(it), "utf8");
+        const oldContent = fs.readFileSync(it.replace(".template", ""), "utf8");
         const renderedTemplate = nunjucks.renderString(content, data);
 
-        fs.writeFileSync(it.replace(".template", ""), renderedTemplate);
+        if (renderedTemplate != oldContent) {
+          fs.writeFileSync(it.replace(".template", ""), renderedTemplate);
+        }
       });
   },
 );
