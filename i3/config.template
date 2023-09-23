@@ -129,7 +129,7 @@ mode "$mode_system" {
   bindsym l exec --no-startup-id i3lock-fancy, mode "default"
   bindsym e exec --no-startup-id systemctl --user stop i3.service
   bindsym r reload, mode "default"
-  bindsym k exec --no-startup-id set_theme
+  bindsym k exec --no-startup-id service_restart all
   bindsym $shift+r exec --no-startup-id shutdown now -r, mode "default"
   bindsym $shift+s exec --no-startup-id shutdown now, mode "default"
   bindsym Escape mode "default"
