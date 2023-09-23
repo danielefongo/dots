@@ -27,6 +27,7 @@ bind -n 'M-S' command-prompt "new-session -s '%%'"
 
 bind -n 'M-q' kill-pane
 bind -n 'M-Q' kill-session
+bind -n 'M-z' detach-client
 
 bind -n 'M-t' new-window -c "#{pane_current_path}"
 bind -n 'M-Enter' split-window -c "#{pane_current_path}"
