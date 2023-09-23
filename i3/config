@@ -50,7 +50,7 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 bindsym $mod+d exec rofi -show combi
 
 # terminal
-bindsym $mod+Return exec alacritty msg create-window --command="zsh"
+bindsym $mod+Return exec alacritty -e 'zsh'
 bindsym $mod+$shift+Return exec alacritty
 
 # kill window

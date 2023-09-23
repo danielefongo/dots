@@ -47,7 +47,7 @@ shell:
   args:
     - -l
     - -c
-    - "tmux || tmux source ~/.tmux.conf"
+    - "tmux attach || tmux"
 
 key_bindings:
   - { key: P, mods: Alt, action: Paste }

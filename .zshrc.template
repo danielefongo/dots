@@ -52,12 +52,3 @@ local zsh_reload() {
   actual_zshrc_md5=$(md5sum ~/.zshrc)
 }
 SHAPESHIFT_PRECMD=zsh_reload
-
-command -v tmux >/dev/null && case "${TERM_PROGRAM}" in
-  "tmux") ;;
-  *)
-    session_name="workspace"
-    tmux new -s "${session_name}"
-    tmux attach -t "${session_name}"
-    ;;
-esac
