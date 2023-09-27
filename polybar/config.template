@@ -6,34 +6,30 @@ monitor = ${env:MONITOR:}
 radius = {{ round }}
 
 width = 100%:-{{ gap * 2 }}
-height = {{ fontSize * 3 }}
+height = {{ fontSize * 2 }}
 fixed-center = true
 offset-y = {{ gap }}
 offset-x = {{ gap }}
 override-redirect = true
 wm-restack = i3
-border-size = 0
+border-size = {{ fontSize * 0.5 }}
+border-color = {{ colors.background if transparency else colors.background_alt1 }}
 
-tray-background = {{ colors.background if transparency else colors.background_alt1 }}
 background = {{ colors.background if transparency else colors.background_alt1 }}
 foreground = {{ colors.grey9 }}
 
 line-size = {{ fontSize // 3 }}
 line-color = #f00
 
-padding-left = 0
-padding-right = 2
+padding = 1
 
-module-margin-left = 1
-module-margin-right = 1
+module-margin = 1
 
-font-0 = {{ font }}:size={{ fontSize }};2
+font-0 = {{ font }}:pixelsize={{ fontSize }};{{ fontSize * 0.2 }}
 
 modules-left = i3
-modules-right = memory cpu battery temperature eth wlan date
-
-tray-position = center
-tray-padding = 2
+modules-center = date
+modules-right = memory cpu battery temperature wlan
 
 cursor-click = pointer
 cursor-scroll = ns-resize
@@ -46,54 +42,62 @@ wrapping-scroll = false
 
 pin-workspaces = true
 
-label-mode-padding = 1
-label-mode-foreground = {{ colors.foreground }}
-label-mode-background = {{ colors.blue }}
-
 label-focused = %index%
-label-focused-foreground = {{ colors.background }}
-label-focused-background = {{ colors.yellow }}
+label-focused-underline = {{ colors.yellow }}
 label-focused-padding = 1
 
 label-unfocused = %index%
-label-unfocused-foreground = {{ colors.grey9 }}
-label-unfocused-background = {{ colors.background }}
+label-unfocused-underline = ""
 label-unfocused-padding = 1
 
 label-visible = %index%
-label-visible-foreground = ${self.label-focused-foreground}
-label-visible-background = ${self.label-focused-background}
-label-visible-padding = ${self.label-focused-padding}
+label-visible-underline = {{ colors.blue }}
+label-visible-padding = 1
 
 label-urgent = %index%
-label-urgent-foreground = {{ colors.background }}
-label-urgent-background = {{ colors.red }}
+label-urgent-underline = {{ colors.red }}
 label-urgent-padding = 1
 
 [module/cpu]
 type = internal/cpu
 interval = 2
+warn-percentage = 95
+label = %percentage%%
+
+format = <label>
 format-prefix = "󰘚 "
-format-foreground = {{ colors.cyan }}
-label = %percentage:2%%
+format-prefix-foreground = {{ colors.yellow }}
+
+format-warn = <label>
+format-warn-prefix = "󰘚 "
+format-warn-prefix-foreground = {{ colors.red }}
 
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = " "
-format-foreground = {{ colors.yellow }}
+warn-percentage = 90
 label = %percentage_used%%
+
+format = <label>
+format-prefix = " "
+format-prefix-foreground = {{ colors.yellow }}
+
+format-warn = <label>
+format-warn-prefix = " "
+format-warn-prefix-foreground = {{ colors.red }}
 
 [module/wlan]
 type = internal/network
 interface = ${env:WLAN:}
 interval = 3.0
 
-format-connected = "󰖩 <label-connected>"
-format-connected-foreground = {{ colors.magenta }}
 label-connected = %essid%
+format-connected-prefix = "󰖩 "
+format-connected-prefix-foreground = {{ colors.yellow }}
 
-format-disconnected = ""
+label-disconnected = "Offline"
+format-disconnected-prefix = "󰖪  "
+format-disconnected-prefix-foreground = {{ colors.red }}
 
 [module/eth]
 type = internal/network
@@ -109,45 +113,68 @@ format-disconnected =
 type = internal/date
 interval = 1
 
-date = "󰃭 %Y-%m-%d"
+format-prefix = "󰃭 "
+format-prefix-foreground = {{ colors.yellow }}
+date = "%Y-%m-%d"
 time = %H:%M:%S
-
-format-foreground = {{ colors.grey9 }}
 
 label = %date% %time%
 
 [module/battery]
 type = internal/battery
-battery = BAT0
-adapter = AC
 full-at = 98
+low-at = 10
 
-format-charging-prefix = "󰂄 "
-format-charging = <label-charging>
-format-charging-foreground = {{ colors.green }}
-
-format-discharging-prefix = "󰂀 "
-format-discharging = <label-discharging>
-format-discharging-foreground = {{ colors.green }}
-
+label-full = "100%"
+format-full = <label-full>
 format-full-prefix = "󰁹 "
-format-full-foreground = {{ colors.green }}
+format-full-prefix-foreground = {{ colors.yellow }}
+
+label-charging = %percentage%%
+format-charging = <animation-charging> <label-charging>
+animation-charging-0 = 󰢜
+animation-charging-1 = 󰂇
+animation-charging-2 = 󰢝
+animation-charging-3 = 󰢞
+animation-charging-4 = 󰂋
+animation-charging-framerate = 500
+animation-charging-foreground = {{ colors.yellow }}
+
+label-discharging = %percentage%%
+format-discharging = <ramp-capacity> <label-discharging>
+ramp-capacity-0 = 󰁺
+ramp-capacity-1 = 󰁻
+ramp-capacity-2 = 󰁼
+ramp-capacity-3 = 󰁽
+ramp-capacity-4 = 󰁾
+ramp-capacity-5 = 󰁿
+ramp-capacity-6 = 󰂀
+ramp-capacity-7 = 󰂁
+ramp-capacity-8 = 󰂂
+ramp-capacity-9 = 󰁹
+ramp-capacity-foreground = {{ colors.yellow }}
+
+label-low = %percentage%%
+format-low = <animation-low> <label-low>
+animation-low-0 = 󱃍
+animation-low-1 = 󱃍
+animation-low-1-foreground = {{ colors.background if transparency else colors.background_alt1 }}
+animation-low-foreground = {{ colors.red }}
+animation-low-framerate = 500
 
 [module/temperature]
 type = internal/temperature
 thermal-zone = 0
-warn-temperature = 70
+warn-temperature = 75
+label = %temperature-c%
 
 format = <label>
 format-prefix = " "
-format-foreground = {{ colors.red }}
-format-warn-prefix = " "
-format-warn-prefix-foreground = {{ colors.strong_red }}
-format-warn = "<label-warn>"
+format-prefix-foreground = {{ colors.yellow }}
 
-label = %temperature-c%
-label-warn = %temperature-c%
-label-warn-foreground = {{ colors.strong_red }}
+format-warn = <label>
+format-warn-prefix = " "
+format-warn-prefix-foreground = {{ colors.red }}
 
 [settings]
 screenchange-reload = true

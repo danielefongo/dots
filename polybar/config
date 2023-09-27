@@ -6,34 +6,30 @@ monitor = ${env:MONITOR:}
 radius = 0
 
 width = 100%:-0
-height = 30
+height = 20
 fixed-center = true
 offset-y = 0
 offset-x = 0
 override-redirect = true
 wm-restack = i3
-border-size = 0
+border-size = 5
+border-color = #191d27
 
-tray-background = #191d27
 background = #191d27
 foreground = #d3d5db
 
 line-size = 3
 line-color = #f00
 
-padding-left = 0
-padding-right = 2
+padding = 1
 
-module-margin-left = 1
-module-margin-right = 1
+module-margin = 1
 
-font-0 = Hasklug Nerd Font:size=10;2
+font-0 = Hasklug Nerd Font:pixelsize=10;2
 
 modules-left = i3
-modules-right = memory cpu battery temperature eth wlan date
-
-tray-position = center
-tray-padding = 2
+modules-center = date
+modules-right = memory cpu battery temperature wlan
 
 cursor-click = pointer
 cursor-scroll = ns-resize
@@ -46,54 +42,62 @@ wrapping-scroll = false
 
 pin-workspaces = true
 
-label-mode-padding = 1
-label-mode-foreground = #e9ebf0
-label-mode-background = #6cbeff
-
 label-focused = %index%
-label-focused-foreground = #1f2430
-label-focused-background = #ecc48d
+label-focused-underline = #ecc48d
 label-focused-padding = 1
 
 label-unfocused = %index%
-label-unfocused-foreground = #d3d5db
-label-unfocused-background = #1f2430
+label-unfocused-underline = ""
 label-unfocused-padding = 1
 
 label-visible = %index%
-label-visible-foreground = ${self.label-focused-foreground}
-label-visible-background = ${self.label-focused-background}
-label-visible-padding = ${self.label-focused-padding}
+label-visible-underline = #6cbeff
+label-visible-padding = 1
 
 label-urgent = %index%
-label-urgent-foreground = #1f2430
-label-urgent-background = #f45c7f
+label-urgent-underline = #f45c7f
 label-urgent-padding = 1
 
 [module/cpu]
 type = internal/cpu
 interval = 2
+warn-percentage = 95
+label = %percentage%%
+
+format = <label>
 format-prefix = "󰘚 "
-format-foreground = #9fd4ff
-label = %percentage:2%%
+format-prefix-foreground = #ecc48d
+
+format-warn = <label>
+format-warn-prefix = "󰘚 "
+format-warn-prefix-foreground = #f45c7f
 
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = " "
-format-foreground = #ecc48d
+warn-percentage = 90
 label = %percentage_used%%
+
+format = <label>
+format-prefix = " "
+format-prefix-foreground = #ecc48d
+
+format-warn = <label>
+format-warn-prefix = " "
+format-warn-prefix-foreground = #f45c7f
 
 [module/wlan]
 type = internal/network
 interface = ${env:WLAN:}
 interval = 3.0
 
-format-connected = "󰖩 <label-connected>"
-format-connected-foreground = #c792ea
 label-connected = %essid%
+format-connected-prefix = "󰖩 "
+format-connected-prefix-foreground = #ecc48d
 
-format-disconnected = ""
+label-disconnected = "Offline"
+format-disconnected-prefix = "󰖪  "
+format-disconnected-prefix-foreground = #f45c7f
 
 [module/eth]
 type = internal/network
@@ -109,45 +113,68 @@ format-disconnected =
 type = internal/date
 interval = 1
 
-date = "󰃭 %Y-%m-%d"
+format-prefix = "󰃭 "
+format-prefix-foreground = #ecc48d
+date = "%Y-%m-%d"
 time = %H:%M:%S
-
-format-foreground = #d3d5db
 
 label = %date% %time%
 
 [module/battery]
 type = internal/battery
-battery = BAT0
-adapter = AC
 full-at = 98
+low-at = 10
 
-format-charging-prefix = "󰂄 "
-format-charging = <label-charging>
-format-charging-foreground = #addb67
-
-format-discharging-prefix = "󰂀 "
-format-discharging = <label-discharging>
-format-discharging-foreground = #addb67
-
+label-full = "100%"
+format-full = <label-full>
 format-full-prefix = "󰁹 "
-format-full-foreground = #addb67
+format-full-prefix-foreground = #ecc48d
+
+label-charging = %percentage%%
+format-charging = <animation-charging> <label-charging>
+animation-charging-0 = 󰢜
+animation-charging-1 = 󰂇
+animation-charging-2 = 󰢝
+animation-charging-3 = 󰢞
+animation-charging-4 = 󰂋
+animation-charging-framerate = 500
+animation-charging-foreground = #ecc48d
+
+label-discharging = %percentage%%
+format-discharging = <ramp-capacity> <label-discharging>
+ramp-capacity-0 = 󰁺
+ramp-capacity-1 = 󰁻
+ramp-capacity-2 = 󰁼
+ramp-capacity-3 = 󰁽
+ramp-capacity-4 = 󰁾
+ramp-capacity-5 = 󰁿
+ramp-capacity-6 = 󰂀
+ramp-capacity-7 = 󰂁
+ramp-capacity-8 = 󰂂
+ramp-capacity-9 = 󰁹
+ramp-capacity-foreground = #ecc48d
+
+label-low = %percentage%%
+format-low = <animation-low> <label-low>
+animation-low-0 = 󱃍
+animation-low-1 = 󱃍
+animation-low-1-foreground = #191d27
+animation-low-foreground = #f45c7f
+animation-low-framerate = 500
 
 [module/temperature]
 type = internal/temperature
 thermal-zone = 0
-warn-temperature = 70
+warn-temperature = 75
+label = %temperature-c%
 
 format = <label>
 format-prefix = " "
-format-foreground = #f45c7f
-format-warn-prefix = " "
-format-warn-prefix-foreground = #ff3765
-format-warn = "<label-warn>"
+format-prefix-foreground = #ecc48d
 
-label = %temperature-c%
-label-warn = %temperature-c%
-label-warn-foreground = #ff3765
+format-warn = <label>
+format-warn-prefix = " "
+format-warn-prefix-foreground = #f45c7f
 
 [settings]
 screenchange-reload = true
