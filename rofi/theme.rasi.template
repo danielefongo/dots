@@ -13,6 +13,9 @@
   text-alt: {{ colors.foreground }};
   fg: {{ colors.grey9 }};
   bg: {{ colors.background if transparency else colors.background_alt1 }};
+  primary: {{ theme.primary }};
+  secondary: {{ theme.secondary }};
+  alert: {{ theme.alert }};
 
   spacing: 0;
   background-color: transparent;
@@ -27,7 +30,7 @@ window {
   background-color: @bg;
   border: {{ border + 1 }}px;
   border-radius: {{ round * 2 }}px;
-  border-color: @yellow;
+  border-color: @primary;
 }
 
 mainbox {
@@ -40,7 +43,7 @@ inputbar {
 }
 
 prompt {
-  text-color: @yellow;
+  text-color: @primary;
 }
 
 textbox-prompt-colon {
@@ -71,11 +74,11 @@ element selected {
 }
 
 element urgent, element selected urgent {
-  text-color: @red;
+  text-color: @alert;
 }
 
 element active, element selected active {
-  text-color: @magenta;
+  text-color: @secondary;
 }
 
 message {
@@ -83,7 +86,7 @@ message {
   border-radius: 3px;
   background-color: @emphasis;
   border: 1px;
-  border-color: @cyan;
+  border-color: @secondary;
 }
 
 button selected {

@@ -17,8 +17,8 @@ set $ws9 "9"
 set $ws10 "10"
 
 # window interface
-client.focused {{ colors.background }} {{ colors.yellow }} {{ colors.background }} {{ colors.green }}
-client.focused_inactive {{ colors.background }} {{ colors.grey1 }} {{ colors.grey9 }} {{ colors.green }}
+client.focused {{ colors.background }} {{ theme.primary }} {{ colors.background }} {{ theme.secondary }}
+client.focused_inactive {{ colors.background }} {{ colors.grey1 }} {{ colors.grey9 }} {{ theme.secondary }}
 client.unfocused {{ colors.background }} {{ colors.grey1 }} {{ colors.grey9 }} {{ colors.green }}
 
 hide_edge_borders none

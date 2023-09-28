@@ -50,17 +50,17 @@
 [urgency_low]
     background = "{{ colors.background if transparency else colors.background_alt1 }}"
     foreground = "{{ colors.foreground }}"
-    frame_color = "{{ colors.yellow }}"
+    frame_color = "{{ theme.primary }}"
     timeout = 5
 
 [urgency_normal]
     background = "{{ colors.background if transparency else colors.background_alt1 }}"
     foreground = "{{ colors.foreground }}"
-    frame_color = "{{ colors.yellow }}"
+    frame_color = "{{ theme.primary }}"
     timeout = 10
 
 [urgency_critical]
     background = "{{ colors.background if transparency else colors.background_alt1 }}"
     foreground = "{{ colors.foreground }}"
-    frame_color = "{{ colors.strong_red }}"
+    frame_color = "{{ theme.alert }}"
     timeout = 0

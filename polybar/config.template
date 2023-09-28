@@ -43,7 +43,7 @@ wrapping-scroll = false
 pin-workspaces = true
 
 label-focused = %index%
-label-focused-underline = {{ colors.yellow }}
+label-focused-underline = {{ theme.primary }}
 label-focused-padding = 1
 
 label-unfocused = %index%
@@ -51,11 +51,11 @@ label-unfocused-underline = ""
 label-unfocused-padding = 1
 
 label-visible = %index%
-label-visible-underline = {{ colors.blue }}
+label-visible-underline = {{ theme.secondary }}
 label-visible-padding = 1
 
 label-urgent = %index%
-label-urgent-underline = {{ colors.red }}
+label-urgent-underline = {{ theme.alert }}
 label-urgent-padding = 1
 
 [module/cpu]
@@ -66,11 +66,11 @@ label = %percentage%%
 
 format = <label>
 format-prefix = "󰘚 "
-format-prefix-foreground = {{ colors.yellow }}
+format-prefix-foreground = {{ theme.primary }}
 
 format-warn = <label>
 format-warn-prefix = "󰘚 "
-format-warn-prefix-foreground = {{ colors.red }}
+format-warn-prefix-foreground = {{ theme.alert }}
 
 [module/memory]
 type = internal/memory
@@ -80,11 +80,11 @@ label = %percentage_used%%
 
 format = <label>
 format-prefix = " "
-format-prefix-foreground = {{ colors.yellow }}
+format-prefix-foreground = {{ theme.primary }}
 
 format-warn = <label>
 format-warn-prefix = " "
-format-warn-prefix-foreground = {{ colors.red }}
+format-warn-prefix-foreground = {{ theme.alert }}
 
 [module/wlan]
 type = internal/network
@@ -93,18 +93,18 @@ interval = 3.0
 
 label-connected = %essid%
 format-connected-prefix = "󰖩 "
-format-connected-prefix-foreground = {{ colors.yellow }}
+format-connected-prefix-foreground = {{ theme.primary }}
 
 label-disconnected = "Offline"
 format-disconnected-prefix = "󰖪  "
-format-disconnected-prefix-foreground = {{ colors.red }}
+format-disconnected-prefix-foreground = {{ theme.alert }}
 
 [module/eth]
 type = internal/network
 interface = enp0s31f6
 interval = 3.0
 
-format-connected-foreground = {{ colors.magenta }}
+format-connected-foreground = {{ theme.primary }}
 label-connected = ETH %local_ip%
 
 format-disconnected =
@@ -114,7 +114,7 @@ type = internal/date
 interval = 1
 
 format-prefix = "󰃭 "
-format-prefix-foreground = {{ colors.yellow }}
+format-prefix-foreground = {{ theme.primary }}
 date = "%Y-%m-%d"
 time = %H:%M:%S
 
@@ -128,7 +128,7 @@ low-at = 10
 label-full = "100%"
 format-full = <label-full>
 format-full-prefix = "󰁹 "
-format-full-prefix-foreground = {{ colors.yellow }}
+format-full-prefix-foreground = {{ theme.primary }}
 
 label-charging = %percentage%%
 format-charging = <animation-charging> <label-charging>
@@ -138,7 +138,7 @@ animation-charging-2 = 󰢝
 animation-charging-3 = 󰢞
 animation-charging-4 = 󰂋
 animation-charging-framerate = 500
-animation-charging-foreground = {{ colors.yellow }}
+animation-charging-foreground = {{ theme.primary }}
 
 label-discharging = %percentage%%
 format-discharging = <ramp-capacity> <label-discharging>
@@ -152,7 +152,7 @@ ramp-capacity-6 = 󰂀
 ramp-capacity-7 = 󰂁
 ramp-capacity-8 = 󰂂
 ramp-capacity-9 = 󰁹
-ramp-capacity-foreground = {{ colors.yellow }}
+ramp-capacity-foreground = {{ theme.primary }}
 
 label-low = %percentage%%
 format-low = <animation-low> <label-low>
@@ -170,11 +170,11 @@ label = %temperature-c%
 
 format = <label>
 format-prefix = " "
-format-prefix-foreground = {{ colors.yellow }}
+format-prefix-foreground = {{ theme.primary }}
 
 format-warn = <label>
 format-warn-prefix = " "
-format-warn-prefix-foreground = {{ colors.red }}
+format-warn-prefix-foreground = {{ theme.alert }}
 
 [settings]
 screenchange-reload = true

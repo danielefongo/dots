@@ -13,6 +13,9 @@
   text-alt: #e9ebf0;
   fg: #d3d5db;
   bg: #191d27;
+  primary: #ecc48d;
+  secondary: #6cbeff;
+  alert: #f45c7f;
 
   spacing: 0;
   background-color: transparent;
@@ -27,7 +30,7 @@ window {
   background-color: @bg;
   border: 5px;
   border-radius: 0px;
-  border-color: @yellow;
+  border-color: @primary;
 }
 
 mainbox {
@@ -40,7 +43,7 @@ inputbar {
 }
 
 prompt {
-  text-color: @yellow;
+  text-color: @primary;
 }
 
 textbox-prompt-colon {
@@ -71,11 +74,11 @@ element selected {
 }
 
 element urgent, element selected urgent {
-  text-color: @red;
+  text-color: @alert;
 }
 
 element active, element selected active {
-  text-color: @magenta;
+  text-color: @secondary;
 }
 
 message {
@@ -83,7 +86,7 @@ message {
   border-radius: 3px;
   background-color: @emphasis;
   border: 1px;
-  border-color: @cyan;
+  border-color: @secondary;
 }
 
 button selected {

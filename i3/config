@@ -17,8 +17,8 @@ set $ws9 "9"
 set $ws10 "10"
 
 # window interface
-client.focused #1f2430 #ecc48d #1f2430 #addb67
-client.focused_inactive #1f2430 #333843 #d3d5db #addb67
+client.focused #1f2430 #ecc48d #1f2430 #6cbeff
+client.focused_inactive #1f2430 #333843 #d3d5db #6cbeff
 client.unfocused #1f2430 #333843 #d3d5db #addb67
 
 hide_edge_borders none

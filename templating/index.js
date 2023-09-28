@@ -24,6 +24,7 @@ const data = {
   round: scale(getOrDefault(template.round, 0), scaleRatio),
   border: scale(getOrDefault(template.border, 1), scaleRatio),
   fontSize: scale(getOrDefault(template.fontSize, 12), scaleRatio),
+  theme: generateTheme(template.theme, colors),
 };
 
 exec(
@@ -90,4 +91,16 @@ function generateColors(palette) {
 
 function scale(value, ratio) {
   return Math.floor(value * ratio);
+}
+
+function generateTheme(themeData, colors) {
+  Object.entries(themeData).forEach(([key, value]) => {
+    if (typeof value === "object" && !Array.isArray(value) && value !== null) {
+      themeData[key] = generateTheme(value, colors);
+    } else {
+      themeData[key] = colors[value];
+    }
+  });
+
+  return themeData;
 }
