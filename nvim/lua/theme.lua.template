@@ -114,6 +114,8 @@ local themer = {
   },
   remaps = {
     base = {
+      FoldColumn = { fg = colors.grey4, bg = colors.background },
+      Folded = { bg = colors.background_alt2 },
       WinSeparator = { fg = colors.grey2, bg = colors.background },
       DiffAdd = { fg = colors.dark_green, bg = colors.background },
       DiffChange = { fg = colors.dark_yellow, bg = colors.background },

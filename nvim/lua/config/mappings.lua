@@ -77,5 +77,9 @@ return {
     wk.register({
       [";"] = { ":Commentary<cr>", "comment" },
     }, { prefix = "<leader>", mode = "v" })
+
+    wk.register({
+      ["<c-f>"] = { "za", "toggle fold" },
+    }, { mode = "n" })
   end,
 }

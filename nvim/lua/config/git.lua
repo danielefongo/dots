@@ -47,12 +47,22 @@ return {
     "TimUntersberger/neogit",
     cmd = "Neogit",
     dependencies = { "nvim-lua/plenary.nvim" },
-    opts = {
-      signs = {
-        section = { "", "" },
-        item = { "", "" },
-        hunk = { "", "" },
-      },
-    },
+    config = function()
+      require("neogit").setup({
+        signs = {
+          section = { "", "" },
+          item = { "", "" },
+          hunk = { "", "" },
+        },
+      })
+
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = { "NeogitStatus" },
+        group = vim.api.nvim_create_augroup("NeogitStatusOptions", {}),
+        callback = function()
+          vim.opt.foldenable = false
+        end,
+      })
+    end,
   },
 }
