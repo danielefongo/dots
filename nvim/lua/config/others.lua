@@ -1,5 +1,5 @@
 return {
-  { "norcalli/nvim-colorizer.lua" },
+  { "uga-rosa/ccc.nvim", event = "VeryLazy" },
   { "tpope/vim-commentary", cmd = "Commentary" },
   { "gabrielpoca/replacer.nvim", cmd = { "ColorizerToggle", "ColorizerAttachToBuffer" } },
   { "windwp/nvim-autopairs", opts = {}, event = "BufReadPre" },
