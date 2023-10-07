@@ -34,12 +34,15 @@ exec(
       .split("\n")
       .filter((it) => it !== "")
       .forEach((it) => {
+        const destinationFile = it.replace(".template", "");
         const content = fs.readFileSync(path.resolve(it), "utf8");
-        const oldContent = fs.readFileSync(it.replace(".template", ""), "utf8");
+        const oldContent = fs.existsSync(destinationFile)
+          ? fs.readFileSync(destinationFile, "utf8")
+          : {};
         const renderedTemplate = nunjucks.renderString(content, data);
 
         if (renderedTemplate != oldContent) {
-          fs.writeFileSync(it.replace(".template", ""), renderedTemplate);
+          fs.writeFileSync(destinationFile, renderedTemplate);
         }
       });
   },
@@ -97,7 +100,7 @@ function generateTheme(themeData, colors) {
   Object.entries(themeData).forEach(([key, value]) => {
     if (typeof value === "object" && !Array.isArray(value) && value !== null) {
       themeData[key] = generateTheme(value, colors);
-    } else {
+    } else if (colors[value]) {
       themeData[key] = colors[value];
     }
   });
