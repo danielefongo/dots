@@ -18,7 +18,7 @@ colors:
     yellow: "{{ colors.yellow }}"
 
   bright:
-    black: "{{ colors.background_alt2 }}"
+    black: "{{ colors.grey4 }}"
     blue: "{{ colors.light_blue }}"
     cyan: "{{ colors.light_cyan }}"
     green: "{{ colors.light_green }}"
