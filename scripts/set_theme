@@ -1,4 +1,6 @@
-#!/bin/env bash
+#!/bin/env zsh
+
+source ~/.zshrc
 
 DOTS_PATH="$(dirname "$(readlink -f "$0")")/.."
 
