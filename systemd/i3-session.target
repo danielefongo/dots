@@ -1,0 +1,6 @@
+[Unit]
+Description=i3 session
+BindsTo=graphical-session.target
+Wants=polybar.service
+Wants=picom.service
+Wants=wallpaper.service
