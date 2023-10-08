@@ -67,6 +67,7 @@ return {
       end
 
       local function on_attach(client, bufnr)
+        client.resolved_capabilities.document_formatting = false
         signature.on_attach({ bind = true }, bufnr)
         inlay.on_attach(client, bufnr, true)
       end
