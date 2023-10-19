@@ -5,13 +5,13 @@
   commit-style                  = raw
   file-style                    = "{{ colors.blue }}"
   hunk-header-style             = syntax
-  minus-style                   = normal "{{ colors.dark_red }}"
-  minus-non-emph-style          = normal "{{ colors.dark_red }}"
+  minus-style                   = reverse "{{ colors.dark_red }}"
+  minus-non-emph-style          = reverse "{{ colors.dark_red }}"
   minus-emph-style              = reverse "{{ colors.strong_red }}"
   minus-empty-line-marker-style = normal "{{ colors.dark_red }}"
   zero-style                    = syntax
-  plus-style                    = normal "{{ colors.dark_green }}"
-  plus-non-emph-style           = normal "{{ colors.dark_green }}"
+  plus-style                    = reverse "{{ colors.dark_green }}"
+  plus-non-emph-style           = reverse "{{ colors.dark_green }}"
   plus-emph-style               = reverse "{{ colors.strong_green }}"
   plus-empty-line-marker-style  = normal "{{ colors.dark_green }}"
   grep-file-style               = "{{ colors.blue }}"

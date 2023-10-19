@@ -5,13 +5,13 @@
   commit-style                  = raw
   file-style                    = "#6cbeff"
   hunk-header-style             = syntax
-  minus-style                   = normal "#e03d63"
-  minus-non-emph-style          = normal "#e03d63"
+  minus-style                   = reverse "#e03d63"
+  minus-non-emph-style          = reverse "#e03d63"
   minus-emph-style              = reverse "#ff3765"
   minus-empty-line-marker-style = normal "#e03d63"
   zero-style                    = syntax
-  plus-style                    = normal "#93bf50"
-  plus-non-emph-style           = normal "#93bf50"
+  plus-style                    = reverse "#93bf50"
+  plus-non-emph-style           = reverse "#93bf50"
   plus-emph-style               = reverse "#aaff29"
   plus-empty-line-marker-style  = normal "#93bf50"
   grep-file-style               = "#6cbeff"
