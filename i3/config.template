@@ -128,7 +128,7 @@ bindsym $mod+Right move workspace to output right
 set $mode_system System (l) lock, (e) logout, (r) reload, (k) restart, ($shift+r) reboot, ($shift+s) shutdown
 mode "$mode_system" {
   bindsym l exec --no-startup-id i3lock-fancy, mode "default"
-  bindsym e exec --no-startup-id systemctl --user stop i3.service
+  bindsym e exit
   bindsym r reload, mode "default"
   bindsym k exec --no-startup-id service_restart all
   bindsym $shift+r exec --no-startup-id shutdown now -r, mode "default"
