@@ -12,6 +12,12 @@ function _G.set_buf_key(bufnr, mode, keys, command)
   vim.api.nvim_buf_set_keymap(bufnr, mode, keys, command, key_opts)
 end
 
+function _G.close_win()
+  return pcall(function()
+    return vim.api.nvim_win_close(0, false)
+  end) or vim.cmd(":q")
+end
+
 function _G.load_theme()
   package.loaded["theme"] = nil
 

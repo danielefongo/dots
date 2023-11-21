@@ -81,5 +81,9 @@ return {
     wk.register({
       ["<c-f>"] = { "za", "toggle fold" },
     }, { mode = "n" })
+
+    wk.register({
+      ["<a-q>"] = { ":lua close_win()<cr>", "close buffer" },
+    }, { mode = "n" })
   end,
 }
