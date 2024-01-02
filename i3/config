@@ -31,7 +31,7 @@ gaps bottom 0px
 smart_gaps off
 
 # miscellaneous
-font pango:Hasklug Nerd Font 10
+font pango:JetBrainsMono NF 10
 floating_modifier $mod
 
 # xdg autostart

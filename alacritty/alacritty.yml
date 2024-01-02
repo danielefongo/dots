@@ -33,7 +33,7 @@ window:
 
 font:
   normal:
-    family: "Hasklug Nerd Font"
+    family: "JetBrainsMono NF"
     style: Regular
   size: 10
 

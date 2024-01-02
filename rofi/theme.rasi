@@ -20,7 +20,7 @@
   spacing: 0;
   background-color: transparent;
 
-  font: "Hasklug Nerd Font 10";
+  font: "JetBrainsMono NF 10";
   text-color: @text;
 }
 
