@@ -56,7 +56,6 @@ bindsym $mod+$shift+Return exec alacritty
 
 # kill window
 bindsym $mod+q kill
-bindsym $mod+$shift+q focus parent,kill
 
 # focus window
 bindsym $mod+h focus left
@@ -64,6 +63,7 @@ bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 bindsym $mod+a focus parent
+bindsym $mod+$shift+a focus child
 
 # move window
 bindsym $mod+$shift+h move left
