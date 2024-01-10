@@ -2,7 +2,7 @@
   name = danielefongo
   email = danielefongo@gmail.com
 [core]
-  editor = 'vim'
+  editor = 'nvim'
   excludesfile = "~/.config/git/ignore"
   pager = delta
 [include]
