@@ -1,3 +1,4 @@
+# vim:ft=zsh
 # xdg
 export XDG_CONFIG_HOME="${HOME}/.config"
 export XDG_CACHE_HOME="${HOME}/.cache"
@@ -17,8 +18,9 @@ antigen bundle fzf
 antigen bundle danielefongo/shapeshift
 antigen apply
 
-# rtx (asdf alternative)
-eval "$(~/.local/share/rtx/bin/rtx activate zsh)"
+# mise (asdf alternative)
+eval "$(~/.local/bin/mise activate zsh)"
+export PATH="$HOME/.local/share/mise/shims:$PATH"
 
 # history
 HISTFILE=~/.zsh_history
