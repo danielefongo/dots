@@ -1,0 +1,16 @@
+# vim:ft=conf
+
+"playerctl play-pause"
+    XF86AudioPlay
+
+"playerctl next"
+    XF86AudioNext
+
+"playerctl previous"
+    XF86AudioPrev
+
+"playerctl volume 0.05-"
+    Shift + XF86AudioLowerVolume
+
+"playerctl volume 0.05+"
+    Shift + XF86AudioRaiseVolume
