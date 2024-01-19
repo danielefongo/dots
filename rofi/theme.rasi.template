@@ -22,6 +22,9 @@
 
   font: "{{ font }} {{ fontSize }}";
   text-color: @text;
+
+  width: calc(50% min 800);
+  height: 500;
 }
 
 window {
