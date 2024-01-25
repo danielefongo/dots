@@ -1,9 +1,6 @@
 #!/bin/env zsh
 
-source ~/.zshrc
-
 DOTS_PATH="$(dirname "$(readlink -f "$0")")/.."
+cd $DOTS_PATH
 
-cd "$DOTS_PATH"
-
-node templating/index.js
+node "templating/index.js" $1

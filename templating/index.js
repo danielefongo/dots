@@ -1,109 +1,129 @@
-const tinycolor = require("tinycolor2");
-const nunjucks = require("nunjucks");
-const path = require("path");
-const fs = require("fs");
-const childProcess = require("child_process");
+const glob = require('glob')
+const path = require('path')
+const pm = require('picomatch')
+const watch = require('node-watch')
 
-const exec = childProcess.exec;
+const templater = require('./template.js')
 
-nunjucks.configure(".", {
-  trimBlocks: true,
-});
+class DotBlock {
+  constructor (dot, applyDelay) {
+    this.dot = dot
+    this.applyDelay = applyDelay
 
-const template = require("./theme.js");
-
-const colors = generateColors(template.palette);
-const scaleRatio = getOrDefault(template.scaleRatio, 1.0);
-
-const data = {
-  colors,
-  scaleRatio,
-  font: getOrDefault(template.font, "Hasklug Nerd Font"),
-  gap: scale(getOrDefault(template.gap, 0), scaleRatio),
-  transparency: getOrDefault(template.transparency, false),
-  round: scale(getOrDefault(template.round, 0), scaleRatio),
-  border: scale(getOrDefault(template.border, 1), scaleRatio),
-  fontSize: scale(getOrDefault(template.fontSize, 12), scaleRatio),
-  theme: generateTheme(template.theme, colors),
-};
-
-exec(
-  `find . -type f -name "*.template" -mindepth 1 -printf "%P\n"`,
-  function (_, stdout, _) {
-    stdout
-      .split("\n")
-      .filter((it) => it !== "")
-      .forEach((it) => {
-        const destinationFile = it.replace(".template", "");
-        const content = fs.readFileSync(path.resolve(it), "utf8");
-        const oldContent = fs.existsSync(destinationFile)
-          ? fs.readFileSync(destinationFile, "utf8")
-          : {};
-        const renderedTemplate = nunjucks.renderString(content, data);
-
-        if (renderedTemplate != oldContent) {
-          fs.writeFileSync(destinationFile, renderedTemplate);
-        }
-      });
-  },
-);
-
-function getOrDefault(value, fallback) {
-  if (value == undefined) {
-    return fallback;
+    return this.load()
   }
-  return value;
-}
 
-function generateColors(palette) {
-  const colors = {};
+  load () {
+    delete require.cache[require.resolve(path.resolve(this.dot))]
+    const dotData = require(path.resolve(this.dot))
 
-  Object.entries(palette.colors).forEach(([key, color]) => {
-    colors[`strong_${key}`] = tinycolor(color)
-      .darken(5)
-      .saturate(50)
-      .toHexString();
-    colors[`dark_${key}`] = tinycolor(color)
-      .darken(10)
-      .desaturate(15)
-      .toHexString();
-    colors[`${key}`] = color;
-    colors[`light_${key}`] = tinycolor(color)
-      .lighten(10)
-      .saturate(15)
-      .toHexString();
-  });
+    this.match = dotData.match
+    this.matchWatcher = null
 
-  const background = palette.background;
-  const foreground = palette.foreground;
+    this.apply = dotData.apply
+    this.applyScheduler = null
+    this.applyFiles = []
 
-  colors.background = background;
-  colors.background_alt1 = tinycolor(background).darken(3).toHexString();
-  colors.background_alt2 = tinycolor(background).lighten(3).toHexString();
-  Array.from({ length: 10 }, (_, i) => i)
-    .slice(1)
-    .forEach((greyScale) => {
-      colors[`grey${greyScale}`] = tinycolor
-        .mix(background, foreground, ((100 - 100 / 9) / 9) * greyScale)
-        .toHexString();
-    });
-  colors.foreground = foreground;
+    this.opts = { dot: true, ignore: '**/*.dots.js', nodir: true }
 
-  return colors;
-}
+    return this
+  }
 
-function scale(value, ratio) {
-  return Math.floor(value * ratio);
-}
+  run () {
+    glob.globSync(this.match, this.opts).forEach((file) => this.generate(file))
 
-function generateTheme(themeData, colors) {
-  Object.entries(themeData).forEach(([key, value]) => {
-    if (typeof value === "object" && !Array.isArray(value) && value !== null) {
-      themeData[key] = generateTheme(value, colors);
-    } else if (colors[value]) {
-      themeData[key] = colors[value];
+    return this
+  }
+
+  watch () {
+    this.stopWatch()
+
+    this.themeWatcher = watch('templating/theme.js', { recursive: true }, () =>
+      this.run()
+    )
+
+    this.selfWatcher = watch(this.dot, { dot: true, recursive: true }, () => {
+      this.themeWatcher.close()
+      this.selfWatcher.close()
+      this.stopWatch()
+      this.unscheduleApply()
+      this.load().run().watch()
+    })
+
+    this.matchWatcher = watch(
+      './',
+      { filter: pm(this.match, this.opts), recursive: true },
+      (evt, file) => {
+        if (evt == 'remove') {
+          return
+        }
+
+        this.generate(file)
+      }
+    )
+
+    return this
+  }
+
+  stopWatch () {
+    if (this.matchWatcher) {
+      this.matchWatcher.close()
     }
-  });
 
-  return themeData;
+    if (this.themeWatcher) {
+      this.themeWatcher.close()
+    }
+
+    if (this.selfWatcher) {
+      this.selfWatcher.close()
+    }
+
+    return this
+  }
+
+  generate (file) {
+    const output = templater(file)
+
+    if (!output || !this.apply) {
+      return
+    }
+
+    console.log(`Updated: ${file}`)
+
+    this.applyFiles.push(output)
+    this.scheduleApply()
+  }
+
+  unscheduleApply () {
+    if (this.applyScheduler) {
+      clearTimeout(this.applyScheduler)
+    }
+  }
+
+  scheduleApply () {
+    this.unscheduleApply()
+
+    this.applyScheduler = setTimeout(() => {
+      this.applyScheduler = undefined
+      try {
+        console.log(`Applying: ${this.dot}`)
+        this.apply(this.applyFiles)
+      } catch (e) {
+        console.log(`Failed to build ${this.dot}, reason: ${e}`)
+      }
+      this.applyFiles = []
+    }, this.applyDelay)
+  }
+}
+
+if (process.argv[2] == 'watch') {
+  glob
+    .globSync('**/*.dots.js', { nodir: true, dot: true })
+    .map((dot) => new DotBlock(dot, 100))
+    .forEach((dotBlock) => dotBlock.run().watch())
+} else {
+  glob
+    .globSync('**/*.dots.js', { nodir: true, dot: true })
+    .map((dot) => new DotBlock(dot, 100))
+    .forEach((dotBlock) => dotBlock.run())
 }

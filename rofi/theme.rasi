@@ -1,38 +1,36 @@
-// vim:ft=rasi
-
 * {
-  background: #191d27;
-  red: #f45c7f;
-  green: #addb67;
-  yellow: #ecc48d;
-  blue: #6cbeff;
-  magenta: #c792ea;
-  cyan: #9fd4ff;
-  emphasis: #333843;
-  text: #e9ebf0;
-  text-alt: #e9ebf0;
-  fg: #d3d5db;
-  bg: #191d27;
-  primary: #ecc48d;
-  secondary: #6cbeff;
-  alert: #f45c7f;
+  background: {{ colors.background_alt1 }};
+  red: {{ colors.red }};
+  green: {{ colors.green }};
+  yellow: {{ colors.yellow }};
+  blue: {{ colors.blue }};
+  magenta: {{ colors.magenta }};
+  cyan: {{ colors.cyan }};
+  emphasis: {{ colors.grey1 }};
+  text: {{ colors.foreground }};
+  text-alt: {{ colors.foreground }};
+  fg: {{ colors.grey9 }};
+  bg: {{ colors.background if transparency else colors.background_alt1 }};
+  primary: {{ theme.primary }};
+  secondary: {{ theme.secondary }};
+  alert: {{ theme.alert }};
 
   spacing: 0;
   background-color: transparent;
 
-  font: "JetBrainsMono NF 10";
+  font: "{{ font }} {{ fontSize }}";
   text-color: @text;
 
-  width: calc(50% min 800);
   height: 500;
 }
 
 window {
   transparency: "real";
   fullscreen: false;
+  width: calc(50% min 800);
   background-color: @bg;
-  border: 5px;
-  border-radius: 0px;
+  border: {{ border + 1 }}px;
+  border-radius: {{ round * 2 }}px;
   border-color: @primary;
 }
 
@@ -56,7 +54,8 @@ textbox-prompt-colon {
 }
 
 entry {
-  margin: 0px 10px;
+  padding: 0px 10px;
+  text-color: @text-alt;
 }
 
 listview {
@@ -68,7 +67,7 @@ listview {
 element {
   padding: 5px;
   text-color: @text-alt;
-  border-radius: 0px;
+  border-radius: {{ round }}px;
 }
 
 element selected {

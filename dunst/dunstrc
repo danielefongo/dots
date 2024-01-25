@@ -1,23 +1,21 @@
-# vim:ft=dosini
-
 [global]
     monitor = 0
     follow = mouse
-    width = "300"
-    height = "80"
+    width = "{{ 300 * scaleRatio // 1 }}"
+    height = "{{ 80 * scaleRatio // 1 }}"
     origin = "top-right"
-    offset = "12x44"
+    offset = "{{ 8 + gap + border }}x{{ 10 + fontSize * 3 + gap * 2 + border }}"
     indicate_hidden = yes
     shrink = no
     padding = 10
     horizontal_padding = 8
-    frame_width = 5
-    frame_color = "#e9ebf0"
+    frame_width = {{ border + 1 }}
+    frame_color = "{{ colors.foreground }}"
     separator_color = auto
-    gap_size = "4"
+    gap_size = "{{ 4 * scaleRatio }}"
     sort = yes
     idle_threshold = 120
-    font = JetBrainsMono NF 10
+    font = {{ font }} {{ fontSize }}
     line_height = 0
     markup = full
     format = "<b>%a - %s</b>\n%b"
@@ -37,7 +35,7 @@
     always_run_script = true
     startup_notification = false
     verbosity = mesg
-    corner_radius = 0
+    corner_radius = {{ round }}
 
     ignore_dbusclose = false
     mouse_left_click = do_action, close_current
@@ -48,19 +46,19 @@
     per_monitor_dpi = false
 
 [urgency_low]
-    background = "#191d27"
-    foreground = "#e9ebf0"
-    frame_color = "#ecc48d"
+    background = "{{ colors.background if transparency else colors.background_alt1 }}"
+    foreground = "{{ colors.foreground }}"
+    frame_color = "{{ theme.primary }}"
     timeout = 5
 
 [urgency_normal]
-    background = "#191d27"
-    foreground = "#e9ebf0"
-    frame_color = "#ecc48d"
+    background = "{{ colors.background if transparency else colors.background_alt1 }}"
+    foreground = "{{ colors.foreground }}"
+    frame_color = "{{ theme.primary }}"
     timeout = 10
 
 [urgency_critical]
-    background = "#191d27"
-    foreground = "#e9ebf0"
-    frame_color = "#f45c7f"
+    background = "{{ colors.background if transparency else colors.background_alt1 }}"
+    foreground = "{{ colors.foreground }}"
+    frame_color = "{{ theme.alert }}"
     timeout = 0

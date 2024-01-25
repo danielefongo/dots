@@ -1,5 +1,5 @@
 module.exports = {
-  font: "JetBrainsMono NF",
+  font: 'JetBrainsMono NF',
   gap: 0,
   transparency: false,
   round: 0,
@@ -7,21 +7,21 @@ module.exports = {
   fontSize: 10,
   scaleRatio: 1,
   palette: {
-    background: "#1f2430",
-    foreground: "#e9ebf0",
+    background: '#1f2430',
+    foreground: '#e9ebf0',
     colors: {
-      red: "#f45c7f",
-      orange: "#f78c6c",
-      yellow: "#ecc48d",
-      green: "#addb67",
-      cyan: "#9fd4ff",
-      blue: "#6cbeff",
-      magenta: "#c792ea",
-    },
+      red: '#f45c7f',
+      orange: '#f78c6c',
+      yellow: '#ecc48d',
+      green: '#addb67',
+      cyan: '#9fd4ff',
+      blue: '#6cbeff',
+      magenta: '#c792ea'
+    }
   },
   theme: {
-    primary: "yellow",
-    secondary: "blue",
-    alert: "red",
-  },
-};
+    primary: 'yellow',
+    secondary: 'blue',
+    alert: 'red'
+  }
+}

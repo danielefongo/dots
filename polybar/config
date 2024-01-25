@@ -1,31 +1,29 @@
-# vim:ft=dosini
-
 [bar/top]
 monitor = ${env:MONITOR:}
 
-radius = 0
+radius = {{ round }}
 
-width = 100%:-0
-height = 20
+width = 100%:-{{ gap * 2 }}
+height = {{ fontSize * 2 }}
 fixed-center = true
-offset-y = 0
-offset-x = 0
+offset-y = {{ gap }}
+offset-x = {{ gap }}
 override-redirect = true
 wm-restack = i3
-border-size = 5
-border-color = #191d27
+border-size = {{ fontSize * 0.5 }}
+border-color = {{ colors.background if transparency else colors.background_alt1 }}
 
-background = #191d27
-foreground = #d3d5db
+background = {{ colors.background if transparency else colors.background_alt1 }}
+foreground = {{ colors.grey9 }}
 
-line-size = 3
+line-size = {{ fontSize // 3 }}
 line-color = #f00
 
 padding = 1
 
 module-margin = 1
 
-font-0 = JetBrainsMono NF:pixelsize=10;2
+font-0 = {{ font }}:pixelsize={{ fontSize }};{{ fontSize * 0.2 }}
 
 modules-left = i3
 modules-center = date
@@ -43,7 +41,7 @@ wrapping-scroll = false
 pin-workspaces = true
 
 label-focused = %index%
-label-focused-underline = #ecc48d
+label-focused-underline = {{ theme.primary }}
 label-focused-padding = 1
 
 label-unfocused = %index%
@@ -51,11 +49,11 @@ label-unfocused-underline = ""
 label-unfocused-padding = 1
 
 label-visible = %index%
-label-visible-underline = #6cbeff
+label-visible-underline = {{ theme.secondary }}
 label-visible-padding = 1
 
 label-urgent = %index%
-label-urgent-underline = #f45c7f
+label-urgent-underline = {{ theme.alert }}
 label-urgent-padding = 1
 
 [module/cpu]
@@ -66,11 +64,11 @@ label = %percentage%%
 
 format = <label>
 format-prefix = "󰘚 "
-format-prefix-foreground = #ecc48d
+format-prefix-foreground = {{ theme.primary }}
 
 format-warn = <label>
 format-warn-prefix = "󰘚 "
-format-warn-prefix-foreground = #f45c7f
+format-warn-prefix-foreground = {{ theme.alert }}
 
 [module/memory]
 type = internal/memory
@@ -80,11 +78,11 @@ label = %percentage_used%%
 
 format = <label>
 format-prefix = " "
-format-prefix-foreground = #ecc48d
+format-prefix-foreground = {{ theme.primary }}
 
 format-warn = <label>
 format-warn-prefix = " "
-format-warn-prefix-foreground = #f45c7f
+format-warn-prefix-foreground = {{ theme.alert }}
 
 [module/wlan]
 type = internal/network
@@ -93,18 +91,18 @@ interval = 3.0
 
 label-connected = %essid%
 format-connected-prefix = "󰖩 "
-format-connected-prefix-foreground = #ecc48d
+format-connected-prefix-foreground = {{ theme.primary }}
 
 label-disconnected = "Offline"
 format-disconnected-prefix = "󰖪  "
-format-disconnected-prefix-foreground = #f45c7f
+format-disconnected-prefix-foreground = {{ theme.alert }}
 
 [module/eth]
 type = internal/network
 interface = enp0s31f6
 interval = 3.0
 
-format-connected-foreground = #ecc48d
+format-connected-foreground = {{ theme.primary }}
 label-connected = ETH %local_ip%
 
 format-disconnected =
@@ -114,7 +112,7 @@ type = internal/date
 interval = 1
 
 format-prefix = "󰃭 "
-format-prefix-foreground = #ecc48d
+format-prefix-foreground = {{ theme.primary }}
 date = "%Y-%m-%d"
 time = %H:%M:%S
 
@@ -128,7 +126,7 @@ low-at = 10
 label-full = "100%"
 format-full = <label-full>
 format-full-prefix = "󰁹 "
-format-full-prefix-foreground = #ecc48d
+format-full-prefix-foreground = {{ theme.primary }}
 
 label-charging = %percentage%%
 format-charging = <animation-charging> <label-charging>
@@ -138,16 +136,16 @@ animation-charging-2 = 󰢝
 animation-charging-3 = 󰢞
 animation-charging-4 = 󰂋
 animation-charging-framerate = 500
-animation-charging-foreground = #ecc48d
+animation-charging-foreground = {{ theme.primary }}
 
 label-discharging = %percentage%%
 format-discharging = <ramp-capacity> <label-discharging>
 ramp-capacity-0 = 󰁺
-ramp-capacity-0-foreground = #f45c7f
+ramp-capacity-0-foreground = {{ theme.alert }}
 ramp-capacity-1 = 󰁻
-ramp-capacity-1-foreground = #f45c7f
+ramp-capacity-1-foreground = {{ theme.alert }}
 ramp-capacity-2 = 󰁼
-ramp-capacity-2-foreground = #f45c7f
+ramp-capacity-2-foreground = {{ theme.alert }}
 ramp-capacity-3 = 󰁽
 ramp-capacity-4 = 󰁾
 ramp-capacity-5 = 󰁿
@@ -155,14 +153,14 @@ ramp-capacity-6 = 󰂀
 ramp-capacity-7 = 󰂁
 ramp-capacity-8 = 󰂂
 ramp-capacity-9 = 󰁹
-ramp-capacity-foreground = #ecc48d
+ramp-capacity-foreground = {{ theme.primary }}
 
 label-low = %percentage%%
 format-low = <animation-low> <label-low>
 animation-low-0 = 󱃍
 animation-low-1 = 󱃍
-animation-low-1-foreground = #191d27
-animation-low-foreground = #f45c7f
+animation-low-1-foreground = {{ colors.background if transparency else colors.background_alt1 }}
+animation-low-foreground = {{ colors.red }}
 animation-low-framerate = 500
 
 [module/temperature]
@@ -173,11 +171,11 @@ label = %temperature-c%
 
 format = <label>
 format-prefix = " "
-format-prefix-foreground = #ecc48d
+format-prefix-foreground = {{ theme.primary }}
 
 format-warn = <label>
 format-warn-prefix = " "
-format-warn-prefix-foreground = #f45c7f
+format-warn-prefix-foreground = {{ theme.alert }}
 
 [settings]
 screenchange-reload = true

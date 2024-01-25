@@ -1,29 +1,28 @@
-# vim:ft=toml
 live_config_reload = true
 
 [colors.bright]
-black = "#6f737c"
-blue = "#9fd5ff"
-cyan = "#d2ebff"
-green = "#c5ef86"
-magenta = "#deb7f8"
-red = "#ff84a0"
-white = "#e9ebf0"
-yellow = "#f9dcb3"
+black = "{{ colors.grey4 }}"
+blue = "{{ colors.light_blue }}"
+cyan = "{{ colors.light_cyan }}"
+green = "{{ colors.light_green }}"
+magenta = "{{ colors.light_magenta }}"
+red = "{{ colors.light_red }}"
+white = "{{ colors.foreground }}"
+yellow = "{{ colors.light_yellow }}"
 
 [colors.normal]
-black = "#1f2430"
-blue = "#6cbeff"
-cyan = "#9fd4ff"
-green = "#addb67"
-magenta = "#c792ea"
-red = "#f45c7f"
-white = "#e9ebf0"
-yellow = "#ecc48d"
+black = "{{ colors.background }}"
+blue = "{{ colors.blue }}"
+cyan = "{{ colors.cyan }}"
+green = "{{ colors.green }}"
+magenta = "{{ colors.magenta }}"
+red = "{{ colors.red }}"
+white = "{{ colors.foreground }}"
+yellow = "{{ colors.yellow }}"
 
 [colors.primary]
-background = "#1f2430"
-foreground = "#e9ebf0"
+background = "{{ colors.background }}"
+foreground = "{{ colors.foreground }}"
 
 [cursor.style]
 blinking = "On"
@@ -33,10 +32,10 @@ shape = "Beam"
 TERM = "xterm-256color"
 
 [font]
-size = 10
+size = {{ fontSize }}
 
 [font.normal]
-family = "JetBrainsMono NF"
+family = "{{ font }}"
 style = "Regular"
 
 [[keyboard.bindings]]

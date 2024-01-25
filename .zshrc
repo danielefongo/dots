@@ -34,10 +34,10 @@ setopt histignoredups
 # fzf
 export FZF_COMPLETION_TRIGGER=''
 export FZF_DEFAULT_OPTS='
-  --color=fg:#979aa2,bg:#1f2430,hl:#6cbeff
-  --color=fg+:#e9ebf0,bg+:#1f2430,hl+:#52b3ff
-  --color=info:#ecc48d,prompt:#f45c7f,pointer:#f45c7f
-  --color=marker:#addb67,spinner:#f45c7f,header:#bfc1c8'
+  --color=fg:{{ colors.grey6 }},bg:{{ colors.background }},hl:{{ colors.blue }}
+  --color=fg+:{{ colors.foreground }},bg+:{{ colors.background }},hl+:{{ colors.strong_blue }}
+  --color=info:{{ colors.yellow }},prompt:{{ colors.red }},pointer:{{ colors.red }}
+  --color=marker:{{ colors.green }},spinner:{{ colors.red }},header:{{ colors.grey8 }}'
 bindkey '^T' fzf-completion
 bindkey '^I' $fzf_default_completion
 

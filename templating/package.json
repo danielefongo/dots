@@ -7,7 +7,10 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "glob": "^10.3.10",
+    "node-watch": "^0.7.4",
     "nunjucks": "^3.2.4",
+    "picomatch": "^3.0.1",
     "tinycolor2": "^1.4.2"
   },
   "devDependencies": {

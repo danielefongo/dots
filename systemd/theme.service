@@ -1,5 +1,5 @@
 [Service]
-ExecStart=%h/.local/bin/theme_watch
+ExecStart=%h/.local/bin/theme watch
 Restart=always
 
 [Unit]
