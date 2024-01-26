@@ -11,9 +11,9 @@ offset-x = {{ gap }}
 override-redirect = true
 wm-restack = i3
 border-size = {{ fontSize * 0.5 }}
-border-color = {{ colors.background if transparency else colors.background_alt1 }}
+border-color = {{ colors.magic_background }}
 
-background = {{ colors.background if transparency else colors.background_alt1 }}
+background = {{ colors.magic_background }}
 foreground = {{ colors.grey9 }}
 
 line-size = {{ fontSize // 3 }}
@@ -159,7 +159,7 @@ label-low = %percentage%%
 format-low = <animation-low> <label-low>
 animation-low-0 = 󱃍
 animation-low-1 = 󱃍
-animation-low-1-foreground = {{ colors.background if transparency else colors.background_alt1 }}
+animation-low-1-foreground = {{ colors.magic_background }}
 animation-low-foreground = {{ colors.red }}
 animation-low-framerate = 500
 

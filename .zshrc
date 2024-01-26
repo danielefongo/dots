@@ -35,7 +35,7 @@ setopt histignoredups
 export FZF_COMPLETION_TRIGGER=''
 export FZF_DEFAULT_OPTS='
   --color=fg:{{ colors.grey6 }},bg:{{ colors.background }},hl:{{ colors.blue }}
-  --color=fg+:{{ colors.foreground }},bg+:{{ colors.background }},hl+:{{ colors.strong_blue }}
+  --color=fg+:{{ colors.foreground }},bg+:{{ colors.background }},hl+:{{ colors.blue | stronger }}
   --color=info:{{ colors.yellow }},prompt:{{ colors.red }},pointer:{{ colors.red }}
   --color=marker:{{ colors.green }},spinner:{{ colors.red }},header:{{ colors.grey8 }}'
 bindkey '^T' fzf-completion

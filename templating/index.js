@@ -1,129 +1,120 @@
-const glob = require('glob')
+const fs = require('fs')
 const path = require('path')
-const pm = require('picomatch')
-const watch = require('node-watch')
+const { execSync } = require('child_process')
 
 const templater = require('./template.js')
+const DotBlock = require('./dotblock.js')
 
-class DotBlock {
-  constructor (dot, applyDelay) {
-    this.dot = dot
-    this.applyDelay = applyDelay
+function writeFile (file) {
+  const destinationFile = path.join('output', file)
+  const destinationFileFolder = path.dirname(destinationFile)
 
-    return this.load()
+  if (!fs.existsSync(destinationFileFolder)) {
+    fs.mkdirSync(destinationFileFolder, { recursive: true })
   }
 
-  load () {
-    delete require.cache[require.resolve(path.resolve(this.dot))]
-    const dotData = require(path.resolve(this.dot))
+  const content = fs.readFileSync(path.resolve(file), 'utf8')
+  const oldContent = fs.existsSync(destinationFile)
+    ? fs.readFileSync(destinationFile, 'utf8')
+    : {}
 
-    this.match = dotData.match
-    this.matchWatcher = null
+  delete require.cache[require.resolve('./theme.js')]
+  const template = require('./theme.js')
 
-    this.apply = dotData.apply
-    this.applyScheduler = null
-    this.applyFiles = []
+  const newContent = templater(content, template)
 
-    this.opts = { dot: true, ignore: '**/*.dots.js', nodir: true }
+  if (newContent != oldContent) {
+    fs.writeFileSync(destinationFile, newContent)
 
-    return this
+    return destinationFile
+  }
+}
+
+class Postponed {
+  constructor (lambda, delay) {
+    this.lambda = lambda
+    this.delay = delay
+    this.applyScheduler = undefined
   }
 
   run () {
-    glob.globSync(this.match, this.opts).forEach((file) => this.generate(file))
-
-    return this
+    this.applyScheduler = setTimeout(() => {
+      this.applyScheduler = undefined
+      this.lambda()
+    }, this.delay)
   }
 
-  watch () {
-    this.stopWatch()
-
-    this.themeWatcher = watch('templating/theme.js', { recursive: true }, () =>
-      this.run()
-    )
-
-    this.selfWatcher = watch(this.dot, { dot: true, recursive: true }, () => {
-      this.themeWatcher.close()
-      this.selfWatcher.close()
-      this.stopWatch()
-      this.unscheduleApply()
-      this.load().run().watch()
-    })
-
-    this.matchWatcher = watch(
-      './',
-      { filter: pm(this.match, this.opts), recursive: true },
-      (evt, file) => {
-        if (evt == 'remove') {
-          return
-        }
-
-        this.generate(file)
-      }
-    )
-
-    return this
-  }
-
-  stopWatch () {
-    if (this.matchWatcher) {
-      this.matchWatcher.close()
-    }
-
-    if (this.themeWatcher) {
-      this.themeWatcher.close()
-    }
-
-    if (this.selfWatcher) {
-      this.selfWatcher.close()
-    }
-
-    return this
-  }
-
-  generate (file) {
-    const output = templater(file)
-
-    if (!output || !this.apply) {
-      return
-    }
-
-    console.log(`Updated: ${file}`)
-
-    this.applyFiles.push(output)
-    this.scheduleApply()
-  }
-
-  unscheduleApply () {
+  unschedule () {
     if (this.applyScheduler) {
       clearTimeout(this.applyScheduler)
     }
   }
+}
 
-  scheduleApply () {
-    this.unscheduleApply()
+const dotsMatch = '**/*.dots.js'
+const themeFile = 'templating/theme.js'
+const watching = process.argv[2] == 'watch'
 
-    this.applyScheduler = setTimeout(() => {
-      this.applyScheduler = undefined
+const dotBlock = new DotBlock().on({
+  match: dotsMatch,
+  init: (dot) => {
+    delete require.cache[require.resolve(path.resolve(dot))]
+    const dotData = require(path.resolve(dot))
+
+    let files = []
+    const postponed = new Postponed(() => {
       try {
-        console.log(`Applying: ${this.dot}`)
-        this.apply(this.applyFiles)
+        console.log(`Applying: ${dot}`)
+        dotData.apply(files)
       } catch (e) {
-        console.log(`Failed to build ${this.dot}, reason: ${e}`)
+        console.log(`Failed to build ${dot}, reason: ${e}`)
       }
-      this.applyFiles = []
-    }, this.applyDelay)
-  }
-}
+      files = []
+    }, 200)
 
-if (process.argv[2] == 'watch') {
-  glob
-    .globSync('**/*.dots.js', { nodir: true, dot: true })
-    .map((dot) => new DotBlock(dot, 100))
-    .forEach((dotBlock) => dotBlock.run().watch())
-} else {
-  glob
-    .globSync('**/*.dots.js', { nodir: true, dot: true })
-    .map((dot) => new DotBlock(dot, 100))
-    .forEach((dotBlock) => dotBlock.run())
-}
+    const action = (file) => {
+      let output
+
+      try {
+        output = writeFile(file)
+      } catch (e) {
+        execSync(`notify-send -t 5000 -a "Templating" -u critical "${file}"`)
+        console.log(`Templating failed on file ${file}, reason: ${e}`)
+      }
+
+      if (!output || !dotData.apply) {
+        return
+      }
+
+      console.log(`Updated changed: ${file}`)
+
+      files.push(file)
+
+      postponed.unschedule()
+      postponed.run()
+    }
+
+    const dotBlock = new DotBlock()
+
+    return dotBlock.on({
+      match: themeFile,
+      ignore: dotsMatch,
+      init: (file) => file,
+      action: () => dotBlock.files(dotData.match).forEach(action)
+    }).on({
+      match: dotData.match,
+      ignore: dotsMatch,
+      init: (file) => file,
+      ignore_unchanged: true,
+      action
+    })
+  },
+  action: (context) => {
+    if (watching) context.run().watch()
+    else context.run()
+  },
+  reset: (context) => context.stopWatch()
+})
+
+if (watching) dotBlock.run().watch()
+else dotBlock.run()

@@ -10,7 +10,7 @@
   text: {{ colors.foreground }};
   text-alt: {{ colors.foreground }};
   fg: {{ colors.grey9 }};
-  bg: {{ colors.background if transparency else colors.background_alt1 }};
+  bg: {{ colors.magic_background }};
   primary: {{ theme.primary }};
   secondary: {{ theme.secondary }};
   alert: {{ theme.alert }};
