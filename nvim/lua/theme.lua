@@ -1,5 +1,3 @@
--- vim:ft=lua
-
 local colors = {
   strong_blue = "{{ colors.blue | stronger }}",
   strong_green = "{{ colors.green | stronger }}",
@@ -175,7 +173,47 @@ local lualine = {
   replace = { a = { fg = colors.background, bg = colors.red, gui = "bold" } },
 }
 
+local barbecue = {
+  normal = { fg = colors.grey8, bg = colors.background_alt2 },
+
+  ellipsis = { fg = colors.grey4 },
+  separator = { fg = colors.red },
+  modified = { fg = colors.orange },
+
+  dirname = { fg = colors.blue, bold = true },
+  basename = { fg = colors.grey8, bold = true },
+  context = { fg = colors.grey6 },
+
+  context_file = { fg = colors.magenta },
+  context_module = { fg = colors.magenta },
+  context_namespace = { fg = colors.magenta },
+  context_package = { fg = colors.magenta },
+  context_class = { fg = colors.magenta },
+  context_method = { fg = colors.magenta },
+  context_property = { fg = colors.magenta },
+  context_field = { fg = colors.magenta },
+  context_constructor = { fg = colors.magenta },
+  context_enum = { fg = colors.magenta },
+  context_interface = { fg = colors.magenta },
+  context_function = { fg = colors.magenta },
+  context_variable = { fg = colors.magenta },
+  context_constant = { fg = colors.magenta },
+  context_string = { fg = colors.magenta },
+  context_number = { fg = colors.magenta },
+  context_boolean = { fg = colors.magenta },
+  context_array = { fg = colors.magenta },
+  context_object = { fg = colors.magenta },
+  context_key = { fg = colors.magenta },
+  context_null = { fg = colors.magenta },
+  context_enum_member = { fg = colors.magenta },
+  context_struct = { fg = colors.magenta },
+  context_event = { fg = colors.magenta },
+  context_operator = { fg = colors.magenta },
+  context_type_parameter = { fg = colors.magenta },
+}
+
 return {
   themer = themer,
   lualine = lualine,
+  barbecue = barbecue,
 }

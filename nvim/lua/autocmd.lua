@@ -20,6 +20,14 @@ watcher:start(vim.fn.stdpath("config") .. "/lua/theme.lua", 500, function()
       require("lualine.highlight").create_highlight_groups(theme.lualine)
     end)
   end
+
+  if pcall(require, "barbecue") then
+    vim.schedule(function()
+      vim.g.colors_name = nil
+      require("barbecue.config").apply({ theme = theme.barbecue })
+      require("barbecue.theme").load()
+    end)
+  end
 end)
 
 return watcher

@@ -5,22 +5,11 @@ return {
     opts = { colorscheme = theme.themer },
   },
   {
-    "b0o/incline.nvim",
-    event = "VeryLazy",
-    opts = {
-      highlight = {
-        groups = {
-          InclineNormal = {
-            default = true,
-            group = "ThemerSearchResult",
-          },
-          InclineNormalNC = {
-            default = true,
-            group = "ThemerSelected",
-          },
-        },
-      },
-    },
+    "utilyre/barbecue.nvim",
+    lazy = false,
+    name = "barbecue",
+    dependencies = { "SmiteshP/nvim-navic" },
+    opts = { theme = theme.barbecue },
   },
   {
     "nvim-lualine/lualine.nvim",
