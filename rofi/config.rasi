@@ -17,4 +17,8 @@ configuration {
   }
 }
 
+{% if zen %}
+@theme "zen"
+{% else %}
 @theme "theme"
+{% endif %}

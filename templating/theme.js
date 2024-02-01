@@ -1,3 +1,4 @@
+const zen = false
 const scaleRatio = 1
 function scale (value) {
   return Math.floor(value * scaleRatio)
@@ -5,6 +6,7 @@ function scale (value) {
 
 module.exports = {
   data: {
+    zen,
     font: 'JetBrainsMono NF',
     gap: scale(0),
     round: scale(0),

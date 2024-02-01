@@ -24,10 +24,12 @@ hide_edge_borders none
 for_window [class=".*"] border pixel {{ border }}
 
 # gaps
+{% if not zen %}
 gaps inner {{ gap }}px
 gaps top {{ fontSize * 3 + gap }}px
 gaps bottom 0px
 smart_gaps off
+{% endif %}
 
 # miscellaneous
 font pango:{{ font }} {{ fontSize }}
