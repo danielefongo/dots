@@ -1,7 +1,7 @@
 [bar/top]
 monitor = ${env:MONITOR:}
 
-radius = {{ round }}
+radius = {{ round / 2 }}
 
 width = 100%:-{{ gap * 2 }}
 height = {{ fontSize * 2 }}
