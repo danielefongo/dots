@@ -41,6 +41,8 @@ module.exports = {
     theme: {
       primary: '{{ colors.yellow }}',
       secondary: '{{ colors.blue }}',
+      info: '{{ colors.green }}',
+      warn: '{{ colors.orange }}',
       alert: '{{ colors.red }}'
     }
   },

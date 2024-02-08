@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=X-GNOME-Metatheme
+Name=gtk-theme
+Comment=Template gtk system
+Encoding=UTF-8
+
+[X-GNOME-Metatheme]
+Name=gtk-theme
+GtkTheme=gtk-theme
+IconTheme=gtk-theme
+MetacityTheme=gtk-theme
