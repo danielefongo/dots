@@ -5,12 +5,17 @@ const { execSync } = require('child_process')
 const templater = require('./template.js')
 const DotBlock = require('./dotblock.js')
 
-function writeFile (file) {
+function writeFile (file, filter) {
   const destinationFile = path.join('output', file)
   const destinationFileFolder = path.dirname(destinationFile)
 
   if (!fs.existsSync(destinationFileFolder)) {
     fs.mkdirSync(destinationFileFolder, { recursive: true })
+  }
+
+  if (!filter(file)) {
+    fs.copyFileSync(file, destinationFile)
+    return null
   }
 
   const content = fs.readFileSync(path.resolve(file), 'utf8')
@@ -60,6 +65,7 @@ const dotBlock = new DotBlock().on({
   init: (dot) => {
     delete require.cache[require.resolve(path.resolve(dot))]
     const dotData = require(path.resolve(dot))
+    dotData.filter = dotData.filter || (() => true)
 
     let files = []
     const postponed = new Postponed(() => {
@@ -76,7 +82,7 @@ const dotBlock = new DotBlock().on({
       let output
 
       try {
-        output = writeFile(file)
+        output = writeFile(file, dotData.filter)
       } catch (e) {
         execSync(`notify-send -t 5000 -a "Templating" -u critical "${file}"`)
         console.log(`Templating failed on file ${file}, reason: ${e}`)
@@ -96,18 +102,20 @@ const dotBlock = new DotBlock().on({
 
     const dotBlock = new DotBlock()
 
-    return dotBlock.on({
-      match: themeFile,
-      ignore: dotsMatch,
-      init: (file) => file,
-      action: () => dotBlock.files(dotData.match).forEach(action)
-    }).on({
-      match: dotData.match,
-      ignore: dotsMatch,
-      init: (file) => file,
-      ignore_unchanged: true,
-      action
-    })
+    return dotBlock
+      .on({
+        match: themeFile,
+        ignore: dotsMatch,
+        init: (file) => file,
+        action: () => dotBlock.files(dotData.match).forEach(action)
+      })
+      .on({
+        match: dotData.match,
+        ignore: dotsMatch,
+        init: (file) => file,
+        ignore_unchanged: true,
+        action
+      })
   },
   action: (context) => {
     if (watching) context.run().watch()

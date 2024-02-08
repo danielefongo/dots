@@ -1,6 +1,6 @@
 const zen = false
 const scaleRatio = 1
-function scale(value) {
+function scale (value) {
   return Math.floor(value * scaleRatio)
 }
 
