@@ -2,4 +2,4 @@
 
 DOTS_PATH="$(dirname "$(readlink -f "$0")")/.."
 
-feh --bg-scale $DOTS_PATH/wallpaper.jpg
+feh --bg-scale $DOTS_PATH/output/wallpaper/background.svg

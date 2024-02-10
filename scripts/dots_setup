@@ -3,4 +3,5 @@
 DOTS_PATH="$(dirname "$(readlink -f "$0")")/.."
 
 npm install --prefix $DOTS_PATH/templating
+npm install --prefix $DOTS_PATH/wallpaper
 $DOTS_PATH/scripts/theme
