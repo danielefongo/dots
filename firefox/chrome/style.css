@@ -1,0 +1,245 @@
+/* References
+ * base: https://codeberg.org/Freeplay/firefox-onebar
+ * spotbar: https://github.com/Naezr/ShyFox
+ * roundings: https://github.com/JarnotMaciej/Essence
+ */
+
+:root {
+  --tabs-height: 30;
+  --tabs-border: 8;
+}
+
+/* colors */
+#PersonalToolbar,
+#tabbrowser-tabpanels {
+  background-color: var(--color-canvas) !important;
+}
+.notificationbox-stack {
+  background-color: transparent !important;
+}
+#private-browsing-indicator-with-label {
+  background-color: var(--buttons-destructive-hover-bgcolor) !important;
+  border-radius: 5px !important;
+}
+.devtools-tabbar {
+  background-color: var(--color-canvas) !important;
+}
+
+/* navbar size */
+#TabsToolbar {
+  --toolbarbutton-inner-padding: 8px !important;
+}
+#TabsToolbar-customization-target {
+  height: 100%;
+}
+#nav-bar #titlebar,
+.tab-background,
+.tab-stack {
+  min-height: calc(var(--tabs-height) * 1px) !important;
+}
+
+/* one line + spotbar */
+@media (min-width: 800px) {
+  #navigator-toolbox {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    position: relative !important;
+    padding-left: var(--tab-block-margin);
+  }
+  #titlebar {
+    width: 0;
+    flex-grow: 1;
+    overflow: hidden;
+  }
+  #nav-bar {
+    background: none !important;
+    max-width: calc(
+      100vw -
+        (
+          (2 * var(--toolbarbutton-inner-padding) + 16px) +
+            (var(--toolbarbutton-outer-padding) * 2)
+        ) - var(--tab-block-margin)
+    ) !important;
+  }
+  #urlbar-container {
+    width: 0px !important;
+  }
+}
+@media (max-width: 800px) {
+  #navigator-toolbox {
+    padding: 0px !important;
+  }
+  #nav-bar {
+    position: absolute !important;
+    width: 0px !important;
+    z-index: -1;
+  }
+
+  #firefox-view-button,
+  #new-tab-button,
+  #tabs-newtab-button,
+  #alltabs-button {
+    display: none;
+  }
+
+  #nav-bar:has(#urlbar:is([breakout][breakout-extend])) {
+    opacity: 1;
+    z-index: 1;
+
+    /* remove extra buttons in url container */
+    .chromeclass-toolbar-additional,
+    .toolbarbutton-1 {
+      display: none;
+    }
+  }
+}
+
+#PersonalToolbar {
+  flex-basis: 100%;
+}
+
+html:has(#urlbar:is([breakout][breakout-extend])) {
+  #fullscreen-and-pointerlock-wrapper {
+    z-index: 0 !important;
+    background-color: rgba(0, 0, 0, 0.25) !important;
+  }
+}
+
+#urlbar:is([breakout][breakout-extend]) {
+  opacity: 1;
+  position: fixed !important;
+
+  bottom: auto !important;
+  top: 20vh !important;
+
+  --spotbar-width: clamp(min(700px, 100%), 40vw, 1200px);
+  left: calc((100vw - var(--spotbar-width)) / 2) !important;
+  right: calc((100vw - var(--spotbar-width)) / 2) !important;
+  width: var(--spotbar-width) !important;
+
+  #urlbar-input {
+    height: 30px !important;
+    font-size: 20px !important;
+  }
+
+  #urlbar-background {
+    border: 2px solid var(--color-canvas) !important;
+    border-radius: 10px !important;
+  }
+}
+#urlbar:not(:is([breakout][breakout-extend])) {
+  z-index: -1;
+  #urlbar-input-container {
+    position: fixed !important;
+    left: 0px;
+    height: calc(var(--tabs-height) * 1px) !important;
+
+    width: 100%;
+    opacity: 0;
+  }
+}
+
+/* all tabs button leftmost */
+#alltabs-button {
+  order: -1;
+}
+
+/* hide special springs */
+toolbarspring,
+[id^="wrapper-customizableui-special-spring"] {
+  display: none !important;
+}
+
+/* hide title stuff */
+.titlebar-spacer,
+#identity-icon-label {
+  display: none;
+}
+
+/* findbar */
+findbar {
+  background: var(--color-accent-primary) !important;
+  border: none !important;
+  order: 1 !important;
+  height: 40px;
+}
+
+/* borders and separators */
+toolbarseparator {
+  display: none;
+}
+#navigator-toolbox {
+  border: none !important;
+}
+#sidebar-splitter {
+  width: 0px !important;
+  opacity: 1% !important;
+}
+#sidebar-header {
+  padding-bottom: 0 !important;
+  border-bottom: 0 !important;
+}
+.devtools-horizontal-splitter {
+  opacity: 0;
+}
+
+/* rounded corners */
+:root {
+  --border: 10;
+  --border-px: calc(var(--border) * 1px);
+}
+@media (min-width: 800px) {
+  :root {
+    --rounds-margin: calc(var(--border) * -1px);
+  }
+}
+@media (max-width: 800px) {
+  :root {
+    --rounds-margin: 0px;
+  }
+}
+.browserStack {
+  background-color: var(--color-canvas) !important;
+}
+#navigator-toolbox {
+  padding-bottom: var(--border-px);
+}
+.browserStack > browser {
+  /* main frame, without dev tools */
+  margin-top: var(--rounds-margin) !important;
+  border-radius: var(--border-px) var(--border-px) 0 0;
+}
+.browserStack:nth-last-child(3n) > browser,
+.browserStack:nth-last-child(4n) > browser {
+  /* main frame, with dev tools */
+  margin-top: var(--rounds-margin) !important;
+  border-radius: var(--border-px) !important;
+}
+
+#sidebar-box {
+  z-index: 0;
+  margin-top: var(--rounds-margin) !important;
+  border-radius: 0 var(--border-px) 0 0 !important;
+}
+#sidebar-box[positionend="true"] {
+  border-radius: var(--border-px) 0 0 0 !important;
+}
+
+findbar {
+  margin-top: var(--rounds-margin);
+  border-radius: var(--border-px) var(--border-px) 0 0 !important;
+  z-index: 2;
+}
+.browserContainer:has(findbar:not([hidden])) {
+  #statuspanel-label {
+    background-color: var(--color-canvas) !important;
+    margin: 0 0 calc((var(--border-px)) + 5px) 5px !important;
+    border-radius: 5px !important;
+  }
+}
+
+.devtools-toolbox-side-iframe {
+  margin-top: var(--rounds-margin);
+  border-radius: var(--border-px);
+}
