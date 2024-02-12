@@ -44,7 +44,6 @@ return {
       "williamboman/mason-lspconfig.nvim",
       "folke/neodev.nvim",
       "ray-x/lsp_signature.nvim",
-      "lvimuser/lsp-inlayhints.nvim",
       "hrsh7th/nvim-cmp",
       "hrsh7th/cmp-nvim-lsp",
     },
@@ -53,7 +52,6 @@ return {
       local lsp = require("lspconfig")
       local cmp = require("cmp_nvim_lsp")
       local signature = require("lsp_signature")
-      local inlay = require("lsp-inlayhints")
       require("neodev").setup({})
 
       local mason = require("mason")
@@ -67,9 +65,11 @@ return {
       end
 
       local function on_attach(client, bufnr)
-        client.resolved_capabilities.document_formatting = false
+        client.server_capabilities.documentFormattingProvider = false
         signature.on_attach({ bind = true }, bufnr)
-        inlay.on_attach(client, bufnr, true)
+        if client.server_capabilities.inlayHintProvider then
+          vim.lsp.inlay_hint.enable(bufnr, true)
+        end
       end
 
       local lsps = {

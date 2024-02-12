@@ -118,6 +118,7 @@ local themer = {
       DiffAdd = { fg = colors.dark_green, bg = colors.background },
       DiffChange = { fg = colors.dark_yellow, bg = colors.background },
       DiffDelete = { fg = colors.dark_red, bg = colors.background },
+      LspInlayHint = { fg = colors.grey5 },
       ["@lsp.type.class"] = { fg = syntax.type },
       ["@lsp.type.decorator"] = { fg = syntax["function"] },
       ["@lsp.type.enum"] = { fg = syntax.type },

@@ -10,4 +10,4 @@ ruby = "latest"
 
 # tools
 delta = "latest"
-neovim = "0.9.1"
+neovim = "nightly"
