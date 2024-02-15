@@ -1,0 +1,10 @@
+#!/bin/bash
+
+submodule_name="dots"
+
+previous_hash=$(git rev-parse HEAD:$submodule_name | sed 's/+//g')
+current_hash=$(git submodule status $submodule_name | awk '{print $1}' | sed 's/+//g')
+submodule_path=$(git submodule status $submodule_name | awk '{print $2}')
+
+echo "Changes in dots:"
+git -C $submodule_path log --reverse --pretty=format:'- %s' $previous_hash..$current_hash
