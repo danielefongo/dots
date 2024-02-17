@@ -37,6 +37,9 @@
 .tab-stack {
   min-height: calc(var(--tabs-height) * 1px) !important;
 }
+#downloads-indicator-progress-inner {
+  background-color: var(--download-progress-flare-color) !important;
+}
 
 /* one line + spotbar */
 @media (min-width: 800px) {
@@ -152,6 +155,7 @@ toolbarspring,
 }
 
 /* hide title stuff */
+.titlebar-buttonbox,
 .titlebar-spacer,
 #identity-icon-label {
   display: none;
