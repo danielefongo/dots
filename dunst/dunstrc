@@ -3,12 +3,11 @@
     follow = mouse
     width = "{{ 300 * scaleRatio // 1 }}"
     height = "{{ 80 * scaleRatio // 1 }}"
-    {% if zen %}
     origin = "bottom-right"
+    {% if zen %}
     offset = "{{ 100000 }}x{{ 100000 }}"
     {% else %}
-    origin = "top-right"
-    offset = "{{ 8 + gap + border }}x{{ 10 + fontSize * 3 + gap * 2 + border }}"
+    offset = "{{ 8 + gap + border }}x{{ 8 + gap + border }}"
     {% endif %}
     indicate_hidden = yes
     shrink = no
