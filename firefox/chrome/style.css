@@ -75,7 +75,7 @@
   }
   #nav-bar {
     position: absolute !important;
-    width: 0px !important;
+    top: -1000px;
     z-index: -1;
   }
 
