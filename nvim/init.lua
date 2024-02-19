@@ -23,6 +23,8 @@ opt.foldlevel = 99
 opt.foldlevelstart = 99
 opt.foldenable = true
 opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+opt.ignorecase = true
+opt.smartcase = true
 
 vim.g.mapleader = " "
 vim.g.tmux_navigator_no_mappings = true
