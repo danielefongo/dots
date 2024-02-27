@@ -52,7 +52,12 @@ return {
       },
       g = {
         name = "git",
+        b = { ":Gitsigns blame_line<cr>", "blame line" },
         g = { ":Neogit<cr>", "neo" },
+        h = { ":Gitsigns preview_hunk<cr>", "preview hunk" },
+        s = { ":Gitsigns stage_hunk<cr>", "stage hunk" },
+        S = { ":Gitsigns undo_stage_hunk<cr>", "stage hunk" },
+        r = { ":Gitsigns reset_hunk<cr>", "reset hunk" },
       },
       o = {
         name = "open",
