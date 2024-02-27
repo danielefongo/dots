@@ -42,17 +42,17 @@ return {
     dependencies = {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
-      "folke/neodev.nvim",
       "ray-x/lsp_signature.nvim",
       "hrsh7th/nvim-cmp",
       "hrsh7th/cmp-nvim-lsp",
+      { "folke/neodev.nvim", config = true },
+      { "antosha417/nvim-lsp-file-operations", config = true },
     },
     event = "VeryLazy",
     config = function()
       local lsp = require("lspconfig")
       local cmp = require("cmp_nvim_lsp")
       local signature = require("lsp_signature")
-      require("neodev").setup({})
 
       local mason = require("mason")
       local mason_lsp_config = require("mason-lspconfig")
