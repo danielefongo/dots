@@ -2,6 +2,9 @@ theme = require("theme")
 
 require("utils")
 
+opt.backup = false
+opt.writebackup = false
+opt.swapfile = false
 opt.ruler = false
 opt.autoindent = true
 opt.completeopt = "menuone,noinsert,noselect"
