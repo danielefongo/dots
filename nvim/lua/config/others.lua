@@ -1,6 +1,12 @@
 return {
   { "uga-rosa/ccc.nvim", event = "VeryLazy" },
   { "tpope/vim-commentary", cmd = "Commentary" },
+  {
+    "folke/todo-comments.nvim",
+    event = "BufReadPost",
+    dependencies = { { "nvim-lua/plenary.nvim", version = "~0.1.3" } },
+    opts = true,
+  },
   { "gabrielpoca/replacer.nvim", cmd = { "ColorizerToggle", "ColorizerAttachToBuffer" } },
   { "windwp/nvim-autopairs", opts = {}, event = "BufReadPre" },
   { "kazhala/close-buffers.nvim", event = "VeryLazy" },
