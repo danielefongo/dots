@@ -48,6 +48,7 @@ return {
     event = "VeryLazy",
     config = function()
       local wilder = require("wilder")
+      vim.opt.showcmd = false
 
       wilder.set_option(
         "renderer",
