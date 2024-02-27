@@ -81,4 +81,9 @@ return {
       })
     end,
   },
+  {
+    "danielefongo/tile.nvim",
+    event = "BufReadPre",
+    opts = { horizontal = 4, vertical = 2 },
+  },
 }

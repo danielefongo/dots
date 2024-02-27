@@ -94,5 +94,16 @@ return {
     wk.register({
       ["<a-q>"] = { ":lua close_win()<cr>", "close buffer" },
     }, { mode = "n" })
+
+    wk.register({
+      ["<c-h>"] = { ":lua require('tile').resize_left()<cr>", "resize left" },
+      ["<c-j>"] = { ":lua require('tile').resize_down()<cr>", "resize down" },
+      ["<c-k>"] = { ":lua require('tile').resize_up()<cr>", "resize up" },
+      ["<c-l>"] = { ":lua require('tile').resize_right()<cr>", "resize right" },
+      ["<c-s><c-h>"] = { ":lua require('tile').shift_left()<cr>", "resize left" },
+      ["<c-s><c-j>"] = { ":lua require('tile').shift_down()<cr>", "resize down" },
+      ["<c-s><c-k>"] = { ":lua require('tile').shift_up()<cr>", "resize up" },
+      ["<c-s><c-l>"] = { ":lua require('tile').shift_right()<cr>", "resize right" },
+    }, { mode = "n" })
   end,
 }
