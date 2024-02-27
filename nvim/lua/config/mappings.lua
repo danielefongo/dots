@@ -75,6 +75,10 @@ return {
     }, { prefix = "<leader>" })
 
     wk.register({
+      s = { ":lua require('flash').jump()<cr>", "seek" },
+    }, { mode = { "n", "x" } })
+
+    wk.register({
       [";"] = { ":Commentary<cr>", "comment" },
     }, { prefix = "<leader>", mode = "v" })
 

@@ -88,4 +88,9 @@ return {
       microscope.register(example.finders)
     end,
   },
+  {
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    opts = {},
+  },
 }
