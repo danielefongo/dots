@@ -34,7 +34,7 @@ return {
   {
     "j-hui/fidget.nvim",
     event = "BufReadPre",
-    opts = { window = { relative = "editor" } },
+    opts = {},
     dependencies = { "neovim/nvim-lspconfig" },
   },
   {

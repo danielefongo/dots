@@ -138,12 +138,10 @@ local themer = {
     plugins = {
       nvim_tree = {
         NVimTreeNormal = { fg = colors.foreground, bg = colors.background },
-        NvimTreeGitDeleted = { fg = colors.red },
-        NvimTreeGitDirty = { fg = colors.yellow },
-        NvimTreeGitStaged = { fg = colors.green },
-        NvimTreeGitMerge = { fg = colors.yellow },
-        NvimTreeGitNew = { fg = colors.red },
-        NvimTreeGitRenamed = { fg = colors.foreground },
+        NvimTreeGitFileDirtyHL = { fg = colors.yellow },
+        NvimTreeGitFileStagedHL = { fg = colors.green },
+        NvimTreeGitFileNewHL = { fg = colors.red },
+        NvimTreeGitFolderNewHL = { fg = colors.red },
         NvimTreeSpecialFile = { fg = colors.foreground },
         NvimTreeImageFile = { fg = colors.foreground },
         NvimTreeOpenedFile = { fg = colors.foreground },
