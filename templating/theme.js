@@ -44,6 +44,30 @@ module.exports = {
       info: '{{ colors.green }}',
       warn: '{{ colors.orange }}',
       alert: '{{ colors.red }}'
+    },
+    syntax: {
+      statement: '{{ colors.orange }}',
+      function: '{{ colors.blue }}',
+      variable: '{{ colors.foreground }}',
+      include: '{{ colors.red }}',
+      keyword: '{{ colors.red }}',
+      struct: '{{ colors.red }}',
+      string: '{{ colors.green }}',
+      identifier: '{{ colors.blue }}',
+      field: '{{ colors.cyan }}',
+      parameter: '{{ colors.magenta }}',
+      property: '{{ colors.cyan }}',
+      punctuation: '{{ colors.foreground }}',
+      constructor: '{{ colors.cyan }}',
+      operator: '{{ colors.grey8 }}',
+      preproc: '{{ colors.blue }}',
+      constant: '{{ colors.orange }}',
+      tag: '{{ colors.red }}',
+      todo: '{{ colors.cyan }}',
+      number: '{{ colors.orange }}',
+      comment: '{{ colors.grey4 }}',
+      type: '{{ colors.yellow }}',
+      conditional: '{{ colors.red }}'
     }
   },
   filters: {
