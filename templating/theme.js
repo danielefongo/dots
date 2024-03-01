@@ -43,7 +43,7 @@ module.exports = {
       secondary: '{{ colors.blue }}',
       info: '{{ colors.green }}',
       warn: '{{ colors.orange }}',
-      alert: '{{ colors.red }}'
+      error: '{{ colors.red }}'
     },
     syntax: {
       statement: '{{ colors.orange }}',

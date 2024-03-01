@@ -13,7 +13,7 @@
   bg: {{ colors.magic_background }};
   primary: {{ theme.primary }};
   secondary: {{ theme.secondary }};
-  alert: {{ theme.alert }};
+  alert: {{ theme.error }};
 
   spacing: 0;
   background-color: transparent;

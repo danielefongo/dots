@@ -18,7 +18,7 @@ set $ws10 "10"
 client.focused {{ colors.background }} {{ theme.primary }} {{ colors.background }} {{ theme.secondary }}
 client.focused_inactive {{ colors.background }} {{ colors.grey1 }} {{ colors.grey9 }} {{ theme.secondary }}
 client.unfocused {{ colors.background }} {{ colors.grey1 }} {{ colors.grey9 }} {{ colors.green }}
-client.urgent {{ colors.background }} {{ theme.alert }} {{ colors.background }} {{ colors.green }}
+client.urgent {{ colors.background }} {{ theme.error }} {{ colors.background }} {{ colors.green }}
 
 hide_edge_borders none
 for_window [class=".*"] border pixel {{ border }}

@@ -64,5 +64,5 @@
 [urgency_critical]
     background = "{{ colors.magic_background }}"
     foreground = "{{ colors.foreground }}"
-    frame_color = "{{ theme.alert }}"
+    frame_color = "{{ theme.error }}"
     timeout = 0

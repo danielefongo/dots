@@ -25,9 +25,9 @@ $scrollbar_slider_hover_color: mix($fg_color, $bg_color, 80%);
 $scrollbar_slider_active_color: lighten($selected_bg_color, 10%);
 
 $warning_color: {{ theme.warn }};
-$error_color: {{ theme.alert }};
+$error_color: {{ theme.error }};
 $success_color: {{ theme.info }};
-$destructive_color: {{ theme.alert }};
+$destructive_color: {{ theme.error }};
 
 $osd_fg_color: {{ colors.foreground }};
 $osd_text_color: {{ colors.foreground }};

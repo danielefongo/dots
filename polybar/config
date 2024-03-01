@@ -53,7 +53,7 @@ label-visible-underline = {{ theme.secondary }}
 label-visible-padding = 1
 
 label-urgent = %index%
-label-urgent-underline = {{ theme.alert }}
+label-urgent-underline = {{ theme.error }}
 label-urgent-padding = 1
 
 [module/cpu]
@@ -68,7 +68,7 @@ format-prefix-foreground = {{ theme.primary }}
 
 format-warn = <label-warn>
 format-warn-prefix = "󰘚 "
-format-warn-prefix-foreground = {{ theme.alert }}
+format-warn-prefix-foreground = {{ theme.error }}
 
 [module/memory]
 type = internal/memory
@@ -82,7 +82,7 @@ format-prefix-foreground = {{ theme.primary }}
 
 format-warn = <label-warn>
 format-warn-prefix = " "
-format-warn-prefix-foreground = {{ theme.alert }}
+format-warn-prefix-foreground = {{ theme.error }}
 
 [module/wlan]
 type = internal/network
@@ -95,7 +95,7 @@ format-connected-prefix-foreground = {{ theme.primary }}
 
 label-disconnected = "Offline"
 format-disconnected-prefix = "󰖪  "
-format-disconnected-prefix-foreground = {{ theme.alert }}
+format-disconnected-prefix-foreground = {{ theme.error }}
 
 [module/eth]
 type = internal/network
@@ -141,11 +141,11 @@ animation-charging-foreground = {{ theme.primary }}
 label-discharging = %percentage%%
 format-discharging = <ramp-capacity> <label-discharging>
 ramp-capacity-0 = 󰁺
-ramp-capacity-0-foreground = {{ theme.alert }}
+ramp-capacity-0-foreground = {{ theme.error }}
 ramp-capacity-1 = 󰁻
-ramp-capacity-1-foreground = {{ theme.alert }}
+ramp-capacity-1-foreground = {{ theme.error }}
 ramp-capacity-2 = 󰁼
-ramp-capacity-2-foreground = {{ theme.alert }}
+ramp-capacity-2-foreground = {{ theme.error }}
 ramp-capacity-3 = 󰁽
 ramp-capacity-4 = 󰁾
 ramp-capacity-5 = 󰁿
@@ -175,7 +175,7 @@ format-prefix-foreground = {{ theme.primary }}
 
 format-warn = <label-warn>
 format-warn-prefix = " "
-format-warn-prefix-foreground = {{ theme.alert }}
+format-warn-prefix-foreground = {{ theme.error }}
 
 [settings]
 screenchange-reload = true
