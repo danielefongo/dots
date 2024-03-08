@@ -216,9 +216,8 @@ return {
           end,
         },
         mapping = {
-          ["<C-k>"] = cmp.mapping.select_prev_item(),
-          ["<C-j>"] = cmp.mapping.select_next_item(),
-          ["<C-e>"] = cmp.mapping.close(),
+          ["<C-e>"] = cmp.mapping.select_prev_item(),
+          ["<C-n>"] = cmp.mapping.select_next_item(),
           ["<cr>"] = cmp.mapping.confirm({ select = true }),
         },
         sources = {

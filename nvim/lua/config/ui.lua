@@ -60,8 +60,8 @@ return {
 
       wilder.setup({
         modes = { ":", "/" },
-        previous_key = "<C-k>",
-        next_key = "<C-j>",
+        previous_key = "<C-e>",
+        next_key = "<C-n>",
         accept_key = "<Tab>",
       })
     end,

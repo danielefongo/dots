@@ -59,24 +59,26 @@ bindsym $mod+$shift+Return exec alacritty
 bindsym $mod+q kill
 
 # focus window
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
-bindsym $mod+a focus parent
-bindsym $mod+$shift+a focus child
+bindsym $mod+m focus left
+bindsym $mod+n focus down
+bindsym $mod+e focus up
+bindsym $mod+i focus right
 
 # move window
-bindsym $mod+$shift+h move left
-bindsym $mod+$shift+j move down
-bindsym $mod+$shift+k move up
-bindsym $mod+$shift+l move right
+bindsym $mod+$shift+m move left
+bindsym $mod+$shift+n move down
+bindsym $mod+$shift+e move up
+bindsym $mod+$shift+i move right
 
 # resize
-bindsym $mod+$ctrl+h exec --no-startup-id i3resize left
-bindsym $mod+$ctrl+j exec --no-startup-id i3resize down
-bindsym $mod+$ctrl+k exec --no-startup-id i3resize up
-bindsym $mod+$ctrl+l exec --no-startup-id i3resize right
+bindsym $mod+$ctrl+m exec --no-startup-id i3resize left
+bindsym $mod+$ctrl+n exec --no-startup-id i3resize down
+bindsym $mod+$ctrl+e exec --no-startup-id i3resize up
+bindsym $mod+$ctrl+i exec --no-startup-id i3resize right
+
+# focus parents
+bindsym $mod+a focus parent
+bindsym $mod+$shift+a focus child
 
 # split
 bindsym $mod+$shift+v split h
@@ -88,7 +90,7 @@ bindsym $mod+f fullscreen toggle
 # layout
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $mod+t layout toggle split
 
 # floating
 bindsym $mod+$shift+space floating toggle
@@ -135,7 +137,7 @@ mode "$mode_system" {
   bindsym $shift+s exec --no-startup-id shutdown now, mode "default"
   bindsym Escape mode "default"
 }
-bindsym $mod+i mode "$mode_system"
+bindsym $mod+u mode "$mode_system"
 
 # window tags
 bindsym $mod+$shift+z exec i3-input -F 'mark %s' -l 1 -P 'Mark: '
@@ -146,4 +148,4 @@ bindsym $mod+z; exec i3-input -F '[con_mark="%s"] focus' -l 1 -P 'Goto: '
 bindsym Print exec flameshot gui
 
 # notifications
-bindsym $mod+$shift+n exec dunstctl set-paused toggle
+bindsym $mod+$shift+k exec dunstctl set-paused toggle

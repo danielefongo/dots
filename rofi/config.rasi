@@ -4,9 +4,10 @@ configuration {
   combi-hide-mode-prefix: true;
   display-combi: "Switch to";
   kb-remove-to-eol: "";
+  kb-move-end: "";
   kb-accept-entry: "Return,KP_Enter";
-  kb-row-up: "Up,Control+k";
-  kb-row-down: "Down,Control+j";
+  kb-row-up: "Up,Control+e";
+  kb-row-down: "Down,Control+n";
   timeout {
       action: "kb-cancel";
       delay: 0;

@@ -17,10 +17,10 @@ return {
         defaults = {
           mappings = {
             i = {
-              ["<C-j>"] = actions.move_selection_next,
-              ["<C-k>"] = actions.move_selection_previous,
-              ["<A-j>"] = actions.preview_scrolling_down,
-              ["<A-k>"] = actions.preview_scrolling_up,
+              ["<C-n>"] = actions.move_selection_next,
+              ["<C-e>"] = actions.move_selection_previous,
+              ["<A-n>"] = actions.preview_scrolling_down,
+              ["<A-e>"] = actions.preview_scrolling_up,
             },
           },
         },
@@ -68,10 +68,8 @@ return {
           height = 50,
         },
         bindings = {
-          ["<c-j>"] = actions.next,
-          ["<c-k>"] = actions.previous,
-          ["<c-n>"] = actions.scroll_down,
-          ["<c-p>"] = actions.scroll_up,
+          ["<c-n>"] = actions.next,
+          ["<c-e>"] = actions.previous,
           ["<cr>"] = actions.open,
           ["<esc>"] = actions.close,
           ["<tab>"] = actions.select,
