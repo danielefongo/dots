@@ -1,3 +1,26 @@
+local function init_tool(name, on_end)
+  on_end = on_end or function() end
+
+  local mr = require("mason-registry")
+  mr.refresh()
+
+  if not mr.has_package(name) then
+    vim.api.nvim_err_write("Error: not existing mason package: " .. name)
+    return
+  end
+
+  local package = mr.get_package(name)
+
+  if not package:is_installed() then
+    vim.print("Installing " .. name)
+    package:install():once("close", function()
+      vim.schedule_wrap(on_end)
+    end)
+  else
+    on_end()
+  end
+end
+
 return {
   { "elixir-editors/vim-elixir", event = "BufReadPre" },
   {
@@ -48,7 +71,6 @@ return {
     "neovim/nvim-lspconfig",
     dependencies = {
       "williamboman/mason.nvim",
-      "williamboman/mason-lspconfig.nvim",
       "ray-x/lsp_signature.nvim",
       "hrsh7th/nvim-cmp",
       "hrsh7th/cmp-nvim-lsp",
@@ -62,7 +84,6 @@ return {
       local signature = require("lsp_signature")
 
       local mason = require("mason")
-      local mason_lsp_config = require("mason-lspconfig")
 
       local flags = { debounce_text_changes = 150 }
       local capabilities = cmp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -80,10 +101,17 @@ return {
       end
 
       local lsps = {
-        bashls = {},
-        cssls = {},
-        dockerls = {},
+        bashls = {
+          mason_name = "bash-language-server",
+        },
+        cssls = {
+          mason_name = "css-lsp",
+        },
+        dockerls = {
+          mason_name = "dockerfile-language-server",
+        },
         elixirls = {
+          mason_name = "elixir-ls",
           cmd = { cmd_path("elixir-ls") },
           settings = {
             elixirLS = {
@@ -92,9 +120,14 @@ return {
             },
           },
         },
-        elmls = {},
-        html = {},
+        elmls = {
+          mason_name = "elm-language-server",
+        },
+        html = {
+          mason_name = "html-lsp",
+        },
         lua_ls = {
+          mason_name = "lua-language-server",
           settings = {
             Lua = {
               callSnippet = "Replace",
@@ -103,28 +136,35 @@ return {
             },
           },
         },
-        marksman = {},
-        pylsp = {},
-        taplo = {},
-        tsserver = {},
-        rust_analyzer = {},
+        marksman = {
+          mason_name = "marksman",
+        },
+        pylsp = {
+          mason_name = "python-lsp-server",
+        },
+        taplo = {
+          mason_name = "taplo",
+        },
+        tsserver = {
+          mason_name = "typescript-language-server",
+        },
+        rust_analyzer = {
+          mason_name = "rust-analyzer",
+        },
       }
 
       mason.setup({ install_root_dir = fn.stdpath("data") .. "/lsp/" })
 
-      mason_lsp_config.setup({
-        ensure_installed = vim.tbl_keys(lsps),
-        automatic_installation = true,
-      })
-
       for lsp_name, config in pairs(lsps) do
-        lsp[lsp_name].setup({
-          capabilities = capabilities,
-          on_attach = on_attach,
-          flags = flags,
-          cmd = config.cmd,
-          settings = config.settings or {},
-        })
+        init_tool(config.mason_name, function()
+          lsp[lsp_name].setup({
+            capabilities = capabilities,
+            on_attach = on_attach,
+            flags = flags,
+            cmd = config.cmd,
+            settings = config.settings or {},
+          })
+        end)
       end
     end,
   },
@@ -132,14 +172,12 @@ return {
     "jose-elias-alvarez/null-ls.nvim",
     dependencies = {
       "williamboman/mason.nvim",
-      "jay-babu/mason-null-ls.nvim",
       "nvim-lua/plenary.nvim",
     },
     event = "VeryLazy",
     config = function()
       local mason = require("mason")
       local null_ls = require("null-ls")
-      local mason_null_ls = require("mason-null-ls")
 
       local null_sources = {
         shfmt = null_ls.builtins.formatting.shfmt, -- bash / sh
@@ -158,6 +196,10 @@ return {
 
       mason.setup({ install_root_dir = fn.stdpath("data") .. "/lsp/" })
 
+      for lsp_name, _ in pairs(null_sources) do
+        init_tool(lsp_name)
+      end
+
       null_ls.setup({
         sources = vim.tbl_values(null_sources),
         on_attach = function(client, bufnr)
@@ -174,11 +216,6 @@ return {
             })
           end
         end,
-      })
-
-      mason_null_ls.setup({
-        ensure_installed = vim.tbl_keys(null_sources),
-        automatic_installation = true,
       })
     end,
   },
