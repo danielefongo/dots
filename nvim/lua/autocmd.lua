@@ -1,8 +1,4 @@
 vim.api.nvim_command("autocmd VimResized * wincmd =")
-vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-  pattern = { "*" },
-  command = [[%s/\s\+$//e]],
-})
 
 local watcher = vim.loop.new_fs_poll()
 

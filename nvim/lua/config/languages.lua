@@ -153,7 +153,7 @@ return {
         },
       }
 
-      mason.setup({ install_root_dir = fn.stdpath("data") .. "/lsp/" })
+      mason.setup({ install_root_dir = fn.stdpath("data") .. "/lsp" })
 
       for lsp_name, config in pairs(lsps) do
         init_tool(config.mason_name, function()
@@ -169,52 +169,67 @@ return {
     end,
   },
   {
-    "jose-elias-alvarez/null-ls.nvim",
-    dependencies = {
-      "williamboman/mason.nvim",
-      "nvim-lua/plenary.nvim",
-    },
+    "stevearc/conform.nvim",
     event = "VeryLazy",
+    dependencies = { "williamboman/mason.nvim" },
     config = function()
       local mason = require("mason")
-      local null_ls = require("null-ls")
+      mason.setup({ install_root_dir = fn.stdpath("data") .. "/lsp" })
 
       local null_sources = {
-        shfmt = null_ls.builtins.formatting.shfmt, -- bash / sh
-        mix = null_ls.builtins.formatting.mix, -- elixir
-        elm_format = null_ls.builtins.formatting.elm_format, -- elm
-        prettier = null_ls.builtins.formatting.prettier, -- html stuff
-        stylua = null_ls.builtins.formatting.stylua.with({
-          extra_args = { "--indent-type", "Spaces", "--indent-width", "2" },
-        }), -- lua
-        markdownlint = null_ls.builtins.formatting.markdownlint, -- markdown
-        black = null_ls.builtins.formatting.black, -- python
-        rustfmt = null_ls.builtins.formatting.rustfmt, -- rust
-        taplo = null_ls.builtins.formatting.taplo, -- toml
-        eslint = null_ls.builtins.formatting.eslint_d, -- ts (js)
+        "black",
+        "elm-format",
+        "eslint",
+        "jq",
+        "markdownlint",
+        "mix",
+        "prettier",
+        "rustfmt",
+        "shfmt",
+        "stylua",
+        "taplo",
       }
 
-      mason.setup({ install_root_dir = fn.stdpath("data") .. "/lsp/" })
-
-      for lsp_name, _ in pairs(null_sources) do
-        init_tool(lsp_name)
+      for _, formatter in pairs(null_sources) do
+        init_tool(formatter)
       end
 
-      null_ls.setup({
-        sources = vim.tbl_values(null_sources),
-        on_attach = function(client, bufnr)
-          if client.supports_method("textDocument/formatting") then
-            vim.api.nvim_create_autocmd("BufWritePre", {
-              buffer = bufnr,
-              callback = function()
-                vim.lsp.buf.format({
-                  filter = function()
-                    return client.name == "null-ls"
-                  end,
-                })
-              end,
-            })
-          end
+      require("conform").setup({
+        formatters_by_ft = {
+          bash = { "shfmt" },
+          css = { "prettier" },
+          elixir = { "mix" },
+          elm = { "elm_format" },
+          html = { "prettier" },
+          javascript = { { "eslint", "prettier" } },
+          json = { "jq" },
+          lua = { "stylua" },
+          markdown = { "markdownlint" },
+          python = { "black" },
+          rust = { "rustfmt" },
+          scss = { "prettier" },
+          sh = { "shfmt" },
+          toml = { "taplo" },
+          typescript = { { "eslint", "prettier" } },
+          ["*"] = { "trim_whitespace", "trim_newlines" },
+        },
+      })
+
+      require("conform").formatters.stylua = {
+        prepend_args = function(_, _)
+          return {
+            "--indent-type",
+            "Spaces",
+            "--indent-width",
+            "2",
+          }
+        end,
+      }
+
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        pattern = "*",
+        callback = function(args)
+          require("conform").format({ bufnr = args.buf })
         end,
       })
     end,
