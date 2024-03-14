@@ -10,8 +10,8 @@ return {
       [";"] = { ":Commentary<cr>", "comment" },
       b = {
         name = "buffer",
-        ["["] = { ":bp<cr>", "previous" },
-        ["]"] = { ":bn<cr>", "next" },
+        ["e"] = { ":bp<cr>", "previous" },
+        ["n"] = { ":bn<cr>", "next" },
         k = { ":lua require('close_buffers').delete({ type = 'this' })<cr>", "close" },
         K = { ":lua require('close_buffers').delete({ type = 'all' })<cr>", "close all" },
         H = { ":lua require('close_buffers').delete({ type = 'other' })<cr>", "close all" },
@@ -20,8 +20,8 @@ return {
       },
       c = {
         name = "code",
-        ["["] = { "<C-o><cr>", "previous" },
-        ["]"] = { "<C-i><cr>", "next" },
+        ["e"] = { "<C-o><cr>", "previous" },
+        ["n"] = { "<C-i><cr>", "next" },
         a = { ":lua vim.lsp.buf.code_action()<cr>", "actions" },
         d = { ":Microscope code_definitions<cr>", "definitions" },
         h = { ":lua vim.lsp.buf.signature_help()<cr>", "signature" },
@@ -32,8 +32,8 @@ return {
       },
       d = {
         name = "diagnostic",
-        ["["] = { ":lua vim.diagnostic.goto_prev({ wrap = false })<cr>", "previous" },
-        ["]"] = { ":lua vim.diagnostic.goto_next({ wrap = false })<cr>", "next" },
+        ["e"] = { ":lua vim.diagnostic.goto_prev({ wrap = false })<cr>", "previous" },
+        ["n"] = { ":lua vim.diagnostic.goto_next({ wrap = false })<cr>", "next" },
         ["?"] = { "<leader>d?", "show" },
         t = { ":lua require('trouble').toggle('document_diagnostics')<cr>", "trouble buffer" },
         T = { ":lua require('trouble').toggle('workspace_diagnostics')<cr>", "trouble workspace" },
