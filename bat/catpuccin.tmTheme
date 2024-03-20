@@ -1,0 +1,126 @@
+{% macro token(data) %}
+  <dict>
+    <key>scope</key>
+    <string>{{ data.scope }}</string>
+    <key>settings</key>
+    <dict>
+      <key>foreground</key>
+      <string>{{ data.fg | default("") }}</string>
+      <key>fontStyle</key>
+      <string>{{ data.style | default("") }}</string>
+    </dict>
+  </dict>
+{% endmacro %}
+
+{% macro setting(key, value) %}
+  <key>{{ key }}</key>
+  <string>{{ value }}</string>
+{% endmacro %}
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>name</key>
+    <string>Theme</string>
+    <key>settings</key>
+    <array>
+      <dict>
+        <key>settings</key>
+        <dict>
+          {{ setting("foreground", colors.foreground) }}
+          {{ setting("background", colors.background) }}
+          {{ setting("caret", "#b8c0e0") }}
+          {{ setting("invisibles", "#a5adcb") }}
+          {{ setting("gutterForeground", colors.grey4) }}
+          {{ setting("gutterForegroundHighlight", "#a6da95") }}
+          {{ setting("lineHighlight", "#5b6078") }}
+          {{ setting("selection", "#6e738d") }}
+          {{ setting("selectionBorder", colors.background) }}
+          {{ setting("activeGuide", "#f5a97f") }}
+          {{ setting("findHighlightForeground", "#1e2030") }}
+          {{ setting("findHighlight", "#eed49f") }}
+          {{ setting("bracketsForeground", "#939ab7") }}
+          {{ setting("bracketContentsForeground", "#939ab7") }}
+        </dict>
+      </dict>
+      {{ token({ scope: "comment.block.markdown, meta.code-fence, markup.raw.code-fence, markup.raw.inline", fg: "#8bd5ca" }) }}
+      {{ token({ scope: "comment", fg: syntax.comment }) }}
+      {{ token({ scope: "constant.character.escape", fg: "#f5bde6" }) }}
+      {{ token({ scope: "constant.language.boolean", fg: syntax.constant }) }}
+      {{ token({ scope: "constant.language", fg: syntax.constant }) }}
+      {{ token({ scope: "constant.numeric", fg: syntax.number }) }}
+      {{ token({ scope: "constant.numeric.suffix.css, keyword.other.unit.css", fg: syntax.string }) }}
+      {{ token({ scope: "entity.name.class, meta.toc-list.full-identifier", fg: palette.unknown }) }}
+      {{ token({ scope: "entity.name.constant.java", fg: "#8bd5ca" }) }}
+      {{ token({ scope: "entity.name.function.constructor, entity.name.function.destructor", fg: "#b7bdf8" }) }}
+      {{ token({ scope: "entity.name.function.preprocessor", fg: syntax.function }) }}
+      {{ token({ scope: "entity.name.function, variable.function", fg: syntax.function }) }}
+      {{ token({ scope: "entity.name.label", fg: "#8aadf4" }) }}
+      {{ token({ scope: "entity.name.namespace, meta.path", fg: syntax.identifier }) }}
+      {{ token({ scope: "entity.name.tag.css", fg: "#b7bdf8" }) }}
+      {{ token({ scope: "entity.name.tag", fg: "#f5a97f" }) }}
+      {{ token({ scope: "entity.other.attribute-name", fg: "#c6a0f6" }) }}
+      {{ token({ scope: "entity.other.inherited-class", fg: "#91d7e3" }) }}
+      {{ token({ scope: "invalid.deprecated", fg: "#cad3f5", bg: "#c6a0f6" }) }}
+      {{ token({ scope: "invalid", fg: "#cad3f5", bg: "#ed8796" }) }}
+      {{ token({ scope: "keyword.control.import", fg: "#ed8796" }) }}
+      {{ token({ scope: "keyword.control.import.include", fg: syntax.include }) }}
+      {{ token({ scope: "keyword.control.loop, keyword.control.conditional, keyword.control.c++", fg: syntax.conditional }) }}
+      {{ token({ scope: "keyword.control.return, keyword.control.flow.return", fg: syntax.keyword }) }}
+      {{ token({ scope: "keyword.declaration.class", fg: "#ed8796" }) }}
+      {{ token({ scope: "keyword.declaration.function", fg: "#ee99a0" }) }}
+      {{ token({ scope: "keyword", fg: syntax.keyword }) }}
+      {{ token({ scope: "keyword.operator, punctuation.accessor", fg: syntax.operator }) }}
+      {{ token({ scope: "markup.bold", fg: "#ee99a0" }) }}
+      {{ token({ scope: "markup.changed", fg: git.changed }) }}
+      {{ token({ scope: "markup.deleted", fg: git.deleted }) }}
+      {{ token({ scope: "markup.inserted", fg: git.inserted }) }}
+      {{ token({ scope: "markup.italic", fg: "#ee99a0" }) }}
+      {{ token({ scope: "markup.underline.link.markdown", fg: "#f4dbd6" }) }}
+      {{ token({ scope: "message.error", fg: "#ed8796" }) }}
+      {{ token({ scope: "meta.diff, meta.diff.header", fg: colors.grey4 }) }}
+      {{ token({ scope: "meta.link.inline.description", fg: "#b7bdf8" }) }}
+      {{ token({ scope: "punctuation.definition.heading, entity.name.section", fg: "#8aadf4" }) }}
+      {{ token({ scope: "punctuation.definition.tag", fg: "#ee99a0" }) }}
+      {{ token({ scope: "punctuation.section", fg: syntax.punctuation }) }}
+      {{ token({ scope: "punctuation.separator", fg: syntax.punctuation }) }}
+      {{ token({ scope: "punctuation.terminator", fg: syntax.punctuation }) }}
+      {{ token({ scope: "source.lua meta.function.lua meta.block.lua meta.mapping.key.lua string.unquoted.key.lua", fg: "#f0c6c6" }) }}
+      {{ token({ scope: "source.lua meta.function.lua meta.block.lua meta.mapping.value.lua meta.mapping.key.lua string.unquoted.key.lua", fg: "#b7bdf8" }) }}
+      {{ token({ scope: "source.shell.bash meta.function.shell meta.compound.shell meta.function-call.identifier.shell", fg: "#f5bde6" }) }}
+      {{ token({ scope: "storage", fg: palette.unknown }) }}
+      {{ token({ scope: "storage.modifier", fg: "#ed8796" }) }}
+      {{ token({ scope: "storage.type.class", fg: "#f4dbd6" }) }}
+      {{ token({ scope: "storage.type", fg: syntax.keyword }) }}
+      {{ token({ scope: "string", fg: syntax.string }) }}
+      {{ token({ scope: "string.regexp", fg: syntax.string }) }}
+      {{ token({ scope: "support.constant", fg: "#8aadf4" }) }}
+      {{ token({ scope: "support.constant.property-value.css", fg: "#cad3f5" }) }}
+      {{ token({ scope: "support.function.builtin", fg: syntax.function }) }}
+      {{ token({ scope: "support.function", fg: syntax.function }) }}
+      {{ token({ scope: "support.other.variable" }) }}
+      {{ token({ scope: "support.type.exception", fg: syntax.statement }) }}
+      {{ token({ scope: "support.type.property-name.css", fg: syntax.property }) }}
+      {{ token({ scope: "support.type, support.class", fg: syntax.type }) }}
+      {{ token({ scope: "variable.function", fg: "#8aadf4" }) }}
+      {{ token({ scope: "variable.language", fg: "#8bd5ca" }) }}
+      {{ token({ scope: "variable.language.shell", fg: "#ed8796" }) }}
+      {{ token({ scope: "variable.other.constant", fg: syntax.constant }) }}
+      {{ token({ scope: "variable.other.custom-property.name.css, support.type.custom-property.name.css, punctuation.definition.custom-property.css", fg: "#8bd5ca" }) }}
+      {{ token({ scope: "variable.other", fg: "#cad3f5" }) }}
+      {{ token({ scope: "variable.other.member", fg: syntax.property }) }}
+      {{ token({ scope: "variable.other.sass", fg: "#8bd5ca" }) }}
+      {{ token({ scope: "variable.parameter", fg: syntax.parameter }) }}
+      {{ token({ scope: "variable.parameter.function", fg: syntax.parameter }) }}
+    </array>
+    <key>uuid</key>
+    <string>4d0379b5-ef82-467b-b8b8-365889420646</string>
+    <key>colorSpaceName</key>
+    <string>sRGB</string>
+    <key>semanticClass</key>
+    <string>theme.dark.Mine</string>
+    <key>author</key>
+    <string>danielefongo</string>
+  </dict>
+</plist>
