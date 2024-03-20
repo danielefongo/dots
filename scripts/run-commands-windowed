@@ -1,0 +1,120 @@
+#!/bin/node
+
+const { exec } = require("child_process");
+
+function truncateString(input, truncate_len) {
+  let valid_chars = 0;
+  let skipped_chars = 0;
+  let idx = 0;
+
+  let ansi_start = 0;
+  let ansi_end = 0;
+  let new_ansi_end;
+
+  while (true) {
+    const ansiPattern = /\x1b\[[0-9;]*m/;
+    const remainingInput = input.substring(idx);
+    const match = remainingInput.match(ansiPattern);
+    if (!match) {
+      valid_chars += remainingInput.length;
+      break;
+    } else {
+      ansi_start = idx + match.index;
+      new_ansi_end = ansi_start + match[0].length;
+      if (ansi_start === 0) {
+        skipped_chars += new_ansi_end - ansi_start;
+      } else {
+        valid_chars += ansi_start - ansi_end;
+        if (valid_chars > truncate_len) {
+          break;
+        }
+        skipped_chars += new_ansi_end - ansi_start;
+      }
+      idx = new_ansi_end;
+      ansi_end = new_ansi_end;
+    }
+  }
+
+  valid_chars = Math.min(valid_chars, truncate_len);
+
+  let new_input = input.substring(0, skipped_chars + valid_chars);
+
+  for (let i = valid_chars; i < truncate_len; i++) {
+    new_input += " ";
+  }
+
+  return new_input + "\x1b[0m";
+}
+
+async function verticalRun(commands, separator, width, height) {
+  const outputs = await Promise.all(
+    commands.map((command) => executeCommand(command, width, height)),
+  );
+
+  const lines = outputs.map((output) => output.trim().split("\n"));
+
+  const maxLength = Math.max(...lines.map((arr) => arr.length));
+  for (let i = 0; i < maxLength; i++) {
+    let row = "";
+    lines.forEach((arr, index) => {
+      row += (arr[i] || "").padEnd(width);
+      if (index !== lines.length - 1) {
+        row += separator;
+      }
+    });
+    console.log(row);
+  }
+}
+
+async function horizontalRun(commands, separator, width, height) {
+  const outputs = await Promise.all(
+    commands.map((command) => executeCommand(command, width, height)),
+  );
+
+  const separatorLine = separator.repeat(width);
+
+  for (let i = 0; i < outputs.length; i++) {
+    let outputLines = outputs[i].split("\n");
+    while (outputLines.length < height) {
+      outputLines.push("".padEnd(width));
+    }
+    console.log(outputLines.join("\n"));
+    if (i !== outputs.length - 1) {
+      console.log(separatorLine);
+    }
+  }
+}
+
+function executeCommand(command, width, height) {
+  return new Promise((resolve, reject) => {
+    exec(command + ` | head -n ${height}`, (error, stdout, stderr) => {
+      if (error) {
+        return reject(error);
+      }
+      if (stderr) {
+        return reject(stderr);
+      }
+      resolve(
+        stdout
+          .trim()
+          .split("\n")
+          .map((line) => truncateString(line, width))
+          .join("\n"),
+      );
+    });
+  });
+}
+
+let width = process.argv[2];
+let height = process.argv[3];
+let commands = process.argv.slice(4);
+
+const GREY_BG = "\x1b[48;5;244m";
+const RESET = "\x1b[0m";
+let separator = `${GREY_BG} ${RESET}`;
+
+if (width < height) {
+  verticalRun(commands, separator, parseInt(width / commands.length), height);
+} else {
+  horizontalRun(commands, separator, width, parseInt(height / commands.length));
+}

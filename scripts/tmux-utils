@@ -1,0 +1,34 @@
+#!/bin/bash
+
+command_runner="$(realpath "$(dirname "$0")/run-commands-windowed")"
+
+sessions_panes() {
+	local session_id="$1"
+	local commands=()
+
+	tmux list-windows -t "$session_id" -F "#{window_index}" | while read -r window_index; do
+		pane_id=$(tmux display-message -F '#{pane_id}' -p -t "$session_id:$window_index.#{pane_id}")
+
+		commands+=("tmux capture-pane -ep -t '$pane_id'")
+	done
+
+	$command_runner $FZF_PREVIEW_COLUMNS $FZF_PREVIEW_LINES "${commands[@]}"
+}
+
+window_panes() {
+	local session_window="$1"
+	local commands=()
+
+	tmux list-panes -t "$session_window" -F "#{pane_id}" | while read -r pane_id; do
+		commands+=("tmux capture-pane -ep -t '$pane_id'")
+	done
+
+	$command_runner $FZF_PREVIEW_COLUMNS $FZF_PREVIEW_LINES "${commands[@]}"
+}
+
+panes() {
+	local pane_id="$1"
+	local commands=()
+
+	tmux capture-pane -ep -t "$pane_id" | head -n $FZF_PREVIEW_LINES
+}

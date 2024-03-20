@@ -1,0 +1,36 @@
+#!/bin/bash
+
+utils_location="$(dirname "$(readlink -f "$BASH_SOURCE")")/tmux-utils"
+
+height=${TMUX_POPUP_HEIGHT:-80%}
+width=${TMUX_POPUP_WIDTH:-80%}
+
+if [[ "$1" == "s" ]]; then
+	input_command="tmux list-sessions -F '#{session_name}'"
+	output_command='tmux switch-client -t %%'
+	preview_command="sessions_panes %%"
+elif [[ "$1" == "w" ]]; then
+	input_command="tmux list-windows -a -F '#{session_name}:#{window_name} (#{session_id}:#{window_id})'"
+	output_command="tmux switch-client -t \$(echo '%%' | sed -E 's/(.*) \((.*):.*\)/\2/'); tmux select-window -t \$(echo '%%' | sed -E 's/(.*) \((.*):(.*)\)/\3/')"
+	preview_command='window_panes $(echo %% | sed -E "s%(.*) \((.*)\)%\2%")'
+elif [[ "$1" == "p" ]]; then
+	input_command="tmux list-panes -a -F '#{session_name}:#{window_name}:#{pane_current_command} (#{session_id}:#{window_id}:#{pane_id})'"
+	output_command="tmux switch-client -t \$(echo '%%' | sed -E 's/(.*) \((.*):.*\)/\2/'); tmux select-pane -t \$(echo '%%' | sed -E 's/(.*) \((.*):(.*):(.*)\)/\4/')"
+	preview_command='panes $(echo %% | sed -E "s/(.*) \((.*):(.*):(.*)\)/\4/")'
+fi
+
+if [[ -n "$preview_command" ]]; then
+	preview_command=$(echo "$preview_command" | sed "s/%%/{}/g")
+	result=$(eval "$input_command" | fzfp --height=60% --width=60% --reverse --preview-window 'right,75%,border-left' --preview "source $utils_location; $preview_command")
+else
+	result=$(eval "$input_command" | fzfp --height=30% --width=30% --reverse)
+fi
+
+if [[ -z $result ]]; then
+	exit
+fi
+
+output_command=$(echo "$output_command" | sed "s/%%/$result/g")
+if [[ -v TMUX ]]; then
+	eval $output_command
+fi
