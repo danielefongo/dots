@@ -235,11 +235,6 @@ return {
     end,
   },
   {
-    "lvimuser/lsp-inlayhints.nvim",
-    event = "BufReadPost",
-    opts = { inlay_hints = { highlight = "Comment" } },
-  },
-  {
     "folke/trouble.nvim",
     event = "BufReadPost",
     opts = { position = "bottom", height = 10 },
