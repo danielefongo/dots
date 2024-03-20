@@ -5,3 +5,4 @@ Wants=polybar.service
 Wants=picom.service
 Wants=wallpaper.service
 Wants=xsettingsd.service
+Wants=redshift.service

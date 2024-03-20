@@ -1,0 +1,6 @@
+[Service]
+ExecStart=/usr/bin/redshift
+Restart=always
+
+[Unit]
+Description=Redshift
