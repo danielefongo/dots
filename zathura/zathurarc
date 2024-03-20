@@ -1,0 +1,56 @@
+set window-title-basename "true"
+set selection-clipboard "clipboard"
+
+# Dracula color theme for Zathura
+# Swaps Foreground for Background to get a light version if the user prefers
+
+#
+# Dracula color theme
+#
+
+set notification-error-bg       "{{ colors.red | stronger }}" # Red
+set notification-error-fg       "{{ colors.foreground }}" # Foreground
+set notification-warning-bg     "{{ colors.orange | stronger }}" # Orange
+set notification-warning-fg     "{{ colors.grey4 }}" # Selection
+set notification-bg             "{{ colors.background }}" # Background
+set notification-fg             "{{ colors.foreground }}" # Foreground
+
+set completion-bg               "{{ colors.background }}" # Background
+set completion-fg               "#6272a4" # Comment
+set completion-group-bg         "#282a36" # Background
+set completion-group-fg         "#6272a4" # Comment
+set completion-highlight-bg     "#44475a" # Selection
+set completion-highlight-fg     "{{ colors.foreground }}" # Foreground
+
+set index-bg                    "{{ colors.background }}" # Background
+set index-fg                    "{{ colors.foreground }}" # Foreground
+set index-active-bg             "#44475a" # Current Line
+set index-active-fg             "{{ colors.foreground }}" # Foreground
+
+set inputbar-bg                 "{{ colors.background }}" # Background
+set inputbar-fg                 "{{ colors.foreground }}" # Foreground
+set statusbar-bg                "{{ colors.background }}" # Background
+set statusbar-fg                "{{ colors.foreground }}" # Foreground
+
+set highlight-color             "{{ colors.blue }}" # Orange
+set highlight-active-color      "{{ colors.magenta }}" # Pink
+
+set default-bg                  "{{ colors.background }}" # Background
+set default-fg                  "{{ colors.foreground }}" # Foreground
+
+set render-loading              true
+set render-loading-fg           "{{ colors.background }}" # Background
+set render-loading-bg           "{{ colors.foreground }}" # Foreground
+
+#
+# Recolor mode settings
+#
+
+set recolor-lightcolor          "{{ colors.background }}" # Background
+set recolor-darkcolor           "{{ colors.foreground }}" # Foreground
+
+#
+# Startup options
+#
+set adjust-open width
+set recolor true
