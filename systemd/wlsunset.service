@@ -1,0 +1,12 @@
+[Unit]
+Description=Day/night gamma adjustments for Wayland compositors
+PartOf=graphical-session.target
+
+[Install]
+WantedBy=hyprland-session.target
+
+[Service]
+ExecStart=/bin/bash -c "${HOME}/.local/bin/wlsunset-wrapper"
+Slice=session.slice
+Restart=always
+RestartSec=3s

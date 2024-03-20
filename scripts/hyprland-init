@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# https://github.com/Seme4eg/dotfiles/blob/b318bbb2a6930366c50a321af98f653addf653d7/.config/systemd/user/hyprland-session.target#L4
+
+dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=hyprland
+# Hyprland
+# systemctl --user start --no-block theme.service
+systemctl --user start --wait hypr.service

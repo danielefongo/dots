@@ -1,0 +1,13 @@
+[Unit]
+Description=handle automounting
+After=eww.service
+Requires=eww.service
+
+[Service]
+ExecStart=udiskie
+#to unmount run 'udisksctl unmount -b /dev/sdc1'
+#ExecStart=env udiskie --tray --appindicator
+Restart=always
+
+[Install]
+WantedBy=hyprland-session.target
