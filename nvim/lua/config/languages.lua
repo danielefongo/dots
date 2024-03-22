@@ -179,7 +179,7 @@ return {
       local null_sources = {
         "black",
         "elm-format",
-        "eslint",
+        "eslint_d",
         "jq",
         "markdownlint",
         "mix",
@@ -201,7 +201,7 @@ return {
           elixir = { "mix" },
           elm = { "elm_format" },
           html = { "prettier" },
-          javascript = { { "eslint", "prettier" } },
+          javascript = { { "eslint_d", "prettier" } },
           json = { "jq" },
           lua = { "stylua" },
           markdown = { "markdownlint" },
@@ -210,7 +210,7 @@ return {
           scss = { "prettier" },
           sh = { "shfmt" },
           toml = { "taplo" },
-          typescript = { { "eslint", "prettier" } },
+          typescript = { { "eslint_d", "prettier" } },
           ["*"] = { "trim_whitespace", "trim_newlines" },
         },
       })
