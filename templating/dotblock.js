@@ -12,7 +12,7 @@ function md5 (file) {
 module.exports = class DotBlock {
   constructor () {
     this.matches = {}
-    this.matchOpts = (data) => { return { dot: true, ignore: data.ignore, nodir: true } }
+    this.matchOpts = (data) => ({ dot: true, ignore: data.ignore, nodir: true })
   }
 
   on (matchAction) {
@@ -22,19 +22,17 @@ module.exports = class DotBlock {
   }
 
   files (match) {
-    return Object.entries(this.matches).filter(([it, _]) => it == match).flatMap(([match, data]) => {
-      return glob.globSync(match, this.matchOpts(data))
-    })
+    return Object.entries(this.matches)
+      .filter(([it, _]) => it == match)
+      .flatMap(([match, data]) => glob.globSync(match, this.matchOpts(data)))
   }
 
   run () {
     Object.entries(this.matches).forEach(([match, data]) => {
-      glob
-        .globSync(match, this.matchOpts(data))
-        .forEach((file) => {
-          this._fileReset(match, file)
-          this._fileAction(match, file)
-        })
+      glob.globSync(match, this.matchOpts(data)).forEach((file) => {
+        this._fileReset(match, file)
+        this._fileAction(match, file)
+      })
     })
 
     return this
@@ -86,7 +84,12 @@ module.exports = class DotBlock {
 
   _fileReset (match, file) {
     const data = this.matches[match]
-    if (data.reset && this.matches[match].files && this.matches[match].files[file] && this.matches[match].files[file].context) {
+    if (
+      data.reset &&
+      this.matches[match].files &&
+      this.matches[match].files[file] &&
+      this.matches[match].files[file].context
+    ) {
       data.reset(this.matches[match].files[file].context)
       this.matches[match].files[file] = {}
     }

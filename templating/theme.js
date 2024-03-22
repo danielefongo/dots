@@ -1,8 +1,6 @@
 const zen = false
 const scaleRatio = 1
-function scale (value) {
-  return Math.floor(value * scaleRatio)
-}
+const scale = (value) => Math.floor(value * scaleRatio)
 
 module.exports = {
   data: {
@@ -43,6 +41,7 @@ module.exports = {
       secondary: '{{ colors.blue }}',
       info: '{{ colors.green }}',
       warn: '{{ colors.orange }}',
+      hint: '{{ colors.magenta }}',
       error: '{{ colors.red }}'
     },
     syntax: {
