@@ -92,9 +92,13 @@ return {
         return fn.glob(fn.stdpath("data") .. "/lsp/bin/" .. server)
       end
 
-      local function on_attach(client, bufnr)
+      local function on_attach_no_inlay(client, bufnr)
         client.server_capabilities.documentFormattingProvider = false
         signature.on_attach({ bind = true }, bufnr)
+      end
+
+      local function on_attach(client, bufnr)
+        on_attach_no_inlay(client, bufnr)
         if client.server_capabilities.inlayHintProvider then
           vim.lsp.inlay_hint.enable(bufnr, true)
         end
@@ -147,6 +151,7 @@ return {
         },
         tsserver = {
           mason_name = "typescript-language-server",
+          on_attach = on_attach_no_inlay,
         },
         rust_analyzer = {
           mason_name = "rust-analyzer",
@@ -159,7 +164,7 @@ return {
         init_tool(config.mason_name, function()
           lsp[lsp_name].setup({
             capabilities = capabilities,
-            on_attach = on_attach,
+            on_attach = config.on_attach or on_attach,
             flags = flags,
             cmd = config.cmd,
             settings = config.settings or {},
