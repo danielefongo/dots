@@ -79,12 +79,18 @@ return {
       w = { "<C-w>", "windows" },
     }, { prefix = "<leader>" })
 
+    -- stylua: ignore
     wk.register({
-      s = { ":lua require('flash').jump()<cr>", "seek" },
+      s = { function() require('flash').jump() end, "seek" },
+      S = { function() require('flash').treesitter() end, "seek" },
     }, { mode = { "n", "x" } })
 
     wk.register({
       [";"] = { ":Commentary<cr>", "comment" },
+      c = {
+        name = "code",
+        a = { ":lua vim.lsp.buf.code_action()<cr>", "actions" },
+      },
     }, { prefix = "<leader>", mode = "v" })
 
     wk.register({
