@@ -7,7 +7,8 @@ return {
     dependencies = { { "nvim-lua/plenary.nvim", version = "~0.1.3" } },
     opts = true,
   },
-  { "gabrielpoca/replacer.nvim", cmd = { "ColorizerToggle", "ColorizerAttachToBuffer" } },
+  { "gabrielpoca/replacer.nvim" },
+  { "brenoprata10/nvim-highlight-colors", event = "VeryLazy" },
   { "windwp/nvim-autopairs", opts = {}, event = "BufReadPre" },
   { "kazhala/close-buffers.nvim", event = "VeryLazy" },
   {

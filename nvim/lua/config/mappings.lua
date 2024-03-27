@@ -20,6 +20,7 @@ return {
       },
       c = {
         name = "code",
+        c = { ":lua require('nvim-highlight-colors').toggle()<cr>", "colors" },
         ["e"] = { "<C-o><cr>", "previous" },
         ["n"] = { "<C-i><cr>", "next" },
         a = { ":lua vim.lsp.buf.code_action()<cr>", "actions" },
