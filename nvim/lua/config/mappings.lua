@@ -64,7 +64,7 @@ return {
         name = "open",
         b = { ":Microscope buffer<cr>", "buffer" },
         f = { ":Microscope file<cr>", "file" },
-        t = { ":NvimTreeToggle<cr>", "tree" },
+        t = { ":Oil<cr>", "tree" },
       },
       r = { ":lua require('replacer').run()<cr>", "replace" },
       s = {
