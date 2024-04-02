@@ -25,7 +25,7 @@ return {
         ["n"] = { "<C-i><cr>", "next" },
         a = { ":lua vim.lsp.buf.code_action()<cr>", "actions" },
         d = { ":Microscope code_definitions<cr>", "definitions" },
-        h = { ":lua vim.lsp.buf.signature_help()<cr>", "signature" },
+        h = { ":lua vim.lsp.buf.hover()<cr>", "signature" },
         i = { ":Microscope code_implementations<cr>", "implementations" },
         r = { ":Microscope code_references<cr>", "references" },
         R = { ":lua vim.lsp.buf.rename()<cr>", "rename" },
