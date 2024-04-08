@@ -33,4 +33,4 @@ vim.g.mapleader = " "
 vim.g.tmux_navigator_no_mappings = true
 
 require("plugins")
-require("autocmd")
+require("reload_theme")
