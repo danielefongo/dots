@@ -69,9 +69,7 @@ return {
       r = { ":lua require('replacer').run()<cr>", "replace" },
       s = {
         name = "session",
-        d = { ":lua require('auto-session').DeleteSession()<cr>", "delete" },
-        l = { ":lua require('session-lens').search_session()<cr>", "load" },
-        s = { ":lua require('auto-session').SaveSession()<cr>", "save" },
+        d = { ":lua require('persistence').delete_current_and_stop()<cr>", "delete current and stop" },
       },
       v = {
         name = "vim",
