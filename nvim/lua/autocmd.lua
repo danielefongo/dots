@@ -1,5 +1,3 @@
-vim.api.nvim_command("autocmd VimResized * wincmd =")
-
 local watcher = vim.loop.new_fs_poll()
 
 watcher:start(vim.fn.stdpath("config") .. "/lua/theme.lua", 500, function()
