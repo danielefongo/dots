@@ -1,3 +1,3 @@
 module.exports = {
-  match: "firefox/chrome/**/*",
+  match: "firefox/**/*",
 };
