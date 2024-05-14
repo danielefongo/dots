@@ -38,7 +38,6 @@ floating_modifier $mod
 # xdg autostart
 exec_always --no-startup-id exec systemctl --user start --no-block i3-session.target
 exec --no-startup-id dex --autostart --environment i3
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock-fancy --nofork
 exec --no-startup-id nm-applet
 
 # pulse audio
@@ -130,7 +129,7 @@ bindsym $mod+Right move workspace to output right
 # i3
 set $mode_system System (l) lock, (e) logout, (r) reload, ($shift+r) reboot, ($shift+s) shutdown
 mode "$mode_system" {
-  bindsym l exec --no-startup-id i3lock-fancy, mode "default"
+  bindsym l exec --no-startup-id i3lock-fancy-rapid 5 3, mode "default"
   bindsym e exit
   bindsym r reload, mode "default"
   bindsym $shift+r exec --no-startup-id shutdown now -r, mode "default"
