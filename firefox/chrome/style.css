@@ -193,38 +193,23 @@ toolbarseparator {
 :root {
   --border: 10;
   --border-px: calc(var(--border) * 1px);
-}
-@media (min-width: 800px) {
-  :root {
-    --rounds-margin: calc(var(--border) * -1px);
-  }
-}
-@media (max-width: 800px) {
-  :root {
-    --rounds-margin: 0px;
-  }
+  --rounds-margin: calc(var(--border) * -1px);
 }
 .browserStack {
   background-color: var(--color-canvas) !important;
 }
-#navigator-toolbox {
-  padding-bottom: var(--border-px);
-}
 .browserStack > browser {
   /* main frame, without dev tools */
-  margin-top: var(--rounds-margin) !important;
   border-radius: var(--border-px) var(--border-px) 0 0;
 }
 .browserStack:nth-last-child(3n) > browser,
 .browserStack:nth-last-child(4n) > browser {
   /* main frame, with dev tools */
-  margin-top: var(--rounds-margin) !important;
   border-radius: var(--border-px) !important;
 }
 
 #sidebar-box {
   z-index: 0;
-  margin-top: var(--rounds-margin) !important;
   border-radius: 0 var(--border-px) 0 0 !important;
 }
 #sidebar-box[positionend="true"] {
@@ -245,6 +230,5 @@ findbar {
 }
 
 .devtools-toolbox-side-iframe {
-  margin-top: var(--rounds-margin);
   border-radius: var(--border-px);
 }
