@@ -4,6 +4,7 @@ const scale = (value) => Math.floor(value * scaleRatio)
 
 module.exports = {
   data: {
+    contrast: 0,
     zen,
     font: 'JetBrainsMono NF',
     gap: scale(0),
@@ -13,7 +14,7 @@ module.exports = {
     scaleRatio,
     transparency: false,
     colors: {
-      background: '#1f2430',
+      background: '{{ "#1f2430" | contrasted(contrast) }}',
       background_alt1: '{{ colors.background | light_darken(3) }}',
       background_alt2: '{{ colors.background | light_lighten(3) }}',
       magic_background:
@@ -28,13 +29,13 @@ module.exports = {
       grey8: '{{ colors.background | between(colors.foreground, 8, 10) }}',
       grey9: '{{ colors.background | between(colors.foreground, 9, 10) }}',
       foreground: '#e9ebf0',
-      red: '#f45c7f',
-      orange: '#f78c6c',
-      yellow: '#ecc48d',
-      green: '#addb67',
-      cyan: '#9fd4ff',
-      blue: '#6cbeff',
-      magenta: '#c792ea'
+      red: '{{ "#f45c7f" | contrasted(contrast) }}',
+      orange: '{{ "#f78c6c" | contrasted(contrast) }}',
+      yellow: '{{ "#ecc48d" | contrasted(contrast) }}',
+      green: '{{ "#addb67" | contrasted(contrast) }}',
+      cyan: '{{ "#9fd4ff" | contrasted(contrast) }}',
+      blue: '{{ "#6cbeff" | contrasted(contrast) }}',
+      magenta: '{{ "#c792ea" | contrasted(contrast) }}'
     },
     theme: {
       primary: '{{ colors.yellow }}',
@@ -71,6 +72,7 @@ module.exports = {
   },
   filters: {
     darken: (tc, color) => tc(color).darken(10).desaturate(15).toHexString(),
+    contrasted: (tc, color, contrast) => tc(color).darken(contrast).saturate(contrast).toHexString(),
     lighten: (tc, color) => tc(color).lighten(10).saturate(15).toHexString(),
     stronger: (tc, color) => tc(color).darken(5).saturate(10).toHexString(),
     light_darken: (tc, color, qty) => tc(color).darken(qty).toHexString(),
