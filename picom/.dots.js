@@ -1,3 +1,3 @@
 module.exports = {
-  match: "picom/**/*",
+  match: [{ pattern: "picom/**/*" }],
 };

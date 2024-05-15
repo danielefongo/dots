@@ -5,8 +5,21 @@ const { execSync } = require('child_process')
 const templater = require('./template.js')
 const DotBlock = require('./dotblock.js')
 
-function writeFile (file, filter) {
-  const destinationFile = path.join('output', file)
+function getCommonPath (pattern) {
+  const segments = pattern.split(/[\\/]/)
+  let commonPath = ''
+  for (let i = 0; i < segments.length; i++) {
+    const segment = segments[i]
+    if (segment.includes('*')) {
+      break
+    }
+    commonPath += (i > 0 ? path.sep : '') + segment
+  }
+  return commonPath
+}
+
+function writeFile (file, to, filter) {
+  const destinationFile = to
   const destinationFileFolder = path.dirname(destinationFile)
 
   if (!fs.existsSync(destinationFileFolder)) {
@@ -65,7 +78,6 @@ const dotBlock = new DotBlock().on({
   init: (dot) => {
     delete require.cache[require.resolve(path.resolve(dot))]
     const dotData = require(path.resolve(dot))
-    dotData.filter = dotData.filter || (() => true)
 
     let files = []
     const postponed = new Postponed(() => {
@@ -78,11 +90,21 @@ const dotBlock = new DotBlock().on({
       files = []
     }, 200)
 
-    const action = (file) => {
+    const action = ({ file, match }) => {
+      const filter = match.filter || (() => true)
+      const to = path.join(
+        'output',
+        match.to
+          ? file.replace(
+            new RegExp(`^${getCommonPath(match.pattern)}/`),
+              `${match.to}/`
+          )
+          : file
+      )
       let output
 
       try {
-        output = writeFile(file, dotData.filter)
+        output = writeFile(file, to, filter)
       } catch (e) {
         execSync(`notify-send -t 5000 -a "Templating" -u critical "${file}"`)
         console.log(`Templating failed on file ${file}, reason: ${e}`)
@@ -102,20 +124,30 @@ const dotBlock = new DotBlock().on({
 
     const dotBlock = new DotBlock()
 
-    return dotBlock
-      .on({
-        match: themeFile,
+    dotBlock.on({
+      match: themeFile,
+      ignore: dotsMatch,
+      init: (file) => file,
+      action: () => {
+        for (const match of dotData.match) {
+          dotBlock
+            .files(match.pattern)
+            .forEach((file) => action({ file, match }))
+        }
+      }
+    })
+
+    for (const match of dotData.match) {
+      dotBlock.on({
+        match: match.pattern,
         ignore: dotsMatch,
-        init: (file) => file,
-        action: () => dotBlock.files(dotData.match).forEach(action)
-      })
-      .on({
-        match: dotData.match,
-        ignore: dotsMatch,
-        init: (file) => file,
+        init: (file) => ({ file, match }),
         ignore_unchanged: true,
         action
       })
+    }
+
+    return dotBlock
   },
   action: (context) => {
     if (watching) context.run().watch()

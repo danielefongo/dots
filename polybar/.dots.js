@@ -1,8 +1,9 @@
-const { execSync } = require("child_process");
+const { exec } = require("child_process");
 
 module.exports = {
-  match: "polybar/**/*",
+  match: [{ pattern: "polybar/**/*" }],
   apply: (_) => {
-    execSync("systemctl --user restart polybar");
+    exec("systemctl --user daemon-reload");
+    exec("systemctl --user restart polybar");
   },
 };

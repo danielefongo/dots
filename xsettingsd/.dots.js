@@ -1,8 +1,9 @@
-const { execSync } = require("child_process");
+const { exec } = require("child_process");
 
 module.exports = {
-  match: "xsettingsd/**/*",
+  match: [{ pattern: "xsettingsd/**/*" }],
   apply: () => {
-    execSync("systemctl --user restart xsettingsd.service");
+    exec("systemctl --user daemon-reload");
+    exec("systemctl --user restart xsettingsd.service");
   },
 };

@@ -1,9 +1,9 @@
-const { execSync } = require("child_process");
+const { exec } = require("child_process");
 
 module.exports = {
-  match: "dunst/**/*",
+  match: [{ pattern: "dunst/**/*" }],
   apply: (_) => {
-    execSync("systemctl --user restart dunst");
-    execSync("notify-send Dunst restarted");
+    exec("systemctl --user daemon-reload");
+    exec("systemctl --user restart dunst && notify-send Dunst restarted");
   },
 };

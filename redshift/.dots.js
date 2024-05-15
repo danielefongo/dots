@@ -1,8 +1,9 @@
-const { execSync } = require("child_process");
+const { exec } = require("child_process");
 
 module.exports = {
-  match: "redshift/redshift.conf",
+  match: [{ pattern: "redshift/redshift.conf" }],
   apply: () => {
-    execSync("systemctl --user restart redshift.service");
+    exec("systemctl --user daemon-reload");
+    exec("systemctl --user restart redshift.service");
   },
 };

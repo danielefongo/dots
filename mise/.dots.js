@@ -1,3 +1,3 @@
 module.exports = {
-  match: "mise/**/*",
+  match: [{ pattern: "mise/**/*" }],
 };

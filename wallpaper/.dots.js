@@ -1,9 +1,10 @@
-const { execSync } = require("child_process");
+const { execSync, exec } = require("child_process");
 
 module.exports = {
-  match: "wallpaper/*.js",
+  match: [{ pattern: "wallpaper/*.js" }],
   apply: () => {
     execSync("node wallpaper/index.js");
-    execSync("systemctl --user restart wallpaper");
+    exec("systemctl --user daemon-reload");
+    exec("systemctl --user restart wallpaper");
   },
 };

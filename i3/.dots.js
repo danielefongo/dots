@@ -1,8 +1,8 @@
-const { execSync } = require("child_process");
+const { exec } = require("child_process");
 
 module.exports = {
-  match: "i3/**/*",
+  match: [{ pattern: "i3/**/*" }],
   apply: (_) => {
-    execSync("i3restart");
+    exec("i3restart");
   },
 };
