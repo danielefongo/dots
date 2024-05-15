@@ -4,9 +4,25 @@
  * roundings: https://github.com/JarnotMaciej/Essence
  */
 
+@import "colors.css";
+
 :root {
   --tabs-height: 30;
   --tabs-border: 8;
+
+  /* colors from common-shared.css */
+  --in-content-box-background: var(--color-light-bg) !important;
+  --in-content-box-info-background: var(--color-light-bg) !important;
+  --in-content-page-background: var(--color-bg) !important;
+  --in-content-primary-button-background-hover: var(
+    --color-secondary
+  ) !important;
+  --in-content-primary-button-background: var(--color-secondary) !important;
+  --in-content-table-background: var(--color-light-bg) !important;
+
+  /* other colors */
+  --color-canvas: var(--color-dark-bg) !important;
+  --link-color: var(--color-secondary) !important;
 }
 
 /* colors */
@@ -209,6 +225,7 @@ toolbarseparator {
 }
 
 #sidebar-box {
+  background-color: var(--color-bg) !important;
   z-index: 0;
   border-radius: 0 var(--border-px) 0 0 !important;
 }

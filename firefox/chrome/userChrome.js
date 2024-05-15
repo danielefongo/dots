@@ -24,10 +24,10 @@ function reloadStyle() {
   ss.loadAndRegisterSheet(chromefile, ss.USER_SHEET);
 }
 
-function watchStyle() {
+function watchStyleFile(file) {
   reloadStyle();
 
-  var chromepath = chromePath("style.css");
+  var chromepath = chromePath(file);
 
   var lastModified = chromepath.lastModifiedTime;
 
@@ -42,6 +42,11 @@ function watchStyle() {
   }
 
   checkChanges();
+}
+
+function watchStyle() {
+  watchStyleFile("style.css");
+  watchStyleFile("colors.css");
 }
 
 function setupSpotbar() {

@@ -1,0 +1,7 @@
+:root {
+  --color-light-bg: {{ colors.background_alt2 }} !important;
+  --color-dark-bg: {{ colors.background_alt1 }} !important;
+  --color-bg: {{ colors.background }} !important;
+  --color-primary: {{ theme.primary }} !important;
+  --color-secondary: {{ theme.secondary }} !important;
+}
