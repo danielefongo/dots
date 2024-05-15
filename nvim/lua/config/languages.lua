@@ -223,6 +223,18 @@ return {
         end,
       }
 
+      require("conform").formatters.eslint_d = {
+        require_cwd = true,
+        cwd = require("conform.util").root_file({
+          ".eslintrc",
+          ".eslintrc.js",
+          ".eslintrc.cjs",
+          ".eslintrc.yaml",
+          ".eslintrc.yml",
+          ".eslintrc.json",
+        }),
+      }
+
       vim.api.nvim_create_autocmd("BufWritePre", {
         pattern = "*",
         callback = function(args)
