@@ -101,14 +101,14 @@ return {
     }, { mode = "n" })
 
     wk.register({
-      ["<a-c-m>"] = { ":lua require('tile').resize_left()<cr>", "resize left" },
-      ["<a-c-n>"] = { ":lua require('tile').resize_down()<cr>", "resize down" },
-      ["<a-c-e>"] = { ":lua require('tile').resize_up()<cr>", "resize up" },
-      ["<a-c-i>"] = { ":lua require('tile').resize_right()<cr>", "resize right" },
-      ["<a-s-m>"] = { ":lua require('tile').shift_left()<cr>", "resize left" },
-      ["<a-s-n>"] = { ":lua require('tile').shift_down()<cr>", "resize down" },
-      ["<a-s-e>"] = { ":lua require('tile').shift_up()<cr>", "resize up" },
-      ["<a-s-i>"] = { ":lua require('tile').shift_right()<cr>", "resize right" },
+      ["<a-c-Left>"] = { ":lua require('tile').resize_left()<cr>", "resize left" },
+      ["<a-c-Down>"] = { ":lua require('tile').resize_down()<cr>", "resize down" },
+      ["<a-c-Up>"] = { ":lua require('tile').resize_up()<cr>", "resize up" },
+      ["<a-c-Right>"] = { ":lua require('tile').resize_right()<cr>", "resize right" },
+      ["<a-s-Left>"] = { ":lua require('tile').shift_left()<cr>", "shift left" },
+      ["<a-s-Down>"] = { ":lua require('tile').shift_down()<cr>", "shift down" },
+      ["<a-s-Up>"] = { ":lua require('tile').shift_up()<cr>", "shift up" },
+      ["<a-s-Right>"] = { ":lua require('tile').shift_right()<cr>", "shift right" },
     }, { mode = "n" })
   end,
 }
