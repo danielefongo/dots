@@ -37,7 +37,8 @@ export FZF_DEFAULT_OPTS='
   --color=fg:{{ colors.grey6 }},bg:{{ colors.background }},hl:{{ colors.blue }}
   --color=fg+:{{ colors.foreground }},bg+:{{ colors.background }},hl+:{{ colors.blue | stronger }}
   --color=info:{{ colors.yellow }},prompt:{{ colors.red }},pointer:{{ colors.red }}
-  --color=marker:{{ colors.green }},spinner:{{ colors.red }},header:{{ colors.grey8 }}'
+  --color=marker:{{ colors.green }},spinner:{{ colors.red }},header:{{ colors.grey8 }}
+  --bind=ctrl-e:up,ctrl-n:down'
 bindkey '^T' fzf-completion
 bindkey '^I' $fzf_default_completion
 
