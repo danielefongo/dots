@@ -110,5 +110,25 @@ return {
       ["<a-s-Up>"] = { ":lua require('tile').shift_up()<cr>", "shift up" },
       ["<a-s-Right>"] = { ":lua require('tile').shift_right()<cr>", "shift right" },
     }, { mode = "n" })
+
+    -- colemak remap
+    wk.register({
+      m = { "h", "left" },
+      n = { "j", "down" },
+      N = { "J", "join lines" },
+      e = { "k", "up" },
+      E = { "K", "-" },
+      i = { "l", "right" },
+      I = { "L", "-" },
+
+      h = { "i", "insert" },
+      H = { "I", "insert beginning" },
+
+      j = { "e", "end word" },
+      J = { "E", "end WORD" },
+
+      k = { "n", "find next" },
+      K = { "N", "find previous" },
+    }, { mode = "" })
   end,
 }
