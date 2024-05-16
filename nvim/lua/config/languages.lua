@@ -173,13 +173,12 @@ return {
       local mason = require("mason")
       mason.setup({ install_root_dir = fn.stdpath("data") .. "/lsp" })
 
-      local null_sources = {
+      local mason_sources = {
         "black",
         "elm-format",
         "eslint_d",
         "jq",
         "markdownlint",
-        "mix",
         "prettier",
         "rustfmt",
         "shfmt",
@@ -187,7 +186,7 @@ return {
         "taplo",
       }
 
-      for _, formatter in pairs(null_sources) do
+      for _, formatter in pairs(mason_sources) do
         init_tool(formatter)
       end
 
