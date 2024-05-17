@@ -4,7 +4,11 @@
 
 bind generic N next
 bind generic E previous
+
 bind generic n move-down
 bind generic e move-up
+
+bind generic k find-next
+bind generic K find-prev
 
 color cursor black green bold
