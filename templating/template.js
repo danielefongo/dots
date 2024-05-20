@@ -26,7 +26,12 @@ function isObject (item) {
 
 module.exports = function (content, template) {
   Object.entries(template.filters || {}).forEach(([key, value]) => {
-    env.addFilter(key, (...args) => value(tinycolor, ...args))
+    env.addFilter(key, (...args) => {
+      if (![...args].find(value => typeof value === 'string' && value.includes('{{'))) {
+        return value(tinycolor, ...args)
+      }
+    }
+    )
   })
 
   let stringifiedData = JSON.stringify(template.data)
