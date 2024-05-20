@@ -7,6 +7,3 @@ nodejs = "19.0.0"
 python = "latest"
 rust = "latest"
 ruby = "latest"
-
-# tools
-delta = "latest"
