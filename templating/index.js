@@ -88,7 +88,7 @@ const dotBlock = new DotBlock().on({
         console.log(`Failed to build ${dot}, reason: ${e}`)
       }
       files = []
-    }, 200)
+    }, 100)
 
     const action = ({ file, match }) => {
       const filter = match.filter || (() => true)
