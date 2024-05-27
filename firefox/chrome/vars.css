@@ -4,4 +4,6 @@
   --color-bg: {{ colors.background }} !important;
   --color-primary: {{ theme.primary }} !important;
   --color-secondary: {{ theme.secondary }} !important;
+
+  --scale: {{ fontSize / 10 }};
 }

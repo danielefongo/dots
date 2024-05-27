@@ -4,7 +4,16 @@
  * roundings: https://github.com/JarnotMaciej/Essence
  */
 
-@import "colors.css";
+@import "vars.css";
+
+/* zoom */
+#toolbox-container,
+.browserStack:nth-last-child(1n) > browser {
+  transform: scale(var(--scale));
+  transform-origin: top left;
+  width: calc(100% / var(--scale)) !important;
+  height: calc(100% / var(--scale)) !important;
+}
 
 :root {
   --tabs-height: 30;

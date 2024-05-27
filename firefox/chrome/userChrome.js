@@ -46,7 +46,7 @@ function watchStyleFile(file) {
 
 function watchStyle() {
   watchStyleFile("style.css");
-  watchStyleFile("colors.css");
+  watchStyleFile("vars.css");
 }
 
 function setupSpotbar() {
