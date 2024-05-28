@@ -11,7 +11,6 @@ module.exports = {
   ],
   apply: (_) => {
     execSync("output/gtk/build");
-    exec("systemctl --user daemon-reload");
     exec("systemctl --user restart xsettingsd.service");
   },
 };
