@@ -24,6 +24,9 @@ function isObject (item) {
   return item && typeof item === 'object' && !Array.isArray(item)
 }
 
+let rawTemplateStringCache
+let templateCache
+
 module.exports = function (content, template) {
   Object.entries(template.filters || {}).forEach(([key, value]) => {
     env.addFilter(key, (...args) => {
@@ -33,6 +36,11 @@ module.exports = function (content, template) {
     }
     )
   })
+
+  if (rawTemplateStringCache == JSON.stringify(template)) {
+    return env.renderString(content, templateCache.data)
+  }
+  rawTemplateStringCache = JSON.stringify(template)
 
   let stringifiedData = JSON.stringify(template.data)
   while (true) {
@@ -47,5 +55,6 @@ module.exports = function (content, template) {
     stringifiedData = JSON.stringify(template.data)
   }
 
+  templateCache = template
   return env.renderString(content, template.data)
 }
