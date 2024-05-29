@@ -10,7 +10,7 @@ module.exports = {
     gap: scale(0),
     round: scale(0),
     border: scale(4),
-    fontSize: scale(10),
+    fontSize: scale(11),
     scaleRatio,
     transparency: false,
     colors: {
