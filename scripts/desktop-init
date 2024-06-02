@@ -1,5 +1,10 @@
 #!/bin/sh
 
+# Source the .profile
+if [ -f "$HOME/.profile" ]; then
+	. "$HOME/.profile"
+fi
+
 dbus-update-activation-environment --systemd --all
 systemctl --user start --no-block theme.service
 systemctl --user start --wait i3.service
