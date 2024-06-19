@@ -35,6 +35,9 @@
 }
 
 /* colors */
+stack > browser {
+  background-color: white !important;
+}
 #PersonalToolbar,
 #tabbrowser-tabpanels {
   background-color: var(--color-canvas) !important;
