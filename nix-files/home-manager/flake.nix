@@ -20,6 +20,7 @@
             rebuild = super.callPackage ./pkgs/rebuild.nix { };
           })
           nixgl.overlay
+          (import ./overlays/firefox)
         ];
       };
       user = "danielefongo";
