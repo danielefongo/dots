@@ -7,9 +7,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixgl.url = "github:nix-community/nixGL";
   };
 
-  outputs = { nixpkgs, home-manager, ... }@attrs:
+  outputs = { nixpkgs, home-manager, nixgl, ... }@attrs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system} // {
@@ -18,6 +19,7 @@
           (self: super: {
             rebuild = super.callPackage ./pkgs/rebuild.nix { };
           })
+          nixgl.overlay
         ];
       };
       user = "danielefongo";
