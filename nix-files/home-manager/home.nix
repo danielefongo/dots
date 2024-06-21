@@ -10,6 +10,7 @@
     ./modules/i3.nix
     ./modules/neovim.nix
     ./modules/picom.nix
+    ./modules/polybar.nix
     ./modules/shell.nix
   ];
 
