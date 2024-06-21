@@ -9,6 +9,7 @@
     ./modules/git.nix
     ./modules/i3.nix
     ./modules/neovim.nix
+    ./modules/picom.nix
     ./modules/shell.nix
   ];
 
