@@ -4,6 +4,7 @@
   imports = [
     ./modules/alacritty.nix
     ./modules/firefox
+    ./modules/fonts.nix
     ./modules/git.nix
     ./modules/neovim.nix
     ./modules/shell.nix
