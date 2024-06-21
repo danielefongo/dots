@@ -3,6 +3,7 @@
 {
   imports = [
     ./modules/alacritty.nix
+    ./modules/dunst.nix
     ./modules/firefox
     ./modules/fonts.nix
     ./modules/git.nix
