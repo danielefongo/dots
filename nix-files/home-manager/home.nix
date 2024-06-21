@@ -11,6 +11,7 @@
     ./modules/neovim.nix
     ./modules/picom.nix
     ./modules/polybar.nix
+    ./modules/redshift.nix
     ./modules/shell.nix
   ];
 
