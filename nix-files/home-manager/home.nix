@@ -6,6 +6,7 @@
     ./modules/firefox
     ./modules/fonts.nix
     ./modules/git.nix
+    ./modules/i3.nix
     ./modules/neovim.nix
     ./modules/shell.nix
   ];
