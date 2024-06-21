@@ -1,7 +1,9 @@
 { config, pkgs, user, home, ... }:
 
 {
-  imports = [];
+  imports = [
+    ./modules/git.nix
+  ];
 
   home.username = user;
   home.homeDirectory = home;
