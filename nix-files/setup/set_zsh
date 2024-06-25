@@ -1,0 +1,15 @@
+#!/bin/bash
+
+SHELLS="/etc/shells"
+ZSH_SHELL="$HOME/.nix-profile/bin/zsh"
+BASH_SHELL="/usr/bin/bash"
+
+grep -qxF "$ZSH_SHELL" "$SHELLS" || echo "$ZSH_SHELL" | sudo tee -a "$SHELLS" 1>/dev/null
+
+if [ "$1" == "-d" ]; then
+	chsh -s "$BASH_SHELL"
+	echo "Zsh unset (using bash)"
+else
+	chsh -s "$ZSH_SHELL"
+	echo "Zsh set"
+fi
