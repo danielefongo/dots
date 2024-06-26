@@ -1,6 +1,16 @@
 const { createCanvas } = require("canvas");
 const fs = require("fs");
-const settings = require("../output/wallpaper/settings.js");
+const path = require("path");
+const input = toAbsolute(process.argv[2]);
+const output = toAbsolute(process.argv[3]);
+
+const settings = require(input);
+
+function toAbsolute(filename) {
+  if (path.isAbsolute(filename)) {
+    return filename;
+  } else return path.resolve(process.cwd(), filename);
+}
 
 function equidistantPoints(N, min, max) {
   return [...Array(N).keys()].map((i) =>
@@ -82,7 +92,7 @@ function drawWaves({ width, height, waves, colors }) {
     );
   }
 
-  fs.writeFileSync("output/wallpaper/background.svg", canvas.toBuffer());
+  fs.writeFileSync(output, canvas.toBuffer());
 }
 
 drawWaves(settings);

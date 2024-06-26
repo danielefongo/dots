@@ -3,8 +3,13 @@ monitor = ${env:MONITOR:}
 
 radius = {{ round / 2 }}
 
+{% if not zen %}
 width = 100%:-{{ gap * 2 }}
 height = {{ fontSize * 2 }}
+{% else %}
+width = 0
+height = 0
+{% endif %}
 fixed-center = true
 offset-y = {{ gap }}
 offset-x = {{ gap }}
