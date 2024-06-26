@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -e
+
+OPTION=$1
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
+
+cd $SCRIPT_DIR
+
+./install_nix $OPTION
+./install_xsessions_desktop $OPTION
+./set_pam $OPTION
+./set_zsh $OPTION
