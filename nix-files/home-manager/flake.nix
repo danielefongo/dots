@@ -25,6 +25,7 @@
       };
       user = "danielefongo";
       home = "/home/danielefongo";
+      dots_output = "/home/danielefongo/dots/output";
     in
     {
       formatter.x86_64-linux = pkgs.nixpkgs-fmt;
@@ -35,6 +36,7 @@
         extraSpecialArgs = {
           inherit user;
           inherit home;
+          inherit dots_output;
         };
 
         modules = [
