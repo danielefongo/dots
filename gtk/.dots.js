@@ -9,8 +9,8 @@ module.exports = {
       },
     },
   ],
-  apply: (_) => {
-    execSync("output/gtk/build");
+  apply: (path) => {
+    execSync(`${path}/output/gtk/build`);
     exec("systemctl --user restart xsettingsd.service");
   },
 };

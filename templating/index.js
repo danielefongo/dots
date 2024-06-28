@@ -1,9 +1,16 @@
 const fs = require('fs')
 const path = require('path')
-const { execSync } = require('child_process')
+const { exec } = require('child_process')
 
 const templater = require('./template.js')
 const DotBlock = require('./dotblock.js')
+
+const templatingPath = path.dirname(require.main.filename)
+const dotsMatch = '**/*.dots.js'
+const themeFile = path.resolve(`${templatingPath}/theme.js`)
+const dotsPath = path.resolve(`${templatingPath}/..`)
+const outputPath = path.resolve(`${templatingPath}/../output`)
+const watching = process.argv[2] == 'watch'
 
 function getCommonPath (pattern) {
   const segments = pattern.split(/[\\/]/)
@@ -18,8 +25,8 @@ function getCommonPath (pattern) {
   return commonPath
 }
 
-function writeFile (file, to, filter) {
-  const destinationFile = to
+function writeFile (file, toFile, filter) {
+  const destinationFile = toFile
   const destinationFileFolder = path.dirname(destinationFile)
 
   if (!fs.existsSync(destinationFileFolder)) {
@@ -36,8 +43,8 @@ function writeFile (file, to, filter) {
     ? fs.readFileSync(destinationFile, 'utf8')
     : {}
 
-  delete require.cache[require.resolve('./theme.js')]
-  const template = require('./theme.js')
+  delete require.cache[require.resolve(themeFile)]
+  const template = require(themeFile)
 
   const newContent = templater(content, template)
 
@@ -69,12 +76,9 @@ class Postponed {
   }
 }
 
-const dotsMatch = '**/*.dots.js'
-const themeFile = 'templating/theme.js'
-const watching = process.argv[2] == 'watch'
-
 const dotBlock = new DotBlock().on({
   match: dotsMatch,
+  path: dotsPath,
   init: (dot) => {
     delete require.cache[require.resolve(path.resolve(dot))]
     const dotData = require(path.resolve(dot))
@@ -83,7 +87,7 @@ const dotBlock = new DotBlock().on({
     const postponed = new Postponed(() => {
       try {
         console.log(`Applying: ${dot}`)
-        dotData.apply(files)
+        dotData.apply(dotsPath, files)
       } catch (e) {
         console.log(`Failed to build ${dot}, reason: ${e}`)
       }
@@ -92,22 +96,23 @@ const dotBlock = new DotBlock().on({
 
     const action = ({ file, match }) => {
       const filter = match.filter || (() => true)
+      const relativeFile = file.replace(dotsPath + '/', '')
       const to = path.join(
-        'output',
+        outputPath,
         match.to
-          ? file.replace(
+          ? relativeFile.replace(
             new RegExp(`^${getCommonPath(match.pattern)}/`),
               `${match.to}/`
           )
-          : file
+          : relativeFile
       )
       let output
 
       try {
         output = writeFile(file, to, filter)
       } catch (e) {
-        execSync(`notify-send -t 5000 -a "Templating" -u critical "${file}"`)
         console.log(`Templating failed on file ${file}, reason: ${e}`)
+        exec(`notify-send -t 5000 -a "Templating" -u critical "${file}"`)
       }
 
       if (!output || !dotData.apply) {
@@ -124,22 +129,26 @@ const dotBlock = new DotBlock().on({
 
     const dotBlock = new DotBlock()
 
-    dotBlock.on({
-      match: themeFile,
-      ignore: dotsMatch,
-      init: (file) => file,
-      action: () => {
-        for (const match of dotData.match) {
-          dotBlock
-            .files(match.pattern)
-            .forEach((file) => action({ file, match }))
+    if (watching) {
+      dotBlock.on({
+        match: themeFile,
+        path: themeFile,
+        ignore: dotsMatch,
+        init: (file) => file,
+        action: () => {
+          for (const match of dotData.match) {
+            dotBlock
+              .files(match.pattern)
+              .forEach((file) => action({ file, match }))
+          }
         }
-      }
-    })
+      })
+    }
 
     for (const match of dotData.match) {
       dotBlock.on({
         match: match.pattern,
+        path: dotsPath,
         ignore: dotsMatch,
         init: (file) => ({ file, match }),
         ignore_unchanged: true,
@@ -150,11 +159,11 @@ const dotBlock = new DotBlock().on({
     return dotBlock
   },
   action: (context) => {
-    if (watching) context.run().watch()
+    if (watching) context.watch()
     else context.run()
   },
   reset: (context) => context.stopWatch()
 })
 
-if (watching) dotBlock.run().watch()
+if (watching) dotBlock.watch()
 else dotBlock.run()

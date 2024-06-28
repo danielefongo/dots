@@ -1,8 +1,14 @@
 const glob = require('glob')
 const pm = require('picomatch')
-const watch = require('node-watch')
+const path = require('path')
+const chokidar = require('chokidar')
 const { createHash } = require('crypto')
 const { readFileSync } = require('fs')
+const event = {
+  ADD: 'add',
+  REMOVE: 'remove',
+  CHANGE: 'change'
+}
 
 function md5 (file) {
   const buff = readFileSync(file)
@@ -12,7 +18,7 @@ function md5 (file) {
 module.exports = class DotBlock {
   constructor () {
     this.matches = {}
-    this.matchOpts = (data) => ({ dot: true, ignore: data.ignore, nodir: true })
+    this.matchOpts = (data) => ({ dot: true, ignore: data.ignore, cwd: this.getBasePath(data.match), nodir: true })
   }
 
   on (matchAction) {
@@ -24,12 +30,13 @@ module.exports = class DotBlock {
   files (match) {
     return Object.entries(this.matches)
       .filter(([it, _]) => it == match)
-      .flatMap(([match, data]) => glob.globSync(match, this.matchOpts(data)))
+      .flatMap(([match, data]) => glob.globSync(match, this.matchOpts(data)).map((relativeFile) => this.toAbsolute(relativeFile, match)))
   }
 
   run () {
     Object.entries(this.matches).forEach(([match, data]) => {
-      glob.globSync(match, this.matchOpts(data)).forEach((file) => {
+      glob.globSync(match, this.matchOpts(data)).forEach((relativeFile) => {
+        const file = this.toAbsolute(relativeFile, match)
         this._fileReset(match, file)
         this._fileAction(match, file)
       })
@@ -40,15 +47,21 @@ module.exports = class DotBlock {
 
   watch () {
     Object.entries(this.matches).forEach(([match, data]) => {
-      this.matches[match].watcher = watch(
-        './',
-        { filter: pm(match, this.matchOpts(data)), recursive: true },
-        (evt, file) => {
+      const watchPath = this.getBasePath(match)
+      const matcher = pm(match, this.matchOpts(data))
+      const action = (evt) => {
+        return (file) => {
+          const relativeFile = this.toRelative(file, match)
+          if (!matcher(relativeFile)) return
           this._fileReset(match, file)
-          if (evt == 'remove') return
+          if (evt == event.REMOVE) return
           this._fileAction(match, file)
         }
-      )
+      }
+      this.matches[match].watcher = chokidar.watch(watchPath)
+        .on('add', action(event.ADD))
+        .on('unlink', action(event.REMOVE))
+        .on('change', action(event.CHANGE))
     })
 
     return this
@@ -60,6 +73,19 @@ module.exports = class DotBlock {
     })
 
     return this
+  }
+
+  getBasePath (match) {
+    const data = this.matches[match]
+    return data.path || process.cwd()
+  }
+
+  toAbsolute (relativeFile, match) {
+    return path.join(this.getBasePath(match), relativeFile)
+  }
+
+  toRelative (file, match) {
+    return file.replace(this.getBasePath(match) + '/', '')
   }
 
   _fileAction (match, file) {
