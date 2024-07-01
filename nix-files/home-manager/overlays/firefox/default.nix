@@ -8,9 +8,39 @@ let
 
   configJs = ./config.js;
   defaultPrefs = ./defaults/pref;
+
+  mkItem = (profile: prev.makeDesktopItem ({
+    name = prev.lib.concatStringsSep "-" [ launcherName profile ];
+    exec = "${launcherName} -P ${profile} --name ${wmClass} %U";
+    inherit icon;
+    desktopName = prev.lib.concatStringsSep " " [ desktopName profile ];
+    startupNotify = true;
+    startupWMClass = wmClass;
+    terminal = false;
+    genericName = "Web Browser";
+    categories = [ "Network" "WebBrowser" ];
+    mimeTypes = [
+      "text/html"
+      "text/xml"
+      "application/xhtml+xml"
+      "application/vnd.mozilla.xul+xml"
+      "x-scheme-handler/http"
+      "x-scheme-handler/https"
+    ];
+    actions = {
+      new-private-window = {
+        name = "New Private Window";
+        exec = "${launcherName} --private-window %U";
+      };
+      profile-manager-window = {
+        name = "Profile Manager";
+        exec = "${launcherName} --ProfileManager";
+      };
+    };
+  }));
 in
 {
-  firefoxWithUserJS = prev.stdenv.mkDerivation rec {
+  firefoxWithUserJS = (profiles: prev.stdenv.mkDerivation rec {
     pname = "Firefox";
     version = "127.0";
 
@@ -23,35 +53,7 @@ in
     buildInputs = [ ];
     sourceRoot = ".";
 
-    desktopItem = prev.makeDesktopItem ({
-      name = launcherName;
-      exec = "${launcherName} -P default --name ${wmClass} %U";
-      inherit icon;
-      inherit desktopName;
-      startupNotify = true;
-      startupWMClass = wmClass;
-      terminal = false;
-      genericName = "Web Browser";
-      categories = [ "Network" "WebBrowser" ];
-      mimeTypes = [
-        "text/html"
-        "text/xml"
-        "application/xhtml+xml"
-        "application/vnd.mozilla.xul+xml"
-        "x-scheme-handler/http"
-        "x-scheme-handler/https"
-      ];
-      actions = {
-        new-private-window = {
-          name = "New Private Window";
-          exec = "${launcherName} --private-window %U";
-        };
-        profile-manager-window = {
-          name = "Profile Manager";
-          exec = "${launcherName} --ProfileManager";
-        };
-      };
-    });
+    desktopItems = map mkItem profiles;
 
     phases = [ "unpackPhase" "installPhase" ];
 
@@ -70,12 +72,14 @@ in
       mkdir -p $out/share/icons/hicolor/128x128/apps
       cp browser/chrome/icons/default/default128.png $out/share/icons/hicolor/128x128/apps/firefox.png
 
-      install -D -t $out/share/applications $desktopItem/share/applications/*
+      for desktopItem in ${prev.lib.concatStringsSep " " desktopItems}; do
+        install -D -t $out/share/applications $desktopItem/share/applications/*
+      done
 
       cp ${configJs} $out/lib/firefox/config.js
       cp -f ${defaultPrefs}/* $out/lib/firefox/defaults/pref
     '';
 
     SNAP_NAME = "firefox";
-  };
+  });
 }

@@ -4,7 +4,7 @@
   imports = [
     ./modules/alacritty.nix
     ./modules/dunst.nix
-    ./modules/firefox
+    ./modules/firefox.nix
     ./modules/fonts.nix
     ./modules/git.nix
     ./modules/gtk.nix
