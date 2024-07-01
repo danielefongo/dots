@@ -13,6 +13,7 @@
     ./modules/polybar.nix
     ./modules/redshift.nix
     ./modules/shell.nix
+    ./modules/theme.nix
     ./modules/wallpaper.nix
   ];
 
