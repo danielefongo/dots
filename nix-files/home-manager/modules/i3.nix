@@ -6,6 +6,5 @@
     i3lock-fancy-rapid
     rofi
     flameshot
-    feh
   ];
 }
