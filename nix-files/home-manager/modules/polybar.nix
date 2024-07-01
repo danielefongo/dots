@@ -1,4 +1,4 @@
-{ pkgs, home, ... }:
+{ pkgs, home, config, dots_path, ... }:
 
 let
   scriptToBinary = import ../helpers/as-binary.nix { inherit pkgs; };
@@ -7,6 +7,8 @@ in
   home.packages = with pkgs; [
     polybarFull
   ];
+
+  xdg.configFile."polybar".source = config.lib.file.mkOutOfStoreSymlink "${dots_path}/output/polybar";
 
   systemd.user.services = {
     polybar = {
