@@ -13,6 +13,7 @@
     ./modules/polybar.nix
     ./modules/redshift.nix
     ./modules/shell.nix
+    ./modules/wallpaper.nix
   ];
 
   home.username = user;
