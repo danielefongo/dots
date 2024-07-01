@@ -1,0 +1,12 @@
+#!/bin/bash
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
+PATH="$PATH:$HOME/.nix-profile/bin"
+
+if [ "$1" == '-d' ]; then
+	sudo rm -rf "$SCRIPT_DIR/../../output"
+	echo "Deleted output folder"
+else
+	theme
+	echo "Created output folder"
+fi
