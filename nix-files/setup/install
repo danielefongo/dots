@@ -11,3 +11,4 @@ cd $SCRIPT_DIR
 ./install_xsessions_desktop $OPTION
 ./set_pam $OPTION
 ./set_zsh $OPTION
+./build_output_folder $OPTION
