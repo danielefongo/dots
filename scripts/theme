@@ -1,6 +1,5 @@
 #!/bin/env zsh
 
 DOTS_PATH="$(dirname "$(readlink -f "$0")")/.."
-cd $DOTS_PATH
 
-$(mise where nodejs)/bin/node "templating/index.js" $1
+$(mise where nodejs)/bin/node "$DOTS_PATH/templating/index.js" $1

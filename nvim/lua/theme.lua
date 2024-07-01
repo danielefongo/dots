@@ -155,6 +155,13 @@ local themer = {
         MicroscopeColor1 = { fg = colors.red },
         MicroscopeColor2 = { fg = colors.green },
       },
+      git_signs = {
+        GitSignsAdd = { fg = colors.green },
+        GitSignsChange = { fg = colors.yellow },
+        GitSignsChangedelete = { fg = colors.yellow },
+        GitSignsDelete = { fg = colors.red },
+        GitSignsTopdelete = { fg = colors.red },
+      },
     },
   },
 }

@@ -4,7 +4,7 @@ const lockFilename = path.join(path.resolve(__dirname), "lazy-lock.json");
 
 module.exports = {
   match: [{ pattern: "nvim/**/*.lua" }],
-  apply: () => {
-    exec(`ln -sf ${lockFilename} ./output/nvim/lazy-lock.json`);
+  apply: (path) => {
+    exec(`ln -sf ${lockFilename} ${path}/output/nvim/lazy-lock.json`);
   },
 };
