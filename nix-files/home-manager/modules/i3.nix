@@ -1,4 +1,4 @@
-{ pkgs, home, ... }:
+{ pkgs, home, config, dots_path, ... }:
 
 {
   home.packages = with pkgs; [
@@ -7,4 +7,7 @@
     rofi
     flameshot
   ];
+
+  xdg.configFile."i3".source = config.lib.file.mkOutOfStoreSymlink "${dots_path}/output/i3";
+  xdg.configFile."rofi".source = config.lib.file.mkOutOfStoreSymlink "${dots_path}/output/rofi";
 }

@@ -1,9 +1,11 @@
-{ pkgs, home, ... }:
+{ pkgs, home, config, dots_path, ... }:
 
 {
   home.packages = with pkgs; [
     redshift
   ];
+
+  xdg.configFile."redshift.conf".source = config.lib.file.mkOutOfStoreSymlink "${dots_path}/output/redshift/redshift.conf";
 
   systemd.user.services = {
     redshift = {
