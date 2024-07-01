@@ -1,4 +1,4 @@
-{ pkgs, home, ... }:
+{ pkgs, home, dots_path, ... }:
 
 let
   wallpaper_yarn = pkgs.mkYarnPackage {
@@ -15,11 +15,28 @@ let
   };
 
   wallpaper = pkgs.writeShellScriptBin "wallpaper" ''
-    ${wallpaper_yarn}/bin/wallpaper "$@"
+    SETTINGS=${dots_path}/output/wallpaper/settings.js
+    DESTINATION=${dots_path}/output/wallpaper/background.svg
+    ${wallpaper_yarn}/bin/wallpaper "$SETTINGS" "$DESTINATION"
+
+    ${pkgs.feh}/bin/feh --bg-scale "$DESTINATION"
   '';
 in
 {
   home.packages = with pkgs; [
     wallpaper
   ];
+
+  systemd.user.services = {
+    wallpaper = {
+      Unit = {
+        Description = "Wallpaper";
+      };
+
+      Service = {
+        Type = "simple";
+        ExecStart = "wallpaper";
+      };
+    };
+  };
 }
