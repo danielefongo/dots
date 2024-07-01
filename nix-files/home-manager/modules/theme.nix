@@ -18,4 +18,17 @@ in
   home.packages = with pkgs; [
     theme
   ];
+
+  systemd.user.services = {
+    theme = {
+      Unit = {
+        Description = "Theme";
+      };
+
+      Service = {
+        ExecStart = "theme watch";
+        Restart = "always";
+      };
+    };
+  };
 }
