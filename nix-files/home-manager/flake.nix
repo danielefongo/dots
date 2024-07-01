@@ -13,19 +13,19 @@
   outputs = { nixpkgs, home-manager, nixgl, ... }@attrs:
     let
       system = "x86_64-linux";
+      user = "danielefongo";
+      home = "/home/danielefongo";
+      dots_path = "/home/danielefongo/dots";
       pkgs = nixpkgs.legacyPackages.${system} // {
         config.allowUnfree = true;
         overlays = [
           (self: super: {
-            rebuild = super.callPackage ./pkgs/rebuild.nix { };
+            rebuild = super.callPackage ./pkgs/rebuild.nix { inherit dots_path; };
           })
           nixgl.overlay
           (import ./overlays/firefox)
         ];
       };
-      user = "danielefongo";
-      home = "/home/danielefongo";
-      dots_output = "/home/danielefongo/dots/output";
     in
     {
       formatter.x86_64-linux = pkgs.nixpkgs-fmt;
@@ -36,7 +36,7 @@
         extraSpecialArgs = {
           inherit user;
           inherit home;
-          inherit dots_output;
+          inherit dots_path;
         };
 
         modules = [
