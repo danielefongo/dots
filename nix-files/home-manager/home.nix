@@ -9,6 +9,7 @@
     ./modules/git.nix
     ./modules/gtk.nix
     ./modules/i3.nix
+    ./modules/mise.nix
     ./modules/neovim.nix
     ./modules/picom.nix
     ./modules/polybar.nix

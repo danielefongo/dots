@@ -24,7 +24,7 @@ antigen bundle danielefongo/shapeshift
 antigen apply
 
 # mise (asdf alternative)
-eval "$(~/.local/bin/mise activate zsh)"
+eval "$(mise activate zsh)"
 export PATH="$HOME/.local/share/mise/shims:$PATH"
 
 # history
