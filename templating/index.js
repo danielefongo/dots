@@ -1,3 +1,5 @@
+#!/bin/env node
+
 const fs = require('fs')
 const path = require('path')
 const { exec } = require('child_process')
@@ -5,12 +7,11 @@ const { exec } = require('child_process')
 const templater = require('./template.js')
 const DotBlock = require('./dotblock.js')
 
-const templatingPath = path.dirname(require.main.filename)
 const dotsMatch = '**/*.dots.js'
-const dotsPath = path.resolve(`${templatingPath}/..`)
-const themeFile = path.resolve(`${dotsPath}/theme.js`)
-const outputPath = path.resolve(`${templatingPath}/../output`)
 const watching = process.argv[2] == 'watch'
+const themeFile = path.resolve(process.argv[3])
+const dotsPath = path.resolve(process.argv[4])
+const outputPath = path.resolve(process.argv[5])
 
 function getCommonPath (pattern) {
   const segments = pattern.split(/[\\/]/)
