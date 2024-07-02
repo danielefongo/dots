@@ -1,6 +1,0 @@
-[Service]
-Type=simple
-ExecStart=%h/.local/bin/wallpaper_set
-
-[Unit]
-Description=Set theme

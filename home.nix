@@ -3,6 +3,7 @@
 {
   imports = [
     ./theme
+    ./wallpaper
   ];
 
   home.username = user;

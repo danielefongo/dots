@@ -6,7 +6,4 @@ $DOTS_PATH/setup/install
 
 export PATH="$PATH:$HOME/.nix-profile/bin"
 
-npm i -g yarn
-yarn --cwd $DOTS_PATH/wallpaper
-
 theme
