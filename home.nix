@@ -7,6 +7,7 @@
     ./dunst
     ./firefox
     ./git
+    ./gtk
     ./less
     ./nvim
     ./picom
