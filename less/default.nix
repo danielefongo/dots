@@ -5,5 +5,5 @@
     less
   ];
 
-  home.file.".lesskey".source = config.lib.file.mkOutOfStoreSymlink "${dots_path}/output/.lesskey";
+  home.file.".lesskey".source = config.lib.file.mkOutOfStoreSymlink "${dots_path}/output/less/.lesskey";
 }

@@ -6,6 +6,7 @@
     ./dunst
     ./btop
     ./git
+    ./less
     ./nvim
     ./shell-utils
     ./theme
