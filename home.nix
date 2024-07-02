@@ -3,12 +3,13 @@
 {
   imports = [
     ./alacritty
-    ./dunst
     ./btop
+    ./dunst
     ./git
     ./less
     ./nvim
     ./shell-utils
+    ./polybar
     ./theme
     ./tig
     ./tmux

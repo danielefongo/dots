@@ -1,7 +1,0 @@
-[Service]
-ExecStart=bash %E/polybar/launch.sh
-Restart=on-failure
-
-[Unit]
-Description=Polybar
-PartOf=graphical-session.target
