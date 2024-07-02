@@ -12,12 +12,13 @@
     ./nvim
     ./picom
     ./polybar
+    ./redshift
     ./shell-utils
     ./theme
     ./tig
-    ./redshift
     ./tmux
     ./wallpaper
+    ./xsettingsd
   ];
 
   home.username = user;
