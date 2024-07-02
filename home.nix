@@ -13,6 +13,7 @@
     ./picom
     ./polybar
     ./redshift
+    ./rofi
     ./shell-utils
     ./theme
     ./tig
