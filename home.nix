@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./btop
     ./git
     ./nvim
     ./theme
