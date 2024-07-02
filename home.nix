@@ -5,6 +5,7 @@
     ./btop
     ./git
     ./nvim
+    ./shell-utils
     ./theme
     ./tig
     ./tmux
