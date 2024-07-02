@@ -7,9 +7,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixgl.url = "github:nix-community/nixGL";
   };
 
-  outputs = { nixpkgs, home-manager, ... }@attrs:
+  outputs = { nixpkgs, home-manager, nixgl, ... }@attrs:
     let
       system = "x86_64-linux";
       user = "danielefongo";
@@ -17,7 +18,9 @@
       dots_path = "/home/danielefongo/dotfiles/dots";
       pkgs = nixpkgs.legacyPackages.${system} // {
         config.allowUnfree = true;
-        overlays = [ ];
+        overlays = [
+          nixgl.overlay
+        ];
       };
     in
     {
