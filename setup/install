@@ -10,3 +10,4 @@ cd $SCRIPT_DIR
 export PATH="$PATH:$HOME/.nix-profile/bin"
 
 ./_install_nix $OPTION
+./_build_output_folder $OPTION

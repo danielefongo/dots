@@ -1,7 +1,9 @@
 { config, pkgs, user, home, ... }:
 
 {
-  imports = [ ];
+  imports = [
+    ./theme
+  ];
 
   home.username = user;
   home.homeDirectory = home;

@@ -1,6 +1,0 @@
-[Service]
-ExecStart=%h/.local/bin/theme watch
-Restart=always
-
-[Unit]
-Description=Theme hot reload
