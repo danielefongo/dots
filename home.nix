@@ -5,6 +5,7 @@
     ./alacritty
     ./btop
     ./dunst
+    ./firefox
     ./git
     ./less
     ./nvim
