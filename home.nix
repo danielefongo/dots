@@ -3,6 +3,7 @@
 {
   imports = [
     ./alacritty
+    ./dunst
     ./btop
     ./git
     ./nvim
