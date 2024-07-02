@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./git
     ./theme
     ./wallpaper
   ];
