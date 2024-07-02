@@ -7,6 +7,7 @@
     ./nvim
     ./theme
     ./tig
+    ./tmux
     ./wallpaper
   ];
 
