@@ -8,8 +8,9 @@
     ./git
     ./less
     ./nvim
-    ./shell-utils
+    ./picom
     ./polybar
+    ./shell-utils
     ./theme
     ./tig
     ./tmux
