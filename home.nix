@@ -3,6 +3,7 @@
 {
   imports = [
     ./git
+    ./nvim
     ./theme
     ./tig
     ./wallpaper

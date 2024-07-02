@@ -201,6 +201,7 @@ return {
           json = { "jq" },
           lua = { "stylua" },
           markdown = { "markdownlint" },
+          nix = { "nixpkgs_fmt" },
           python = { "black" },
           rust = { "rustfmt" },
           scss = { "prettier" },
