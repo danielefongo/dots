@@ -13,6 +13,7 @@
     ./shell-utils
     ./theme
     ./tig
+    ./redshift
     ./tmux
     ./wallpaper
   ];
