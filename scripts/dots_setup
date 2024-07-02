@@ -3,7 +3,7 @@
 DOTS_PATH="$(dirname "$(readlink -f "$0")")/.."
 
 npm i -g yarn
-yarn --cwd $DOTS_PATH/templating
+yarn --cwd $DOTS_PATH/theme
 yarn --cwd $DOTS_PATH/wallpaper
 
 $DOTS_PATH/scripts/theme
