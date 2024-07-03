@@ -5,6 +5,7 @@
     ./alacritty
     ./btop
     ./dunst
+    ./docker
     ./firefox
     ./flameshot
     ./fonts
