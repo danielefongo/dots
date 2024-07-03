@@ -18,11 +18,12 @@ in
     dunst = {
       Unit = {
         Description = "Dunst";
+        PartOf = "graphical-session.target";
       };
 
       Service = {
         ExecStart = "${dunstWrapper}/bin/dunst";
-        Restart = "always";
+        Restart = "on-failure";
       };
     };
   };

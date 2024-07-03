@@ -15,11 +15,12 @@ in
     picom = {
       Unit = {
         Description = "Picom";
+        PartOf = "graphical-session.target";
       };
 
       Service = {
         ExecStart = "${picom}/bin/picom";
-        Restart = "always";
+        Restart = "on-failure";
       };
     };
   };

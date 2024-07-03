@@ -14,6 +14,7 @@ in
     polybar = {
       Unit = {
         Description = "Polybar";
+        PartOf = "graphical-session.target";
       };
 
       Service = {

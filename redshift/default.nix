@@ -11,11 +11,12 @@
     redshift = {
       Unit = {
         Description = "Redshift";
+        PartOf = "graphical-session.target";
       };
 
       Service = {
         ExecStart = "${pkgs.redshift}/bin/redshift";
-        Restart = "always";
+        Restart = "on-failure";
       };
     };
   };

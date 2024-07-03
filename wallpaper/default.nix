@@ -32,6 +32,7 @@ in
     wallpaper = {
       Unit = {
         Description = "Wallpaper";
+        PartOf = "graphical-session.target";
       };
 
       Service = {
