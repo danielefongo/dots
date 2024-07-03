@@ -27,8 +27,10 @@ antigen bundle danielefongo/shapeshift
 antigen apply
 
 # mise (asdf alternative)
-eval "$(mise activate zsh)"
-export PATH="$HOME/.local/share/mise/shims:$PATH"
+if [ ! -f $HOME/.local/bin/mise ]; then
+  (curl -s https://mise.jdx.dev/install.sh | sh) > /dev/null
+fi
+eval "$($HOME/.local/bin/mise activate zsh)"
 
 # history
 HISTFILE=~/.zsh_history
