@@ -6,5 +6,6 @@
     fzf
     ripgrep
     autojump
+    tldr
   ];
 }
