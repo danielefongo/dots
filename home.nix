@@ -17,6 +17,7 @@
     ./polybar
     ./redshift
     ./rofi
+    ./scripts
     ./shell-utils
     ./theme
     ./tig
