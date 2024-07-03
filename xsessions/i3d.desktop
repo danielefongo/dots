@@ -1,8 +1,0 @@
-[Desktop Entry]
-Name=i3d
-Comment=i3 with systemd
-Exec=desktop-init
-Type=Application
-X-LightDM-DesktopName=i3d
-DesktopNames=i3d
-Keywords=tiling;wm;windowmanager;window;manager;
