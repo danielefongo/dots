@@ -16,13 +16,13 @@ in
       StartWithLastProfile=1
 
       [Profile0]
-      Default=1
+      Default=0
       IsRelative=1
       Name=personal
       Path=personal
 
       [Profile1]
-      Default=0
+      Default=1
       IsRelative=1
       Name=work
       Path=work
