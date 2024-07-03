@@ -1,9 +1,0 @@
-#!/bin/env bash
-
-DOTS_PATH="$(dirname "$(readlink -f "$0")")/.."
-
-$DOTS_PATH/setup/install
-
-export PATH="$PATH:$HOME/.nix-profile/bin"
-
-theme
