@@ -19,7 +19,7 @@ configuration {
 }
 
 {% if zen %}
-@theme "zen"
+@theme "zen.rasi"
 {% else %}
-@theme "theme"
+@theme "theme.rasi"
 {% endif %}
