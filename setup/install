@@ -13,4 +13,5 @@ export PATH="$PATH:$HOME/.nix-profile/bin"
 ./_run_home_manager $OPTION
 ./_install_xsessions_desktop $OPTION
 ./_set_pam $OPTION
+./_set_zsh $OPTION
 ./_build_output_folder $OPTION

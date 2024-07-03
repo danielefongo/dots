@@ -25,6 +25,7 @@
     ./wallpaper
     ./xbindkeys
     ./xsettingsd
+    ./zsh
   ];
 
   home.username = user;
