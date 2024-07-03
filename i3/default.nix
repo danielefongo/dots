@@ -1,6 +1,8 @@
 { pkgs, home, config, dots_path, ... }:
 
 {
+  imports = [ ./scripts.nix ];
+
   home.packages = with pkgs; [
     i3
     i3lock-fancy-rapid
