@@ -5,6 +5,8 @@
     flameshot
   ];
 
+  xdg.configFile."flameshot".source = config.lib.file.mkOutOfStoreSymlink "${dots_path}/output/flameshot";
+
   systemd.user.services = {
     flameshot = {
       Unit = {
