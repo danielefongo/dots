@@ -35,8 +35,8 @@ smart_gaps off
 font pango:{{ font }} {{ fontSize }}
 floating_modifier $mod
 
-# xdg autostart
-exec_always --no-startup-id exec systemctl --user start --no-block i3-session.target
+# autostart
+exec --no-startup-id exec systemctl --user start --no-block i3-session.target
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id nm-applet
 
