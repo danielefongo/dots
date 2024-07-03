@@ -6,7 +6,7 @@ module.exports = {
   data: {
     contrast: 0,
     zen,
-    font: "JetBrainsMono NF",
+    font: "JetBrainsMono Nerd Font",
     gap: scale(0),
     round: scale(0),
     border: scale(4),

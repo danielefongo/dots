@@ -7,6 +7,7 @@
     ./dunst
     ./firefox
     ./flameshot
+    ./fonts
     ./git
     ./gtk
     ./i3
