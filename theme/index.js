@@ -134,7 +134,6 @@ const dotBlock = new DotBlock().on({
       dotBlock.on({
         match: themeFile,
         path: themeFile,
-        ignore: dotsMatch,
         init: (file) => file,
         action: () => {
           for (const match of dotData.match) {
@@ -150,7 +149,7 @@ const dotBlock = new DotBlock().on({
       dotBlock.on({
         match: match.pattern,
         path: dotsPath,
-        ignore: dotsMatch,
+        ignore: [dotsMatch, "**/*nix"],
         init: (file) => ({ file, match }),
         ignore_unchanged: true,
         action
