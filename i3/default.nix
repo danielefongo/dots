@@ -36,6 +36,7 @@
           "redshift.service"
           "wallpaper.service"
           "xsettingsd.service"
+          "xbindkeys.service"
         ];
       };
     };

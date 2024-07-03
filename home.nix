@@ -24,6 +24,7 @@
     ./tig
     ./tmux
     ./wallpaper
+    ./xbindkeys
     ./xsettingsd
   ];
 

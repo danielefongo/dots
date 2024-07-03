@@ -1,5 +1,3 @@
-# vim:ft=conf
-
 "playerctl play-pause"
     XF86AudioPlay
 
