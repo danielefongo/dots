@@ -1,9 +1,0 @@
-[Unit]
-Description=i3 window manager
-After=xsession.target
-Wants=xsession.target
-
-[Service]
-Type=notify
-ExecStart=i3
-ExecStopPost=systemctl --user stop --no-block graphical-session.target

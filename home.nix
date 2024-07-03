@@ -8,6 +8,7 @@
     ./firefox
     ./git
     ./gtk
+    ./i3
     ./less
     ./nvim
     ./picom

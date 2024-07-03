@@ -11,4 +11,5 @@ export PATH="$PATH:$HOME/.nix-profile/bin"
 
 ./_install_nix $OPTION
 ./_run_home_manager $OPTION
+./_set_pam $OPTION
 ./_build_output_folder $OPTION
