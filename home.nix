@@ -6,6 +6,7 @@
     ./btop
     ./dunst
     ./firefox
+    ./flameshot
     ./git
     ./gtk
     ./i3

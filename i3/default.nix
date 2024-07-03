@@ -4,7 +4,6 @@
   home.packages = with pkgs; [
     i3
     i3lock-fancy-rapid
-    flameshot
   ];
 
   xdg.configFile."i3".source = config.lib.file.mkOutOfStoreSymlink "${dots_path}/output/i3";
@@ -31,6 +30,7 @@
         BindsTo = "graphical-session.target";
         Wants = [
           "dunst.service"
+          "flameshot.service"
           "picom.service"
           "polybar.service"
           "redshift.service"
