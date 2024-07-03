@@ -12,6 +12,7 @@
     ./gtk
     ./i3
     ./less
+    ./mise
     ./nvim
     ./picom
     ./polybar
