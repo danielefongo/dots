@@ -3,6 +3,7 @@
 {
   imports = [
     ./alacritty
+    ./apps
     ./btop
     ./dunst
     ./docker
