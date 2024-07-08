@@ -6,7 +6,6 @@
     slack
     spotify
     telegram-desktop
-    vesktop
     xfce.thunar
   ];
 }
