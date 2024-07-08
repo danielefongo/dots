@@ -1,7 +1,7 @@
 { pkgs, dots_path, config, home, ... }:
 
 let
-  wrap-nixgl = pkgs.callPackage ../helpers/wrap-nixgl.nix { };
+  wrap-nixgl = pkgs.callPackage ../../helpers/wrap-nixgl.nix { };
 in
 {
   home.packages = with pkgs; [

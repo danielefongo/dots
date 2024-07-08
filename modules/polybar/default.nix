@@ -1,7 +1,7 @@
 { pkgs, home, config, dots_path, ... }:
 
 let
-  scriptToBinary = import ../helpers/as-binary.nix { inherit pkgs; };
+  scriptToBinary = import ../../helpers/as-binary.nix { inherit pkgs; };
 in
 {
   home.packages = with pkgs; [
