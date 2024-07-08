@@ -3,7 +3,8 @@ const { execSync, exec } = require("child_process");
 module.exports = {
   match: [
     {
-      pattern: "gtk/**/*",
+      pattern: "**/*",
+      to: "gtk",
       filter: (file) => {
         return file.includes(".css") || file.includes(".scss");
       },

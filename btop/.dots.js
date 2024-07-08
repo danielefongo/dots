@@ -1,3 +1,3 @@
 module.exports = {
-  match: [{ pattern: "btop/**/*" }],
+  match: [{ pattern: "**/*", to: "btop" }],
 };

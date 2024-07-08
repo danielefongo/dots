@@ -1,3 +1,3 @@
 module.exports = {
-  match: [{ pattern: "less/.lesskey" }],
+  match: [{ pattern: ".lesskey", to: "less" }],
 };

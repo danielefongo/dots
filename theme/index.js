@@ -7,24 +7,11 @@ const { exec } = require('child_process')
 const templater = require('./template.js')
 const DotBlock = require('./dotblock.js')
 
-const dotsMatch = '**/*.dots.js'
 const watching = process.argv[2] == 'watch'
 const themeFile = path.resolve(process.argv[3])
 const dotsPath = path.resolve(process.argv[4])
 const outputPath = path.resolve(process.argv[5])
-
-function getCommonPath (pattern) {
-  const segments = pattern.split(/[\\/]/)
-  let commonPath = ''
-  for (let i = 0; i < segments.length; i++) {
-    const segment = segments[i]
-    if (segment.includes('*')) {
-      break
-    }
-    commonPath += (i > 0 ? path.sep : '') + segment
-  }
-  return commonPath
-}
+const dotsMatch = path.join(dotsPath, '**/*.dots.js')
 
 function writeFile (file, toFile, filter) {
   const destinationFile = toFile
@@ -81,6 +68,7 @@ const dotBlock = new DotBlock().on({
   match: dotsMatch,
   path: dotsPath,
   init: (dot) => {
+    const dotPath = path.dirname(path.resolve(dot))
     delete require.cache[require.resolve(path.resolve(dot))]
     const dotData = require(path.resolve(dot))
 
@@ -97,16 +85,8 @@ const dotBlock = new DotBlock().on({
 
     const action = ({ file, match }) => {
       const filter = match.filter || (() => true)
-      const relativeFile = file.replace(dotsPath + '/', '')
-      const to = path.join(
-        outputPath,
-        match.to
-          ? relativeFile.replace(
-            new RegExp(`^${getCommonPath(match.pattern)}/`),
-              `${match.to}/`
-          )
-          : relativeFile
-      )
+      const relativeFile = file.replace(dotPath + '/', '')
+      const to = path.join(match.to, relativeFile)
       let output
 
       try {
@@ -130,6 +110,17 @@ const dotBlock = new DotBlock().on({
 
     const dotBlock = new DotBlock()
 
+    for (let match of dotData.match) {
+      if (!path.isAbsolute(match.pattern)) {
+        match.pattern = path.join(dotPath, match.pattern)
+      }
+      if (!match.to) {
+        match.to = outputPath
+      } else if (!path.isAbsolute(match.to)) {
+        match.to = path.join(outputPath, match.to)
+      }
+    }
+
     if (watching) {
       dotBlock.on({
         match: themeFile,
@@ -148,7 +139,7 @@ const dotBlock = new DotBlock().on({
     for (const match of dotData.match) {
       dotBlock.on({
         match: match.pattern,
-        path: dotsPath,
+        path: dotPath,
         ignore: [dotsMatch, "**/*nix"],
         init: (file) => ({ file, match }),
         ignore_unchanged: true,

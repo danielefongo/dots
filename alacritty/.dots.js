@@ -1,3 +1,3 @@
 module.exports = {
-  match: [{ pattern: "alacritty/**/*" }],
+  match: [{ pattern: "**/*", to: "alacritty" }],
 };

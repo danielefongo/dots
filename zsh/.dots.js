@@ -1,3 +1,3 @@
 module.exports = {
-  match: [{ pattern: "zsh/.zshrc" }],
+  match: [{ pattern: ".zshrc", to: "zsh" }],
 };

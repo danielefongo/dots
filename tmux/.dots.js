@@ -1,3 +1,3 @@
 module.exports = {
-  match: [{ pattern: "tmux/**/*" }],
+  match: [{ pattern: "**/*", to: "tmux" }],
 };

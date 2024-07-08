@@ -30,13 +30,12 @@ module.exports = class DotBlock {
   files (match) {
     return Object.entries(this.matches)
       .filter(([it, _]) => it == match)
-      .flatMap(([match, data]) => glob.globSync(match, this.matchOpts(data)).map((relativeFile) => this.toAbsolute(relativeFile, match)))
+      .flatMap(([match, data]) => glob.globSync(match, this.matchOpts(data)))
   }
 
   run () {
     Object.entries(this.matches).forEach(([match, data]) => {
-      glob.globSync(match, this.matchOpts(data)).forEach((relativeFile) => {
-        const file = this.toAbsolute(relativeFile, match)
+      glob.globSync(match, this.matchOpts(data)).forEach((file) => {
         this._fileReset(match, file)
         this._fileAction(match, file)
       })
@@ -51,8 +50,7 @@ module.exports = class DotBlock {
       const matcher = pm(match, this.matchOpts(data))
       const action = (evt) => {
         return (file) => {
-          const relativeFile = this.toRelative(file, match)
-          if (!matcher(relativeFile)) return
+          if (!matcher(file)) return
           this._fileReset(match, file)
           if (evt == event.REMOVE) return
           this._fileAction(match, file)
@@ -78,14 +76,6 @@ module.exports = class DotBlock {
   getBasePath (match) {
     const data = this.matches[match]
     return data.path || process.cwd()
-  }
-
-  toAbsolute (relativeFile, match) {
-    return path.join(this.getBasePath(match), relativeFile)
-  }
-
-  toRelative (file, match) {
-    return file.replace(this.getBasePath(match) + '/', '')
   }
 
   _fileAction (match, file) {

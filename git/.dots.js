@@ -1,3 +1,3 @@
 module.exports = {
-  match: [{ pattern: "git/**/*" }],
+  match: [{ pattern: "**/*", to: "git" }],
 };

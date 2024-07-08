@@ -1,3 +1,3 @@
 module.exports = {
-  match: [{ pattern: "tig/**/*" }],
+  match: [{ pattern: "**/*", to: "tig" }],
 };

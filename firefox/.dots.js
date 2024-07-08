@@ -1,3 +1,6 @@
 module.exports = {
-  match: [{ pattern: "firefox/chrome/**/*" }, { pattern: "firefox/user.js" }],
+  match: [
+    { pattern: "chrome/**/*", to: "firefox" },
+    { pattern: "user.js", to: "firefox" },
+  ],
 };
