@@ -1,4 +1,4 @@
-{ pkgs, dots_path, config, home, ... }:
+{ pkgs, dots_path, config, ... }:
 
 {
   home.packages = with pkgs; [

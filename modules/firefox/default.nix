@@ -1,4 +1,4 @@
-{ pkgs, lib, home, config, dots_path, ... }:
+{ pkgs, lib, config, dots_path, ... }:
 
 let
   userJS = config.lib.file.mkOutOfStoreSymlink "${dots_path}/output/firefox/user.js";

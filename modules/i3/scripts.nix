@@ -1,4 +1,4 @@
-{ pkgs, config, dots_path, ... }:
+{ pkgs, ... }:
 
 let
   i3resize = pkgs.writeShellScriptBin "i3resize" ''

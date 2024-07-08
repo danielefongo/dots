@@ -1,4 +1,4 @@
-{ config, pkgs, user, home, ... }:
+{ pkgs, ... }:
 
 let
   dockerWrapper = pkgs.writeShellScriptBin "docker" ''

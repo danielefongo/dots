@@ -1,4 +1,4 @@
-{ pkgs, home, config, dots_path, ... }:
+{ ... }:
 
 {
   services.xsettingsd = {

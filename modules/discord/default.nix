@@ -1,4 +1,4 @@
-{ pkgs, home, config, dots_path, ... }:
+{ pkgs, config, dots_path, ... }:
 
 let
   vesktop = pkgs.writeShellScriptBin "vesktop" ''

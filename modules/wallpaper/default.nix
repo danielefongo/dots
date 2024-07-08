@@ -1,4 +1,4 @@
-{ pkgs, home, dots_path, ... }:
+{ pkgs, dots_path, ... }:
 
 let
   wallpaper_pkg = pkgs.mkYarnPackage {
