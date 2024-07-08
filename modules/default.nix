@@ -17,6 +17,7 @@
     ./nvim
     ./picom
     ./polybar
+    ./rebuild
     ./redshift
     ./rofi
     ./shell-utils
