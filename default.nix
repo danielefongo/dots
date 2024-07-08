@@ -1,0 +1,30 @@
+{
+  imports = [
+    ./alacritty
+    ./apps
+    ./btop
+    ./dunst
+    ./docker
+    ./firefox
+    ./flameshot
+    ./fonts
+    ./git
+    ./gtk
+    ./i3
+    ./less
+    ./mise
+    ./nvim
+    ./picom
+    ./polybar
+    ./redshift
+    ./rofi
+    ./shell-utils
+    ./theme
+    ./tig
+    ./tmux
+    ./wallpaper
+    ./xbindkeys
+    ./xsettingsd
+    ./zsh
+  ];
+}
