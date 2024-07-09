@@ -1,10 +1,6 @@
 { lib, pkgs, ... }:
 
 {
-  home.packages = with pkgs; [
-    nixpkgs-fmt
-  ];
-
   programs.neovim = {
     enable = true;
     viAlias = true;
@@ -15,6 +11,8 @@
       fzf
       ripgrep
       python3
+      nixpkgs-fmt
+      nixd
     ];
   };
 

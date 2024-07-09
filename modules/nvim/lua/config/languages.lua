@@ -1,6 +1,10 @@
 local function init_tool(name, on_end)
   on_end = on_end or function() end
 
+  if not name then
+    return on_end()
+  end
+
   local mr = require("mason-registry")
   mr.refresh()
 
@@ -135,6 +139,21 @@ return {
         },
         marksman = {
           mason_name = "marksman",
+        },
+        nixd = {
+          cmd = { "nixd" },
+          settings = {
+            nixd = {
+              nixpkgs = {
+                expr = 'import (builtins.getFlake ("git+file://" + toString ./.)).inputs.nixpkgs { }',
+              },
+              options = {
+                home_manager = {
+                  expr = '(builtins.getFlake ("git+file://" + toString ./.)).homeConfigurations."danielefongo".options',
+                },
+              },
+            },
+          },
         },
         pylsp = {
           mason_name = "python-lsp-server",
