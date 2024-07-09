@@ -1,8 +1,7 @@
-{ pkgs, config, dots_path, ... }:
+{ lib, pkgs, config, dots_path, ... }:
 
 let
-  wrap-nixgl = pkgs.callPackage ../../helpers/wrap-nixgl.nix { };
-  picom = (wrap-nixgl pkgs.picom);
+  picom = (lib.wrapNixGL pkgs.picom);
 in
 {
   home.packages = [

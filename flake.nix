@@ -10,24 +10,34 @@
     nixgl.url = "github:nix-community/nixGL";
   };
 
-  outputs = { nixpkgs, home-manager, nixgl, ... }@attrs:
+  outputs = { nixpkgs, nixgl, home-manager, ... } @inputs:
     let
       system = "x86_64-linux";
       user = "danielefongo";
       home = "/home/danielefongo";
       dots_path = "/home/danielefongo/dotfiles/dots";
-      pkgs = nixpkgs.legacyPackages.${system} // {
-        config.allowUnfree = true;
-        overlays = [
-          nixgl.overlay
-        ];
-      };
+
+      pkgs = (nixpkgs.legacyPackages.${system}).extend (nixpkgs.lib.composeManyExtensions [
+        nixgl.overlay
+        (self: super: { lib = super.lib // home-manager.lib; })
+        (self: super: {
+          config = super.config // {
+            allowUnfree = true;
+            allowAliases = true;
+          };
+        })
+      ]);
+
+      lib = (import ./lib {
+        inherit system inputs pkgs;
+      });
     in
     {
       formatter.x86_64-linux = pkgs.nixpkgs-fmt;
 
-      homeConfigurations."${user}" = home-manager.lib.homeManagerConfiguration {
+      homeConfigurations."${user}" = pkgs.lib.homeManagerConfiguration {
         inherit pkgs;
+        inherit lib;
 
         extraSpecialArgs = {
           inherit user;

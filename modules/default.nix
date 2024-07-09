@@ -1,32 +1,4 @@
+{ lib, ... }:
 {
-  imports = [
-    ./alacritty
-    ./apps
-    ./btop
-    ./dunst
-    ./docker
-    ./discord
-    ./firefox
-    ./flameshot
-    ./fonts
-    ./git
-    ./gtk
-    ./i3
-    ./less
-    ./mise
-    ./nvim
-    ./picom
-    ./polybar
-    ./rebuild
-    ./redshift
-    ./rofi
-    ./shell-utils
-    ./theme
-    ./tig
-    ./tmux
-    ./wallpaper
-    ./xbindkeys
-    ./xsettingsd
-    ./zsh
-  ];
+  imports = lib.attrValues (lib.modulesIn ./.);
 }

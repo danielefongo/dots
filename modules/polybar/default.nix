@@ -1,8 +1,5 @@
-{ pkgs, config, dots_path, ... }:
+{ lib, pkgs, config, dots_path, ... }:
 
-let
-  scriptToBinary = import ../../helpers/as-binary.nix { inherit pkgs; };
-in
 {
   home.packages = with pkgs; [
     polybarFull
@@ -18,7 +15,7 @@ in
       };
 
       Service = {
-        ExecStart = scriptToBinary ''
+        ExecStart = lib.scriptToBinary ''
           #!/bin/bash
 
           CONFIG_FILE=$HOME/.config/polybar/config
