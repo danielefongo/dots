@@ -5,5 +5,5 @@
     tmux
   ];
 
-  home.file.".tmux.conf".source = lib.outLink "tmux/tmux.conf";
+  xdg.configFile."tmux/tmux.conf".source = lib.outLink "tmux/tmux.conf";
 }
