@@ -1,9 +1,9 @@
-{ lib, pkgs, dots_path, config, ... }:
+{ lib, pkgs, ... }:
 
 {
   home.packages = [
     (lib.wrapNixGL pkgs.alacritty)
   ];
 
-  xdg.configFile."alacritty".source = config.lib.file.mkOutOfStoreSymlink "${dots_path}/output/alacritty";
+  xdg.configFile."alacritty".source = lib.outLink "alacritty";
 }

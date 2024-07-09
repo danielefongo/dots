@@ -1,12 +1,12 @@
-{ pkgs, lib, config, dots_path, ... }:
+{ lib, pkgs, ... }:
 
 let
-  userJS = config.lib.file.mkOutOfStoreSymlink "${dots_path}/output/firefox/user.js";
-  chromeCSS = config.lib.file.mkOutOfStoreSymlink "${dots_path}/output/firefox/chrome";
+  userJS = lib.outLink "firefox/user.js";
+  chromeCSS = lib.outLink "firefox/chrome";
   firefoxWithUserJS = import ./package.nix { inherit pkgs lib; };
 in
 {
-  home.packages = with pkgs; [
+  home.packages = [
     (firefoxWithUserJS [ "personal" "work" ])
   ];
 

@@ -19,7 +19,11 @@
 
       pkgs = (nixpkgs.legacyPackages.${system}).extend (nixpkgs.lib.composeManyExtensions [
         nixgl.overlay
-        (self: super: { lib = super.lib // home-manager.lib; })
+        (self: super: {
+          lib = super.lib // home-manager.lib // {
+            hm = home-manager.lib.hm;
+          };
+        })
         (self: super: {
           config = super.config // {
             allowUnfree = true;
@@ -29,7 +33,7 @@
       ]);
 
       lib = (import ./lib {
-        inherit system inputs pkgs;
+        inherit system inputs pkgs dots_path;
       });
     in
     {

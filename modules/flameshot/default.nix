@@ -1,11 +1,11 @@
-{ pkgs, config, dots_path, ... }:
+{ lib, pkgs, ... }:
 
 {
   home.packages = with pkgs; [
     flameshot
   ];
 
-  xdg.configFile."flameshot".source = config.lib.file.mkOutOfStoreSymlink "${dots_path}/output/flameshot";
+  xdg.configFile."flameshot".source = lib.outLink "flameshot";
 
   systemd.user.services = {
     flameshot = {

@@ -1,9 +1,9 @@
-{ pkgs, config, dots_path, ... }:
+{ lib, pkgs, ... }:
 
 {
   home.packages = with pkgs; [
     tig
   ];
 
-  xdg.configFile."tig".source = config.lib.file.mkOutOfStoreSymlink "${dots_path}/output/tig";
+  xdg.configFile."tig".source = lib.outLink "tig";
 }

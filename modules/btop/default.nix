@@ -1,9 +1,9 @@
-{ pkgs, dots_path, config, ... }:
+{ lib, pkgs, ... }:
 
 {
   home.packages = with pkgs; [
     btop
   ];
 
-  xdg.configFile."btop".source = config.lib.file.mkOutOfStoreSymlink "${dots_path}/output/btop";
+  xdg.configFile."btop".source = lib.outLink "btop";
 }

@@ -1,4 +1,4 @@
-{ pkgs, config, dots_path, ... }:
+{ lib, pkgs, ... }:
 
 {
   imports = [ ./scripts.nix ];
@@ -8,7 +8,7 @@
     i3lock-fancy-rapid
   ];
 
-  xdg.configFile."i3".source = config.lib.file.mkOutOfStoreSymlink "${dots_path}/output/i3";
+  xdg.configFile."i3".source = lib.outLink "i3";
 
   systemd.user.services = {
     i3 = {

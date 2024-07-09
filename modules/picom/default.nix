@@ -1,4 +1,4 @@
-{ lib, pkgs, config, dots_path, ... }:
+{ lib, pkgs, ... }:
 
 let
   picom = (lib.wrapNixGL pkgs.picom);
@@ -8,7 +8,7 @@ in
     picom
   ];
 
-  xdg.configFile."picom".source = config.lib.file.mkOutOfStoreSymlink "${dots_path}/output/picom";
+  xdg.configFile."picom".source = lib.outLink "picom";
 
   systemd.user.services = {
     picom = {

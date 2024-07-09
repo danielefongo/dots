@@ -1,4 +1,4 @@
-{ pkgs, config, dots_path, ... }:
+{ lib, pkgs, ... }:
 
 {
   home.packages = with pkgs; [
@@ -6,5 +6,5 @@
     delta
   ];
 
-  xdg.configFile."git".source = config.lib.file.mkOutOfStoreSymlink "${dots_path}/output/git";
+  xdg.configFile."git".source = lib.outLink "git";
 }

@@ -1,4 +1,4 @@
-{ pkgs, config, dots_path, ... }:
+{ lib, pkgs, ... }:
 
 let
   dunstWrapper = pkgs.writeShellScriptBin "dunst" ''
@@ -12,7 +12,7 @@ let
   '';
 in
 {
-  xdg.configFile."dunst".source = config.lib.file.mkOutOfStoreSymlink "${dots_path}/output/dunst";
+  xdg.configFile."dunst".source = lib.outLink "dunst";
 
   systemd.user.services = {
     dunst = {

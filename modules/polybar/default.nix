@@ -1,11 +1,11 @@
-{ lib, pkgs, config, dots_path, ... }:
+{ lib, pkgs, ... }:
 
 {
   home.packages = with pkgs; [
     polybarFull
   ];
 
-  xdg.configFile."polybar".source = config.lib.file.mkOutOfStoreSymlink "${dots_path}/output/polybar";
+  xdg.configFile."polybar".source = lib.outLink "polybar";
 
   systemd.user.services = {
     polybar = {

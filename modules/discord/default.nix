@@ -1,4 +1,4 @@
-{ pkgs, config, dots_path, ... }:
+{ lib, pkgs, ... }:
 
 let
   vesktop = pkgs.writeShellScriptBin "vesktop" ''
@@ -6,7 +6,7 @@ let
   '';
 in
 {
-  home.packages = with pkgs; [
+  home.packages = [
     vesktop
     (pkgs.makeDesktopItem ({
       name = "Vesktop";
@@ -19,6 +19,6 @@ in
     }))
   ];
 
-  xdg.configFile."vesktop/themes/discord.theme.css".source = config.lib.file.mkOutOfStoreSymlink "${dots_path}/output/discord/themes/discord.theme.css";
-  xdg.configFile."vesktop/settings/settings.json".source = config.lib.file.mkOutOfStoreSymlink "${dots_path}/output/discord/settings/settings.json";
+  xdg.configFile."vesktop/themes/discord.theme.css".source = lib.outLink "discord/themes/discord.theme.css";
+  xdg.configFile."vesktop/settings/settings.json".source = lib.outLink "discord/settings/settings.json";
 }

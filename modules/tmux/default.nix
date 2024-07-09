@@ -1,9 +1,9 @@
-{ pkgs, dots_path, config, ... }:
+{ lib, pkgs, ... }:
 
 {
   home.packages = with pkgs; [
     tmux
   ];
 
-  home.file.".tmux.conf".source = config.lib.file.mkOutOfStoreSymlink "${dots_path}/output/tmux/tmux.conf";
+  home.file.".tmux.conf".source = lib.outLink "tmux/tmux.conf";
 }

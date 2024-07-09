@@ -1,4 +1,4 @@
-{ pkgs, config, dots_path, ... }:
+{ lib, pkgs, ... }:
 
 {
   home.packages = with pkgs; [
@@ -18,5 +18,5 @@
     ];
   };
 
-  xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink "${dots_path}/output/nvim";
+  xdg.configFile."nvim".source = lib.outLink "nvim";
 }

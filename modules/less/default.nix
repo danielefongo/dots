@@ -1,9 +1,9 @@
-{ pkgs, dots_path, config, ... }:
+{ lib, pkgs, ... }:
 
 {
   home.packages = with pkgs; [
     less
   ];
 
-  home.file.".lesskey".source = config.lib.file.mkOutOfStoreSymlink "${dots_path}/output/less/.lesskey";
+  home.file.".lesskey".source = lib.outLink "less/.lesskey";
 }

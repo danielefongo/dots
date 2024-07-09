@@ -1,9 +1,9 @@
-{ pkgs, config, dots_path, ... }:
+{ lib, pkgs, ... }:
 
 {
   home.packages = with pkgs; [
     rofi
   ];
 
-  xdg.configFile."rofi".source = config.lib.file.mkOutOfStoreSymlink "${dots_path}/output/rofi";
+  xdg.configFile."rofi".source = lib.outLink "rofi";
 }

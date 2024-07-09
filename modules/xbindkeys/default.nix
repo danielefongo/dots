@@ -1,4 +1,4 @@
-{ pkgs, config, dots_path, ... }:
+{ lib, pkgs, ... }:
 
 {
   home.packages = with pkgs; [
@@ -6,7 +6,7 @@
     xbindkeys
   ];
 
-  home.file.".xbindkeysrc".source = config.lib.file.mkOutOfStoreSymlink "${dots_path}/output/xbindkeys/.xbindkeysrc";
+  home.file.".xbindkeysrc".source = lib.outLink "xbindkeys/.xbindkeysrc";
 
   systemd.user.services = {
     xbindkeys = {

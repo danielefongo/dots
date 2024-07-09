@@ -1,5 +1,5 @@
-{ dots_path, config, ... }:
+{ lib, ... }:
 
 {
-  xdg.configFile."mise".source = config.lib.file.mkOutOfStoreSymlink "${dots_path}/output/mise";
+  xdg.configFile."mise".source = lib.outLink "mise";
 }

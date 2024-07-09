@@ -1,9 +1,9 @@
-{ pkgs, dots_path, config, ... }:
+{ lib, pkgs, ... }:
 
 {
   home.packages = with pkgs; [
     zsh
   ];
 
-  home.file.".zshrc".source = config.lib.file.mkOutOfStoreSymlink "${dots_path}/output/zsh/.zshrc";
+  home.file.".zshrc".source = lib.outLink "zsh/.zshrc";
 }
