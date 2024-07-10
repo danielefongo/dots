@@ -85,7 +85,11 @@ const dotBlock = new DotBlock().on({
 
     const action = ({ file, match }) => {
       const filter = match.filter || (() => true)
-      const relativeFile = file.replace(dotPath + '/', '')
+      let relativeFile = file.replace(dotPath + '/', '')
+
+      if (match.from) {
+        relativeFile = relativeFile.replace(new RegExp("^" + match.from), "")
+      }
       const to = path.join(match.to, relativeFile)
       let output
 
