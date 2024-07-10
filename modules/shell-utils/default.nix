@@ -2,9 +2,11 @@
 
 {
   home.packages = with pkgs; [
-    curl
-    ripgrep
     autojump
+    curl
+    jq
+    ncdu
+    ripgrep
     tldr
   ];
 }
