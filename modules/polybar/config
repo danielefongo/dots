@@ -30,7 +30,7 @@ module-margin = 1
 
 font-0 = {{ font }}:pixelsize={{ fontSize }};{{ fontSize * 0.2 }}
 
-modules-left = i3
+modules-left = i3 spotify
 modules-center = date
 modules-right = memory cpu battery temperature wlan
 
@@ -181,6 +181,12 @@ format-prefix-foreground = {{ theme.primary }}
 format-warn = <label-warn>
 format-warn-prefix = " "
 format-warn-prefix-foreground = {{ theme.error }}
+
+[module/spotify]
+type = custom/script
+tail = true
+interval = 0.5
+exec = playerctl-status spotify "" "" "%{F{{ theme.primary }}} %{F-}<title> (<artist>)" "%{F{{ theme.primary }}} %{F-}<title> (<artist>)"
 
 [settings]
 screenchange-reload = true
