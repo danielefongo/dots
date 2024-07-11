@@ -2,13 +2,12 @@
 
 let
   dunstWrapper = pkgs.writeShellScriptBin "dunst" ''
-    error=$(${pkgs.dunst}/bin/dunst 2>&1 > /dev/null)
-
-    if [[ $error == *"Cannot acquire 'org.freedesktop.Notifications'"* ]]; then
-        pid=$(echo $error | grep -oP "PID '\K[0-9]+")
+    pid=$(qdbus org.freedesktop.DBus /org/freedesktop/DBus org.freedesktop.DBus.GetConnectionUnixProcessID org.freedesktop.Notifications)
+    if [[ -n "$pid" ]]; then
         kill $pid
-        ${pkgs.dunst}/bin/dunst > /dev/null
     fi
+
+    ${pkgs.dunst}/bin/dunst
   '';
 in
 {
