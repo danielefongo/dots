@@ -3,6 +3,10 @@ const { exec } = require("child_process");
 module.exports = {
   match: [{ pattern: "**/*", to: "polybar" }],
   apply: (_) => {
-    exec("systemctl --user restart polybar");
+    exec("systemctl --user is-active polybar.service", (_, stdout) => {
+      if (stdout.trim() === "active") {
+        exec("systemctl --user restart polybar.service");
+      }
+    });
   },
 };

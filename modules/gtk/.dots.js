@@ -12,6 +12,10 @@ module.exports = {
   ],
   apply: (path) => {
     execSync(`${path}/output/gtk/build`);
-    exec("systemctl --user restart xsettingsd.service");
+    exec("systemctl --user is-active xsettingsd.service", (_, stdout) => {
+      if (stdout.trim() === "active") {
+        exec("systemctl --user restart xsettingsd.service");
+      }
+    });
   },
 };
