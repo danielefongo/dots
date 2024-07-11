@@ -10,4 +10,5 @@ let
 in
 {
   outLink = path: mkOutOfStoreSymlink "${dots_path}/output/${path}";
+  dotLink = path: mkOutOfStoreSymlink "${dots_path}/${path}";
 }
