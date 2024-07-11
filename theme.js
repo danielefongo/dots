@@ -71,6 +71,7 @@ module.exports = {
     },
   },
   filters: {
+    nohash: (tc, color) => tc(color).toHexString().replace("#", ""),
     darken: (tc, color) => tc(color).darken(10).desaturate(15).toHexString(),
     contrasted: (tc, color, contrast) =>
       tc(color).darken(contrast).saturate(contrast).toHexString(),

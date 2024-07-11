@@ -1,0 +1,13 @@
+#!/bin/sh
+
+if [ -f "$HOME/.profile" ]; then
+	. "$HOME/.profile"
+fi
+
+if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
+	. "$HOME/.nix-profile/etc/profile.d/nix.sh"
+fi
+
+dbus-update-activation-environment --systemd --all
+systemctl --user start --no-block theme.service
+systemctl --user start --wait hyprland.service

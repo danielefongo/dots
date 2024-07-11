@@ -1,0 +1,23 @@
+#!/bin/bash
+
+SERVICE_LOCATION=/usr/share/wayland-sessions/prova.desktop
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
+
+if [ "$1" == "-d" ]; then
+	sudo rm -f $SERVICE_LOCATION
+
+	echo "Wayland entry unset"
+elif [ ! -f $SERVICE_LOCATION ]; then
+	sudo tee $SERVICE_LOCATION 1>/dev/null <<EOF
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=hyprland
+Exec=$SCRIPT_DIR/xsessions/wayland-desktop-init
+Terminal=false
+StartupNotify=false
+DesktopX-GDM-SessionRegisters=true
+X-GDM-CanRunHeadless=true
+EOF
+	echo "Wayland entry set"
+fi
