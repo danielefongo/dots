@@ -1,0 +1,9 @@
+$font: {{ font }};
+$font-size: {{ fontSize * 1.2 }}px;
+$background-alt1: {{ colors.background_alt1 }};
+$foreground: {{ colors.foreground }};
+$primary: {{ theme.primary }};
+$secondary: {{ theme.secondary }};
+$error: {{ theme.error }};
+$margin: {{ 6 * scaleRatio }}px;
+$round: {{ round }}px;

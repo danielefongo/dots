@@ -28,6 +28,7 @@ in
         Wants = [
           "dunst.service"
           "flameshot.service"
+          "waybar.service"
         ];
       };
     };

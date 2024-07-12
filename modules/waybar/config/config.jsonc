@@ -1,0 +1,68 @@
+{
+  "spacing": "{{ 10 * scaleRatio }}",
+  "margin": "{{ gap }} {{ gap }} 0 {{ gap }}",
+  "modules-left": [
+    "hyprland/workspaces",
+    "custom/spotify"
+  ],
+  "modules-center": [
+    "clock"
+  ],
+  "modules-right": [
+    "memory",
+    "cpu",
+    "battery",
+    "temperature",
+    "network"
+  ],
+  "clock": {
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "format": "{:%Y-%m-%d %H:%M:%S}",
+    "interval": 1,
+    "on-click": ""
+  },
+  "cpu": {
+    "format": "<span color=\"{{ theme.primary }}\"></span> {usage}%",
+    "tooltip": false
+  },
+  "memory": {
+    "format": "<span color=\"{{ theme.primary }}\"></span> {}% "
+  },
+  "temperature": {
+    "critical-threshold": 80,
+    "format": "<span color=\"{{ theme.primary }}\"></span> {temperatureC}°C",
+  },
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "<span color=\"{{ theme.primary }}\">{icon}</span> {capacity}%",
+    "format-full": "<span color=\"{{ theme.primary }}\">{icon}</span> {capacity}%",
+    "format-charging": "<span color=\"{{ theme.primary }}\"></span> {capacity}%",
+    "format-plugged": "<span color=\"{{ theme.primary }}\"></span> {capacity}%",
+    "format-alt": "<span color=\"{{ theme.primary }}\">{icon}</span> {time}%",
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
+  },
+  "network": {
+    "format-wifi": "<span color=\"{{ theme.primary }}\"></span>  {essid} ({signalStrength}%)",
+    "format-ethernet": "<span color=\"{{ theme.primary }}\"></span> {ipaddr}/{cidr}",
+    "tooltip-format": "<span color=\"{{ theme.primary }}\"></span> {ifname} via {gwaddr}",
+    "format-linked": "<span color=\"{{ theme.primary }}\"></span> {ifname} (No IP)",
+    "format-disconnected": "<span color=\"{{ theme.primary }}\">⚠</span> Disconnected",
+    "on-click": ""
+  },
+  "custom/spotify": {
+    "interval": 1,
+    "exec": "playerctl metadata --player spotify --format '{% raw %}{{ title }} ({{ artist }}){% endraw %}'",
+    "exec-if": "playerctl --player spotify status | grep -q 'Playing'",
+    "format": "<span color=\"{{ theme.primary }}\"></span>  {}",
+    "tooltip": false
+  }
+}
