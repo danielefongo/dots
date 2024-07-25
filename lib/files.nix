@@ -11,4 +11,5 @@ in
 {
   outLink = path: mkOutOfStoreSymlink "${dots_path}/output/${path}";
   dotLink = path: mkOutOfStoreSymlink "${dots_path}/${path}";
+  outFile = path: "${dots_path}/output/${path}";
 }

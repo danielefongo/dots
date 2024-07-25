@@ -1,0 +1,9 @@
+{ ... }:
+
+{
+  imports = [
+    ./slack
+    ./telegram
+    ./whatsapp
+  ];
+}
