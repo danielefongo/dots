@@ -39,12 +39,12 @@ let
 in
 (profile: pkgs.stdenv.mkDerivation rec {
   pname = "WebApp";
-  version = "0.0.2";
+  version = "0.0.6";
 
   src = pkgs.fetchurl {
     name = "web-app";
     url = "https://github.com/danielefongo/web-app/releases/download/v${version}/WebApp-${version}.AppImage";
-    hash = "sha256-FnW2wAEojTgBNXYTzZyBTIpMKPRncLVrYM9cdN3TRDQ=";
+    hash = "sha256-hB0sZhiUmFxSns0dhmhGGxU9NtylLG8txiWTtq6p3Wc=";
   };
 
   buildInputs = [ ];
