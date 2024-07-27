@@ -22,6 +22,7 @@ client.urgent {{ colors.background }} {{ theme.error }} {{ colors.background }} 
 
 hide_edge_borders none
 for_window [class=".*"] border pixel {{ border }}
+for_window [title="Screenshare"] floating enable
 
 # gaps
 {% if not zen %}
