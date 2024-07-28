@@ -32,7 +32,7 @@ font-0 = {{ font }}:pixelsize={{ fontSize }};{{ fontSize * 0.2 }}
 
 modules-left = i3 spotify
 modules-center = date
-modules-right = memory cpu battery temperature wlan
+modules-right = memory cpu battery temperature pulseaudio wlan
 
 cursor-click = pointer
 cursor-scroll = ns-resize
@@ -181,6 +181,16 @@ format-prefix-foreground = {{ theme.primary }}
 format-warn = <label-warn>
 format-warn-prefix = " "
 format-warn-prefix-foreground = {{ theme.error }}
+
+[module/pulseaudio]
+type = internal/pulseaudio
+interval = 1
+format-volume = "%{F{{ theme.primary }}}<ramp-volume>%{F-}  <label-volume>"
+label-muted = %{F{{ theme.primary }}}%{F-}  muted
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+ramp-volume-3 = 
 
 [module/spotify]
 type = custom/script
