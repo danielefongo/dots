@@ -20,11 +20,12 @@ return {
       },
       c = {
         name = "code",
-        c = { ":lua require('nvim-highlight-colors').toggle()<cr>", "colors" },
         ["e"] = { "<C-o><cr>", "previous" },
         ["n"] = { "<C-i><cr>", "next" },
         a = { ":lua vim.lsp.buf.code_action()<cr>", "actions" },
+        c = { ":lua require('nvim-highlight-colors').toggle()<cr>", "colors" },
         d = { ":Microscope code_definitions<cr>", "definitions" },
+        f = { ":lua require('conform').format({ bufnr = 0 })<cr>", "format" },
         h = { ":lua vim.lsp.buf.hover()<cr>", "signature" },
         i = { ":Microscope code_implementations<cr>", "implementations" },
         r = { ":Microscope code_references<cr>", "references" },
