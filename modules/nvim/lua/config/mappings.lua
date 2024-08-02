@@ -15,8 +15,7 @@ return {
         k = { ":lua require('close_buffers').delete({ type = 'this' })<cr>", "close" },
         K = { ":lua require('close_buffers').delete({ type = 'all' })<cr>", "close all" },
         H = { ":lua require('close_buffers').delete({ type = 'other' })<cr>", "close all" },
-        s = { ":w<cr>", "save" },
-        S = { ":wa<cr>", "save all" },
+        s = { ":lua scratch()<cr>", "scratch" },
       },
       c = {
         name = "code",
