@@ -1,8 +1,6 @@
 [bar/top]
 monitor = ${env:MONITOR:}
 
-radius = {{ round / 2 }}
-
 {% if not zen %}
 width = 100%:-{{ gap * 2 }}
 height = {{ fontSize * 2 }}
@@ -22,7 +20,6 @@ background = {{ colors.magic_background }}
 foreground = {{ colors.grey9 }}
 
 line-size = {{ fontSize // 3 }}
-line-color = #f00
 
 padding = 1
 
