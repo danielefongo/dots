@@ -265,7 +265,13 @@ return {
   {
     "folke/trouble.nvim",
     event = "BufReadPost",
-    opts = { position = "bottom", height = 10 },
+    opts = {
+      position = "bottom",
+      height = 10,
+      keys = {
+        ["<c-f>"] = "fold_toggle",
+      },
+    },
     dependencies = { "nvim-tree/nvim-web-devicons" },
   },
   {
