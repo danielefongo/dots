@@ -3,7 +3,7 @@ monitor = ${env:MONITOR:}
 
 {% if not zen %}
 width = 100%:-{{ gap * 2 }}
-height = {{ fontSize * 2 }}
+height = {{ fontSize * 2 + 1 }}
 {% else %}
 width = 0
 height = 0
