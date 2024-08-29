@@ -1,5 +1,5 @@
 {
-  description = "My home manager dotfiles";
+  description = "Dotfiles";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -15,7 +15,7 @@
       system = "x86_64-linux";
       user = "danielefongo";
       home = "/home/danielefongo";
-      dots_path = "/home/danielefongo/dotfiles/dots";
+      dots_path = "/home/danielefongo/dots";
 
       pkgs = (nixpkgs.legacyPackages.${system}).extend (nixpkgs.lib.composeManyExtensions [
         nixgl.overlay
