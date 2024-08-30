@@ -26,6 +26,7 @@ return {
       { "<leader>ce", "<C-o><cr>", desc = "previous" },
       { "<leader>cf", ":lua require('conform').format({ bufnr = 0 })<cr>", desc = "format" },
       { "<leader>ch", ":lua vim.lsp.buf.hover()<cr>", desc = "signature" },
+      { "<leader>cH", ":lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<cr>", desc = "signature" },
       { "<leader>ci", ":Microscope code_implementations<cr>", desc = "implementations" },
       { "<leader>cn", "<C-i><cr>", desc = "next" },
       { "<leader>cr", ":Microscope code_references<cr>", desc = "references" },
