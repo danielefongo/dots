@@ -1,8 +1,8 @@
 [global]
     monitor = 0
     follow = mouse
-    width = "{{ 300 * scaleRatio // 1 }}"
-    height = "{{ 80 * scaleRatio // 1 }}"
+    width = "({{ 300 * scaleRatio // 1 }}, {{ 600 * scaleRatio // 1 }})"
+    height = "({{ 80 * scaleRatio // 1 }}, {{ 160 * scaleRatio // 1 }})"
     origin = "bottom-right"
     {% if zen %}
     offset = "{{ 100000 }}x{{ 100000 }}"
