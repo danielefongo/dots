@@ -5,5 +5,6 @@
     _1password-gui
     spotify
     xfce.thunar
+    rawtherapee
   ];
 }
