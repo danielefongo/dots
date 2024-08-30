@@ -20,14 +20,13 @@
 
   font: "{{ font }} {{ fontSize }}";
   text-color: @text;
-
-  height: 500;
 }
 
 window {
   transparency: "real";
   fullscreen: false;
-  width: calc(50% min 800);
+  width: calc(50% min 1000);
+  height: calc(50% min 500);
   background-color: @bg;
   border: {{ border + 1 }}px;
   border-radius: {{ round * 2 }}px;
