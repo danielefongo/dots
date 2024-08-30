@@ -281,6 +281,7 @@ return {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-cmdline",
       "hrsh7th/vim-vsnip",
     },
     config = function()
@@ -323,6 +324,21 @@ return {
             vim_item.abbr = trim(vim_item.abbr)
             return vim_item
           end,
+        },
+      })
+      cmp.setup.cmdline(":", {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = cmp.config.sources({
+          { name = "path" },
+        }, {
+          { name = "cmdline" },
+        }),
+        matching = { disallow_symbol_nonprefix_matching = false },
+      })
+      cmp.setup.cmdline("/", {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = {
+          { name = "buffer" },
         },
       })
     end,

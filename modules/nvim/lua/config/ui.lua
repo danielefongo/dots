@@ -44,29 +44,6 @@ return {
     },
   },
   {
-    "gelguy/wilder.nvim",
-    event = "VeryLazy",
-    config = function()
-      local wilder = require("wilder")
-      vim.opt.showcmd = false
-
-      wilder.set_option(
-        "renderer",
-        wilder.popupmenu_renderer(wilder.popupmenu_border_theme({
-          highlights = { border = "Normal" },
-          border = "rounded",
-        }))
-      )
-
-      wilder.setup({
-        modes = { ":", "/" },
-        previous_key = "<C-e>",
-        next_key = "<C-n>",
-        accept_key = "<Tab>",
-      })
-    end,
-  },
-  {
     "luukvbaal/statuscol.nvim",
     lazy = false,
     config = function()
