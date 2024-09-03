@@ -41,8 +41,6 @@ return {
 
       { "<leader>f", group = "find" },
       { "<leader>fb", ":Microscope buffer_grep<cr>", desc = "buffer text" },
-      { "<leader>fc", ":Telescope command_history<cr>", desc = "commands" },
-      { "<leader>fk", ":Telescope keymaps<cr>", desc = "keymaps" },
       { "<leader>fs", group = "symbol" },
       { "<leader>fsb", ":Microscope code_buffer_symbols<cr>", desc = "buffer symbol" },
       { "<leader>fsw", ":Microscope code_workspace_symbols<cr>", desc = "workspace symbol" },
