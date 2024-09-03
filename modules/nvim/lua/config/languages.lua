@@ -300,6 +300,8 @@ return {
         mapping = {
           ["<C-e>"] = cmp.mapping.select_prev_item(),
           ["<C-n>"] = cmp.mapping.select_next_item(),
+          ["<C-l>"] = cmp.mapping.scroll_docs(4),
+          ["<C-u>"] = cmp.mapping.scroll_docs(-4),
           ["<cr>"] = cmp.mapping.confirm({ select = true }),
         },
         sources = {
