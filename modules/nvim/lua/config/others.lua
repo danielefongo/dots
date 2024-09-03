@@ -1,4 +1,10 @@
 return {
+  {
+    "gregorias/coerce.nvim",
+    tag = "v3.0.0",
+    config = true,
+    event = "BufReadPost",
+  },
   { "uga-rosa/ccc.nvim", event = "VeryLazy" },
   { "tpope/vim-commentary", cmd = "Commentary" },
   {
