@@ -1,7 +1,7 @@
 return {
   {
     "lewis6991/gitsigns.nvim",
-    event = "VeryLazy",
+    event = "BufReadPost",
     opts = {
       signcolumn = true,
       numhl = true,
@@ -32,10 +32,16 @@ return {
         col = 1,
       },
     },
+    keys = {
+      { "<leader>gS", ":Gitsigns undo_stage_hunk<cr>", desc = "stage hunk" },
+      { "<leader>gb", ":Gitsigns blame_line<cr>", desc = "blame line" },
+      { "<leader>gh", ":Gitsigns preview_hunk<cr>", desc = "preview hunk" },
+      { "<leader>gr", ":Gitsigns reset_hunk<cr>", desc = "reset hunk" },
+      { "<leader>gs", ":Gitsigns stage_hunk<cr>", desc = "stage hunk" },
+    },
   },
   {
     "TimUntersberger/neogit",
-    cmd = "Neogit",
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
       require("neogit").setup({
@@ -54,5 +60,8 @@ return {
         end,
       })
     end,
+    keys = {
+      { "<leader>gg", ":Neogit<cr>", desc = "neo" },
+    },
   },
 }

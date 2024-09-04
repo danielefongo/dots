@@ -6,33 +6,55 @@ return {
     event = "BufReadPost",
   },
   { "uga-rosa/ccc.nvim", event = "VeryLazy" },
-  { "tpope/vim-commentary", cmd = "Commentary" },
+  {
+    "tpope/vim-commentary",
+    cmd = "Commentary",
+    keys = {
+      { "<leader>;", ":Commentary<cr>", desc = "comment", mode = { "n", "v" } },
+    },
+  },
   {
     "folke/todo-comments.nvim",
     event = "BufReadPost",
     dependencies = { { "nvim-lua/plenary.nvim", version = "~0.1.3" } },
     opts = true,
   },
-  { "gabrielpoca/replacer.nvim" },
-  { "brenoprata10/nvim-highlight-colors", event = "VeryLazy" },
+  {
+    "gabrielpoca/replacer.nvim",
+    keys = {
+      { "<leader>r", ":lua require('replacer').run()<cr>", desc = "replace" },
+    },
+  },
+  {
+    "brenoprata10/nvim-highlight-colors",
+    keys = {
+      { "<leader>cc", ":lua require('nvim-highlight-colors').toggle()<cr>", desc = "colors" },
+    },
+  },
   { "windwp/nvim-autopairs", opts = {}, event = "BufReadPre" },
-  { "kazhala/close-buffers.nvim", event = "VeryLazy" },
+  {
+    "kazhala/close-buffers.nvim",
+    keys = {
+      { "<leader>bH", ":lua require('close_buffers').delete({ type = 'other' })<cr>", desc = "close all" },
+      { "<leader>bk", ":lua require('close_buffers').delete({ type = 'this' })<cr>", desc = "close" },
+      { "<leader>bK", ":lua require('close_buffers').delete({ type = 'all' })<cr>", desc = "close all" },
+    },
+  },
   {
     "christoomey/vim-tmux-navigator",
-    event = "VeryLazy",
-    config = function()
+    init = function()
       vim.g.tmux_navigator_no_mappings = 1
-
-      vim.keymap.set("n", "<M-m>", ":TmuxNavigateLeft<cr>", { silent = true })
-      vim.keymap.set("n", "<M-n>", ":TmuxNavigateDown<cr>", { silent = true })
-      vim.keymap.set("n", "<M-e>", ":TmuxNavigateUp<cr>", { silent = true })
-      vim.keymap.set("n", "<M-i>", ":TmuxNavigateRight<cr>", { silent = true })
     end,
+    keys = {
+      { "<M-m>", ":TmuxNavigateLeft<cr>", desc = "left" },
+      { "<M-n>", ":TmuxNavigateDown<cr>", desc = "down" },
+      { "<M-e>", ":TmuxNavigateUp<cr>", desc = "up" },
+      { "<M-i>", ":TmuxNavigateRight<cr>", desc = "right" },
+    },
   },
   {
     "kevinhwang91/nvim-ufo",
     dependencies = { "kevinhwang91/promise-async" },
-    event = "VeryLazy",
     config = function()
       local ufo = require("ufo")
 
@@ -44,5 +66,8 @@ return {
         end,
       })
     end,
+    keys = {
+      { "<c-f>", "za", desc = "toggle fold" },
+    },
   },
 }

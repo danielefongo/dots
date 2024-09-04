@@ -1,7 +1,6 @@
 return {
   {
     "stevearc/oil.nvim",
-    event = "VeryLazy",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       require("oil").setup({
@@ -13,5 +12,8 @@ return {
         },
       })
     end,
+    keys = {
+      { "<leader>ot", ":Oil<cr>", desc = "tree" },
+    },
   },
 }

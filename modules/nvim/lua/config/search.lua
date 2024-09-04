@@ -9,7 +9,6 @@ return {
       { "danielefongo/microscope-git", dev = true },
       { "danielefongo/microscope-example", dev = true },
     },
-    event = "VeryLazy",
     config = function()
       local microscope = require("microscope")
       local actions = require("microscope.builtin.actions")
@@ -43,10 +42,37 @@ return {
       microscope.register(git.finders)
       microscope.register(example.finders)
     end,
+    keys = {
+      { "<leader>cd", ":Microscope code_definitions<cr>", desc = "definitions" },
+      { "<leader>ci", ":Microscope code_implementations<cr>", desc = "implementations" },
+      { "<leader>cr", ":Microscope code_references<cr>", desc = "references" },
+      { "<leader>ct", ":Microscope code_type_definition<cr>", desc = "typedefs" },
+      { "<leader>fb", ":Microscope buffer_grep<cr>", desc = "buffer text" },
+      { "<leader>fsb", ":Microscope code_buffer_symbols<cr>", desc = "buffer symbol" },
+      { "<leader>fsw", ":Microscope code_workspace_symbols<cr>", desc = "workspace symbol" },
+      { "<leader>fw", ":Microscope workspace_grep<cr>", desc = "workspace text" },
+      { "<leader>ob", ":Microscope buffer<cr>", desc = "buffer" },
+      { "<leader>of", ":Microscope file<cr>", desc = "file" },
+    },
   },
   {
     "folke/flash.nvim",
-    event = "VeryLazy",
-    opts = {},
+    config = true,
+    keys = {
+      {
+        "s",
+        -- stylua: ignore
+        function() require("flash").jump() end,
+        desc = "seek",
+        mode = { "n", "x" },
+      },
+      {
+        "S",
+        -- stylua: ignore
+        function() require("flash").treesitter() end,
+        desc = "seek",
+        mode = { "n", "x" },
+      },
+    },
   },
 }

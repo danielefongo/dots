@@ -60,7 +60,16 @@ return {
   },
   {
     "danielefongo/tile.nvim",
-    event = "BufReadPre",
     opts = { horizontal = 4, vertical = 2 },
+    keys = {
+      { "<a-c-Down>", ":lua require('tile').resize_down()<cr>", desc = "resize down" },
+      { "<a-c-Left>", ":lua require('tile').resize_left()<cr>", desc = "resize left" },
+      { "<a-c-Right>", ":lua require('tile').resize_right()<cr>", desc = "resize right" },
+      { "<a-c-Up>", ":lua require('tile').resize_up()<cr>", desc = "resize up" },
+      { "<a-s-Down>", ":lua require('tile').shift_down()<cr>", desc = "shift down" },
+      { "<a-s-Left>", ":lua require('tile').shift_left()<cr>", desc = "shift left" },
+      { "<a-s-Right>", ":lua require('tile').shift_right()<cr>", desc = "shift right" },
+      { "<a-s-Up>", ":lua require('tile').shift_up()<cr>", desc = "shift up" },
+    },
   },
 }

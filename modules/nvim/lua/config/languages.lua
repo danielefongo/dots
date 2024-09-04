@@ -183,6 +183,18 @@ return {
         end)
       end
     end,
+    keys = {
+      { "<leader>cR", ":lua vim.lsp.buf.rename()<cr>", desc = "rename" },
+      { "<leader>ca", ":lua vim.lsp.buf.code_action()<cr>", desc = "actions", mode = { "n", "v" } },
+      { "<leader>ch", ":lua vim.lsp.buf.hover()<cr>", desc = "signature" },
+      {
+        "<leader>cH",
+        ":lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<cr>",
+        desc = "inlay toggle",
+      },
+      { "<leader>de", ":lua vim.diagnostic.goto_prev({ wrap = false })<cr>", desc = "previous" },
+      { "<leader>dn", ":lua vim.diagnostic.goto_next({ wrap = false })<cr>", desc = "next" },
+    },
   },
   {
     "stevearc/conform.nvim",
@@ -261,10 +273,12 @@ return {
         end,
       })
     end,
+    keys = {
+      { "<leader>cf", ":lua require('conform').format({ bufnr = 0 })<cr>", desc = "format" },
+    },
   },
   {
     "folke/trouble.nvim",
-    event = "BufReadPost",
     opts = {
       position = "bottom",
       height = 10,
@@ -273,6 +287,10 @@ return {
       },
     },
     dependencies = { "nvim-tree/nvim-web-devicons" },
+    keys = {
+      { "<leader>dt", ":Trouble diagnostics toggle filter.buf=0<cr>", desc = "trouble buffer" },
+      { "<leader>dT", ":Trouble diagnostics toggle<cr>", desc = "trouble workspace" },
+    },
   },
   {
     "hrsh7th/nvim-cmp",
