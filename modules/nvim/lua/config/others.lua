@@ -5,7 +5,6 @@ return {
     config = true,
     event = "BufReadPost",
   },
-  { "uga-rosa/ccc.nvim", event = "VeryLazy" },
   {
     "tpope/vim-commentary",
     cmd = "Commentary",
