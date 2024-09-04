@@ -35,3 +35,4 @@ vim.g.tmux_navigator_no_mappings = true
 
 require("plugins")
 require("reload_theme")
+require("autocommands")
