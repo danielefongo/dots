@@ -75,4 +75,30 @@ return {
       },
     },
   },
+  {
+    "MagicDuck/grug-far.nvim",
+    opts = {
+      history = {
+        autoSave = { enabled = false },
+      },
+    },
+    keys = {
+      {
+        "<leader>fr",
+        function()
+          require("grug-far").open({ transient = true, prefills = { paths = vim.fn.expand("%") } })
+        end,
+        desc = "find and replace",
+        mode = { "n", "v" },
+      },
+      {
+        "<leader>fR",
+        function()
+          require("grug-far").open({ transient = true })
+        end,
+        desc = "find and replace (workspace)",
+        mode = { "n", "v" },
+      },
+    },
+  },
 }

@@ -19,12 +19,6 @@ return {
     opts = true,
   },
   {
-    "gabrielpoca/replacer.nvim",
-    keys = {
-      { "<leader>r", ":lua require('replacer').run()<cr>", desc = "replace" },
-    },
-  },
-  {
     "brenoprata10/nvim-highlight-colors",
     keys = {
       { "<leader>cc", ":lua require('nvim-highlight-colors').toggle()<cr>", desc = "colors" },

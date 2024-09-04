@@ -30,6 +30,7 @@ opt.ignorecase = true
 opt.smartcase = true
 
 vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 vim.g.tmux_navigator_no_mappings = true
 
 require("plugins")
