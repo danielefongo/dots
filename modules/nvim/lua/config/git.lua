@@ -43,15 +43,7 @@ return {
   {
     "TimUntersberger/neogit",
     dependencies = { "nvim-lua/plenary.nvim" },
-    config = function()
-      require("neogit").setup({
-        signs = {
-          section = { "", "" },
-          item = { "", "" },
-          hunk = { "", "" },
-        },
-      })
-
+    init = function()
       vim.api.nvim_create_autocmd("FileType", {
         pattern = { "NeogitStatus" },
         group = vim.api.nvim_create_augroup("NeogitStatusOptions", {}),
@@ -60,6 +52,13 @@ return {
         end,
       })
     end,
+    opts = {
+      signs = {
+        section = { "", "" },
+        item = { "", "" },
+        hunk = { "", "" },
+      },
+    },
     keys = {
       { "<leader>gg", ":Neogit<cr>", desc = "neo" },
     },

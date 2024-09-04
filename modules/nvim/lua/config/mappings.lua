@@ -1,10 +1,11 @@
 return {
   "folke/which-key.nvim",
   event = "VeryLazy",
-  config = function()
+  init = function()
     vim.o.timeout = true
     vim.o.timeoutlen = 100
-
+  end,
+  config = function()
     local wk = require("which-key")
 
     wk.add({
