@@ -11,3 +11,10 @@ vim.api.nvim_create_autocmd("VimLeavePre", {
     end
   end,
 })
+
+vim.api.nvim_create_autocmd("VimResized", {
+  pattern = "*",
+  callback = function()
+    vim.api.nvim_exec2("wincmd =", { output = false })
+  end,
+})
