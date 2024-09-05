@@ -165,6 +165,27 @@ return {
         },
         rust_analyzer = {
           mason_name = "rust-analyzer",
+          settings = {
+            ["rust-analyzer"] = {
+              assist = {
+                importEnforceGranularity = true,
+                importPrefix = "crate",
+              },
+              cargo = {
+                features = "all",
+              },
+              check = {
+                features = "all",
+                command = "clippy",
+              },
+              completion = {
+                limit = 100,
+              },
+              rust = {
+                analyzerTargetDir = true,
+              },
+            },
+          },
         },
       }
 
