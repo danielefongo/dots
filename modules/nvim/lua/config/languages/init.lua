@@ -1,0 +1,16 @@
+return {
+  require("config.languages.bash"),
+  require("config.languages.css"),
+  require("config.languages.dockerfile"),
+  require("config.languages.elixir"),
+  require("config.languages.elm"),
+  require("config.languages.html"),
+  require("config.languages.javascript"),
+  require("config.languages.json"),
+  require("config.languages.lua"),
+  require("config.languages.markdown"),
+  require("config.languages.nix"),
+  require("config.languages.python"),
+  require("config.languages.rust"),
+  require("config.languages.toml"),
+}
