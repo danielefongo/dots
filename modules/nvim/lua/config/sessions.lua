@@ -22,7 +22,7 @@ return {
 
       persistence.delete_current_and_stop = function()
         if persistence.current then
-          os.remove(persistence.current)
+          os.remove(persistence.current())
         end
         persistence.stop()
       end
