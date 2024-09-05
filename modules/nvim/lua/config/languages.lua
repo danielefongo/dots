@@ -81,7 +81,95 @@ return {
       { "antosha417/nvim-lsp-file-operations", config = true },
     },
     event = "VeryLazy",
-    config = function()
+    opts = {
+      bashls = {
+        mason_name = "bash-language-server",
+      },
+      cssls = {
+        mason_name = "css-lsp",
+      },
+      dockerls = {
+        mason_name = "dockerfile-language-server",
+      },
+      elixirls = {
+        mason_name = "elixir-ls",
+        cmd = { fn.glob(fn.stdpath("data") .. "/lsp/bin/" .. "elixir-ls") },
+        settings = {
+          elixirLS = {
+            fetchDeps = false,
+            mixEnv = "dev",
+          },
+        },
+      },
+      elmls = {
+        mason_name = "elm-language-server",
+      },
+      html = {
+        mason_name = "html-lsp",
+      },
+      lua_ls = {
+        mason_name = "lua-language-server",
+        settings = {
+          Lua = {
+            callSnippet = "Replace",
+            diagnostics = { globals = { "vim" } },
+            format = { enable = false },
+          },
+        },
+      },
+      marksman = {
+        mason_name = "marksman",
+      },
+      nixd = {
+        cmd = { "nixd" },
+        settings = {
+          nixd = {
+            nixpkgs = {
+              expr = 'import (builtins.getFlake ("git+file://" + toString ./.)).inputs.nixpkgs { }',
+            },
+            options = {
+              home_manager = {
+                expr = '(builtins.getFlake ("git+file://" + toString ./.)).homeConfigurations."danielefongo".options',
+              },
+            },
+          },
+        },
+      },
+      pylsp = {
+        mason_name = "python-lsp-server",
+      },
+      taplo = {
+        mason_name = "taplo",
+      },
+      tsserver = {
+        mason_name = "typescript-language-server",
+      },
+      rust_analyzer = {
+        mason_name = "rust-analyzer",
+        settings = {
+          ["rust-analyzer"] = {
+            assist = {
+              importEnforceGranularity = true,
+              importPrefix = "crate",
+            },
+            cargo = {
+              features = "all",
+            },
+            check = {
+              features = "all",
+              command = "clippy",
+            },
+            completion = {
+              limit = 100,
+            },
+            rust = {
+              analyzerTargetDir = true,
+            },
+          },
+        },
+      },
+    },
+    config = function(_, lsps)
       local lsp = require("lspconfig")
       local cmp = require("cmp_nvim_lsp")
       local signature = require("lsp_signature")
@@ -91,103 +179,10 @@ return {
       local flags = { debounce_text_changes = 150 }
       local capabilities = cmp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-      local function cmd_path(server)
-        return fn.glob(fn.stdpath("data") .. "/lsp/bin/" .. server)
-      end
-
       local function on_attach(client, bufnr)
         client.server_capabilities.documentFormattingProvider = false
         signature.on_attach({ bind = true }, bufnr)
       end
-
-      local lsps = {
-        bashls = {
-          mason_name = "bash-language-server",
-        },
-        cssls = {
-          mason_name = "css-lsp",
-        },
-        dockerls = {
-          mason_name = "dockerfile-language-server",
-        },
-        elixirls = {
-          mason_name = "elixir-ls",
-          cmd = { cmd_path("elixir-ls") },
-          settings = {
-            elixirLS = {
-              fetchDeps = false,
-              mixEnv = "dev",
-            },
-          },
-        },
-        elmls = {
-          mason_name = "elm-language-server",
-        },
-        html = {
-          mason_name = "html-lsp",
-        },
-        lua_ls = {
-          mason_name = "lua-language-server",
-          settings = {
-            Lua = {
-              callSnippet = "Replace",
-              diagnostics = { globals = { "vim" } },
-              format = { enable = false },
-            },
-          },
-        },
-        marksman = {
-          mason_name = "marksman",
-        },
-        nixd = {
-          cmd = { "nixd" },
-          settings = {
-            nixd = {
-              nixpkgs = {
-                expr = 'import (builtins.getFlake ("git+file://" + toString ./.)).inputs.nixpkgs { }',
-              },
-              options = {
-                home_manager = {
-                  expr = '(builtins.getFlake ("git+file://" + toString ./.)).homeConfigurations."danielefongo".options',
-                },
-              },
-            },
-          },
-        },
-        pylsp = {
-          mason_name = "python-lsp-server",
-        },
-        taplo = {
-          mason_name = "taplo",
-        },
-        tsserver = {
-          mason_name = "typescript-language-server",
-        },
-        rust_analyzer = {
-          mason_name = "rust-analyzer",
-          settings = {
-            ["rust-analyzer"] = {
-              assist = {
-                importEnforceGranularity = true,
-                importPrefix = "crate",
-              },
-              cargo = {
-                features = "all",
-              },
-              check = {
-                features = "all",
-                command = "clippy",
-              },
-              completion = {
-                limit = 100,
-              },
-              rust = {
-                analyzerTargetDir = true,
-              },
-            },
-          },
-        },
-      }
 
       mason.setup({ install_root_dir = fn.stdpath("data") .. "/lsp" })
 
@@ -220,71 +215,77 @@ return {
     "stevearc/conform.nvim",
     event = "VeryLazy",
     dependencies = { "williamboman/mason.nvim" },
-    config = function()
+    opts = function()
+      return {
+        mason_sources = {
+          "black",
+          "elm-format",
+          "eslint_d",
+          "jq",
+          "markdownlint",
+          "prettier",
+          "rustfmt",
+          "shfmt",
+          "stylua",
+          "taplo",
+        },
+        options = {
+          formatters_by_ft = {
+            bash = { "shfmt" },
+            css = { "prettier" },
+            elixir = { "mix" },
+            elm = { "elm_format" },
+            html = { "prettier" },
+            javascript = { { "eslint_d", "prettier" } },
+            json = { "jq" },
+            lua = { "stylua" },
+            markdown = { "markdownlint" },
+            nix = { "nixpkgs_fmt" },
+            python = { "black" },
+            rust = { "rustfmt" },
+            scss = { "prettier" },
+            sh = { "shfmt" },
+            toml = { "taplo" },
+            typescript = { { "eslint_d", "prettier" } },
+            ["*"] = { "trim_whitespace", "trim_newlines" },
+          },
+          formatters = {
+            stylua = {
+              prepend_args = function(_, _)
+                return {
+                  "--indent-type",
+                  "Spaces",
+                  "--indent-width",
+                  "2",
+                }
+              end,
+            },
+            eslint_d = {
+              require_cwd = true,
+              cwd = require("conform.util").root_file({
+                ".eslintrc",
+                ".eslintrc.js",
+                ".eslintrc.cjs",
+                ".eslintrc.yaml",
+                ".eslintrc.yml",
+                ".eslintrc.json",
+              }),
+            },
+          },
+        },
+      }
+    end,
+    config = function(_, opts)
       local mason = require("mason")
       mason.setup({ install_root_dir = fn.stdpath("data") .. "/lsp" })
 
-      local mason_sources = {
-        "black",
-        "elm-format",
-        "eslint_d",
-        "jq",
-        "markdownlint",
-        "prettier",
-        "rustfmt",
-        "shfmt",
-        "stylua",
-        "taplo",
-      }
+      local mason_sources = opts.mason_sources
 
       for _, formatter in pairs(mason_sources) do
         init_tool(formatter)
       end
 
-      require("conform").setup({
-        formatters_by_ft = {
-          bash = { "shfmt" },
-          css = { "prettier" },
-          elixir = { "mix" },
-          elm = { "elm_format" },
-          html = { "prettier" },
-          javascript = { { "eslint_d", "prettier" } },
-          json = { "jq" },
-          lua = { "stylua" },
-          markdown = { "markdownlint" },
-          nix = { "nixpkgs_fmt" },
-          python = { "black" },
-          rust = { "rustfmt" },
-          scss = { "prettier" },
-          sh = { "shfmt" },
-          toml = { "taplo" },
-          typescript = { { "eslint_d", "prettier" } },
-          ["*"] = { "trim_whitespace", "trim_newlines" },
-        },
-      })
-
-      require("conform").formatters.stylua = {
-        prepend_args = function(_, _)
-          return {
-            "--indent-type",
-            "Spaces",
-            "--indent-width",
-            "2",
-          }
-        end,
-      }
-
-      require("conform").formatters.eslint_d = {
-        require_cwd = true,
-        cwd = require("conform.util").root_file({
-          ".eslintrc",
-          ".eslintrc.js",
-          ".eslintrc.cjs",
-          ".eslintrc.yaml",
-          ".eslintrc.yml",
-          ".eslintrc.json",
-        }),
-      }
+      require("conform").setup(opts.options)
 
       vim.api.nvim_create_autocmd("BufWritePre", {
         pattern = "*",
