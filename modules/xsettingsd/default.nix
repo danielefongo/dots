@@ -1,10 +1,9 @@
-{ ... }:
+{ lib, ... }:
 
 {
   services.xsettingsd = {
     enable = true;
-    settings = {
-      "Net/ThemeName" = "gtk-theme";
-    };
   };
+
+  xdg.configFile."xsettingsd".source = lib.outLink "xsettingsd";
 }
