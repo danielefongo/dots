@@ -21,7 +21,7 @@ return {
             },
             check = {
               features = "all",
-              command = "clippy",
+              command = "check",
             },
             completion = {
               limit = 100,
