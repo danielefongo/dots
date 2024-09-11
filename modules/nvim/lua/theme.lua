@@ -162,6 +162,11 @@ local themer = {
         GitSignsDelete = { fg = colors.red },
         GitSignsTopdelete = { fg = colors.red },
       },
+      tabby = {
+        TabLine = { bg = colors.background },
+        TabLineSel = { bg = colors.blue, fg = colors.background },
+        TabLineFill = { bg = colors.background_alt1 },
+      },
     },
   },
 }
