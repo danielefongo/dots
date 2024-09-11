@@ -30,7 +30,6 @@
   --in-content-table-background: var(--color-light-bg) !important;
 
   /* other colors */
-  --color-canvas: var(--color-dark-bg) !important;
   --link-color: var(--color-secondary) !important;
 }
 
@@ -40,7 +39,7 @@ stack > browser {
 }
 #PersonalToolbar,
 #tabbrowser-tabpanels {
-  background-color: var(--color-canvas) !important;
+  background-color: var(--color-dark-bg) !important;
 }
 .notificationbox-stack {
   background-color: transparent !important;
@@ -50,7 +49,7 @@ stack > browser {
   border-radius: 5px !important;
 }
 .devtools-tabbar {
-  background-color: var(--color-canvas) !important;
+  background-color: var(--color-dark-bg) !important;
 }
 
 /* navbar size */
@@ -156,7 +155,7 @@ html:has(#urlbar:is([breakout][breakout-extend])) {
   }
 
   #urlbar-background {
-    border: 2px solid var(--color-canvas) !important;
+    border: 2px solid var(--color-dark-bg) !important;
     border-radius: 10px !important;
   }
 }
@@ -224,7 +223,7 @@ toolbarseparator {
   --rounds-margin: calc(var(--border) * -1px);
 }
 .browserStack {
-  background-color: var(--color-canvas) !important;
+  background-color: var(--color-dark-bg) !important;
 }
 .browserStack > browser {
   /* main frame, without dev tools */
@@ -252,7 +251,7 @@ findbar {
 }
 .browserContainer:has(findbar:not([hidden])) {
   #statuspanel-label {
-    background-color: var(--color-canvas) !important;
+    background-color: var(--color-dark-bg) !important;
     margin: 0 0 calc((var(--border-px)) + 5px) 5px !important;
     border-radius: 5px !important;
   }
