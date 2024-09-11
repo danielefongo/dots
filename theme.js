@@ -13,7 +13,7 @@ module.exports = {
     border: scale(4),
     fontSize: scale(11),
     scaleRatio,
-    transparency: false,
+    transparency: 0,
     colors: {
       background: '{{ "#1f2430" | contrasted(contrast) }}',
       background_alt1: "{{ colors.background | light_darken(3) }}",
