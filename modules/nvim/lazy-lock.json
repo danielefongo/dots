@@ -32,6 +32,7 @@
   "plenary.nvim": { "branch": "master", "commit": "50012918b2fc8357b87cff2a7f7f0446e47da174" },
   "promise-async": { "branch": "main", "commit": "119e8961014c9bfaf1487bf3c2a393d254f337e2" },
   "statuscol.nvim": { "branch": "main", "commit": "1022f922b77b44c36f8057ac29adbfd89ce86958" },
+  "tabby.nvim": { "branch": "main", "commit": "43d61e7418c062c18b67b2136fcc564426f08db2" },
   "themer.lua": { "branch": "main", "commit": "625510cfec70b55fe42d04b1256c5f93c92a4202" },
   "tile.nvim": { "branch": "main", "commit": "4da9f815d2ea71871ae8303feced2c3afa75855c" },
   "todo-comments.nvim": { "branch": "main", "commit": "319c01b99b7a8c9ac2066bf0efd4d6ec68fef444" },
