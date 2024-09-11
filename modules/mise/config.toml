@@ -1,8 +1,8 @@
 [tools]
-erlang = "26.0"
-elixir = "1.16.3-otp-26"
+erlang = "latest"
+elixir = "latest"
 elm = "latest"
 lua = "latest"
-nodejs = "19.0.0"
+nodejs = "latest"
 python = "latest"
 rust = "latest"
