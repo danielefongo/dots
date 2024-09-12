@@ -23,10 +23,9 @@ return {
       "hrsh7th/cmp-cmdline",
       "hrsh7th/vim-vsnip",
     },
-    config = function()
+    opts = function()
       local cmp = require("cmp")
-
-      cmp.setup({
+      return {
         window = {
           completion = cmp.config.window.bordered(),
           documentation = cmp.config.window.bordered(),
@@ -66,7 +65,17 @@ return {
             return vim_item
           end,
         },
-      })
+      }
+    end,
+  },
+  {
+    "hrsh7th/cmp-cmdline",
+    event = "BufReadPost",
+    dependencies = {
+      "hrsh7th/nvim-cmp",
+    },
+    config = function()
+      local cmp = require("cmp")
 
       local mapping = vim.tbl_deep_extend("force", cmp.mapping.preset.cmdline(), {
         ["<c-n>"] = {
