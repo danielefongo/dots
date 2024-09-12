@@ -136,20 +136,6 @@ local themer = {
       ["@lsp.type.variable"] = { fg = syntax.variable },
     },
     plugins = {
-      nvim_tree = {
-        NVimTreeNormal = { fg = colors.foreground, bg = colors.background },
-        NvimTreeGitFileDirtyHL = { fg = colors.yellow },
-        NvimTreeGitFileStagedHL = { fg = colors.green },
-        NvimTreeGitFileNewHL = { fg = colors.red },
-        NvimTreeGitFolderNewHL = { fg = colors.red },
-        NvimTreeSpecialFile = { fg = colors.foreground },
-        NvimTreeImageFile = { fg = colors.foreground },
-        NvimTreeOpenedFile = { fg = colors.foreground },
-        NvimTreeModifiedFile = { fg = colors.foreground },
-        NvimTreeIndentMarker = { fg = colors.foreground },
-        NvimTreeSymlink = { fg = colors.foreground },
-        NvimTreeExecFile = { fg = colors.foreground },
-      },
       microscope = {
         MicroscopeMatch = { fg = colors.blue },
         MicroscopeColor1 = { fg = colors.red },
