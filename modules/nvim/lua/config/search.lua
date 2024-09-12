@@ -33,6 +33,8 @@ return {
           ["<c-f>"] = actions.toggle_full_screen,
           ["<c-r>"] = actions.refine,
           ["<c-q>"] = files.actions.quickfix,
+          ["<c-x>"] = files.actions.toggle_hidden,
+          ["<c-h>"] = actions.hide,
         },
       })
 
@@ -53,6 +55,7 @@ return {
       { "<leader>fw", ":Microscope workspace_grep<cr>", desc = "workspace text" },
       { "<leader>ob", ":Microscope buffer<cr>", desc = "buffer" },
       { "<leader>of", ":Microscope file<cr>", desc = "file" },
+      { "<c-h>", ":MicroscopeResume<cr>", desc = "resume finder" },
     },
   },
   {
