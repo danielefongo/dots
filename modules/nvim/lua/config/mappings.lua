@@ -25,6 +25,8 @@ return {
 
       { "<leader>s", group = "session" },
 
+      { "<leader>t", group = "tab" },
+
       { "<leader>v", group = "vim" },
       { "<leader>vq", ":qa<cr>", desc = "quit" },
 

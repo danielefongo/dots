@@ -95,12 +95,12 @@ return {
       end,
     },
     keys = {
-      { "<c-t>", ":tabnew<cr>", desc = "new tab" },
-      { "<c-w>", ":tabclose<cr>", desc = "close tab" },
-      { "<c-n>", ":tabnext<cr>", desc = "next tab" },
-      { "<c-e>", ":tabprevious<cr>", desc = "previous tab" },
-      { "<C-S-n>", ":tabmove +1<cr>", desc = "move right" },
-      { "<C-S-e>", ":tabmove -1<cr>", desc = "move left" },
+      { "<leader>tc", ":tabnew<cr>", desc = "new" },
+      { "<leader>tw", ":tabclose<cr>", desc = "close" },
+      { "<leader>tn", ":tabnext<cr>", desc = "next" },
+      { "<leader>te", ":tabprevious<cr>", desc = "previous" },
+      { "<leader>tN", ":tabmove +1<cr>", desc = "move right" },
+      { "<leader>tE", ":tabmove -1<cr>", desc = "move left" },
     },
   },
 }
