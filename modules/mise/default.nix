@@ -17,6 +17,7 @@
         nodejs = "latest";
         python = "latest";
         rust = "latest";
+        ruby = "latest";
       };
     };
   };
