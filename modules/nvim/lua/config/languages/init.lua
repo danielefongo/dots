@@ -90,11 +90,13 @@ return {
             flags = flags,
             cmd = config.cmd,
             settings = config.settings or {},
+            autostart = false,
           })
         end)
       end
     end,
     keys = {
+      { "<leader>ce", ":LspStart<cr>", desc = "enable lsp" },
       { "<leader>cR", ":lua vim.lsp.buf.rename()<cr>", desc = "rename" },
       { "<leader>ca", ":lua vim.lsp.buf.code_action()<cr>", desc = "actions", mode = { "n", "v" } },
       { "<leader>ch", ":lua vim.lsp.buf.hover()<cr>", desc = "signature" },
