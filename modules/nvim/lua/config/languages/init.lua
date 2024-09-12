@@ -212,8 +212,34 @@ return {
           end,
         },
       })
+
+      local mapping = vim.tbl_deep_extend("force", cmp.mapping.preset.cmdline(), {
+        ["<c-n>"] = {
+          c = function()
+            local fn = function()
+              vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Down>", true, false, true), "n", true)
+            end
+            if cmp.visible() then
+              fn = cmp.mapping.select_next_item()
+            end
+            fn()
+          end,
+        },
+        ["<c-e>"] = {
+          c = function()
+            local fn = function()
+              vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Up>", true, false, true), "n", true)
+            end
+            if cmp.visible() then
+              fn = cmp.mapping.select_prev_item()
+            end
+            fn()
+          end,
+        },
+      })
+
       cmp.setup.cmdline(":", {
-        mapping = cmp.mapping.preset.cmdline(),
+        mapping = mapping,
         sources = cmp.config.sources({
           { name = "path" },
         }, {
