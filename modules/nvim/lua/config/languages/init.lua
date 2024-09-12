@@ -97,6 +97,7 @@ return {
     end,
     keys = {
       { "<leader>ce", ":LspStart<cr>", desc = "enable lsp" },
+      { "<leader>cE", ":LspStop<cr>", desc = "disable lsp" },
       { "<leader>cR", ":lua vim.lsp.buf.rename()<cr>", desc = "rename" },
       { "<leader>ca", ":lua vim.lsp.buf.code_action()<cr>", desc = "actions", mode = { "n", "v" } },
       { "<leader>ch", ":lua vim.lsp.buf.hover()<cr>", desc = "signature" },
