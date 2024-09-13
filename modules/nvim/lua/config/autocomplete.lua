@@ -1,19 +1,5 @@
 return {
   {
-    "github/copilot.vim",
-    event = { "BufReadPre", "BufNewFile" },
-    version = "~1.34.0",
-    init = function()
-      vim.g.copilot_no_tab_map = true
-    end,
-    config = function()
-      vim.keymap.set("i", "<C-J>", 'copilot#Accept("\\<CR>")', {
-        expr = true,
-        replace_keycodes = false,
-      })
-    end,
-  },
-  {
     "hrsh7th/nvim-cmp",
     event = "BufReadPost",
     dependencies = {
@@ -67,6 +53,28 @@ return {
           end,
         },
       }
+    end,
+  },
+  {
+    "hrsh7th/nvim-cmp",
+    event = "BufReadPost",
+    dependencies = {
+      {
+        "zbirenbaum/copilot-cmp",
+        config = function()
+          require("copilot_cmp").setup()
+        end,
+      },
+      {
+        "zbirenbaum/copilot.lua",
+        opts = {
+          suggestion = { enabled = false },
+          panel = { enabled = false },
+        },
+      },
+    },
+    opts = function(_, opts)
+      table.insert(opts.sources, 2, { name = "copilot" })
     end,
   },
   {
