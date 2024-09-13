@@ -35,23 +35,6 @@ return {
           { name = "path" },
           { name = "buffer", keyword_length = 2, max_item_count = 8 },
         },
-        formatting = {
-          fields = { "abbr", "kind" },
-          max_width = 0,
-          format = function(_, vim_item)
-            local function trim(text)
-              local max = 40
-              if text and #text > max then
-                text = text:sub(1, max) .. "..."
-              end
-              return text
-            end
-
-            vim_item.menu = ""
-            vim_item.abbr = trim(vim_item.abbr)
-            return vim_item
-          end,
-        },
       }
     end,
   },
@@ -126,6 +109,63 @@ return {
           { name = "buffer" },
         },
       })
+    end,
+  },
+  {
+    "hrsh7th/nvim-cmp",
+    dependencies = { "onsails/lspkind.nvim" },
+    opts = function(_, opts)
+      local lspkind = require("lspkind")
+      opts.formatting = {
+        format = lspkind.cmp_format({
+          mode = "symbol_text",
+          maxwidth = 40,
+          ellipsis_char = "...",
+          before = function(_, vim_item)
+            vim_item.menu = ""
+            return vim_item
+          end,
+          symbol_map = {
+            Array = " ",
+            Boolean = "󰨙 ",
+            Class = " ",
+            Color = " ",
+            Control = " ",
+            Collapsed = " ",
+            Constant = "󰏿 ",
+            Constructor = " ",
+            Copilot = " ",
+            Enum = " ",
+            EnumMember = " ",
+            Event = " ",
+            Field = " ",
+            File = " ",
+            Folder = " ",
+            Function = "󰊕 ",
+            Interface = " ",
+            Key = " ",
+            Keyword = " ",
+            Method = "󰊕 ",
+            Module = " ",
+            Namespace = "󰦮 ",
+            Null = " ",
+            Number = "󰎠 ",
+            Object = " ",
+            Operator = " ",
+            Package = " ",
+            Property = " ",
+            Reference = " ",
+            Snippet = " ",
+            String = " ",
+            Struct = "󰆼 ",
+            Text = " ",
+            TypeParameter = " ",
+            Unit = " ",
+            Value = " ",
+            Variable = "󰀫 ",
+          },
+        }),
+      }
     end,
   },
 }
