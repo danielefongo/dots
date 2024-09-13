@@ -27,7 +27,7 @@ return {
           ["<C-l>"] = cmp.mapping.scroll_docs(4),
           ["<C-u>"] = cmp.mapping.scroll_docs(-4),
           ["<cr>"] = cmp.mapping.confirm({ select = false }),
-          ["<esc>"] = cmp.mapping.abort(),
+          ["<c-x>"] = cmp.mapping.abort(),
         },
         sources = {
           { name = "nvim_lsp" },
@@ -62,7 +62,6 @@ return {
   },
   {
     "hrsh7th/cmp-cmdline",
-    event = "BufReadPost",
     dependencies = {
       "hrsh7th/nvim-cmp",
     },
