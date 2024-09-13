@@ -61,56 +61,6 @@ return {
     end,
   },
   {
-    "hrsh7th/cmp-cmdline",
-    dependencies = {
-      "hrsh7th/nvim-cmp",
-    },
-    config = function()
-      local cmp = require("cmp")
-
-      local mapping = vim.tbl_deep_extend("force", cmp.mapping.preset.cmdline(), {
-        ["<c-n>"] = {
-          c = function()
-            local fn = function()
-              vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Down>", true, false, true), "n", true)
-            end
-            if cmp.visible() then
-              fn = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert })
-            end
-            fn()
-          end,
-        },
-        ["<c-e>"] = {
-          c = function()
-            local fn = function()
-              vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Up>", true, false, true), "n", true)
-            end
-            if cmp.visible() then
-              fn = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
-            end
-            fn()
-          end,
-        },
-      })
-
-      cmp.setup.cmdline(":", {
-        mapping = mapping,
-        sources = cmp.config.sources({
-          { name = "path" },
-        }, {
-          { name = "cmdline" },
-        }),
-        matching = { disallow_symbol_nonprefix_matching = false },
-      })
-      cmp.setup.cmdline("/", {
-        mapping = mapping,
-        sources = {
-          { name = "buffer" },
-        },
-      })
-    end,
-  },
-  {
     "hrsh7th/nvim-cmp",
     dependencies = { "onsails/lspkind.nvim" },
     opts = function(_, opts)
@@ -165,6 +115,56 @@ return {
           },
         }),
       }
+    end,
+  },
+  {
+    "hrsh7th/cmp-cmdline",
+    dependencies = {
+      "hrsh7th/nvim-cmp",
+    },
+    config = function()
+      local cmp = require("cmp")
+
+      local mapping = vim.tbl_deep_extend("force", cmp.mapping.preset.cmdline(), {
+        ["<c-n>"] = {
+          c = function()
+            local fn = function()
+              vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Down>", true, false, true), "n", true)
+            end
+            if cmp.visible() then
+              fn = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert })
+            end
+            fn()
+          end,
+        },
+        ["<c-e>"] = {
+          c = function()
+            local fn = function()
+              vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Up>", true, false, true), "n", true)
+            end
+            if cmp.visible() then
+              fn = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
+            end
+            fn()
+          end,
+        },
+      })
+
+      cmp.setup.cmdline(":", {
+        mapping = mapping,
+        sources = cmp.config.sources({
+          { name = "path" },
+        }, {
+          { name = "cmdline" },
+        }),
+        matching = { disallow_symbol_nonprefix_matching = false },
+      })
+      cmp.setup.cmdline("/", {
+        mapping = mapping,
+        sources = {
+          { name = "buffer" },
+        },
+      })
     end,
   },
 }
