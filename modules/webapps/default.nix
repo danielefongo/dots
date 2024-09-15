@@ -9,15 +9,26 @@ in
     (webApp {
       name = "Slack";
       site = "https://app.slack.com/client/T024WK3NT";
+      protocol = "slack";
       icon = (pkgs.fetchurl {
         url = "https://img.icons8.com/color-glass/480/slack-new.png";
         sha256 = "sha256-O7C1z66smLZShfgUw1L3rXCgb/TgRqLqOv7vgEQAei4=";
       }).outPath;
       userAgent = userAgent;
+      uriParser = ''(uri) => {
+        const parsedUrl = new URL(uri);
+        const params = new URLSearchParams(parsedUrl.search);
+        let newUrl = `https://app.slack.com/client/''${params.get("team")}/''${params.get("id")}`;
+        if (params.has("message")) {
+          newUrl += `/''${params.get("message")}`;
+        }
+        return newUrl;
+      }'';
     })
     (webApp {
       name = "Telegram";
       site = "https://web.telegram.org";
+      configFolder = "AppTelegram";
       icon = (pkgs.fetchurl {
         url = "https://img.icons8.com/color/480/telegram-app--v1.png";
         sha256 = "sha256-Wg/jU2cGcLl7WJCDOvld0KjwSfByiFSXsZkUM/J43GU=";
