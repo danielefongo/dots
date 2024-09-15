@@ -45,5 +45,15 @@ in
       }).outPath;
       userAgent = userAgent;
     })
+    (webApp {
+      name = "Spotify";
+      site = "https://spotify.com/";
+      icon = (pkgs.fetchurl {
+        url = "https://img.icons8.com/fluency/240/spotify.png";
+        sha256 = "sha256-vYs3+sJDxedD3BOMPeMDsUX2f42NIe8gHjTdPUXb35s=";
+      }).outPath;
+      music = lib.outFile "webapps/music/spotify.js";
+      userAgent = userAgent;
+    })
   ];
 }
