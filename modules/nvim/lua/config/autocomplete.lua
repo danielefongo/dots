@@ -30,6 +30,12 @@ return {
           { name = "path" },
           { name = "buffer", keyword_length = 2, max_item_count = 8 },
         },
+        completion = {
+          autocomplete = {
+            cmp.TriggerEvent.TextChanged,
+            cmp.TriggerEvent.InsertEnter,
+          },
+        },
       }
     end,
   },
