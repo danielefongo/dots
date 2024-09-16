@@ -28,9 +28,9 @@ return {
       end
     end,
     keys = {
-      { "<leader>sd", ":lua require('persistence').delete_current_and_stop()<cr>", desc = "delete" },
-      { "<leader>sl", ":lua require('persistence').load()<cr>", desc = "load" },
-      { "<leader>ss", ":lua require('persistence').save()<cr>", desc = "save" },
+      { "<leader>sd", ":lua require('persistence').delete_current_and_stop()<cr>", desc = "delete", silent = true },
+      { "<leader>sl", ":lua require('persistence').load()<cr>", desc = "load", silent = true },
+      { "<leader>ss", ":lua require('persistence').save()<cr>", desc = "save", silent = true },
     },
   },
 }

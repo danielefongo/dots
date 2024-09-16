@@ -10,7 +10,7 @@ return {
 
     wk.add({
       { "<leader>b", group = "buffer" },
-      { "<leader>bs", ":lua scratch()<cr>", desc = "scratch" },
+      { "<leader>bs", ":lua scratch()<cr>", desc = "scratch", silent = true },
 
       { "<leader>c", group = "code" },
 
@@ -28,13 +28,13 @@ return {
       { "<leader>t", group = "tab" },
 
       { "<leader>v", group = "vim" },
-      { "<leader>vq", ":qa<cr>", desc = "quit" },
+      { "<leader>vq", ":qa<cr>", desc = "quit", silent = true },
 
       { "<leader>w", "<C-w>", desc = "windows" },
     })
 
     wk.add({
-      { "<a-q>", ":lua close_win()<cr>", desc = "close buffer" },
+      { "<a-q>", ":lua close_win()<cr>", desc = "close buffer", silent = true },
     })
 
     -- colemak remap

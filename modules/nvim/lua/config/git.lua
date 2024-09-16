@@ -33,11 +33,11 @@ return {
       },
     },
     keys = {
-      { "<leader>gS", ":Gitsigns undo_stage_hunk<cr>", desc = "stage hunk" },
-      { "<leader>gb", ":Gitsigns blame_line<cr>", desc = "blame line" },
-      { "<leader>gh", ":Gitsigns preview_hunk<cr>", desc = "preview hunk" },
-      { "<leader>gr", ":Gitsigns reset_hunk<cr>", desc = "reset hunk" },
-      { "<leader>gs", ":Gitsigns stage_hunk<cr>", desc = "stage hunk" },
+      { "<leader>gS", ":Gitsigns undo_stage_hunk<cr>", desc = "stage hunk", silent = true },
+      { "<leader>gb", ":Gitsigns blame_line<cr>", desc = "blame line", silent = true },
+      { "<leader>gh", ":Gitsigns preview_hunk<cr>", desc = "preview hunk", silent = true },
+      { "<leader>gr", ":Gitsigns reset_hunk<cr>", desc = "reset hunk", silent = true },
+      { "<leader>gs", ":Gitsigns stage_hunk<cr>", desc = "stage hunk", silent = true },
     },
   },
   {
@@ -60,7 +60,7 @@ return {
       },
     },
     keys = {
-      { "<leader>gg", ":Neogit<cr>", desc = "neo" },
+      { "<leader>gg", ":Neogit<cr>", desc = "neo", silent = true },
     },
   },
 }

@@ -11,7 +11,7 @@ return {
       },
     },
     keys = {
-      { "<leader>ot", ":Oil<cr>", desc = "tree" },
+      { "<leader>ot", ":Oil<cr>", desc = "tree", silent = true },
     },
   },
 }

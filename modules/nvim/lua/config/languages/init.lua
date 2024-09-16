@@ -96,23 +96,24 @@ return {
       end
     end,
     keys = {
-      { "<leader>ce", ":LspStart<cr>", desc = "enable lsp" },
-      { "<leader>cE", ":LspStop<cr>", desc = "disable lsp" },
-      { "<leader>cR", ":lua vim.lsp.buf.rename()<cr>", desc = "rename" },
-      { "<leader>ca", ":lua vim.lsp.buf.code_action()<cr>", desc = "actions", mode = { "n", "v" } },
-      { "<leader>ch", ":lua vim.lsp.buf.hover()<cr>", desc = "signature" },
+      { "<leader>ce", ":LspStart<cr>", desc = "enable lsp", silent = true },
+      { "<leader>cE", ":LspStop<cr>", desc = "disable lsp", silent = true },
+      { "<leader>cR", ":lua vim.lsp.buf.rename()<cr>", desc = "rename", silent = true },
+      { "<leader>ca", ":lua vim.lsp.buf.code_action()<cr>", desc = "actions", mode = { "n", "v" }, silent = true },
+      { "<leader>ch", ":lua vim.lsp.buf.hover()<cr>", desc = "signature", silent = true },
       {
         "<leader>cH",
         ":lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<cr>",
         desc = "inlay toggle",
+        silent = true,
       },
-      { "<leader>de", ":lua vim.diagnostic.goto_prev({ wrap = false })<cr>", desc = "previous" },
-      { "<leader>dn", ":lua vim.diagnostic.goto_next({ wrap = false })<cr>", desc = "next" },
+      { "<leader>de", ":lua vim.diagnostic.goto_prev({ wrap = false })<cr>", desc = "previous", silent = true },
+      { "<leader>dn", ":lua vim.diagnostic.goto_next({ wrap = false })<cr>", desc = "next", silent = true },
     },
   },
   {
     "stevearc/conform.nvim",
-    event = "VeryLazy",
+    event = "BufWritePre",
     dependencies = { "williamboman/mason.nvim" },
     opts = {
       mason_sources = {},
@@ -143,7 +144,7 @@ return {
       })
     end,
     keys = {
-      { "<leader>cf", ":lua require('conform').format({ bufnr = 0 })<cr>", desc = "format" },
+      { "<leader>cf", ":lua require('conform').format({ bufnr = 0 })<cr>", desc = "format", silent = true },
     },
   },
   {
@@ -157,8 +158,8 @@ return {
     },
     dependencies = { "nvim-tree/nvim-web-devicons" },
     keys = {
-      { "<leader>dt", ":Trouble diagnostics toggle filter.buf=0<cr>", desc = "trouble buffer" },
-      { "<leader>dT", ":Trouble diagnostics toggle<cr>", desc = "trouble workspace" },
+      { "<leader>dt", ":Trouble diagnostics toggle filter.buf=0<cr>", desc = "trouble buffer", silent = true },
+      { "<leader>dT", ":Trouble diagnostics toggle<cr>", desc = "trouble workspace", silent = true },
     },
   },
   require("config.languages.bash"),

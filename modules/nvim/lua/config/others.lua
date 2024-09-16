@@ -9,7 +9,7 @@ return {
     "tpope/vim-commentary",
     cmd = "Commentary",
     keys = {
-      { "<leader>;", ":Commentary<cr>", desc = "comment", mode = { "n", "v" } },
+      { "<leader>;", ":Commentary<cr>", desc = "comment", mode = { "n", "v" }, silent = true },
     },
   },
   {
@@ -21,16 +21,21 @@ return {
   {
     "brenoprata10/nvim-highlight-colors",
     keys = {
-      { "<leader>cc", ":lua require('nvim-highlight-colors').toggle()<cr>", desc = "colors" },
+      { "<leader>cc", ":lua require('nvim-highlight-colors').toggle()<cr>", desc = "colors", silent = true },
     },
   },
   { "windwp/nvim-autopairs", opts = {}, event = "BufReadPre" },
   {
     "kazhala/close-buffers.nvim",
     keys = {
-      { "<leader>bH", ":lua require('close_buffers').delete({ type = 'other' })<cr>", desc = "close all" },
-      { "<leader>bk", ":lua require('close_buffers').delete({ type = 'this' })<cr>", desc = "close" },
-      { "<leader>bK", ":lua require('close_buffers').delete({ type = 'all' })<cr>", desc = "close all" },
+      {
+        "<leader>bH",
+        ":lua require('close_buffers').delete({ type = 'other' })<cr>",
+        desc = "close all",
+        silent = true,
+      },
+      { "<leader>bk", ":lua require('close_buffers').delete({ type = 'this' })<cr>", desc = "close", silent = true },
+      { "<leader>bK", ":lua require('close_buffers').delete({ type = 'all' })<cr>", desc = "close all", silent = true },
     },
   },
   {
@@ -39,10 +44,11 @@ return {
       vim.g.tmux_navigator_no_mappings = 1
     end,
     keys = {
-      { "<M-m>", ":TmuxNavigateLeft<cr>", desc = "left" },
-      { "<M-n>", ":TmuxNavigateDown<cr>", desc = "down" },
-      { "<M-e>", ":TmuxNavigateUp<cr>", desc = "up" },
-      { "<M-i>", ":TmuxNavigateRight<cr>", desc = "right" },
+      { "<M-m>", ":TmuxNavigateLeft<cr>", desc = "left", silent = true },
+      { "<M-n>", ":TmuxNavigateDown<cr>", desc = "down", silent = true },
+      { "<M-e>", ":TmuxNavigateUp<cr>", desc = "up", silent = true },
+      { "<M-i>", ":TmuxNavigateRight<cr>", desc = "right", silent = true },
+    event = "BufReadPost",
     },
   },
   {
@@ -57,7 +63,7 @@ return {
       end,
     },
     keys = {
-      { "<c-f>", "za", desc = "toggle fold" },
+      { "<c-f>", "za", desc = "toggle fold", silent = true },
     },
   },
 }
