@@ -51,9 +51,26 @@ return {
       return {
         relculright = true,
         segments = {
-          { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
-          { text = { " %s" }, click = "v:lua.ScSa" },
-          { text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
+          { text = { builtin.foldfunc, " " }, click = "v:lua.ScFa" },
+          {
+            sign = { namespace = { "diagnostic/signs" }, maxwidth = 1, colwidth = 1, auto = true },
+            condition = {
+              function()
+                return #vim.diagnostic.get(0) > 0
+              end,
+              function()
+                return #vim.diagnostic.get(0) > 0
+              end,
+            },
+            click = "v:lua.ScSa",
+          },
+          { text = { builtin.lnumfunc }, click = "v:lua.ScLa" },
+          {
+            text = { " ", builtin.signfunc, " " },
+            sign = { namespace = { "gitsign*" }, maxwidth = 1, colwidth = 1, auto = false, fillchar = " " },
+            condition = { true, builtin.not_empty, builtin.not_empty },
+            click = "v:lua.ScSa",
+          },
         },
       }
     end,
