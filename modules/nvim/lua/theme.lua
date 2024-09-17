@@ -112,6 +112,9 @@ local themer = {
   },
   remaps = {
     base = {
+      CursorLineNr = { fg = colors.white, bg = colors.background },
+      CursorLine = { bg = colors.background },
+      LineNr = { fg = colors.grey2, bg = colors.background },
       FoldColumn = { fg = colors.grey4, bg = colors.background },
       Folded = { bg = colors.background_alt2 },
       WinSeparator = { fg = colors.grey2, bg = colors.background },

@@ -28,6 +28,7 @@ opt.foldenable = true
 opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 opt.ignorecase = true
 opt.smartcase = true
+opt.cursorline = true
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
