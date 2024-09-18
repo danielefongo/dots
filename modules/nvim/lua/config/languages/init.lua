@@ -17,7 +17,7 @@ local function init_tool(name, on_end)
 
   if not package:is_installed() then
     vim.print("Installing " .. name)
-    package:install():once("close", function()
+    package:install():once("closed", function()
       vim.schedule_wrap(on_end)
     end)
   else
@@ -49,7 +49,7 @@ return {
   },
   {
     "j-hui/fidget.nvim",
-    event = "BufReadPre",
+    event = "BufReadPost",
     opts = {},
     dependencies = { "neovim/nvim-lspconfig" },
   },
@@ -58,7 +58,6 @@ return {
     dependencies = {
       "williamboman/mason.nvim",
       "ray-x/lsp_signature.nvim",
-      "hrsh7th/nvim-cmp",
       "hrsh7th/cmp-nvim-lsp",
       { "folke/neodev.nvim", config = true },
       { "antosha417/nvim-lsp-file-operations", config = true },
@@ -113,7 +112,7 @@ return {
   },
   {
     "stevearc/conform.nvim",
-    event = "BufWritePre",
+    event = "BufReadPost",
     dependencies = { "williamboman/mason.nvim" },
     opts = {
       mason_sources = {},
