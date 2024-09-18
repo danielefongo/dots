@@ -8,9 +8,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = function(_, lsps)
-      lsps["dockerls"] = {
-        mason_name = "dockerfile-language-server",
-      }
+      lsps["dockerls"] = {}
     end,
   },
 }

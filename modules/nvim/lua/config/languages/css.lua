@@ -9,15 +9,12 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = function(_, lsps)
-      lsps["cssls"] = {
-        mason_name = "css-lsp",
-      }
+      lsps["cssls"] = {}
     end,
   },
   {
     "stevearc/conform.nvim",
     opts = function(_, opts)
-      table.insert(opts.mason_sources, "prettier")
       opts.options.formatters_by_ft.css = { "prettier" }
       opts.options.formatters_by_ft.scss = { "prettier" }
     end,

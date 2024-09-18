@@ -8,15 +8,12 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = function(_, lsps)
-      lsps["taplo"] = {
-        mason_name = "taplo",
-      }
+      lsps["taplo"] = {}
     end,
   },
   {
     "stevearc/conform.nvim",
     opts = function(_, opts)
-      table.insert(opts.mason_sources, "taplo")
       opts.options.formatters_by_ft.toml = { "taplo" }
     end,
   },

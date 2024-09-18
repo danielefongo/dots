@@ -1,30 +1,3 @@
-local function init_tool(name, on_end)
-  on_end = on_end or function() end
-
-  if not name then
-    return on_end()
-  end
-
-  local mr = require("mason-registry")
-  mr.refresh()
-
-  if not mr.has_package(name) then
-    vim.api.nvim_err_write("Error: not existing mason package: " .. name)
-    return
-  end
-
-  local package = mr.get_package(name)
-
-  if not package:is_installed() then
-    vim.print("Installing " .. name)
-    package:install():once("closed", function()
-      vim.schedule_wrap(on_end)
-    end)
-  else
-    on_end()
-  end
-end
-
 return {
   {
     "nvim-treesitter/nvim-treesitter",
@@ -61,15 +34,15 @@ return {
       "hrsh7th/cmp-nvim-lsp",
       { "folke/neodev.nvim", config = true },
       { "antosha417/nvim-lsp-file-operations", config = true },
+      { "williamboman/mason-lspconfig.nvim", config = function() end },
     },
-    event = "VeryLazy",
+    event = "BufReadPost",
     opts = {},
     config = function(_, lsps)
       local lsp = require("lspconfig")
       local cmp = require("cmp_nvim_lsp")
       local signature = require("lsp_signature")
-
-      local mason = require("mason")
+      local mason_lsp = require("mason-lspconfig")
 
       local flags = { debounce_text_changes = 150 }
       local capabilities = cmp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -79,20 +52,34 @@ return {
         signature.on_attach({ bind = true }, bufnr)
       end
 
-      mason.setup({ install_root_dir = fn.stdpath("data") .. "/lsp" })
+      local function setup(lsp_name)
+        local config = lsps[lsp_name]
 
-      for lsp_name, config in pairs(lsps) do
-        init_tool(config.mason_name, function()
-          lsp[lsp_name].setup({
-            capabilities = capabilities,
-            on_attach = config.on_attach or on_attach,
-            flags = flags,
-            cmd = config.cmd,
-            settings = config.settings or {},
-            autostart = false,
-          })
-        end)
+        lsp[lsp_name].setup({
+          capabilities = capabilities,
+          on_attach = config.on_attach or on_attach,
+          flags = flags,
+          cmd = config.cmd,
+          settings = config.settings or {},
+          autostart = false,
+        })
       end
+
+      local all_lsp_servers = vim.tbl_keys(require("mason-lspconfig.mappings.server").lspconfig_to_package)
+
+      local ensure_installed = {}
+      for lsp_name, _ in pairs(lsps) do
+        if not vim.tbl_contains(all_lsp_servers, lsp_name) then
+          setup(lsp_name)
+        else
+          table.insert(ensure_installed, lsp_name)
+        end
+      end
+
+      mason_lsp.setup({
+        ensure_installed = ensure_installed,
+        handlers = { setup },
+      })
     end,
     keys = {
       { "<leader>ce", ":LspStart<cr>", desc = "enable lsp", silent = true },
@@ -113,9 +100,11 @@ return {
   {
     "stevearc/conform.nvim",
     event = "BufReadPost",
-    dependencies = { "williamboman/mason.nvim" },
+    dependencies = {
+      "williamboman/mason.nvim",
+      "zapling/mason-conform.nvim",
+    },
     opts = {
-      mason_sources = {},
       options = {
         formatters_by_ft = {
           ["*"] = { "trim_whitespace", "trim_newlines" },
@@ -124,16 +113,8 @@ return {
       },
     },
     config = function(_, opts)
-      local mason = require("mason")
-      mason.setup({ install_root_dir = fn.stdpath("data") .. "/lsp" })
-
-      local mason_sources = opts.mason_sources
-
-      for _, formatter in pairs(mason_sources) do
-        init_tool(formatter)
-      end
-
       require("conform").setup(opts.options)
+      require("mason-conform").setup()
 
       vim.api.nvim_create_autocmd("BufWritePre", {
         pattern = "*",
@@ -145,6 +126,38 @@ return {
     keys = {
       { "<leader>cf", ":lua require('conform').format({ bufnr = 0 })<cr>", desc = "format", silent = true },
     },
+  },
+  {
+    "williamboman/mason.nvim",
+    cmd = "Mason",
+    build = ":MasonUpdate",
+    opts = {
+      ensure_installed = {},
+      install_root_dir = fn.stdpath("data") .. "/lsp",
+    },
+    config = function(_, opts)
+      require("mason").setup(opts)
+
+      local mr = require("mason-registry")
+
+      mr:on("package:install:success", function()
+        vim.defer_fn(function()
+          require("lazy.core.handler.event").trigger({
+            event = "FileType",
+            buf = vim.api.nvim_get_current_buf(),
+          })
+        end, 100)
+      end)
+
+      mr.refresh(function()
+        for _, tool in ipairs(opts.ensure_installed) do
+          local p = mr.get_package(tool)
+          if not p:is_installed() then
+            p:install()
+          end
+        end
+      end)
+    end,
   },
   {
     "folke/trouble.nvim",

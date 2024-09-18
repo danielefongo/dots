@@ -9,7 +9,6 @@ return {
     "neovim/nvim-lspconfig",
     opts = function(_, lsps)
       lsps["rust_analyzer"] = {
-        mason_name = "rust-analyzer",
         settings = {
           ["rust-analyzer"] = {
             assist = {
@@ -37,7 +36,6 @@ return {
   {
     "stevearc/conform.nvim",
     opts = function(_, opts)
-      table.insert(opts.mason_sources, "rustfmt")
       opts.options.formatters_by_ft.rust = { "rustfmt" }
     end,
   },

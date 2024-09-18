@@ -9,17 +9,12 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = function(_, lsps)
-      lsps["tsserver"] = {
-        mason_name = "typescript-language-server",
-      }
+      lsps["tsserver"] = {}
     end,
   },
   {
     "stevearc/conform.nvim",
     opts = function(_, opts)
-      table.insert(opts.mason_sources, "eslint_d")
-      table.insert(opts.mason_sources, "prettier")
-
       opts.options.formatters_by_ft.javascript = { { "prettier", "eslint_d" } }
       opts.options.formatters_by_ft.typescript = { { "prettier", "eslint_d" } }
 

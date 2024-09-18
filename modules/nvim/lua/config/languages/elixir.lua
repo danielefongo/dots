@@ -10,8 +10,7 @@ return {
     "neovim/nvim-lspconfig",
     opts = function(_, lsps)
       lsps["elixirls"] = {
-        mason_name = "elixir-ls",
-        cmd = { fn.glob(fn.stdpath("data") .. "/lsp/bin/" .. "elixir-ls") },
+        cmd = { fn.stdpath("data") .. "/lsp/bin/" .. "elixir-ls" },
         settings = {
           elixirLS = {
             fetchDeps = false,
