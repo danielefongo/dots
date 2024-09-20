@@ -1,11 +1,23 @@
 local watcher = vim.loop.new_fs_poll()
 
+local function load_theme()
+  package.loaded["theme"] = nil
+
+  local loaders = vim.loader.find("theme", { all = true })
+  for _, loader in ipairs(loaders) do
+    vim.loader.reset(loader.modpath)
+  end
+
+  return require("theme")
+end
+
 watcher:start(vim.fn.stdpath("config") .. "/lua/theme.lua", 500, function()
   local theme = load_theme()
 
-  if pcall(require, "themer") then
+  if pcall(require, "lush") then
     vim.schedule(function()
-      require("themer.modules.core")(theme.themer)
+      local data = require("theme")
+      require("lush")(data.lush())
     end)
   end
 

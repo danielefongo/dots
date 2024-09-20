@@ -48,6 +48,7 @@ return {
       local capabilities = cmp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
       local function on_attach(client, bufnr)
+        client.server_capabilities.semanticTokensProvider = nil
         client.server_capabilities.documentFormattingProvider = false
         signature.on_attach({ bind = true }, bufnr)
       end

@@ -1,8 +1,10 @@
 return {
   {
-    "themercorp/themer.lua",
-    event = "VeryLazy",
-    opts = { colorscheme = theme.themer },
+    "rktjmp/lush.nvim",
+    lazy = false,
+    config = function()
+      require("lush")(require("theme").lush())
+    end,
   },
   {
     "utilyre/barbecue.nvim",

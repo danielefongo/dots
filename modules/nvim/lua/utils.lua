@@ -2,21 +2,12 @@ opt = vim.opt
 fn = vim.fn
 api = vim.api
 
+local highlights = require("utils.highlights")
+
 function _G.close_win()
   return pcall(function()
     return api.nvim_win_close(0, false)
   end) or vim.cmd(":q")
-end
-
-function _G.load_theme()
-  package.loaded["theme"] = nil
-
-  local loaders = vim.loader.find("theme", { all = true })
-  for _, loader in ipairs(loaders) do
-    vim.loader.reset(loader.modpath)
-  end
-
-  return require("theme")
 end
 
 function _G.scratch()
@@ -31,4 +22,12 @@ function _G.scratch()
   if filetype ~= "" then
     api.nvim_set_option_value("filetype", filetype, { buf = buf })
   end
+end
+
+function _G.missing_hls()
+  local missing = highlights.get_missing_highlights({
+    "Redraw",
+    "DevIcon",
+  })
+  vim.fn.setreg("z", table.concat(missing, "\n"))
 end

@@ -47,6 +47,7 @@ module.exports = {
       error: "{{ colors.red }}",
     },
     syntax: {
+      special: "{{ colors.cyan }}",
       statement: "{{ colors.orange }}",
       function: "{{ colors.blue }}",
       variable: "{{ colors.foreground }}",
