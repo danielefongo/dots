@@ -1,5 +1,5 @@
 return {
-  { "elixir-editors/vim-elixir", event = "BufReadPre" },
+  { "elixir-editors/vim-elixir", event = "LspAttach" },
   {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)

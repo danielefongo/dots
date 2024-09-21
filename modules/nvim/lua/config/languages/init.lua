@@ -22,7 +22,7 @@ return {
   },
   {
     "j-hui/fidget.nvim",
-    event = "BufReadPost",
+    event = "LspAttach",
     opts = {},
     dependencies = { "neovim/nvim-lspconfig" },
   },
@@ -36,7 +36,6 @@ return {
       { "antosha417/nvim-lsp-file-operations", config = true },
       { "williamboman/mason-lspconfig.nvim", config = function() end },
     },
-    event = "BufReadPost",
     opts = {},
     config = function(_, lsps)
       local lsp = require("lspconfig")
@@ -131,9 +130,7 @@ return {
   {
     "williamboman/mason.nvim",
     cmd = "Mason",
-    build = ":MasonUpdate",
     opts = {
-      ensure_installed = {},
       install_root_dir = fn.stdpath("data") .. "/lsp",
     },
     config = function(_, opts)
@@ -148,15 +145,6 @@ return {
             buf = vim.api.nvim_get_current_buf(),
           })
         end, 100)
-      end)
-
-      mr.refresh(function()
-        for _, tool in ipairs(opts.ensure_installed) do
-          local p = mr.get_package(tool)
-          if not p:is_installed() then
-            p:install()
-          end
-        end
       end)
     end,
   },

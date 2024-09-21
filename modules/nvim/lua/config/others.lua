@@ -24,7 +24,7 @@ return {
       { "<leader>cc", ":lua require('nvim-highlight-colors').toggle()<cr>", desc = "colors", silent = true },
     },
   },
-  { "windwp/nvim-autopairs", opts = {}, event = "BufReadPre" },
+  { "windwp/nvim-autopairs", opts = {}, event = "InsertEnter" },
   {
     "kazhala/close-buffers.nvim",
     keys = {
@@ -48,13 +48,11 @@ return {
       { "<M-n>", ":TmuxNavigateDown<cr>", desc = "down", silent = true },
       { "<M-e>", ":TmuxNavigateUp<cr>", desc = "up", silent = true },
       { "<M-i>", ":TmuxNavigateRight<cr>", desc = "right", silent = true },
-    event = "BufReadPost",
     },
   },
   {
     "kevinhwang91/nvim-ufo",
     dependencies = { "kevinhwang91/promise-async" },
-    event = "BufReadPost",
     opts = {
       open_fold_hl_timeout = 150,
       close_fold_kinds_for_ft = { "imports", "comment" },

@@ -8,9 +8,9 @@ return {
   },
   {
     "utilyre/barbecue.nvim",
-    lazy = false,
+    event = "LspAttach",
     name = "barbecue",
-    dependencies = { "SmiteshP/nvim-navic" },
+    dependencies = { "SmiteshP/nvim-navic", "rktjmp/lush.nvim" },
     opts = { theme = theme.barbecue },
   },
   {
@@ -47,7 +47,7 @@ return {
   },
   {
     "luukvbaal/statuscol.nvim",
-    lazy = false,
+    event = "VeryLazy",
     opts = function()
       local builtin = require("statuscol.builtin")
       return {
@@ -93,7 +93,7 @@ return {
   },
   {
     "nanozuki/tabby.nvim",
-    event = "BufReadPost",
+    event = { "TabEnter", "TabLeave" },
     dependencies = "nvim-tree/nvim-web-devicons",
     opts = {
       line = function(line)
