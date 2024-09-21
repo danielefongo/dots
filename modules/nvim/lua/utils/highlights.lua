@@ -115,6 +115,32 @@ local function get_missing_highlights(filter_out)
   return result
 end
 
+local function apply_function_preserving_highlights(fun, matches)
+  vim.cmd("Lazy load all")
+
+  local hls = parse_input(vim.fn.execute("highlight"), {})
+
+  hls = vim.tbl_filter(function(entry)
+    return #vim.tbl_filter(function(match)
+      return entry.name:find(match)
+    end, matches) > 0
+  end, hls)
+
+  fun()
+
+  for _, hl in ipairs(hls) do
+    local command = ""
+    if hl.data.fg then
+      command = command .. " guifg=" .. hl.data.fg
+    end
+    if hl.data.bg then
+      command = command .. " guibg=" .. hl.data.bg
+    end
+    vim.cmd("hi " .. hl.name .. command)
+  end
+end
+
 return {
   get_missing_highlights = get_missing_highlights,
+  apply_function_preserving_highlights = apply_function_preserving_highlights,
 }
