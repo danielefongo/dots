@@ -4,7 +4,7 @@ return {
     event = "BufReadPost",
     opts = {
       signcolumn = true,
-      numhl = true,
+      numhl = false,
       linehl = false,
       word_diff = false,
       watch_gitdir = {
