@@ -26,6 +26,7 @@
     ./theme
     ./tig
     ./tmux
+    ./sesh
     ./wallpaper
     ./webapps
     ./xbindkeys

@@ -1,0 +1,17 @@
+[default_session]
+startup_command = "nvim"
+
+[[session]]
+name = "dots"
+path = "~/dots"
+startup_command = "nvim"
+
+[[session]]
+name = "home"
+path = "~"
+startup_command = "nvim"
+
+[[session]]
+name = "tmuxinator"
+path = "~/.config/tmuxinator"
+startup_command = "nvim"

@@ -40,6 +40,20 @@ setopt SHARE_HISTORY
 setopt hist_ignore_space
 setopt histignoredups
 
+# sesh
+function sesh-sessions() {
+  {
+    exec </dev/tty
+    exec <&1
+    local session
+    session=$(sesh list -i | fzf --ansi)
+    [[ -z "$session" ]] && return
+    sesh connect $session
+  }
+}
+zle -N sesh-sessions
+bindkey '^s' sesh-sessions
+
 # fzf
 export FZF_COMPLETION_TRIGGER=''
 bindkey '^T' fzf-completion

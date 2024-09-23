@@ -52,8 +52,7 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 bindsym $mod+d exec rofi -show combi
 
 # terminal
-bindsym $mod+Return exec alacritty -e 'zsh'
-bindsym $mod+$shift+Return exec alacritty
+bindsym $mod+Return exec alacritty -e zsh -c 'sesh connect $(sesh list -i | fzf --ansi) 2>/dev/null || zsh'
 
 # kill window
 bindsym $mod+q kill
