@@ -20,10 +20,13 @@ source "$HOME/antigen.zsh"
 antigen use oh-my-zsh
 antigen bundle git
 antigen bundle scmbreeze/scm_breeze
-antigen bundle autojump
 antigen bundle fzf
 antigen bundle danielefongo/shapeshift
 antigen apply
+
+# zoxide
+eval "$(zoxide init zsh)"
+alias j=z
 
 # mise (asdf alternative)
 eval "$(mise activate zsh)"
