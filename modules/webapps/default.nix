@@ -25,6 +25,7 @@ in
         }
         return newUrl;
       }'';
+      notification = "true";
     })
     (webApp {
       name = "Telegram";
