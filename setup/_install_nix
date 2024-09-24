@@ -3,16 +3,16 @@
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
 
 if [ "$1" == '-d' ]; then
-	sudo rm -rf /nix ~/.nix-channels ~/.nix-defexpr ~/.nix-profile ~/.local/state/nix/
+  sudo rm -rf /nix ~/.nix-channels ~/.nix-defexpr ~/.nix-profile ~/.local/state/nix/
 elif ! command -v nix &>/dev/null; then
-	# install nix
-	curl -L https://nixos.org/nix/install | sh -s -- --no-daemon
+  # install nix
+  curl -L https://nixos.org/nix/install | sh -s -- --no-daemon
 
-	# install home-manager
-	nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
-	nix-channel --update
-	nix-shell '<home-manager>' -A install
-	rm -rf ~/.config/nix/nix.conf
-	mkdir -p ~/.config/nix/
-	cp -r "$SCRIPT_DIR/../nix.conf" ~/.config/nix/nix.conf
+  # install home-manager
+  nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+  nix-channel --update
+  nix-shell '<home-manager>' -A install
+  rm -rf ~/.config/nix/nix.conf
+  mkdir -p ~/.config/nix/
+  cp -r "$SCRIPT_DIR/../nix.conf" ~/.config/nix/nix.conf
 fi

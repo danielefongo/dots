@@ -7,9 +7,9 @@ BASH_SHELL="/usr/bin/bash"
 grep -qxF "$ZSH_SHELL" "$SHELLS" || echo "$ZSH_SHELL" | sudo tee -a "$SHELLS" 1>/dev/null
 
 if [ "$1" == "-d" ]; then
-	chsh -s "$BASH_SHELL"
-	echo "Zsh unset (using bash)"
+  chsh -s "$BASH_SHELL"
+  echo "Zsh unset (using bash)"
 elif [ "$ZSH_SHELL" != "$(getent passwd $USER | cut -d: -f7)" ]; then
-	chsh -s "$ZSH_SHELL"
-	echo "Zsh set"
+  chsh -s "$ZSH_SHELL"
+  echo "Zsh set"
 fi

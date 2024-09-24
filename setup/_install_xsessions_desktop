@@ -4,11 +4,11 @@ SERVICE_LOCATION=/usr/share/xsessions/i3.desktop
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
 
 if [ "$1" == "-d" ]; then
-	sudo rm -f $SERVICE_LOCATION
+  sudo rm -f $SERVICE_LOCATION
 
-	echo "Xsession entry unset"
+  echo "Xsession entry unset"
 elif [ ! -f $SERVICE_LOCATION ]; then
-	sudo tee $SERVICE_LOCATION 1>/dev/null <<EOF
+  sudo tee $SERVICE_LOCATION 1>/dev/null <<EOF
 [Desktop Entry]
 Name=i3
 Comment=i3
@@ -18,5 +18,5 @@ X-LightDM-DesktopName=i3
 DesktopNames=i3
 Keywords=tiling
 EOF
-	echo "Xsession entry set"
+  echo "Xsession entry set"
 fi
