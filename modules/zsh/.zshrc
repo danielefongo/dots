@@ -60,8 +60,8 @@ bindkey '^T' fzf-completion
 bindkey '^I' $fzf_default_completion
 
 # others
-if [ -f ~/.custom_zshrc.sh ]; then
-  source ~/.custom_zshrc.sh
+if [ -f ~/.custom_zshrc ]; then
+  source ~/.custom_zshrc
 fi
 
 local zsh_reload() {

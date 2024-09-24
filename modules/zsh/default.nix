@@ -6,4 +6,5 @@
   ];
 
   home.file.".zshrc".source = lib.outLink "zsh/.zshrc";
+  home.file.".custom_zshrc".source = lib.outLink "zsh/.custom_zshrc";
 }
