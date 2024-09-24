@@ -2,6 +2,7 @@ theme = require("theme")
 
 require("utils")
 
+opt.jumpoptions = "stack"
 opt.backup = false
 opt.writebackup = false
 opt.swapfile = false
@@ -29,6 +30,7 @@ opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 opt.ignorecase = true
 opt.smartcase = true
 opt.cursorline = true
+opt.confirm = true
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
