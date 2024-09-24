@@ -7,3 +7,5 @@
   pager = delta
 [include]
   path = ~/.config/git/delta
+[include]
+  path = ~/.config/git/extra_config
