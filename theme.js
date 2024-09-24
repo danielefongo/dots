@@ -70,6 +70,7 @@ module.exports = {
       comment: "{{ colors.grey4 }}",
       type: "{{ colors.yellow }}",
       conditional: "{{ colors.red }}",
+      macro: "{{ colors.blue }}",
     },
   },
   filters: {

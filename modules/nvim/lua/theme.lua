@@ -65,6 +65,7 @@ local syntax = {
   comment = "{{ syntax.comment }}",
   type = "{{ syntax.type }}",
   conditional = "{{ syntax.conditional }}",
+  macro = "{{ syntax.macro }}",
 }
 
 local lush = function()
@@ -152,6 +153,8 @@ local lush = function()
       Function({ fg = syntax["function"] }),
       sym("@function.call")({ Function }),
       sym("@function.builtin")({ Function }),
+      Macro({ fg = syntax.macro }),
+      sym("@function.macro")({ Macro }),
       Type({ fg = syntax.type }),
       Typedef({ Type }),
       Structure({ Type }),
