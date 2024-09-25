@@ -55,10 +55,6 @@ return {
     dependencies = { "kevinhwang91/promise-async" },
     opts = {
       open_fold_hl_timeout = 150,
-      close_fold_kinds_for_ft = { "imports", "comment" },
-      provider_selector = function()
-        return { "treesitter", "indent" }
-      end,
     },
     keys = {
       { "<c-f>", "za", desc = "toggle fold", silent = true },
