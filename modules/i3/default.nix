@@ -30,16 +30,7 @@
       Unit = {
         Description = "i3 session";
         BindsTo = "graphical-session.target";
-        Wants = [
-          "dunst.service"
-          "flameshot.service"
-          "picom.service"
-          "polybar.service"
-          "redshift.service"
-          "wallpaper.service"
-          "xsettingsd.service"
-          "xbindkeys.service"
-        ];
+        Wants = [ ];
       };
     };
   };

@@ -17,12 +17,17 @@ in
     dunst = {
       Unit = {
         Description = "Dunst";
-        PartOf = "graphical-session.target";
+        PartOf = [ "i3-session.target" ];
+      };
+
+      Install = {
+        WantedBy = [ "i3-session.target" ];
       };
 
       Service = {
         ExecStart = "${dunstWrapper}/bin/dunst";
         Restart = "on-failure";
+        RestartSec = 2;
       };
     };
   };

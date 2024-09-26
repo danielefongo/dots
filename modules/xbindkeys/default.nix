@@ -12,13 +12,17 @@
     xbindkeys = {
       Unit = {
         Description = "Xbindkeys";
-        PartOf = "graphical-session.target";
+        PartOf = [ "i3-session.target" ];
+      };
+
+      Install = {
+        WantedBy = [ "i3-session.target" ];
       };
 
       Service = {
         ExecStart = "${pkgs.xbindkeys}/bin/xbindkeys -n";
         Restart = "always";
-        RestartSec = "1";
+        RestartSec = 2;
       };
     };
   };

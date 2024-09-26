@@ -11,12 +11,17 @@
     flameshot = {
       Unit = {
         Description = "Flameshot";
-        PartOf = "graphical-session.target";
+        PartOf = [ "i3-session.target" ];
+      };
+
+      Install = {
+        WantedBy = [ "i3-session.target" ];
       };
 
       Service = {
         ExecStart = "${pkgs.flameshot}/bin/flameshot";
         Restart = "on-failure";
+        RestartSec = 2;
       };
     };
   };

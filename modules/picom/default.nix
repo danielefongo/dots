@@ -14,12 +14,17 @@ in
     picom = {
       Unit = {
         Description = "Picom";
-        PartOf = "graphical-session.target";
+        PartOf = [ "i3-session.target" ];
+      };
+
+      Install = {
+        WantedBy = [ "i3-session.target" ];
       };
 
       Service = {
         ExecStart = "${picom}/bin/picom";
         Restart = "on-failure";
+        RestartSec = 2;
       };
     };
   };

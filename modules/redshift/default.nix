@@ -11,12 +11,17 @@
     redshift = {
       Unit = {
         Description = "Redshift";
-        PartOf = "graphical-session.target";
+        PartOf = [ "i3-session.target" ];
+      };
+
+      Install = {
+        WantedBy = [ "i3-session.target" ];
       };
 
       Service = {
         ExecStart = "${pkgs.redshift}/bin/redshift";
         Restart = "on-failure";
+        RestartSec = 2;
       };
     };
   };

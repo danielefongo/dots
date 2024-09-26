@@ -11,7 +11,11 @@
     polybar = {
       Unit = {
         Description = "Polybar";
-        PartOf = "graphical-session.target";
+        PartOf = [ "i3-session.target" ];
+      };
+
+      Install = {
+        WantedBy = [ "i3-session.target" ];
       };
 
       Service = {
@@ -30,6 +34,7 @@
           sleep infinity
         '';
         Restart = "on-failure";
+        RestartSec = 2;
       };
     };
   };

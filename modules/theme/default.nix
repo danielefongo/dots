@@ -28,6 +28,7 @@ in
       Service = {
         ExecStart = "${theme}/bin/theme watch";
         Restart = "on-failure";
+        RestartSec = 2;
       };
     };
   };

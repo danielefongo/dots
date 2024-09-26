@@ -12,7 +12,11 @@ in
     wallpaper = {
       Unit = {
         Description = "Wallpaper";
-        PartOf = "graphical-session.target";
+        PartOf = [ "i3-session.target" ];
+      };
+
+      Install = {
+        WantedBy = [ "i3-session.target" ];
       };
 
       Service = {
