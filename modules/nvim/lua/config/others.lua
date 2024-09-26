@@ -52,6 +52,7 @@ return {
   },
   {
     "kevinhwang91/nvim-ufo",
+    event = "BufReadPost",
     dependencies = { "kevinhwang91/promise-async" },
     opts = {
       open_fold_hl_timeout = 150,
