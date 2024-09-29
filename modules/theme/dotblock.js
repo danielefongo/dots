@@ -18,7 +18,12 @@ function md5 (file) {
 module.exports = class DotBlock {
   constructor () {
     this.matches = {}
-    this.matchOpts = (data) => ({ dot: true, ignore: data.ignore, cwd: this.getBasePath(data.match), nodir: true })
+    this.matchOpts = (data) => ({
+      dot: true,
+      ignore: data.ignore,
+      cwd: this.getBasePath(data.match),
+      nodir: true
+    })
   }
 
   on (matchAction) {
@@ -37,7 +42,7 @@ module.exports = class DotBlock {
     Object.entries(this.matches).forEach(([match, data]) => {
       glob.globSync(match, this.matchOpts(data)).forEach((file) => {
         this._fileReset(match, file)
-        this._fileAction(match, file)
+        this._fileAction(match, file, event.ADD)
       })
     })
 
@@ -52,11 +57,11 @@ module.exports = class DotBlock {
         return (file) => {
           if (!matcher(file)) return
           this._fileReset(match, file)
-          if (evt == event.REMOVE) return
-          this._fileAction(match, file)
+          this._fileAction(match, file, evt)
         }
       }
-      this.matches[match].watcher = chokidar.watch(watchPath)
+      this.matches[match].watcher = chokidar
+        .watch(watchPath)
         .on('add', action(event.ADD))
         .on('unlink', action(event.REMOVE))
         .on('change', action(event.CHANGE))
@@ -78,7 +83,7 @@ module.exports = class DotBlock {
     return data.path || process.cwd()
   }
 
-  _fileAction (match, file) {
+  _fileAction (match, file, evt) {
     const data = this.matches[match]
 
     if (!this.matches[match].files) {
@@ -89,13 +94,17 @@ module.exports = class DotBlock {
       this.matches[match].files[file] = {}
     }
 
-    if (this.matches[match].files[file].md5 == md5(file)) {
-      return
-    }
+    if (evt != event.REMOVE) {
+      if (this.matches[match].files[file].md5 == md5(file)) {
+        return
+      }
 
-    this.matches[match].files[file].md5 = md5(file)
+      this.matches[match].files[file].md5 = md5(file)
+    } else {
+      this.matches[match].files[file].md5 = undefined
+    }
     this.matches[match].files[file].context = data.init(file)
-    data.action(this.matches[match].files[file].context)
+    data.action(this.matches[match].files[file].context, evt)
   }
 
   _fileReset (match, file) {
@@ -113,7 +122,9 @@ module.exports = class DotBlock {
 
   _matchReset (match) {
     if (this.matches[match] && this.matches[match].files) {
-      Object.keys(this.matches[match].files).forEach((file) => this._fileReset(match, file))
+      Object.keys(this.matches[match].files).forEach((file) =>
+        this._fileReset(match, file)
+      )
       this.matches[match].files = {}
     }
 

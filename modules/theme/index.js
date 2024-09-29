@@ -13,6 +13,12 @@ const dotsPath = path.resolve(process.argv[4])
 const outputPath = path.resolve(process.argv[5])
 const dotsMatch = path.join(dotsPath, '**/*.dots.js')
 
+function removeFile (toFile) {
+  if (fs.existsSync(toFile)) {
+    fs.unlinkSync(toFile)
+  }
+}
+
 function writeFile (file, toFile, filter) {
   const destinationFile = toFile
   const destinationFileFolder = path.dirname(destinationFile)
@@ -83,15 +89,20 @@ const dotBlock = new DotBlock().on({
       files = []
     }, 100)
 
-    const action = ({ file, match }) => {
+    const action = ({ file, match }, event) => {
       const filter = match.filter || (() => true)
       let relativeFile = file.replace(dotPath + '/', '')
 
       if (match.from) {
-        relativeFile = relativeFile.replace(new RegExp("^" + match.from), "")
+        relativeFile = relativeFile.replace(new RegExp('^' + match.from), '')
       }
       const to = path.join(match.to, relativeFile)
       let output
+
+      if (event == 'remove') {
+        removeFile(to)
+        return
+      }
 
       try {
         output = writeFile(file, to, filter)
@@ -114,7 +125,7 @@ const dotBlock = new DotBlock().on({
 
     const dotBlock = new DotBlock()
 
-    for (let match of dotData.match) {
+    for (const match of dotData.match) {
       if (!path.isAbsolute(match.pattern)) {
         match.pattern = path.join(dotPath, match.pattern)
       }
@@ -144,7 +155,7 @@ const dotBlock = new DotBlock().on({
       dotBlock.on({
         match: match.pattern,
         path: dotPath,
-        ignore: [dotsMatch, "**/*nix"],
+        ignore: [dotsMatch, '**/*nix'],
         init: (file) => ({ file, match }),
         ignore_unchanged: true,
         action
