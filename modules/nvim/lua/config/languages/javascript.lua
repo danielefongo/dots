@@ -15,8 +15,8 @@ return {
   {
     "stevearc/conform.nvim",
     opts = function(_, opts)
-      opts.options.formatters_by_ft.javascript = { { "prettier", "eslint_d" } }
-      opts.options.formatters_by_ft.typescript = { { "prettier", "eslint_d" } }
+      opts.options.formatters_by_ft.javascript = { "eslint_d", "prettier" }
+      opts.options.formatters_by_ft.typescript = { "eslint_d", "prettier" }
 
       opts.options.formatters.eslint_d = {
         require_cwd = true,
