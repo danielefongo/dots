@@ -13,6 +13,7 @@
       python3
       nixpkgs-fmt
       nixd
+      entr
     ];
   };
 
