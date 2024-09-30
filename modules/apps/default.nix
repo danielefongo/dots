@@ -5,5 +5,6 @@
     _1password-gui
     xfce.thunar
     rawtherapee
+    pulseaudio
   ];
 }
