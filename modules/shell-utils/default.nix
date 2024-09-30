@@ -8,5 +8,6 @@
     ncdu
     ripgrep
     tldr
+    xclip
   ];
 }
