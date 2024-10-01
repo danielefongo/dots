@@ -6,6 +6,7 @@
     ./discord
     ./docker
     ./dunst
+    ./essentials
     ./firefox
     ./flameshot
     ./fonts
