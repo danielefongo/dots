@@ -8,7 +8,7 @@ let
 in
 {
   home.packages = with pkgs; [
-    dockerWrapper
+    dockerWrapper # on ubuntu you need to install uidmap
   ];
 
   systemd.user.services = {
