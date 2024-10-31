@@ -109,7 +109,11 @@ return {
         formatters_by_ft = {
           ["*"] = { "trim_whitespace", "trim_newlines" },
         },
-        formatters = {},
+        formatters = {
+          rustfmt = {
+            command = "cargo fmt",
+          },
+        },
       },
     },
     config = function(_, opts)
