@@ -52,7 +52,7 @@ function sesh-sessions() {
   }
 }
 zle -N sesh-sessions
-bindkey '^s' sesh-sessions
+bindkey '^[s' sesh-sessions
 
 # fzf
 export FZF_COMPLETION_TRIGGER=''
