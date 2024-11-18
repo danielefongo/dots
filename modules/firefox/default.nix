@@ -7,7 +7,7 @@ let
 in
 {
   home.packages = [
-    (firefoxWithUserJS [ "personal" "work" ])
+    (lib.wrapNixGL (firefoxWithUserJS [ "personal" "work" ]))
   ];
 
   home.file = {
