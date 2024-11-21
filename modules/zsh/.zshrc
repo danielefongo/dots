@@ -28,6 +28,9 @@ antigen apply
 eval "$(zoxide init zsh)"
 alias j=z
 
+# direnv
+eval "$(direnv hook zsh)"
+
 # history
 HISTFILE=~/dots/modules/zsh/.zsh_history
 HISTSIZE=10000

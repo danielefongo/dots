@@ -10,9 +10,11 @@
       gnumake
       fzf
       ripgrep
+      nodejs
       python3
       nixpkgs-fmt
       nixd
+      cargo # mason
       entr
     ];
   };
