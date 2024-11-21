@@ -10,6 +10,7 @@ fi
 if [ -d $HOME/.nix-profile/share/zsh/site-functions ]; then
   fpath=($HOME/.nix-profile/share/zsh/site-functions $fpath)
 fi
+export NIX_REMOTE=daemon
 
 # antigen
 if ! [ -f "$HOME/antigen.zsh" ]; then

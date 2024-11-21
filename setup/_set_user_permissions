@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ "$1" == '-d' ]; then
+  sudo gpasswd -d ${USER} docker
+  sudo groupdel docker
+else
+  sudo groupadd docker
+  sudo usermod -aG docker ${USER}
+fi

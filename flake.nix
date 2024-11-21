@@ -7,10 +7,14 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    system-manager = {
+      url = "github:numtide/system-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixgl.url = "github:nix-community/nixGL";
   };
 
-  outputs = { nixpkgs, nixgl, home-manager, ... } @inputs:
+  outputs = { nixpkgs, nixgl, home-manager, system-manager, ... } @inputs:
     let
       system = "x86_64-linux";
       user = "danielefongo";
@@ -51,6 +55,12 @@
 
         modules = [
           ./home.nix
+        ];
+      };
+
+      systemConfigs.default = system-manager.lib.makeSystemConfig {
+        modules = [
+          ./system.nix
         ];
       };
     };
