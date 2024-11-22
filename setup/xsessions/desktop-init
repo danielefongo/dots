@@ -10,5 +10,6 @@ if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
 fi
 
 dbus-update-activation-environment --systemd --all
+systemctl --user start --no-block earlyoom.service
 systemctl --user start --no-block theme.service
 systemctl --user start --wait i3.service
