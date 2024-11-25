@@ -1,5 +1,7 @@
 { pkgs, ... }:
 {
+  imports = [ ./prima/system.nix ];
+
   nixpkgs.hostPlatform = "x86_64-linux";
 
   systemd.services.dockerd = {

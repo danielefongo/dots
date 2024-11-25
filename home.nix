@@ -3,6 +3,7 @@
 {
   imports = [
     ./modules
+    ./prima/home.nix
   ];
 
   home.username = user;

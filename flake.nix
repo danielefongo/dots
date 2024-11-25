@@ -12,29 +12,36 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixgl.url = "github:nix-community/nixGL";
+    suite_py.url = "git+ssh://git@github.com/primait/suite_py";
   };
 
-  outputs = { nixpkgs, nixgl, home-manager, system-manager, ... } @inputs:
+  outputs = { nixpkgs, home-manager, system-manager, ... } @inputs:
     let
       system = "x86_64-linux";
       user = "danielefongo";
       home = "/home/danielefongo";
       dots_path = "/home/danielefongo/dots";
 
-      pkgs = (nixpkgs.legacyPackages.${system}).extend (nixpkgs.lib.composeManyExtensions [
-        nixgl.overlay
-        (self: super: {
-          lib = super.lib // home-manager.lib // {
-            hm = home-manager.lib.hm;
-          };
-        })
-        (self: super: {
-          config = super.config // {
-            allowUnfree = true;
-            allowAliases = true;
-          };
-        })
-      ]);
+      pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+
+        overlays = [
+          inputs.nixgl.overlay
+          inputs.suite_py.overlays.default
+          (self: super: {
+            lib = super.lib // home-manager.lib // {
+              hm = home-manager.lib.hm;
+            };
+          })
+          (self: super: {
+            config = super.config // {
+              allowUnfree = true;
+              allowAliases = true;
+            };
+          })
+        ];
+      };
 
       lib = (import ./lib {
         inherit system inputs pkgs dots_path;
@@ -59,6 +66,11 @@
       };
 
       systemConfigs.default = system-manager.lib.makeSystemConfig {
+        extraSpecialArgs = inputs // {
+          inherit system;
+          inherit pkgs;
+        };
+
         modules = [
           ./system.nix
         ];
