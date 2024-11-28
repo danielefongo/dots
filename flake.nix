@@ -40,6 +40,7 @@
               allowAliases = true;
             };
           })
+          (import ./pkgs { inherit pkgs; })
         ];
       };
 

@@ -1,5 +1,6 @@
 // skip 1st line
 
+pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 try {
   const { classes: Cc, interfaces: Ci } = Components;
 

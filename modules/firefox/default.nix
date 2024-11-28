@@ -3,12 +3,34 @@
 let
   userJS = lib.outLink "firefox/user.js";
   chromeCSS = lib.outLink "firefox/chrome";
-  firefoxWithUserJS = import ./package.nix { inherit pkgs lib; };
+
+  launcherName = "${pkgs.firefox}/bin/firefox";
+  desktopName = "Firefox";
+  wmClass = "Firefox";
+  icon = "${pkgs.firefox}/share/icons/hicolor/128x128/apps/firefox.png";
+
+  makeDesktopItems = (profile: pkgs.makeDesktopItem {
+    name = lib.concatStringsSep "-" [ desktopName profile ];
+    exec = "${launcherName} -P ${profile} --name ${wmClass} %U";
+    inherit icon;
+    desktopName = lib.concatStringsSep " " [ desktopName profile ];
+    startupNotify = true;
+    startupWMClass = wmClass;
+    terminal = false;
+    genericName = "Web Browser";
+    categories = [ "Network" "WebBrowser" ];
+    mimeTypes = [
+      "text/html"
+      "text/xml"
+      "application/xhtml+xml"
+      "application/vnd.mozilla.xul+xml"
+      "x-scheme-handler/http"
+      "x-scheme-handler/https"
+    ];
+  });
 in
 {
-  home.packages = [
-    (lib.wrapNixGL (firefoxWithUserJS [ "personal" "work" ]))
-  ];
+  home.packages = (map makeDesktopItems [ "personal" "work" ]);
 
   home.file = {
     ".mozilla/firefox/profiles.ini".text = ''
