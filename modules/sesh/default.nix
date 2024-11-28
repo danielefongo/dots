@@ -1,8 +1,5 @@
 { lib, pkgs, ... }:
 
-let
-  sesh = import ./package.nix { inherit lib pkgs; };
-in
 {
   home.packages = with pkgs; [
     sesh
