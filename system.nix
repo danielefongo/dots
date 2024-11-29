@@ -24,4 +24,11 @@
     description = "Runs nix daemon";
     wantedBy = [ "multi-user.target" ];
   };
+
+  environment.etc."pam.d/i3lock".text = ''
+    auth       required   pam_unix.so
+    account    required   pam_unix.so
+    password   required   pam_unix.so
+    session    required   pam_unix.so
+  '';
 }

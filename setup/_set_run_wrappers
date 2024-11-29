@@ -2,14 +2,11 @@
 
 # Thanks to https://github.com/NixOS/nixpkgs/issues/158025#issuecomment-1616807870
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
 SERVICE="install-unix_chkpwd-wrapper.service"
 SERVICE_LOCATION="/lib/systemd/system/$SERVICE"
 MOUNT_POINT="/run/wrappers"
 
 if [ "$1" == "-d" ]; then
-  sudo rm -f /etc/pam.d/i3lock
-
   if sudo mountpoint -q $MOUNT_POINT; then
     sudo umount $MOUNT_POINT
   fi
@@ -17,15 +14,8 @@ if [ "$1" == "-d" ]; then
   sudo systemctl disable $SERVICE
   sudo rm $SERVICE_LOCATION
 
-  echo "Pam unset"
-elif [ -z "$(cat /etc/pam.d/i3lock | grep session)" ]; then
-  sudo tee /etc/pam.d/i3lock 1>/dev/null <<EOF
-auth       required   pam_unix.so
-account    required   pam_unix.so
-password   required   pam_unix.so
-session    required   pam_unix.so
-EOF
-
+  echo "Run wrappers unset"
+elif [ -f "$SERVICE_LOCATION" ]; then
   sudo mkdir -p $MOUNT_POINT
   sudo mountpoint -q $MOUNT_POINT || sudo mount -t tmpfs -o defaults,nodev,noatime,mode=755 tmpfs $MOUNT_POINT
   sudo tee $SERVICE_LOCATION 1>/dev/null <<EOF
@@ -43,5 +33,5 @@ WantedBy=multi-user.target
 EOF
   sudo systemctl enable $SERVICE
 
-  echo "Pam set"
+  echo "Run wrappers set"
 fi
