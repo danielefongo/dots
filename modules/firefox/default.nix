@@ -50,10 +50,10 @@ in
       Path=work
     '';
     ".mozilla/firefox/personal/.keep".text = "";
-    ".mozilla/firefox/personal/user.js".source = userJS;
+    ".mozilla/firefox/personal/user.js".text = "";
     ".mozilla/firefox/personal/chrome".source = chromeCSS;
     ".mozilla/firefox/work/.keep".text = "";
-    ".mozilla/firefox/work/user.js".source = userJS;
+    ".mozilla/firefox/work/user.js".text = "";
     ".mozilla/firefox/work/chrome".source = chromeCSS;
   };
 }
