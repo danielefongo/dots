@@ -50,7 +50,6 @@ key = "Y"
 mods = "Alt"
 
 [shell]
-args = ["-l", "-c", "tmux attach || tmux"]
 program = "zsh"
 
 [window]
