@@ -1,3 +1,4 @@
+[general]
 live_config_reload = true
 
 [colors.bright]
@@ -49,7 +50,7 @@ action = "Copy"
 key = "Y"
 mods = "Alt"
 
-[shell]
+[terminal.shell]
 program = "zsh"
 
 [window]
