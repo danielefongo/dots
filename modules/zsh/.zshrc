@@ -38,8 +38,8 @@ HISTSIZE=10000
 SAVEHIST=10000
 setopt appendhistory
 setopt SHARE_HISTORY
-setopt hist_ignore_space
-setopt histignoredups
+setopt histignorespace
+setopt histignorealldups
 
 # sesh
 function sesh-sessions() {
