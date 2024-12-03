@@ -5,5 +5,8 @@
     gcc
     cmake
     gnumake
+    glibc
+    openssl
+    openssh
   ];
 }
