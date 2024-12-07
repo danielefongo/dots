@@ -1,6 +1,3 @@
-[default_session]
-startup_command = "nvim"
-
 [[session]]
 name = "dots"
 path = "~/dots"
