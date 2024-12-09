@@ -46,41 +46,6 @@ function watchStyleFile(file) {
 
 function watchStyle() {
   watchStyleFile("style.css");
-  watchStyleFile("vars.css");
-}
-
-function setupSpotbar() {
-  let input = document.getElementById("urlbar-input");
-
-  input.addEventListener("focus", function () {
-    if (
-      window.gBrowser.currentURI.asciiSpec.startsWith("about:") &&
-      input.value === ""
-    ) {
-      return;
-    }
-    let browser = window.gBrowser
-      .getPanel()
-      .querySelector(".browserStack").firstChild;
-    input.value = browser.documentURI.asciiSpec;
-    setTimeout(() => {
-      input.select();
-    }, 50);
-  });
-
-  input.addEventListener("keydown", function (event) {
-    if (event.key === "Escape") {
-      let browser = window.gBrowser
-        .getPanel()
-        .querySelector(".browserStack").firstChild;
-
-      input.blur();
-      setTimeout(() => {
-        input.value = browser.documentURI.asciiSpec;
-      }, 50);
-      browser.focus();
-    }
-  });
 }
 
 if (gBrowserInit.delayedStartupFinished) {
@@ -89,7 +54,6 @@ if (gBrowserInit.delayedStartupFinished) {
   let delayedListener = (subject, topic) => {
     if (topic == "browser-delayed-startup-finished" && subject == window) {
       Services.obs.removeObserver(delayedListener, topic);
-      setupSpotbar();
       watchStyle();
     }
   };
