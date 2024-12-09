@@ -1,6 +1,4 @@
 const zen = false;
-const scaleRatio = 1;
-const scale = (value) => Math.floor(value * scaleRatio);
 
 module.exports = {
   data: {
@@ -8,11 +6,10 @@ module.exports = {
     zen,
     focus: 15,
     font: "JetBrainsMono Nerd Font",
-    gap: scale(0),
-    round: scale(0),
-    border: scale(4),
-    fontSize: scale(12),
-    scaleRatio,
+    gap: 0,
+    round: 0,
+    border: 4,
+    fontSize: 12,
     transparency: 0,
     colors: {
       background: '{{ "#1f2430" | contrasted(contrast) }}',

@@ -1,11 +1,11 @@
 [global]
     monitor = 0
     follow = mouse
-    width = "({{ 300 * scaleRatio // 1 }}, {{ 600 * scaleRatio // 1 }})"
-    height = "({{ 80 * scaleRatio // 1 }}, {{ 160 * scaleRatio // 1 }})"
+    width = "(300, 600)"
+    height = "(80, 160)"
     origin = "bottom-right"
     {% if zen %}
-    offset = "{{ 100000 }}x{{ 100000 }}"
+    offset = "100000x100000"
     {% else %}
     offset = "{{ 8 + gap + border }}x{{ 8 + gap + border }}"
     {% endif %}
@@ -16,7 +16,7 @@
     frame_width = {{ border + 1 }}
     frame_color = "{{ colors.foreground }}"
     separator_color = auto
-    gap_size = "{{ 4 * scaleRatio }}"
+    gap_size = "4"
     sort = yes
     idle_threshold = 120
     font = {{ font }} {{ fontSize }}
