@@ -6,12 +6,12 @@ let
 in
 pkgs.stdenv.mkDerivation rec {
   pname = "Firefox";
-  version = "132.0";
+  version = "133.0";
 
   src = pkgs.fetchurl {
     name = "firefox";
     url = "https://download-installer.cdn.mozilla.net/pub/firefox/releases/${version}/linux-x86_64/en-US/firefox-${version}.tar.bz2";
-    hash = "sha256-46b5porHL13wH6yMl8beGjU69LNQuMi0mywmwfu7JTg=";
+    hash = "sha256-Y8sJcXTUKQQ60Sg0E1jRTNtdTJ0F0DXZ4wlGNM6vIsI=";
   };
 
   buildInputs = [ ];
