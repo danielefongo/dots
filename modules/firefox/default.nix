@@ -32,28 +32,24 @@ in
 {
   home.packages = (map makeDesktopItems [ "personal" "work" ]);
 
+  programs.firefox = {
+    enable = true;
+
+    profiles."personal" = {
+      id = 0;
+      isDefault = false;
+    };
+
+    profiles."work" = {
+      id = 1;
+      isDefault = true;
+    };
+  };
+
   home.file = {
-    ".mozilla/firefox/profiles.ini".text = ''
-      [General]
-      StartWithLastProfile=1
-
-      [Profile0]
-      Default=0
-      IsRelative=1
-      Name=personal
-      Path=personal
-
-      [Profile1]
-      Default=1
-      IsRelative=1
-      Name=work
-      Path=work
-    '';
-    ".mozilla/firefox/personal/.keep".text = "";
-    ".mozilla/firefox/personal/user.js".text = "";
     ".mozilla/firefox/personal/chrome".source = chromeCSS;
-    ".mozilla/firefox/work/.keep".text = "";
-    ".mozilla/firefox/work/user.js".text = "";
+    ".mozilla/firefox/personal/user.js".source = userJS;
     ".mozilla/firefox/work/chrome".source = chromeCSS;
+    ".mozilla/firefox/work/user.js".source = userJS;
   };
 }
