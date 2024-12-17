@@ -193,7 +193,7 @@ ramp-volume-3 = 
 type = custom/script
 tail = true
 interval = 0.5
-exec = playerctl-status Spotify "" "" "%{F{{ theme.primary }}} %{F-}<title> (<artist>)" "%{F{{ theme.primary }}} %{F-}<title> (<artist>)"
+exec = playerctl-status spotify "" "" "%{F{{ theme.primary }}} %{F-}<title> (<artist>)" "%{F{{ theme.primary }}} %{F-}<title> (<artist>)"
 
 [settings]
 screenchange-reload = true

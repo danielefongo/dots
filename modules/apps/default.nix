@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
 {
   home.packages = with pkgs; [
@@ -6,5 +6,9 @@
     xfce.thunar
     rawtherapee
     pulseaudio
+    spotify
+    slack
+    (lib.wrapNixGL telegram-desktop)
+    (lib.wrapNixGL whatsapp-for-linux)
   ];
 }
