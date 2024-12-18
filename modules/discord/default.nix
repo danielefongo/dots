@@ -7,7 +7,7 @@ let
 in
 {
   home.packages = [
-    vesktop
+    (lib.wrapNixGL vesktop)
     (pkgs.makeDesktopItem ({
       name = "Vesktop";
       exec = "vesktop";
