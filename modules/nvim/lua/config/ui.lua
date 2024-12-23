@@ -55,7 +55,7 @@ return {
         segments = {
           { text = { builtin.foldfunc, " " }, click = "v:lua.ScFa" },
           {
-            sign = { namespace = { "diagnostic/signs" }, maxwidth = 1, colwidth = 1, auto = true },
+            sign = { namespace = { "diagnostic*" }, maxwidth = 1, colwidth = 1, auto = true },
             condition = {
               function()
                 return #vim.diagnostic.get(0) > 0
@@ -69,13 +69,29 @@ return {
           { text = { builtin.lnumfunc }, click = "v:lua.ScLa" },
           {
             text = { " ", builtin.signfunc, " " },
-            sign = { namespace = { "gitsign*" }, maxwidth = 1, colwidth = 1, auto = false, fillchar = " " },
+            sign = { namespace = { "gitsigns*" }, maxwidth = 1, colwidth = 1, auto = false, fillchar = " " },
             condition = { true, builtin.not_empty, builtin.not_empty },
             click = "v:lua.ScSa",
           },
         },
       }
     end,
+  },
+  {
+    "luukvbaal/statuscol.nvim",
+    dependencies = {
+      {
+        "kevinhwang91/nvim-ufo",
+        event = "BufReadPost",
+        dependencies = { "kevinhwang91/promise-async" },
+        opts = {
+          open_fold_hl_timeout = 150,
+        },
+      },
+    },
+    keys = {
+      { "<c-f>", "za", desc = "toggle fold", silent = true },
+    },
   },
   {
     "nanozuki/tabby.nvim",

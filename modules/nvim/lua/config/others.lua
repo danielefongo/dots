@@ -51,17 +51,6 @@ return {
     },
   },
   {
-    "kevinhwang91/nvim-ufo",
-    event = "BufReadPost",
-    dependencies = { "kevinhwang91/promise-async" },
-    opts = {
-      open_fold_hl_timeout = 150,
-    },
-    keys = {
-      { "<c-f>", "za", desc = "toggle fold", silent = true },
-    },
-  },
-  {
     "danielefongo/tile.nvim",
     opts = { horizontal = 4, vertical = 2 },
     keys = {
