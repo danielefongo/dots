@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/release-24.11";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -38,6 +39,12 @@
             config = super.config // {
               allowUnfree = true;
               allowAliases = true;
+            };
+          })
+          (self: super: {
+            unstable = import inputs.nixpkgs-unstable {
+              inherit system;
+              config.allowUnfree = true;
             };
           })
           (import ./pkgs { inherit pkgs; })
