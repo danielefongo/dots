@@ -6,6 +6,7 @@
     xfce.thunar
     rawtherapee
     pulseaudio
+    pavucontrol
     spotify
     slack
     (lib.wrapNixGL telegram-desktop)
