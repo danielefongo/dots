@@ -15,7 +15,7 @@ return {
   {
     "folke/todo-comments.nvim",
     event = "BufReadPost",
-    dependencies = { { "nvim-lua/plenary.nvim", version = "~0.1.3" } },
+    dependencies = { { "nvim-lua/plenary.nvim" } },
     opts = true,
   },
   {
