@@ -7,6 +7,7 @@
     rawtherapee
     pulseaudio
     pavucontrol
+    peek
     spotify
     slack
     (lib.wrapNixGL telegram-desktop)
