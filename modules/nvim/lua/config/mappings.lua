@@ -34,7 +34,10 @@ return {
     })
 
     wk.add({
+      mode = { "n", "v" },
       { "<a-q>", ":lua close_win()<cr>", desc = "close buffer", silent = true },
+      { "<c-e>", "<c-y>", desc = "scroll up", silent = true },
+      { "<c-n>", "<c-e>", desc = "scroll down", silent = true },
     })
 
     -- colemak remap
