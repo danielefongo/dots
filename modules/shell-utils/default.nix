@@ -9,6 +9,7 @@
     ripgrep
     tldr
     xclip
+    cloc
   ];
 
   programs.direnv = {
