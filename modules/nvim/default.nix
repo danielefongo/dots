@@ -7,6 +7,7 @@
     vimAlias = true;
     extraPackages = with pkgs; [
       gcc
+      openssh
       gnumake
       fzf
       ripgrep
