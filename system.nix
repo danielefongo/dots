@@ -25,6 +25,15 @@
     wantedBy = [ "multi-user.target" ];
   };
 
+  systemd.services.earlyoom = {
+    enable = true;
+    serviceConfig = {
+      ExecStart = "${pkgs.earlyoom}/bin/earlyoom";
+    };
+    description = "Runs earlyOOM daemon";
+    wantedBy = [ "multi-user.target" ];
+  };
+
   environment.etc."pam.d/i3lock".text = ''
     auth       required   pam_unix.so
     account    required   pam_unix.so

@@ -6,7 +6,6 @@
     ./discord
     ./docker
     ./dunst
-    ./earlyoom
     ./essentials
     ./firefox
     ./flameshot
