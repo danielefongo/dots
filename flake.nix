@@ -12,6 +12,7 @@
       url = "github:numtide/system-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nurpkgs.url = "github:nix-community/NUR";
     nixgl.url = "github:nix-community/nixGL";
     suite_py.url = "git+ssh://git@github.com/primait/suite_py";
   };
@@ -30,6 +31,7 @@
         overlays = [
           inputs.nixgl.overlay
           inputs.suite_py.overlays.default
+          inputs.nurpkgs.overlays.default
           (self: super: {
             lib = super.lib // home-manager.lib // {
               hm = home-manager.lib.hm;
@@ -44,6 +46,7 @@
           (self: super: {
             unstable = import inputs.nixpkgs-unstable {
               inherit system;
+
               config.allowUnfree = true;
             };
           })
