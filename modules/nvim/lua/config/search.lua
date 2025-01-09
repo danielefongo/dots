@@ -12,6 +12,18 @@ return {
     config = function()
       local microscope = require("microscope")
       local actions = require("microscope.builtin.actions")
+      local layouts = require("microscope.builtin.layouts")
+      local display = require("microscope.api.display")
+
+      local layouts = {
+        display
+          .horizontal({
+            display.vertical({ display.input(1), display.results() }),
+            display.preview(),
+          })
+          :finder_layout(),
+        display.vertical({ display.input(1), display.results() }):finder_layout(),
+      }
 
       local files = require("microscope-files")
       local buffers = require("microscope-buffers")
@@ -24,6 +36,7 @@ return {
           width = 150,
           height = 50,
         },
+        layout = layouts[1],
         bindings = {
           ["<c-n>"] = actions.next,
           ["<c-e>"] = actions.previous,
@@ -35,6 +48,7 @@ return {
           ["<c-q>"] = files.actions.quickfix,
           ["<c-x>"] = files.actions.toggle_hidden,
           ["<c-h>"] = actions.hide,
+          ["<c-u>"] = actions.rotate_layouts(layouts),
         },
       })
 
