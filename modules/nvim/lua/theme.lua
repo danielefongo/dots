@@ -296,6 +296,10 @@ local lush = function()
       TodoBgWARN({ fg = colors.background, bg = colors.orange, gui = "bold" }),
       TodoFgWARN({ fg = colors.orange }),
       TodoSignWARN({ fg = colors.orange }),
+
+      FlashBackdrop({ fg = colors.grey4 }),
+      FlashMatch({ fg = colors.grey4 }),
+      FlashLabel({ fg = colors.red }),
     }
   end)
 end

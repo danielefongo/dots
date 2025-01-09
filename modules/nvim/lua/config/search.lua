@@ -78,15 +78,15 @@ return {
     keys = {
       {
         "s",
-        -- stylua: ignore
-        function() require("flash").jump() end,
-        desc = "seek",
-        mode = { "n", "x" },
-      },
-      {
-        "S",
-        -- stylua: ignore
-        function() require("flash").treesitter() end,
+        function()
+          require("flash").jump({
+            search = {
+              mode = function(str)
+                return "\\<" .. str
+              end,
+            },
+          })
+        end,
         desc = "seek",
         mode = { "n", "x" },
       },
