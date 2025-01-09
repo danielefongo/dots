@@ -20,7 +20,5 @@ let
   '';
 in
 {
-  home.packages = [
-    nixRebuild
-  ];
+  home.packages = [ nixRebuild ];
 }

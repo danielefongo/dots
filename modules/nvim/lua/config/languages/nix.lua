@@ -29,6 +29,7 @@ return {
     "stevearc/conform.nvim",
     opts = function(_, opts)
       opts.options.formatters_by_ft.nix = { "nixpkgs_fmt" }
+      opts.options.formatters.nixpkgs_fmt = { command = "nixfmt" }
     end,
   },
 }

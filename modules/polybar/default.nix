@@ -1,9 +1,7 @@
 { lib, pkgs, ... }:
 
 {
-  home.packages = with pkgs; [
-    polybarFull
-  ];
+  home.packages = with pkgs; [ polybarFull ];
 
   xdg.configFile."polybar".source = lib.outLink "polybar";
 

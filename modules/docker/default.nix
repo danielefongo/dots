@@ -1,7 +1,5 @@
 { pkgs, ... }:
 
 {
-  home.packages = with pkgs; [
-    docker
-  ];
+  home.packages = with pkgs; [ docker ];
 }

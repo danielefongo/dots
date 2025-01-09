@@ -4,9 +4,7 @@ let
   picom = (lib.wrapNixGL pkgs.picom);
 in
 {
-  home.packages = [
-    picom
-  ];
+  home.packages = [ picom ];
 
   xdg.configFile."picom".source = lib.outLink "picom";
 

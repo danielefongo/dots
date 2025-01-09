@@ -9,25 +9,37 @@ let
   wmClass = "Firefox";
   icon = "${pkgs.firefox}/share/icons/hicolor/128x128/apps/firefox.png";
 
-  makeDesktopItems = (profile: pkgs.makeDesktopItem {
-    name = lib.concatStringsSep "-" [ desktopName profile ];
-    exec = "${launcherName} -P ${profile} --name ${wmClass} %U";
-    inherit icon;
-    desktopName = lib.concatStringsSep " " [ desktopName profile ];
-    startupNotify = true;
-    startupWMClass = wmClass;
-    terminal = false;
-    genericName = "Web Browser";
-    categories = [ "Network" "WebBrowser" ];
-    mimeTypes = [
-      "text/html"
-      "text/xml"
-      "application/xhtml+xml"
-      "application/vnd.mozilla.xul+xml"
-      "x-scheme-handler/http"
-      "x-scheme-handler/https"
-    ];
-  });
+  makeDesktopItems = (
+    profile:
+    pkgs.makeDesktopItem {
+      name = lib.concatStringsSep "-" [
+        desktopName
+        profile
+      ];
+      exec = "${launcherName} -P ${profile} --name ${wmClass} %U";
+      inherit icon;
+      desktopName = lib.concatStringsSep " " [
+        desktopName
+        profile
+      ];
+      startupNotify = true;
+      startupWMClass = wmClass;
+      terminal = false;
+      genericName = "Web Browser";
+      categories = [
+        "Network"
+        "WebBrowser"
+      ];
+      mimeTypes = [
+        "text/html"
+        "text/xml"
+        "application/xhtml+xml"
+        "application/vnd.mozilla.xul+xml"
+        "x-scheme-handler/http"
+        "x-scheme-handler/https"
+      ];
+    }
+  );
 
   common_packages = with pkgs.firefox-addons; [
     onepassword-password-manager
@@ -51,7 +63,12 @@ let
   };
 in
 {
-  home.packages = (map makeDesktopItems [ "personal" "work" ]);
+  home.packages = (
+    map makeDesktopItems [
+      "personal"
+      "work"
+    ]
+  );
 
   programs.firefox = {
     enable = true;
@@ -65,7 +82,8 @@ in
     profiles."personal" = {
       id = 0;
       isDefault = false;
-      extensions = with pkgs.firefox-addons;
+      extensions =
+        with pkgs.firefox-addons;
         [
           darkreader
           flagfox
@@ -77,11 +95,9 @@ in
       id = 1;
       isDefault = true;
 
-      extensions =
-        [
-          allow_cors
-        ]
-        ++ common_packages;
+      extensions = [
+        allow_cors
+      ] ++ common_packages;
     };
   };
 

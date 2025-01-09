@@ -1,9 +1,7 @@
 { lib, pkgs, ... }:
 
 {
-  home.packages = with pkgs; [
-    flameshot
-  ];
+  home.packages = with pkgs; [ flameshot ];
 
   xdg.configFile."flameshot".source = lib.outLink "flameshot";
 

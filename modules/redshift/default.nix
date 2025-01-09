@@ -1,9 +1,7 @@
 { lib, pkgs, ... }:
 
 {
-  home.packages = with pkgs; [
-    redshift
-  ];
+  home.packages = with pkgs; [ redshift ];
 
   xdg.configFile."redshift.conf".source = lib.outLink "redshift/redshift.conf";
 

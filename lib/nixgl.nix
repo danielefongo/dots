@@ -1,7 +1,8 @@
 { pkgs, ... }:
 
 {
-  wrapNixGL = package: (
+  wrapNixGL =
+    package:
     pkgs.symlinkJoin {
       name = package.name;
       paths = [ package ];
@@ -15,6 +16,5 @@
           chmod +x $out/bin/$f
         done
       '';
-    }
-  );
+    };
 }

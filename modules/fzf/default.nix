@@ -7,9 +7,7 @@ let
   '';
 in
 {
-  home.packages = [
-    fzfWrapper
-  ];
+  home.packages = [ fzfWrapper ];
 
   home.file.".fzf.conf".source = lib.outLink "fzf/fzf.conf";
 }

@@ -1,9 +1,7 @@
 { lib, pkgs, ... }:
 
 {
-  home.packages = with pkgs; [
-    xsettingsd
-  ];
+  home.packages = with pkgs; [ xsettingsd ];
 
   xdg.configFile."xsettingsd".source = lib.outLink "xsettingsd";
 

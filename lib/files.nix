@@ -1,7 +1,8 @@
 { dots_path, pkgs, ... }:
 
 let
-  mkOutOfStoreSymlink = path:
+  mkOutOfStoreSymlink =
+    path:
     let
       pathStr = toString path;
       name = pkgs.lib.hm.strings.storeFileName (baseNameOf pathStr);

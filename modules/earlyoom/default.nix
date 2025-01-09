@@ -1,9 +1,7 @@
 { pkgs, ... }:
 
 {
-  home.packages = with pkgs; [
-    earlyoom
-  ];
+  home.packages = with pkgs; [ earlyoom ];
 
   systemd.user.services = {
     earlyoom = {

@@ -12,7 +12,7 @@
       ripgrep
       nodejs
       python3
-      nixpkgs-fmt
+      nixfmt-rfc-style
       nixd
       cargo # mason
       entr
