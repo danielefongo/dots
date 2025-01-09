@@ -2,3 +2,4 @@ node_modules
 output/
 result
 ignore/
+modules/nvim/lua/config/experiments.lua
