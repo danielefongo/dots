@@ -16,7 +16,7 @@ let
         desktopName
         profile
       ];
-      exec = "${launcherName} -P ${profile} --name ${wmClass} %U";
+      exec = "${pkgs.nixgl.nixGLIntel}/bin/nixGLIntel ${launcherName} -P ${profile} --name ${wmClass} %U";
       inherit icon;
       desktopName = lib.concatStringsSep " " [
         desktopName
