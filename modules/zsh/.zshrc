@@ -22,7 +22,7 @@ antigen use oh-my-zsh
 antigen bundle git
 antigen bundle scmbreeze/scm_breeze
 antigen bundle fzf
-antigen bundle danielefongo/shapeshift
+antigen theme danielefongo/shapeshift
 antigen apply
 
 # zoxide
