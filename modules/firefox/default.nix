@@ -43,7 +43,6 @@ let
 
   common_packages = with pkgs.firefox-addons; [
     onepassword-password-manager
-    clearurls
     refined-github
     tabliss
     ublock-origin
@@ -87,6 +86,7 @@ in
         [
           darkreader
           flagfox
+          clearurls
         ]
         ++ common_packages;
     };
