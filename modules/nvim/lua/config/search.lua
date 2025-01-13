@@ -75,6 +75,17 @@ return {
   {
     "folke/flash.nvim",
     config = true,
+    opts = {
+      labels = "arstgmneioqwfpbjluyzxcdvkh",
+      highlight = {
+        matches = false,
+      },
+      modes = {
+        char = {
+          enabled = false,
+        },
+      },
+    },
     keys = {
       {
         "s",
