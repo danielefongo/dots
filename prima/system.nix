@@ -1,14 +1,8 @@
 { pkgs, ... }:
-let
-  cloudflare-ca = pkgs.fetchurl {
-    url = "https://developers.cloudflare.com/cloudflare-one/static/Cloudflare_CA.pem";
-    sha256 = "sha256-7p2+Y657zy1TZAsOnZIKk+7haQ9myGTDukKdmupHVNX=";
-  };
-in
 {
   nixpkgs.hostPlatform = "x86_64-linux";
 
-  environment.etc."ssl/certs/cloudflare.crt".source = cloudflare-ca;
+  environment.etc."ssl/certs/cloudflare.crt".source = ./certificate.crt;
 
   systemd.services.warp-svc = {
     enable = true;
