@@ -52,6 +52,8 @@ module.exports = {
       keyword: "{{ colors.red }}",
       struct: "{{ colors.red }}",
       string: "{{ colors.green }}",
+      string_special: "{{ colors.magenta }}",
+      regex: "{{ colors.cyan }}",
       identifier: "{{ colors.blue }}",
       field: "{{ colors.cyan }}",
       parameter: "{{ colors.magenta }}",
@@ -68,6 +70,7 @@ module.exports = {
       type: "{{ colors.yellow }}",
       conditional: "{{ colors.red }}",
       macro: "{{ colors.blue }}",
+      module: "{{ colors.blue }}",
     },
   },
   filters: {
