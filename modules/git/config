@@ -4,7 +4,6 @@
 [core]
   editor = 'nvim'
   excludesfile = "~/.config/git/ignore"
-  pager = delta
 [include]
   path = ~/.config/git/delta
 [include]
