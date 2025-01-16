@@ -1,9 +1,7 @@
-const zen = false;
-
 module.exports = {
   data: {
     contrast: 0,
-    zen,
+    zen: false,
     focus: 15,
     font: "JetBrainsMono Nerd Font",
     gap: 0,
