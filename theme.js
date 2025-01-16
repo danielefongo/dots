@@ -2,7 +2,7 @@ module.exports = {
   data: {
     contrast: 0,
     zen: false,
-    focus: 15,
+    focus: 6,
     font: "JetBrainsMono Nerd Font",
     gap: 0,
     round: 0,
