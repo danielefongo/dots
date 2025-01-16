@@ -23,7 +23,7 @@ let
     path="$(nix profile list | grep 'store' | grep 'home-manager-path' | awk '{print $3}')/bin"
 
     if [ -d "$path" ]; then
-      ls -la "$path" | awk '{print $11}' | sed 's|/bin/.*||' | cut -d'-' -f2- | sort | uniq >$DOTS_PATH/home-pkgs-versions.txt
+      ls -la "$path" | awk '{if ($11 != "") print $11}' | sed 's|/bin/.*||' | cut -d'-' -f2- | sort | uniq >$DOTS_PATH/home-pkgs-versions.txt
     fi
   '';
 in
