@@ -13,6 +13,7 @@ return {
       { "<leader>bs", ":lua scratch()<cr>", desc = "scratch", silent = true },
 
       { "<leader>c", group = "code" },
+      { "<leader>cc", group = "colors" },
 
       { "<leader>d", group = "diagnostic" },
 
