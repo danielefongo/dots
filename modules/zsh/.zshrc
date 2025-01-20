@@ -12,25 +12,7 @@ if [ -d $HOME/.nix-profile/share/zsh/site-functions ]; then
 fi
 export NIX_REMOTE=daemon
 
-# antigen
-if ! [ -f "$HOME/antigen.zsh" ]; then
-  curl -L git.io/antigen -s > "$HOME/antigen.zsh"
-fi
-source "$HOME/antigen.zsh"
-
-antigen use oh-my-zsh
-antigen bundle git
-antigen bundle scmbreeze/scm_breeze
-antigen bundle fzf
-antigen theme danielefongo/shapeshift
-antigen apply
-
-# zoxide
-eval "$(zoxide init zsh)"
-alias j=z
-
-# direnv
-eval "$(direnv hook zsh)"
+eval "$(sheldon source)"
 
 # history
 HISTFILE=~/dots/modules/zsh/.zsh_history
@@ -41,35 +23,7 @@ setopt SHARE_HISTORY
 setopt histignorespace
 setopt histignorealldups
 
-# sesh
-function sesh-sessions() {
-  {
-    exec </dev/tty
-    exec <&1
-    local session
-    session=$(sesh list -i | fzf --ansi)
-    [[ -z "$session" ]] && return
-    sesh connect $session
-  }
-}
-zle -N sesh-sessions
-bindkey '^[s' sesh-sessions
-
-# fzf
-export FZF_COMPLETION_TRIGGER=''
-bindkey '^T' fzf-completion
-bindkey '^I' $fzf_default_completion
-
-# others
+# custom zshrc
 if [ -f ~/.custom_zshrc ]; then
   source ~/.custom_zshrc
 fi
-
-local zsh_reload() {
-  new_zshrc_md5=$(md5sum ~/.zshrc)
-  if [[ "$new_zshrc_md5" != "$actual_zshrc_md5" && -n "$actual_zshrc_md5" ]]; then
-    source ~/.zshrc
-  fi
-  actual_zshrc_md5=$(md5sum ~/.zshrc)
-}
-SHAPESHIFT_PRECMD=zsh_reload

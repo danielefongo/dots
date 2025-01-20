@@ -52,6 +52,7 @@ rofi-1.7.5
 sassc-3.6.2
 sesh-2.5.0
 shared-mime-info-2.4
+sheldon-0.8.0
 slack-4.41.105
 spotify-1.2.48.405.gf2c48e6f
 systemd-256.10
