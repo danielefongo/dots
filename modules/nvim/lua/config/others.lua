@@ -19,9 +19,39 @@ return {
     opts = true,
   },
   {
-    "brenoprata10/nvim-highlight-colors",
+    "uga-rosa/ccc.nvim",
+    event = "BufReadPost",
+    opts = function()
+      local ccc = require("ccc")
+      return {
+        bar_len = 40,
+        max_prev_colors = 10,
+        alpha_show = "auto",
+        inputs = {
+          ccc.input.rgb,
+          ccc.input.hsl,
+          ccc.input.lab,
+        },
+        highlighter = {
+          auto_enable = true,
+        },
+        mappings = {
+          ["<cr>"] = ccc.mapping.complete,
+          ["q"] = ccc.mapping.quit,
+          ["<esc>"] = ccc.mapping.quit,
+          ["i"] = ccc.mapping.increase1,
+          ["I"] = ccc.mapping.increase5,
+          ["m"] = ccc.mapping.decrease1,
+          ["M"] = ccc.mapping.decrease5,
+          ["N"] = ccc.mapping.cycle_input_mode,
+          ["E"] = ccc.mapping.cycle_output_mode,
+        },
+        disable_default_mappings = true,
+      }
+    end,
     keys = {
-      { "<leader>cc", ":lua require('nvim-highlight-colors').toggle()<cr>", desc = "colors", silent = true },
+      { "<leader>ccp", ":CccPick<cr>", desc = "color pick" },
+      { "<leader>cct", ":CccHighlighterToggle<cr>", desc = "color highlight toggle" },
     },
   },
   { "windwp/nvim-autopairs", opts = {}, event = "InsertEnter" },

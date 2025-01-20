@@ -33,6 +33,11 @@ watcher:start(
         require("barbecue.config").apply({ theme = theme.barbecue })
         require("barbecue.theme").load()
       end
+
+      if pcall(require, "ccc") then
+        vim.cmd("Lazy reload ccc.nvim")
+        vim.cmd("CccHighlighterEnable")
+      end
     end, { "DevIcon" })
   end)
 )
