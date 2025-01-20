@@ -1,0 +1,72 @@
+shell = "zsh"
+
+[templates]
+defer = "{% raw %}{% for file in files %}zsh-defer source \"{{ file }}\"\n{% endfor %}{% endraw %}"
+
+[plugins]
+
+[plugins.zsh-defer]
+github = "romkatv/zsh-defer"
+
+[plugins.oh-my-zsh]
+github = "ohmyzsh/ohmyzsh"
+apply = ["defer"]
+
+[plugins.git]
+github = "ohmyzsh/ohmyzsh"
+use = ["{% raw %}plugins/{{name}}/{{name}}.plugin.zsh{% endraw %}"]
+apply = ["defer"]
+
+[plugins.scm_breeze]
+github = "scmbreeze/scm_breeze"
+apply = ["defer"]
+
+[plugins.fzf-zsh]
+github = 'junegunn/fzf'
+dir = 'shell'
+use = ['key-bindings.zsh']
+apply = ["defer"]
+
+[plugins.shapeshift]
+github = "danielefongo/shapeshift"
+[plugins.shapeshift.hooks]
+post = '''
+local zsh_reload() {
+  new_zshrc_md5=$(md5sum ~/.zshrc)
+  if [[ "$new_zshrc_md5" != "$actual_zshrc_md5" && -n "$actual_zshrc_md5" ]]; then
+    source ~/.zshrc
+  fi
+  actual_zshrc_md5=$(md5sum ~/.zshrc)
+}
+SHAPESHIFT_PRECMD=zsh_reload
+'''
+
+[plugins.zoxide]
+inline = '''
+eval "$(zoxide init zsh)"
+alias j=z
+'''
+
+[plugins.direnv]
+inline = '''
+eval "$(direnv hook zsh)"
+'''
+
+[plugins.sesh]
+inline = '''
+function sesh-sessions() {
+  {
+    exec </dev/tty
+    exec <&1
+    local session
+    session=$(sesh list -i | fzf --ansi)
+    [[ -z "$session" ]] && return
+    sesh connect $session
+  }
+}
+zle -N sesh-sessions
+bindkey '^[s' sesh-sessions
+'''
+
+[plugins.compinit]
+inline = 'autoload -Uz compinit && compinit'
