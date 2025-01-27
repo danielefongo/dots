@@ -54,7 +54,7 @@ eval "$(direnv hook zsh)"
 
 [plugins.sesh]
 inline = '''
-function sesh-sessions() {
+function s() {
   {
     exec </dev/tty
     exec <&1
@@ -64,8 +64,8 @@ function sesh-sessions() {
     sesh connect $session
   }
 }
-zle -N sesh-sessions
-bindkey '^[s' sesh-sessions
+zle -N s
+bindkey '^[s' s
 '''
 
 [plugins.compinit]
