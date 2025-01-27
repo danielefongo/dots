@@ -56,3 +56,15 @@ program = "zsh"
 [window]
 decorations = "none"
 startup_mode = "Windowed"
+
+[hints]
+alphabet = "arstgmneio"
+
+[[hints.enabled]]
+regex = "(/?(?:[\\w.-]+?/)*[\\w.-]+)(:(\\d+))+"
+command = "run_on_nvim"
+post_processing = true
+
+[hints.enabled.binding]
+key = "X"
+mods = "Control|Shift"
