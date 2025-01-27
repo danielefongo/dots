@@ -7,13 +7,13 @@
   commit-style                  = raw
   file-style                    = "{{ colors.blue }}"
   hunk-header-style             = syntax
-  minus-style                   = bold "{{ colors.red | darken }}"
-  minus-non-emph-style          = bold "{{ colors.red | darken }}"
+  minus-style                   = italic bold "{{ colors.red | darken }}"
+  minus-non-emph-style          = italic bold "{{ colors.red | darken }}"
   minus-emph-style              = reverse "{{ colors.red | stronger }}"
   minus-empty-line-marker-style = normal "{{ colors.red | darken }}"
   zero-style                    = syntax
-  plus-style                    = bold "{{ colors.green | darken }}"
-  plus-non-emph-style           = bold "{{ colors.green | darken }}"
+  plus-style                    = italic bold "{{ colors.green | darken }}"
+  plus-non-emph-style           = italic bold "{{ colors.green | darken }}"
   plus-emph-style               = reverse "{{ colors.green | stronger }}"
   plus-empty-line-marker-style  = normal "{{ colors.green | darken }}"
   grep-file-style               = "{{ colors.blue }}"
