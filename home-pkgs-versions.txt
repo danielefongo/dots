@@ -49,6 +49,7 @@ rawtherapee-5.11
 redshift-1.12
 ripgrep-14.1.1
 rofi-1.7.5
+ruby-3.3.6
 run_on_nvim
 sassc-3.6.2
 sesh-2.5.0
