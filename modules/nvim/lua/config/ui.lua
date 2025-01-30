@@ -47,7 +47,6 @@ return {
   },
   {
     "luukvbaal/statuscol.nvim",
-    event = "BufReadPost",
     opts = function()
       local builtin = require("statuscol.builtin")
       return {
@@ -78,16 +77,16 @@ return {
     end,
   },
   {
-    "luukvbaal/statuscol.nvim",
+    "kevinhwang91/nvim-ufo",
+    event = "BufReadPost",
     dependencies = {
-      {
-        "kevinhwang91/nvim-ufo",
-        event = "BufReadPost",
-        dependencies = { "kevinhwang91/promise-async" },
-        opts = {
-          open_fold_hl_timeout = 150,
-        },
-      },
+      "kevinhwang91/promise-async",
+      "luukvbaal/statuscol.nvim",
+    },
+    opts = {
+      provider_selector = function()
+        return { "treesitter", "indent" }
+      end,
     },
     keys = {
       { "<c-f>", "za", desc = "toggle fold", silent = true },
