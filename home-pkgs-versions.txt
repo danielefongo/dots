@@ -65,6 +65,7 @@ tig-2.5.10
 tldr-1.6.1
 tmux-3.4
 tmuxinator-3.3.2
+vault-1.18.1
 vesktop
 WebApp-0.0.13
 whatsapp-for-linux-1.6.5

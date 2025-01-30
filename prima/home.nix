@@ -10,5 +10,6 @@
     k9s
     kubectl
     suite_py
+    vault
   ];
 }
