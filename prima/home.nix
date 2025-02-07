@@ -11,5 +11,6 @@
     kubectl
     suite_py
     vault
+    codescene-cli
   ];
 }
