@@ -12,5 +12,6 @@
     slack
     (lib.wrapNixGL telegram-desktop)
     (lib.wrapNixGL whatsapp-for-linux)
+    ocr
   ];
 }

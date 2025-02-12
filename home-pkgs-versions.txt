@@ -36,6 +36,7 @@ man-db-2.13.0
 ncdu-2.6
 neovim-0.10.2
 nix-rebuild
+ocr
 openssh-9.9p1
 openssl-3.3.2-bin
 pavucontrol-6.1
