@@ -142,6 +142,7 @@ bindsym $mod+u mode "$mode_system"
 
 # screenshots
 bindsym Print exec flameshot gui
+bindsym $shift+Print exec ocr
 
 # notifications
 bindsym $mod+$shift+k exec dunstctl set-paused toggle
