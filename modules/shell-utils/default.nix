@@ -10,6 +10,7 @@
     tldr
     xclip
     cloc
+    choose
   ];
 
   programs.direnv = {
