@@ -15,11 +15,11 @@ delta-0.18.2
 direnv-2.35.0
 docker-27.3.1
 entr-5.6
-firefox-134.0
+firefox-135.0
 flameshot-12.1.0-unstable-2024-09-01
 fzf
 gcc-wrapper-13.3.0
-git-2.47.1
+git-2.47.2
 glibc-2.40-36-bin
 gnumake-4.4.1
 home-manager
@@ -34,7 +34,7 @@ kubectl-1.31.2
 less-668
 man-db-2.13.0
 ncdu-2.6
-neovim-0.10.2
+neovim-0.10.4
 nix-rebuild
 ocr
 openssh-9.9p1
@@ -60,10 +60,10 @@ sheldon-0.8.0
 slack-4.41.105
 spotify-1.2.48.405.gf2c48e6f
 systemd-256.10
-telegram-desktop-5.9.0
+telegram-desktop-5.11.1
 theme
 thunar-4.18.11
-tig-2.5.10
+tig-2.5.12
 tldr-1.6.1
 tmux-3.4
 tmuxinator-3.3.2
