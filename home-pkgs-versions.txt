@@ -3,6 +3,7 @@ alacritty-0.14.0
 awscli2-2.19.0
 bruno-1.34.2
 btop-1.4.0
+choose-1.3.6
 cloc-2.02
 cloudflare-warp-2024.11.309
 cmake-3.30.5
