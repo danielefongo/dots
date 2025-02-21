@@ -11,6 +11,7 @@
     xclip
     cloc
     choose
+    dust
   ];
 
   programs.direnv = {
