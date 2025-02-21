@@ -17,6 +17,7 @@ return {
             },
             cargo = {
               features = "all",
+              targetDir = "target/rust-analyzer",
             },
             check = {
               features = "all",
@@ -24,9 +25,6 @@ return {
             },
             completion = {
               limit = 100,
-            },
-            rust = {
-              analyzerTargetDir = true,
             },
           },
         },
