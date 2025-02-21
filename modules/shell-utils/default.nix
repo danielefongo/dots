@@ -12,6 +12,7 @@
     cloc
     choose
     dust
+    fastmod
   ];
 
   programs.direnv = {
