@@ -1,4 +1,7 @@
 { pkgs, ... }:
+let
+  cpupower = pkgs.linuxKernel.packages.linux_latest_libre.cpupower;
+in
 {
   imports = [ ./prima/system.nix ];
 
@@ -22,6 +25,15 @@
       ExecStart = "${pkgs.nix}/bin/nix-daemon";
     };
     description = "Runs nix daemon";
+    wantedBy = [ "multi-user.target" ];
+  };
+
+  systemd.services.cpupower = {
+    enable = true;
+    serviceConfig = {
+      ExecStart = "${cpupower}/bin/cpupower frequency-set --governor performance";
+    };
+    description = "Sets CPU governor to performance";
     wantedBy = [ "multi-user.target" ];
   };
 
