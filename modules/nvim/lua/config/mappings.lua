@@ -59,6 +59,17 @@ return {
         { "<c-n>", "<c-e>", desc = "scroll down", silent = true },
         { "<c-a>", "gg0vG$", desc = "select all", noremap = true, silent = true },
       },
+
+      -- clipboard
+      {
+        { "<leader>y", '"+y', desc = "y to clipboard", noremap = true, silent = true },
+        { "<leader>p", '"+p', desc = "p from clipboard", noremap = true, silent = true },
+        mode = { "n", "v", "x" },
+      },
+      {
+        { "<c-p>", "<C-r>+", desc = "p from clipboard in insert", noremap = true, silent = true },
+        mode = "i",
+      },
     },
   },
 }
