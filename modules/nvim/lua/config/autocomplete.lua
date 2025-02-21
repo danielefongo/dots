@@ -1,5 +1,25 @@
 return {
   {
+    "zbirenbaum/copilot.lua",
+    event = { "BufReadPre", "BufNewFile" },
+    opts = {
+      panel = { enabled = true },
+      suggestion = {
+        enabled = true,
+        auto_trigger = true,
+        hide_during_completion = true,
+        debounce = 75,
+        keymap = {
+          accept = "<c-j>",
+          next = "<c-l>",
+          prev = "<c-u>",
+          dismiss = "<c-y>",
+        },
+      },
+      server_opts_overrides = {},
+    },
+  },
+  {
     "hrsh7th/nvim-cmp",
     event = { "InsertEnter" },
     dependencies = {
@@ -35,22 +55,6 @@ return {
           },
         },
       }
-    end,
-  },
-  {
-    "hrsh7th/nvim-cmp",
-    dependencies = {
-      { "zbirenbaum/copilot-cmp", config = true },
-      {
-        "zbirenbaum/copilot.lua",
-        opts = {
-          suggestion = { enabled = false },
-          panel = { enabled = false },
-        },
-      },
-    },
-    opts = function(_, opts)
-      table.insert(opts.sources, 2, { name = "copilot" })
     end,
   },
   {
