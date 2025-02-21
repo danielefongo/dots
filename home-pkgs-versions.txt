@@ -17,6 +17,7 @@ direnv-2.35.0
 docker-27.3.1
 du-dust-1.1.1
 entr-5.6
+fastmod-0.4.4
 firefox-135.0
 flameshot-12.1.0-unstable-2024-09-01
 fzf
