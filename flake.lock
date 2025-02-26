@@ -199,6 +199,20 @@
     },
     "nixpkgs_4": {
       "locked": {
+        "lastModified": 1686767166,
+        "narHash": "sha256-zrdYWQc6KaTXSFTI9LBbnrJ/X7UKaYp2HEXl97tSSmU=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "ff1cd885da89c8f27091d7cf45af95b97970170f",
+        "type": "github"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "type": "indirect"
+      }
+    },
+    "nixpkgs_5": {
+      "locked": {
         "lastModified": 1735471104,
         "narHash": "sha256-0q9NGQySwDQc7RhAV2ukfnu7Gxa5/ybJ2ANT8DQrQrs=",
         "owner": "NixOS",
@@ -213,7 +227,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_5": {
+    "nixpkgs_6": {
       "locked": {
         "lastModified": 1730157240,
         "narHash": "sha256-P8wF4ag6Srmpb/gwskYpnIsnspbjZlRvu47iN527ABQ=",
@@ -253,7 +267,7 @@
       "inputs": {
         "flake-utils": "flake-utils_3",
         "nix-github-actions": "nix-github-actions",
-        "nixpkgs": "nixpkgs_5",
+        "nixpkgs": "nixpkgs_6",
         "systems": "systems_3",
         "treefmt-nix": "treefmt-nix_2"
       },
@@ -271,6 +285,41 @@
         "type": "github"
       }
     },
+    "prima-appsec": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1740474217,
+        "narHash": "sha256-vLwJN+k4F0j7Y5AURTs8iECg1jFp7XZ8wbyxhekcZtM=",
+        "ref": "refs/heads/master",
+        "rev": "f0a82846345352d4f0204101147752ab23f35ddd",
+        "revCount": 1053,
+        "type": "git",
+        "url": "ssh://git@github.com/primait/appsec-automation"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@github.com/primait/appsec-automation"
+      }
+    },
+    "prima-nix": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_4",
+        "prima-appsec": "prima-appsec"
+      },
+      "locked": {
+        "lastModified": 1738314254,
+        "narHash": "sha256-4YI/dCebjeO+JjzlOLwyZL9Kcfgdyx6nBSXru9+WsSw=",
+        "ref": "refs/heads/master",
+        "rev": "7ce11e7c053e4564e80b4576e65de785b4db553a",
+        "revCount": 15,
+        "type": "git",
+        "url": "ssh://git@github.com/primait/prima.nix.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@github.com/primait/prima.nix.git"
+      }
+    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
@@ -278,6 +327,7 @@
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nurpkgs": "nurpkgs",
+        "prima-nix": "prima-nix",
         "suite_py": "suite_py",
         "system-manager": "system-manager"
       }
@@ -285,7 +335,7 @@
     "suite_py": {
       "inputs": {
         "flake-utils": "flake-utils_2",
-        "nixpkgs": "nixpkgs_4",
+        "nixpkgs": "nixpkgs_5",
         "poetry2nix": "poetry2nix"
       },
       "locked": {
