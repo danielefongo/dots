@@ -1,6 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, prima-nix, ... }:
 
 {
+  imports = [ prima-nix.homeManagerModules.gitleaks ];
+
   home.packages = with pkgs; [
     awscli2
     bruno
@@ -13,4 +15,6 @@
     vault
     codescene-cli
   ];
+
+  prima.gitleaks.enable = true;
 }

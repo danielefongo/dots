@@ -15,6 +15,7 @@
     nurpkgs.url = "github:nix-community/NUR";
     nixgl.url = "github:nix-community/nixGL";
     suite_py.url = "git+ssh://git@github.com/primait/suite_py";
+    prima-nix.url = "git+ssh://git@github.com/primait/prima.nix.git";
   };
   outputs =
     {
@@ -71,7 +72,7 @@
         inherit pkgs;
         inherit lib;
 
-        extraSpecialArgs = {
+        extraSpecialArgs = inputs // {
           inherit user;
           inherit home;
           inherit dots_path;
