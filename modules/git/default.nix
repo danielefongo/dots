@@ -19,7 +19,7 @@
 
       core = {
         editor = "nvim";
-        excludesfile = lib.outLink "git/ignore";
+        excludesfile = builtins.toString (lib.outLink "git/ignore");
       };
     };
   };
