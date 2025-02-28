@@ -1,7 +1,10 @@
 { lib, pkgs, ... }:
 
 {
-  imports = [ ./scripts.nix ];
+  imports = [
+    ./keyboard.nix
+    ./scripts.nix
+  ];
 
   home.packages = with pkgs; [
     i3
