@@ -2,17 +2,18 @@
 
 {
   home.packages = with pkgs; [
-    zoxide
+    choose
+    cloc
+    csvlens
     curl
+    dust
+    fastmod
     jq
     ncdu
     ripgrep
     tldr
     xclip
-    cloc
-    choose
-    dust
-    fastmod
+    zoxide
   ];
 
   programs.direnv = {

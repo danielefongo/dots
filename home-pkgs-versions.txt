@@ -8,6 +8,7 @@ cloc-2.02
 cloudflare-warp-2024.11.309
 cmake-3.30.5
 cs-latest
+csvlens-0.10.1
 cups-2.4.11
 curl-8.11.1-bin
 dbeaver-bin-24.2.3
