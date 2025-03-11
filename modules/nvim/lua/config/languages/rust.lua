@@ -26,6 +26,9 @@ return {
             completion = {
               limit = 100,
             },
+            diagnostics = {
+              disabled = { "inactive-code" },
+            },
           },
         },
       }
