@@ -10,7 +10,7 @@ cmake-3.30.5
 cs-latest
 csvlens-0.10.1
 cups-2.4.11
-curl-8.11.1-bin
+curl-8.12.1-bin
 dbeaver-bin-24.2.3
 dbus-1.14.10
 delta-0.18.2
@@ -19,12 +19,12 @@ docker-27.3.1
 du-dust-1.1.1
 entr-5.6
 fastmod-0.4.4
-firefox-135.0
+firefox-136.0
 flameshot-12.1.0-unstable-2024-09-01
 fzf
 gcc-wrapper-13.3.0
 git-2.47.2
-glibc-2.40-36-bin
+glibc-2.40-66-bin
 gnumake-4.4.1
 home-manager
 i3-4.24
@@ -41,8 +41,8 @@ ncdu-2.6
 neovim-0.10.4
 nix-rebuild
 ocr
-openssh-9.9p1
-openssl-3.3.2-bin
+openssh-9.9p2
+openssl-3.3.3-bin
 pavucontrol-6.1
 peek-1.5.1
 picom-12.5

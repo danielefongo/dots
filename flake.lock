@@ -151,11 +151,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1739580444,
-        "narHash": "sha256-+/bSz4EAVbqz8/HsIGLroF8aNaO8bLRL7WfACN+24g4=",
+        "lastModified": 1741513245,
+        "narHash": "sha256-7rTAMNTY1xoBwz0h7ZMtEcd8LELk9R5TzBPoHuhNSCk=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "8bb37161a0488b89830168b81c48aed11569cb93",
+        "rev": "e3e32b642a31e6714ec1b712de8c91a3352ce7e1",
         "type": "github"
       },
       "original": {
@@ -167,11 +167,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1739783058,
-        "narHash": "sha256-59XeYDHRn+CmgmqVKln1SFtcto9cbH+PRGpkvIa1SF0=",
+        "lastModified": 1741674508,
+        "narHash": "sha256-8tbUFc+69V+jJGl6JJ+z+1T+zkoTYYTOK8YGPBbu3SI=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "65e7e741571565f1dca90f99b63088f4bc48c89c",
+        "rev": "8c4a1ae43ff5bc10b0138bdaad832c0826202bf9",
         "type": "github"
       },
       "original": {
@@ -183,11 +183,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1739580444,
-        "narHash": "sha256-+/bSz4EAVbqz8/HsIGLroF8aNaO8bLRL7WfACN+24g4=",
+        "lastModified": 1741513245,
+        "narHash": "sha256-7rTAMNTY1xoBwz0h7ZMtEcd8LELk9R5TzBPoHuhNSCk=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "8bb37161a0488b89830168b81c48aed11569cb93",
+        "rev": "e3e32b642a31e6714ec1b712de8c91a3352ce7e1",
         "type": "github"
       },
       "original": {
@@ -250,11 +250,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1739782361,
-        "narHash": "sha256-xd5HJX9ZW2MkKpCrnBVl/9EtwhnEQLDQaVYSjzCbtKE=",
+        "lastModified": 1741670434,
+        "narHash": "sha256-/HwQwLHJVGHSnxiQJTu6c5m8YwS1tl3KVt3fBVrNkGk=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "5dfbce41e737044067e52cdf44dd2c42fbbcf64e",
+        "rev": "0da9e38262198c1a7b674c8fefdff5184dacaae6",
         "type": "github"
       },
       "original": {
@@ -288,11 +288,11 @@
     "prima-appsec": {
       "flake": false,
       "locked": {
-        "lastModified": 1740474217,
-        "narHash": "sha256-vLwJN+k4F0j7Y5AURTs8iECg1jFp7XZ8wbyxhekcZtM=",
+        "lastModified": 1741252137,
+        "narHash": "sha256-k73e6A0zRe1LjbhEfWPRjgUn7jY5EUmUKSXcNEcXHYY=",
         "ref": "refs/heads/master",
-        "rev": "f0a82846345352d4f0204101147752ab23f35ddd",
-        "revCount": 1053,
+        "rev": "694935810913ac7ae504417c316c61e37003f31b",
+        "revCount": 1065,
         "type": "git",
         "url": "ssh://git@github.com/primait/appsec-automation"
       },
@@ -339,11 +339,11 @@
         "poetry2nix": "poetry2nix"
       },
       "locked": {
-        "lastModified": 1739383518,
-        "narHash": "sha256-0dgK+yahFOeThxQPltd7gcar1XzgiVpk3INlLduY4DY=",
+        "lastModified": 1741346553,
+        "narHash": "sha256-UgvXhpq392ySdoqcxlJzyJlmrCmqSz73AIOKADX8Gd4=",
         "ref": "refs/heads/master",
-        "rev": "e3c66ef19b8faa2c39b5ffbd8a81d9bcc487c2fa",
-        "revCount": 701,
+        "rev": "6b6ed149a617a43983d09af8de2903632a7a30a3",
+        "revCount": 708,
         "type": "git",
         "url": "ssh://git@github.com/primait/suite_py"
       },
@@ -359,11 +359,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1739316420,
-        "narHash": "sha256-FZBKtR8mqbcEazdpI1SoID43FeldQPhjnvluUO9HAaI=",
+        "lastModified": 1741006529,
+        "narHash": "sha256-C9Td+pCQ/qNpr75ZCPpOlOwHZW1zRzi6AXj+p+Mrw10=",
         "owner": "numtide",
         "repo": "system-manager",
-        "rev": "82d5a9ecd15ec48bcbfbacf5462066ee267d6aae",
+        "rev": "9f8f766c3b8a19c68aa43ab19c94b0641d6a5b20",
         "type": "github"
       },
       "original": {
