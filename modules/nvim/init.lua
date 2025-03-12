@@ -36,6 +36,19 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 vim.g.tmux_navigator_no_mappings = true
 
-require("plugins")
 require("reload_theme")
 require("autocommands")
+
+if vim.loop.fs_stat(".nvim.lua") then
+  -- Example of how to load a local configuration file
+  -- require("plugins")({
+  --   {
+  --     "plugin_name",
+  --     opts = { ... },
+  --   },
+  -- })
+  vim.opt.exrc = true
+  return
+end
+
+require("plugins")()
