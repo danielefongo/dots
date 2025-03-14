@@ -15,6 +15,5 @@ unset NIX_REMOTE
 ./_run_home_manager $OPTION
 ./_run_system_manager $OPTION
 ./_install_xsessions_desktop $OPTION
-./_set_pam $OPTION
 ./_build_output_folder $OPTION
 ./_set_user_permissions $OPTION
