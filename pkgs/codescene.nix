@@ -6,7 +6,7 @@ pkgs.stdenv.mkDerivation {
 
   src = pkgs.fetchurl {
     url = "https://downloads.codescene.io/enterprise/cli/cs-linux-amd64-latest.zip";
-    sha256 = "sha256-2kUzRECKpUABW1IONB1tpFnFFApLPgX7ilwVZ1IYtu4=";
+    sha256 = "sha256-boQA2L3QjoIJ+upA0GwningZDk6njACkkZxASP9lJqQ=";
   };
   nativeBuildInputs = [ pkgs.unzip ];
 
