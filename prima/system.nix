@@ -2,8 +2,6 @@
 {
   nixpkgs.hostPlatform = "x86_64-linux";
 
-  environment.etc."ssl/certs/cloudflare.crt".source = ./certificate.crt;
-
   systemd.services.warp-svc = {
     enable = true;
     serviceConfig = {
