@@ -8,10 +8,12 @@
     curl
     dust
     fastmod
+    fd
     jq
     ncdu
     ripgrep
     tldr
+    tree
     xclip
     zoxide
   ];
