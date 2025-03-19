@@ -10,7 +10,6 @@ github = "romkatv/zsh-defer"
 
 [plugins.oh-my-zsh]
 github = "ohmyzsh/ohmyzsh"
-apply = ["defer"]
 
 [plugins.git]
 github = "ohmyzsh/ohmyzsh"
@@ -25,7 +24,8 @@ apply = ["defer"]
 github = 'junegunn/fzf'
 dir = 'shell'
 use = ['key-bindings.zsh']
-apply = ["defer"]
+[plugins.fzf-zsh.hooks]
+post = "source <(fzf --zsh)"
 
 [plugins.shapeshift]
 github = "danielefongo/shapeshift"
