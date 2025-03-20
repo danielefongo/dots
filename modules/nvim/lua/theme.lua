@@ -237,8 +237,8 @@ local lush = function()
       GitSignsStagedDeleteCul({ Removed, bg = colors.red }),
       GitSignsStagedTopdeleteCul({ Removed, bg = colors.red }),
 
-      MicroscopeMatch({ fg = colors.blue }),
-      MicroscopeColor1({ fg = colors.red }),
+      MicroscopeMatch({ fg = colors.strong_red, gui = "bold" }),
+      MicroscopeColor1({ fg = colors.grey5 }),
       MicroscopeColor2({ fg = colors.green }),
       MicroscopeColor3({ Text }),
       MicroscopeColor4({ Text }),
