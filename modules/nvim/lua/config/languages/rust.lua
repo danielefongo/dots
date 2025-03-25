@@ -38,7 +38,12 @@ return {
     "stevearc/conform.nvim",
     opts = function(_, opts)
       opts.options.formatters_by_ft.rust = { "rustfmt" }
-      opts.options.formatters.rustfmt = { command = "rustfmt" }
+      opts.options.formatters.rustfmt = {
+        command = "rustfmt",
+        options = {
+          default_edition = "2024",
+        },
+      }
     end,
   },
 }
