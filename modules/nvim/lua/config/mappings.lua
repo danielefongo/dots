@@ -57,7 +57,7 @@ return {
         { "<a-q>", ":lua close_win()<cr>", desc = "close buffer", silent = true },
         { "<c-e>", "<c-y>", desc = "scroll up", silent = true },
         { "<c-n>", "<c-e>", desc = "scroll down", silent = true },
-        { "<c-a>", "gg0vG$", desc = "select all", noremap = true, silent = true },
+        { "<c-g>", "gg0vG$", desc = "select all", noremap = true, silent = true },
         { ">", ">gv", desc = "indent right", noremap = true, silent = true },
         { "<", "<gv", desc = "indent left", noremap = true, silent = true },
       },
