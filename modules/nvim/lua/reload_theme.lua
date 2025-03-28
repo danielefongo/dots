@@ -24,19 +24,13 @@ watcher:start(
         require("lush")(data.lush())
       end
 
-      if pcall(require, "lualine") then
-        require("lualine.highlight").create_highlight_groups(theme.lualine)
-      end
-
-      if pcall(require, "barbecue") then
-        vim.g.colors_name = nil
-        require("barbecue.config").apply({ theme = theme.barbecue })
-        require("barbecue.theme").load()
-      end
-
       if pcall(require, "ccc") then
         vim.cmd("Lazy reload ccc.nvim")
         vim.cmd("CccHighlighterEnable")
+      end
+
+      if pcall(require, "heirline") then
+        require("heirline.utils").on_colorscheme(theme.heirline)
       end
     end, { "DevIcon" })
   end)
