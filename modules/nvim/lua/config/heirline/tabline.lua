@@ -13,18 +13,12 @@ local TabPage = {
   end,
 }
 
-local TabPageClose = {
-  provider = "%999X  %X",
-  hl = { bg = "background_dark" },
-}
-
 local TabPages = {
   condition = function()
     return #vim.api.nvim_list_tabpages() >= 2
   end,
-  { provider = "%=", hl = { bg = "background" } },
   utils.make_tablist(TabPage),
-  TabPageClose,
+  { provider = "%=", hl = { bg = "background" } },
 }
 
 return TabPages
