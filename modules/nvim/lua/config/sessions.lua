@@ -4,7 +4,7 @@ return {
     lazy = false,
     opts = {
       autostart = true,
-      autoload = true,
+      autoload = false,
       should_save = function()
         return not vim.tbl_contains({ "gitcommit", "gitrebase", "lazy" }, vim.bo.filetype)
       end,
