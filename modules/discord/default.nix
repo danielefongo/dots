@@ -7,7 +7,7 @@ let
 in
 {
   home.packages = [
-    (lib.wrapNixGL vesktop)
+    vesktop
     (pkgs.makeDesktopItem ({
       name = "Vesktop";
       exec = "vesktop";
@@ -19,6 +19,8 @@ in
     }))
   ];
 
-  xdg.configFile."vesktop/themes/discord.theme.css".source = lib.outLink "discord/themes/discord.theme.css";
-  xdg.configFile."vesktop/settings/settings.json".source = lib.outLink "discord/settings/settings.json";
+  xdg.configFile."vesktop/themes/discord.theme.css".source =
+    lib.outLink "discord/themes/discord.theme.css";
+  xdg.configFile."vesktop/settings/settings.json".source =
+    lib.outLink "discord/settings/settings.json";
 }

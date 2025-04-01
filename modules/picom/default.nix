@@ -1,10 +1,7 @@
 { lib, pkgs, ... }:
 
-let
-  picom = (lib.wrapNixGL pkgs.picom);
-in
 {
-  home.packages = [ picom ];
+  home.packages = [ pkgs.picom ];
 
   xdg.configFile."picom".source = lib.outLink "picom";
 
@@ -20,7 +17,7 @@ in
       };
 
       Service = {
-        ExecStart = "${picom}/bin/picom";
+        ExecStart = "${pkgs.picom}/bin/picom";
         Restart = "on-failure";
         RestartSec = 2;
       };

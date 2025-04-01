@@ -10,8 +10,8 @@
     peek
     spotify
     slack
-    (lib.wrapNixGL telegram-desktop)
-    (lib.wrapNixGL whatsapp-for-linux)
+    telegram-desktop
+    whatsapp-for-linux
     ocr
     keymapp
     vial
