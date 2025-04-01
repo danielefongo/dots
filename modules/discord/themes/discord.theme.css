@@ -14,76 +14,59 @@
 
 @import url("https://refact0r.github.io/midnight-discord/midnight.css");
 
-/* customize things here */
 :root {
-  /* font, change to 'gg sans' for default discord font */
   --font: "{{ font }}";
-
-  /* top left corner text */
   --corner-text: "";
-
-  /* color of status indicators and window controls */
   --online-indicator: {{ colors.green }};
   --dnd-indicator: {{ colors.red }};
   --idle-indicator: {{ colors.orange }};
   --streaming-indicator: {{ colors.magenta }};
 
-  /* accent colors */
-  --accent-1: {{ theme.primary | between(colors.background, 1, 14) }}; /* links */
-  --accent-2: {{ theme.primary | between(colors.background, 2, 14) }}; /* general unread/mention elements */
-  --accent-3: {{ theme.primary | between(colors.background, 3, 14) }}; /* accent buttons */
-  --accent-4: {{ theme.primary | between(colors.background, 4, 14) }}; /* accent buttons when hovered */
-  --accent-5: {{ theme.primary | between(colors.background, 5, 14) }}; /* accent buttons when clicked */
-  --mention: {{ colors.background_alt1 }}; /* mentions & mention messages */
-  --mention-hover: {{ colors.background_alt1 | darken }}; /* mentions & mention messages when hovered */
+  --accent-1: {{ theme.primary | between(colors.background, 1, 14) }};
+  --accent-2: {{ theme.primary | between(colors.background, 2, 14) }};
+  --accent-3: {{ theme.primary | between(colors.background, 3, 14) }};
+  --accent-4: {{ theme.primary | between(colors.background, 4, 14) }};
+  --accent-5: {{ theme.primary | between(colors.background, 5, 14) }};
+  --mention: {{ colors.background_alt1 }};
+  --mention-hover: {{ colors.background_alt1 | darken }};
 
-  /* text colors */
-  --text-0: {{ colors.grey1 }}; /* text on colored elements */
-  --text-1: {{ colors.foreground }}; /* other normally white text */
-  --text-2: {{ colors.grey8 }}; /* headings and important text */
-  --text-3: {{ colors.foreground }}; /* normal text */
-  --text-4: {{ colors.grey7 }}; /* icon buttons and channels */
-  --text-5: {{ colors.grey2 }}; /* muted channels/chats and timestamps */
+  --text-0: {{ colors.grey1 }};
+  --text-1: {{ colors.foreground }};
+  --text-2: {{ colors.grey8 }};
+  --text-3: {{ colors.foreground }};
+  --text-4: {{ colors.grey7 }};
+  --text-5: {{ colors.grey2 }};
 
-  /* background and dark colors */
-  --bg-1: {{ colors.grey3 }}; /* dark buttons when clicked */
-  --bg-2: {{ colors.grey4 }}; /* dark buttons */
-  --bg-3: {{ colors.background_alt2 }}; /* main background color */
-  --bg-4: {{ colors.background }}; /* main background color */
-  --hover: {{ colors.grey3 }}; /* buttons when hovered */
-  --active: {{ colors.grey2 }}; /* channels and buttons when clicked or selected */
-  --message-hover: {{ colors.background_alt1 }}; /* messages when hovered */
+  --bg-1: {{ colors.grey3 }};
+  --bg-2: {{ colors.grey4 }};
+  --bg-3: {{ colors.background_alt2 }};
+  --bg-4: {{ colors.background }};
+  --hover: {{ colors.grey3 }};
+  --active: {{ colors.grey2 }};
+  --message-hover: {{ colors.background_alt1 }};
 
-  /* amount of spacing and padding */
   --spacing: 12px;
 
-  /* animations */
-  /* ALL ANIMATIONS CAN BE DISABLED WITH REDUCED MOTION IN DISCORD SETTINGS */
-  --list-item-transition: 0.2s ease; /* channels/members/settings hover transition */
-  --unread-bar-transition: 0.2s ease; /* unread bar moving into view transition */
-  --moon-spin-transition: 0.4s ease; /* moon icon spin */
-  --icon-spin-transition: 1s ease; /* round icon button spin (settings, emoji, etc.) */
+  --list-item-transition: 0.2s ease;
+  --unread-bar-transition: 0.2s ease;
+  --moon-spin-transition: 0.4s ease;
+  --icon-spin-transition: 1s ease;
 
-  /* corner roundness (border-radius) */
-  --roundness-xl: 22px; /* roundness of big panel outer corners */
-  --roundness-l: 20px; /* popout panels */
-  --roundness-m: 16px; /* smaller panels, images, embeds */
-  --roundness-s: 12px; /* members, settings inputs */
-  --roundness-xs: 10px; /* channels, buttons */
-  --roundness-xxs: 8px; /* searchbar, small elements */
+  --roundness-xl: 22px;
+  --roundness-l: 20px;
+  --roundness-m: 16px;
+  --roundness-s: 12px;
+  --roundness-xs: 10px;
+  --roundness-xxs: 8px;
 
-  /* direct messages moon icon */
-  /* change to block to show, none to hide */
-  --discord-icon: none; /* discord icon */
-  --moon-icon: block; /* moon icon */
-  --moon-icon-url: url("https://upload.wikimedia.org/wikipedia/commons/c/c4/Font_Awesome_5_solid_moon.svg"); /* custom icon url */
+  --discord-icon: none;
+  --moon-icon: block;
+  --moon-icon-url: url("https://upload.wikimedia.org/wikipedia/commons/c/c4/Font_Awesome_5_solid_moon.svg");
   --moon-icon-size: auto;
 
-  /* filter uncolorable elements to fit theme */
-  /* (just set to none, they're too much work to configure) */
-  --login-bg-filter: none; /* login background artwork */
-  --green-to-accent-3-filter: none; /* add friend page explore icon */
-  --blurple-to-accent-3-filter: none; /* add friend page school icon */
+  --login-bg-filter: none;
+  --green-to-accent-3-filter: none;
+  --blurple-to-accent-3-filter: none;
 
   --red-400: {{ colors.red }};
   --button-danger-background: {{ colors.red | stronger }};
