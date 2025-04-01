@@ -1,34 +1,27 @@
 /**
- * @name midnight (nord)
- * @description A dark, rounded discord theme. Based on nord theme (https://github.com/nordtheme/nord).
- * @author refact0r, anubis
- * @version 1.6.2
+ * @name midnight
+ * @description a dark, customizable discord theme.
+ * @author refact0r
+ * @version 2.0.1
  * @invite nz87hXyvcy
  * @website https://github.com/refact0r/midnight-discord
- * @source https://github.com/refact0r/midnight-discord/blob/master/flavors/midnight-nord.theme.css
+ * @source https://github.com/refact0r/midnight-discord/blob/master/themes/midnight.theme.css
  * @authorId 508863359777505290
  * @authorLink https://www.refact0r.dev
 */
 
-/* IMPORTANT: make sure to enable dark mode in discord settings for the theme to apply properly!!! */
-
-@import url("https://refact0r.github.io/midnight-discord/midnight.css");
+/* import theme modules */
+@import url('https://refact0r.github.io/midnight-discord/build/midnight.css');
 
 :root {
-  --font: "{{ font }}";
-  --corner-text: "";
-  --online-indicator: {{ colors.green }};
-  --dnd-indicator: {{ colors.red }};
-  --idle-indicator: {{ colors.orange }};
-  --streaming-indicator: {{ colors.magenta }};
+  --colors: on;
 
   --accent-1: {{ theme.primary | between(colors.background, 1, 14) }};
   --accent-2: {{ theme.primary | between(colors.background, 2, 14) }};
   --accent-3: {{ theme.primary | between(colors.background, 3, 14) }};
   --accent-4: {{ theme.primary | between(colors.background, 4, 14) }};
   --accent-5: {{ theme.primary | between(colors.background, 5, 14) }};
-  --mention: {{ colors.background_alt1 }};
-  --mention-hover: {{ colors.background_alt1 | darken }};
+  --accent-new: var(--accent-2);
 
   --text-0: {{ colors.grey1 }};
   --text-1: {{ colors.foreground }};
@@ -39,36 +32,90 @@
 
   --bg-1: {{ colors.grey3 }};
   --bg-2: {{ colors.grey4 }};
-  --bg-3: {{ colors.background_alt2 }};
+  --bg-3: {{ colors.background_alt1 }};
   --bg-4: {{ colors.background }};
   --hover: {{ colors.grey3 }};
   --active: {{ colors.grey2 }};
+  --active-2: {{ colors.grey2 }};
   --message-hover: {{ colors.background_alt1 }};
 
-  --spacing: 12px;
 
-  --list-item-transition: 0.2s ease;
-  --unread-bar-transition: 0.2s ease;
-  --moon-spin-transition: 0.4s ease;
-  --icon-spin-transition: 1s ease;
+  --mention: {{ colors.background_alt1 }};
+  --mention-hover: {{ colors.background_alt1 | darken }};
+  --reply: {{ colors.background_alt1 }};
+  --reply-hover: {{ colors.background_alt1 | darken }};
 
-  --roundness-xl: 22px;
-  --roundness-l: 20px;
-  --roundness-m: 16px;
-  --roundness-s: 12px;
-  --roundness-xs: 10px;
-  --roundness-xxs: 8px;
+  --online: {{ colors.green }};
+  --dnd: {{ colors.red }};
+  --idle: {{ colors.orange }};
+  --streaming: {{ colors.magenta }};
+  --offline: var(--text-4);
 
-  --discord-icon: none;
-  --moon-icon: block;
-  --moon-icon-url: url("https://upload.wikimedia.org/wikipedia/commons/c/c4/Font_Awesome_5_solid_moon.svg");
-  --moon-icon-size: auto;
+  --border-light: var(--hover);
+  --border: var(--active);
+  --button-border: {{ colors.grey2 }};
 
-  --login-bg-filter: none;
-  --green-to-accent-3-filter: none;
-  --blurple-to-accent-3-filter: none;
+  --red-1: {{ colors.red | between(colors.foreground, 1, 14) }};
+  --red-2: {{ colors.red | between(colors.foreground, 2, 14) }};
+  --red-3: {{ colors.red | between(colors.foreground, 3, 14) }};
+  --red-4: {{ colors.red | between(colors.foreground, 4, 14) }};
+  --red-5: {{ colors.red | between(colors.foreground, 5, 14) }};
 
-  --red-400: {{ colors.red }};
-  --button-danger-background: {{ colors.red | stronger }};
-  --button-outline-danger-background-hover: {{ colors.red | stronger }};
+  --green-1: {{ colors.green | between(colors.foreground, 1, 14) }};
+  --green-2: {{ colors.green | between(colors.foreground, 2, 14) }};
+  --green-3: {{ colors.green | between(colors.foreground, 3, 14) }};
+  --green-4: {{ colors.green | between(colors.foreground, 4, 14) }};
+  --green-5: {{ colors.green | between(colors.foreground, 5, 14) }};
+
+  --blue-1: {{ theme.primary | between(colors.foreground, 1, 14) }};
+  --blue-2: {{ theme.primary | between(colors.foreground, 2, 14) }};
+  --blue-3: {{ theme.primary | between(colors.foreground, 3, 14) }};
+  --blue-4: {{ theme.primary | between(colors.foreground, 4, 14) }};
+  --blue-5: {{ theme.primary | between(colors.foreground, 5, 14) }};
+
+  --yellow-1: {{ colors.orange | between(colors.foreground, 1, 14) }};
+  --yellow-2: {{ colors.orange | between(colors.foreground, 2, 14) }};
+  --yellow-3: {{ colors.orange | between(colors.foreground, 3, 14) }};
+  --yellow-4: {{ colors.orange | between(colors.foreground, 4, 14) }};
+  --yellow-5: {{ colors.orange | between(colors.foreground, 5, 14) }};
+
+  --purple-1: {{ colors.magenta | between(colors.foreground, 1, 14) }};
+  --purple-2: {{ colors.magenta | between(colors.foreground, 2, 14) }};
+  --purple-3: {{ colors.magenta | between(colors.foreground, 3, 14) }};
+  --purple-4: {{ colors.magenta | between(colors.foreground, 4, 14) }};
+  --purple-5: {{ colors.magenta | between(colors.foreground, 5, 14) }};
 }
+
+body {
+  --font: "{{ font }}";
+  --gap: 12px;
+  --divider-thickness: 4px;
+  --animations: on;
+  --list-item-transition: 0.2s ease;
+  --dms-icon-svg-transition: 0.4s ease;
+  --move-top-bar-buttons: off;
+  --custom-app-top-bar-height: 32px;
+  --custom-window-controls: on;
+  --window-control-size: 14px;
+  --dms-icon: on;
+  --dms-icon-svg-url: url('https://upload.wikimedia.org/wikipedia/commons/c/c4/Font_Awesome_5_solid_moon.svg');
+  --dms-icon-svg-size: 90%;
+  --dms-icon-color-before: var(--icon-secondary);
+  --dms-icon-color-after: var(--white);
+  --dms-background: off;
+  --dms-background-image-url: url('');
+  --dms-background-image-size: cover;
+  --dms-background-color: linear-gradient(70deg, var(--blue-2), var(--purple-2), var(--red-2));
+  --background-image: off;
+  --background-image-url: url('');
+  --transparency-tweaks: off;
+  --remove-bg-layer: off;
+  --panel-blur: off;
+  --blur-amount: 12px;
+  --bg-floating: var(--bg-3);
+  --flipped-chatbar: on;
+  --chatbar-height: 47px;
+  --chatbar-padding: 8px;
+  --small-user-panel: off;
+}
+
