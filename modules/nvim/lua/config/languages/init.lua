@@ -173,6 +173,7 @@ return {
   require("config.languages.elixir"),
   require("config.languages.elm"),
   require("config.languages.gdscript"),
+  require("config.languages.graphql"),
   require("config.languages.html"),
   require("config.languages.javascript"),
   require("config.languages.json"),
