@@ -3,15 +3,12 @@ local utils = require("heirline.utils")
 local function make_navic_flexible_el(count)
   return {
     provider = function(self)
-      if self.display_count <= count then
-        return ""
-      end
+      if self.display_count <= count then return "" end
+
       local length = self.display_count - count
       local result = self.children[length]:eval()
-      if length < self.original_length and result ~= "" then
-        return result .. self.ellipsis:eval()
-      end
-      return result
+
+      return length < self.original_length and result ~= "" and (result .. self.ellipsis:eval()) or result
     end,
   }
 end
@@ -48,9 +45,7 @@ local Navic = {
     },
     last_length = 0, -- Store the last known navic data length
   },
-  condition = function()
-    return require("nvim-navic").is_available() and #(require("nvim-navic").get_data() or {}) > 0
-  end,
+  condition = function() return require("nvim-navic").is_available() and #(require("nvim-navic").get_data() or {}) > 0 end,
   init = function(self)
     local data = require("nvim-navic").get_data() or {}
     self.original_length = #data
@@ -100,35 +95,23 @@ local Navic = {
 }
 
 local FilePath = {
-  init = function(self)
-    self.filename = vim.fn.expand("%:t")
-  end,
+  init = function(self) self.filename = vim.fn.expand("%:t") end,
   update = { "BufEnter", "BufWritePost", "VimResized", "WinResized" },
   hl = { fg = "navic_file", bg = "background_light" },
   flexible = false,
-  provider = function(self)
-    return self.filename
-  end,
+  provider = function(self) return self.filename end,
 }
 
 local WinWrapper = {
-  {
-    provider = "",
-    hl = { fg = "background_light" },
-  },
+  { provider = "", hl = { fg = "background_light" } },
   FilePath,
   {
-    condition = function()
-      return #(require("nvim-navic").get_data() or {}) > 0
-    end,
+    condition = function() return #(require("nvim-navic").get_data() or {}) > 0 end,
     provider = " > ",
     hl = { fg = "navic_separator", bg = "background_light" },
   },
   Navic,
-  {
-    provider = "",
-    hl = { fg = "background_light" },
-  },
+  { provider = "", hl = { fg = "background_light" } },
 }
 
 return WinWrapper

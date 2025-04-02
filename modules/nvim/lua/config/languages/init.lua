@@ -122,9 +122,7 @@ return {
 
       vim.api.nvim_create_autocmd("BufWritePre", {
         pattern = "*",
-        callback = function(args)
-          require("conform").format({ bufnr = args.buf, stop_after_first = true })
-        end,
+        callback = function(args) require("conform").format({ bufnr = args.buf, stop_after_first = true }) end,
       })
     end,
     keys = {
@@ -143,12 +141,15 @@ return {
       local mr = require("mason-registry")
 
       mr:on("package:install:success", function()
-        vim.defer_fn(function()
-          require("lazy.core.handler.event").trigger({
-            event = "FileType",
-            buf = vim.api.nvim_get_current_buf(),
-          })
-        end, 100)
+        vim.defer_fn(
+          function()
+            require("lazy.core.handler.event").trigger({
+              event = "FileType",
+              buf = vim.api.nvim_get_current_buf(),
+            })
+          end,
+          100
+        )
       end)
     end,
   },

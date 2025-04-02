@@ -20,25 +20,11 @@ local function get_marks_for_namespace(namespace_pattern)
   return result
 end
 
-local function is_virtual_line()
-  return vim.v.virtnum < 0
-end
-
-local function is_wrapped_line()
-  return vim.v.virtnum > 0
-end
-
-local function not_in_fold_range()
-  return vim.fn.foldlevel(vim.v.lnum) <= 0
-end
-
-local function not_fold_start(line)
-  return vim.fn.foldlevel(line) <= vim.fn.foldlevel(line - 1)
-end
-
-local function fold_opened(line)
-  return vim.fn.foldclosed(line or vim.v.lnum) == -1
-end
+local function is_virtual_line() return vim.v.virtnum < 0 end
+local function is_wrapped_line() return vim.v.virtnum > 0 end
+local function not_in_fold_range() return vim.fn.foldlevel(vim.v.lnum) <= 0 end
+local function not_fold_start(line) return vim.fn.foldlevel(line) <= vim.fn.foldlevel(line - 1) end
+local function fold_opened(line) return vim.fn.foldclosed(line or vim.v.lnum) == -1 end
 
 local Space = { provider = " " }
 
@@ -92,9 +78,7 @@ local GitSigns = {
     end
   end,
   provider = function(self)
-    if not self.has_sign then
-      return " "
-    end
+    if not self.has_sign then return " " end
 
     local highlight = self.highlight or ""
 
@@ -112,9 +96,7 @@ local GitSigns = {
       return "▎"
     end
   end,
-  hl = function(self)
-    return self.highlight or "StatusColumnBorder"
-  end,
+  hl = function(self) return self.highlight or "StatusColumnBorder" end,
 }
 
 local DiagnosticSigns = {
@@ -142,9 +124,7 @@ local DiagnosticSigns = {
     end
   end,
   provider = function(self)
-    if not self.has_sign then
-      return ""
-    end
+    if not self.has_sign then return "" end
 
     if self.severity == "Error" then
       return " 󰅚"
@@ -158,9 +138,7 @@ local DiagnosticSigns = {
       return "?"
     end
   end,
-  hl = function(self)
-    return self.highlight or "StatusColumnBorder"
-  end,
+  hl = function(self) return self.highlight or "StatusColumnBorder" end,
 }
 
 return {

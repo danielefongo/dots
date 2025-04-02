@@ -60,12 +60,12 @@ return {
     end,
     keys = {
       { "<leader>cd", ":Microscope code_definitions<cr>", desc = "definitions", silent = true },
-      { "<leader>ci", ":Microscope code_implementations<cr>", desc = "implementations", silent = true },
+      { "<leader>ci", ":Microscope code_implementations<cr>", desc = "impls", silent = true },
       { "<leader>cr", ":Microscope code_references<cr>", desc = "references", silent = true },
       { "<leader>ct", ":Microscope code_type_definition<cr>", desc = "typedefs", silent = true },
       { "<leader>fb", ":Microscope buffer_grep<cr>", desc = "buffer text", silent = true },
-      { "<leader>fsb", ":Microscope code_buffer_symbols<cr>", desc = "buffer symbol", silent = true },
-      { "<leader>fsw", ":Microscope code_workspace_symbols<cr>", desc = "workspace symbol", silent = true },
+      { "<leader>fsb", ":Microscope code_buffer_symbols<cr>", desc = "buffer", silent = true },
+      { "<leader>fsw", ":Microscope code_workspace_symbols<cr>", desc = "workspace", silent = true },
       { "<leader>fw", ":Microscope workspace_grep<cr>", desc = "workspace text", silent = true },
       { "<leader>ob", ":Microscope buffer<cr>", desc = "buffer", silent = true },
       { "<leader>of", ":Microscope file<cr>", desc = "file", silent = true },
@@ -90,13 +90,7 @@ return {
       {
         "s",
         function()
-          require("flash").jump({
-            search = {
-              mode = function(str)
-                return "\\<" .. str
-              end,
-            },
-          })
+          require("flash").jump({ search = { mode = function(str) return "\\<" .. str end } })
         end,
         desc = "seek",
         mode = { "n", "x" },
@@ -113,17 +107,13 @@ return {
     keys = {
       {
         "<leader>fr",
-        function()
-          require("grug-far").open({ transient = true, prefills = { paths = vim.fn.expand("%") } })
-        end,
+        function() require("grug-far").open({ transient = true, prefills = { paths = vim.fn.expand("%") } }) end,
         desc = "find and replace",
         mode = { "n", "v" },
       },
       {
         "<leader>fR",
-        function()
-          require("grug-far").open({ transient = true })
-        end,
+        function() require("grug-far").open({ transient = true }) end,
         desc = "find and replace (workspace)",
         mode = { "n", "v" },
       },

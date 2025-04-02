@@ -2,9 +2,7 @@ return {
   { "elixir-editors/vim-elixir", event = "LspAttach" },
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      table.insert(opts.ensure_installed, "elixir")
-    end,
+    opts = function(_, opts) table.insert(opts.ensure_installed, "elixir") end,
   },
   {
     "neovim/nvim-lspconfig",
@@ -22,8 +20,6 @@ return {
   },
   {
     "stevearc/conform.nvim",
-    opts = function(_, opts)
-      opts.options.formatters_by_ft.elixir = { "mix" }
-    end,
+    opts = function(_, opts) opts.options.formatters_by_ft.elixir = { "mix" } end,
   },
 }

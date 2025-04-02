@@ -68,27 +68,21 @@ return {
     },
     opts = function(_, opts)
       opts.snippet = {
-        expand = function(item)
-          return vim.snippet.expand(item.body)
-        end,
+        expand = function(item) return vim.snippet.expand(item.body) end,
       }
       table.insert(opts.sources, { name = "snippets" })
     end,
     keys = {
       {
         "<Tab>",
-        function()
-          return vim.snippet.active({ direction = 1 }) and "<cmd>lua vim.snippet.jump(1)<cr>" or "<Tab>"
-        end,
+        function() return vim.snippet.active({ direction = 1 }) and "<cmd>lua vim.snippet.jump(1)<cr>" or "<Tab>" end,
         expr = true,
         silent = true,
         mode = { "i", "s" },
       },
       {
         "<S-Tab>",
-        function()
-          return vim.snippet.active({ direction = -1 }) and "<cmd>lua vim.snippet.jump(-1)<cr>" or "<S-Tab>"
-        end,
+        function() return vim.snippet.active({ direction = -1 }) and "<cmd>lua vim.snippet.jump(-1)<cr>" or "<S-Tab>" end,
         expr = true,
         silent = true,
         mode = { "i", "s" },
@@ -167,9 +161,7 @@ return {
             local fn = function()
               vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Down>", true, false, true), "n", true)
             end
-            if cmp.visible() then
-              fn = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert })
-            end
+            if cmp.visible() then fn = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }) end
             fn()
           end,
         },
@@ -178,9 +170,7 @@ return {
             local fn = function()
               vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Up>", true, false, true), "n", true)
             end
-            if cmp.visible() then
-              fn = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
-            end
+            if cmp.visible() then fn = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }) end
             fn()
           end,
         },

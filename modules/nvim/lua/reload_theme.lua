@@ -29,9 +29,7 @@ watcher:start(
         vim.cmd("CccHighlighterEnable")
       end
 
-      if pcall(require, "heirline") then
-        require("heirline.utils").on_colorscheme(theme.heirline)
-      end
+      if pcall(require, "heirline") then require("heirline.utils").on_colorscheme(theme.heirline) end
     end, { "DevIcon" })
   end)
 )

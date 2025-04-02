@@ -8,9 +8,7 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    opts = function(_, lsps)
-      lsps["ts_ls"] = {}
-    end,
+    opts = function(_, lsps) lsps["ts_ls"] = {} end,
   },
   {
     "stevearc/conform.nvim",

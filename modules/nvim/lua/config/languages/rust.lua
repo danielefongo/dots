@@ -1,9 +1,7 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      table.insert(opts.ensure_installed, "rust")
-    end,
+    opts = function(_, opts) table.insert(opts.ensure_installed, "rust") end,
   },
   {
     "neovim/nvim-lspconfig",

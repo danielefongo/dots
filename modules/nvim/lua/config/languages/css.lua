@@ -8,9 +8,7 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    opts = function(_, lsps)
-      lsps["cssls"] = {}
-    end,
+    opts = function(_, lsps) lsps["cssls"] = {} end,
   },
   {
     "stevearc/conform.nvim",

@@ -47,9 +47,7 @@ return {
       vim.api.nvim_create_autocmd("FileType", {
         pattern = { "NeogitStatus" },
         group = vim.api.nvim_create_augroup("NeogitStatusOptions", {}),
-        callback = function()
-          vim.opt.foldcolumn = "0"
-        end,
+        callback = function() vim.opt.foldcolumn = "0" end,
       })
     end,
     opts = {

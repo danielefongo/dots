@@ -5,9 +5,7 @@ api = vim.api
 local highlights = require("utils.highlights")
 
 function _G.close_win()
-  return pcall(function()
-    return api.nvim_win_close(0, false)
-  end) or vim.cmd(":q")
+  return pcall(function() return api.nvim_win_close(0, false) end) or vim.cmd(":q")
 end
 
 function _G.scratch()
@@ -19,9 +17,7 @@ function _G.scratch()
   api.nvim_set_current_buf(buf)
 
   local filetype = vim.fn.input("Filetype (optional): ")
-  if filetype ~= "" then
-    api.nvim_set_option_value("filetype", filetype, { buf = buf })
-  end
+  if filetype ~= "" then api.nvim_set_option_value("filetype", filetype, { buf = buf }) end
 end
 
 function _G.missing_hls()

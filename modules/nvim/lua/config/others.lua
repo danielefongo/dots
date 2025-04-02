@@ -70,9 +70,7 @@ return {
   },
   {
     "christoomey/vim-tmux-navigator",
-    init = function()
-      vim.g.tmux_navigator_no_mappings = 1
-    end,
+    init = function() vim.g.tmux_navigator_no_mappings = 1 end,
     keys = {
       { "<M-m>", ":TmuxNavigateLeft<cr>", desc = "left", silent = true },
       { "<M-n>", ":TmuxNavigateDown<cr>", desc = "down", silent = true },

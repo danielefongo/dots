@@ -2,9 +2,7 @@ return {
   {
     "rktjmp/lush.nvim",
     lazy = false,
-    config = function()
-      require("lush")(require("theme").lush())
-    end,
+    config = function() require("lush")(require("theme").lush()) end,
   },
   {
     "kevinhwang91/nvim-ufo",
@@ -13,9 +11,7 @@ return {
       "kevinhwang91/promise-async",
     },
     opts = {
-      provider_selector = function()
-        return { "treesitter", "indent" }
-      end,
+      provider_selector = function() return { "treesitter", "indent" } end,
     },
     keys = {
       { "<c-f>", "za", desc = "toggle fold", silent = true },
@@ -29,12 +25,8 @@ return {
         group = vim.api.nvim_create_augroup("NvimAttach", {}),
         callback = function(a)
           local client = vim.lsp.get_client_by_id(a.data.client_id)
-          if not client then
-            return
-          end
-          if client.server_capabilities["documentSymbolProvider"] then
-            require("nvim-navic").attach(client, a.buf)
-          end
+          if not client then return end
+          if client.server_capabilities["documentSymbolProvider"] then require("nvim-navic").attach(client, a.buf) end
         end,
       })
     end,
@@ -63,9 +55,7 @@ return {
       })
       require("heirline").load_colors(theme.heirline)
     end,
-    init = function()
-      vim.opt.laststatus = 3
-    end,
+    init = function() vim.opt.laststatus = 3 end,
     keys = {
       { "<leader>tc", ":tabnew<cr>", desc = "new", silent = true },
       { "<leader>tw", ":tabclose<cr>", desc = "close", silent = true },

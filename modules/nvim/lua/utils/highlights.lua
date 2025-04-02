@@ -1,15 +1,11 @@
 local function get_final_highlight(name)
   local function get_highlight(name)
     local hl = vim.api.nvim_get_hl_by_name(name, true)
-    if hl.link then
-      return get_highlight(hl.link)
-    end
+    if hl.link then return get_highlight(hl.link) end
     return hl
   end
 
-  local function rgb_to_hex(rgb)
-    return string.format("#%06x", rgb)
-  end
+  local function rgb_to_hex(rgb) return string.format("#%06x", rgb) end
 
   local final_hl = get_highlight(name)
   local result = {
@@ -25,13 +21,8 @@ local function filter_invalid_highlight(name, colors)
   local final_colors = get_final_highlight(name)
   local valid = true
 
-  if final_colors.fg ~= "none" and not vim.tbl_contains(colors, final_colors.fg) then
-    valid = false
-  end
-
-  if final_colors.bg ~= "none" and not vim.tbl_contains(colors, final_colors.bg) then
-    valid = false
-  end
+  if final_colors.fg ~= "none" and not vim.tbl_contains(colors, final_colors.fg) then valid = false end
+  if final_colors.bg ~= "none" and not vim.tbl_contains(colors, final_colors.bg) then valid = false end
 
   return not valid
 end
@@ -76,15 +67,11 @@ end
 
 local function format_entry(entry)
   local name = entry.name
-  if name:sub(1, 1) == "@" then
-    name = 'sym("' .. name .. '")'
-  end
+  if name:sub(1, 1) == "@" then name = 'sym("' .. name .. '")' end
 
   if entry.link then
     local link = entry.link
-    if link:sub(1, 1) == "@" then
-      link = 'sym("' .. link .. '")'
-    end
+    if link:sub(1, 1) == "@" then link = 'sym("' .. link .. '")' end
     return string.format("%s({ %s }),", name, link)
   else
     local data_parts = {}
@@ -107,9 +94,7 @@ local function get_missing_highlights(filter_out)
 
   local result = {}
   for _, entry in ipairs(entries) do
-    if filter_invalid_highlight(entry.name, colors) then
-      table.insert(result, format_entry(entry))
-    end
+    if filter_invalid_highlight(entry.name, colors) then table.insert(result, format_entry(entry)) end
   end
 
   return result
@@ -121,21 +106,15 @@ local function apply_function_preserving_highlights(fun, matches)
   local hls = parse_input(vim.fn.execute("highlight"), {})
 
   hls = vim.tbl_filter(function(entry)
-    return #vim.tbl_filter(function(match)
-      return entry.name:find(match)
-    end, matches) > 0
+    return #vim.tbl_filter(function(match) return entry.name:find(match) end, matches) > 0
   end, hls)
 
   fun()
 
   for _, hl in ipairs(hls) do
     local command = ""
-    if hl.data.fg then
-      command = command .. " guifg=" .. hl.data.fg
-    end
-    if hl.data.bg then
-      command = command .. " guibg=" .. hl.data.bg
-    end
+    if hl.data.fg then command = command .. " guifg=" .. hl.data.fg end
+    if hl.data.bg then command = command .. " guibg=" .. hl.data.bg end
     vim.cmd("hi " .. hl.name .. command)
   end
 end

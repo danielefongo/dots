@@ -1,15 +1,11 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      table.insert(opts.ensure_installed, "gdscript")
-    end,
+    opts = function(_, opts) table.insert(opts.ensure_installed, "gdscript") end,
   },
   {
     "neovim/nvim-lspconfig",
-    opts = function(_, lsps)
-      lsps["gdscript"] = {}
-    end,
+    opts = function(_, lsps) lsps["gdscript"] = {} end,
   },
   {
     "stevearc/conform.nvim",
@@ -23,8 +19,6 @@ return {
         end,
       })
     end,
-    opts = function(_, opts)
-      opts.options.formatters_by_ft.gdscript = { "gdformat" }
-    end,
+    opts = function(_, opts) opts.options.formatters_by_ft.gdscript = { "gdformat" } end,
   },
 }
