@@ -11,6 +11,7 @@
     cloudflare-warp
     k9s
     kubectl
+    krew
     suite_py
     vault
     codescene-cli
