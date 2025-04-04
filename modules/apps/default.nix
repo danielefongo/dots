@@ -13,7 +13,5 @@
     telegram-desktop
     whatsapp-for-linux
     ocr
-    keymapp
-    vial
   ];
 }

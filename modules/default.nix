@@ -22,11 +22,12 @@
     ./rebuild
     ./redshift
     ./rofi
+    ./sesh
     ./shell-utils
     ./theme
     ./tig
     ./tmux
-    ./sesh
+    ./vial
     ./wallpaper
     ./webapps
     ./xbindkeys
