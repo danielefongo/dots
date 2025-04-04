@@ -36,10 +36,10 @@ return {
           documentation = cmp.config.window.bordered(),
         },
         mapping = {
-          ["<C-e>"] = cmp.mapping.select_prev_item(),
-          ["<C-n>"] = cmp.mapping.select_next_item(),
-          ["<C-l>"] = cmp.mapping.scroll_docs(4),
-          ["<C-u>"] = cmp.mapping.scroll_docs(-4),
+          ["<up>"] = cmp.mapping.select_prev_item(),
+          ["<down>"] = cmp.mapping.select_next_item(),
+          ["<c-down>"] = cmp.mapping.scroll_docs(4),
+          ["<c-up>"] = cmp.mapping.scroll_docs(-4),
           ["<cr>"] = cmp.mapping.confirm({ select = false }),
           ["<c-x>"] = cmp.mapping.abort(),
         },
@@ -156,7 +156,7 @@ return {
       local cmp = require("cmp")
 
       local mapping = vim.tbl_deep_extend("force", cmp.mapping.preset.cmdline(), {
-        ["<c-n>"] = {
+        ["<c-down>"] = {
           c = function()
             local fn = function()
               vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Down>", true, false, true), "n", true)
@@ -165,7 +165,7 @@ return {
             fn()
           end,
         },
-        ["<c-e>"] = {
+        ["<c-up>"] = {
           c = function()
             local fn = function()
               vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Up>", true, false, true), "n", true)

@@ -38,8 +38,10 @@ return {
         },
         layout = layouts[1],
         bindings = {
-          ["<c-n>"] = actions.next,
-          ["<c-e>"] = actions.previous,
+          ["<down>"] = actions.next,
+          ["<up>"] = actions.previous,
+          ["<c-down>"] = actions.scroll_down,
+          ["<c-up>"] = actions.scroll_up,
           ["<cr>"] = actions.open,
           ["<esc>"] = actions.close,
           ["<tab>"] = actions.select,

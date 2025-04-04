@@ -33,30 +33,12 @@ return {
 
       { "<leader>w", "<C-w>", desc = "windows" },
 
-      -- colemak remap
-      {
-        { "E", "K", desc = "-" },
-        { "H", "I", desc = "insert beginning" },
-        { "I", "L", desc = "-" },
-        { "J", "E", desc = "end WORD" },
-        { "K", "N", desc = "find previous" },
-        { "N", "J", desc = "join lines" },
-        { "e", "k", desc = "up" },
-        { "h", "i", desc = "insert" },
-        { "i", "l", desc = "right" },
-        { "j", "e", desc = "end word" },
-        { "k", "n", desc = "find next" },
-        { "m", "h", desc = "left" },
-        { "n", "j", desc = "down" },
-        mode = { "n", "v", "o" },
-      },
-
       -- others
       {
         mode = { "n", "v" },
         { "<a-q>", ":lua close_win()<cr>", desc = "close buffer", silent = true },
-        { "<c-e>", "<c-y>", desc = "scroll up", silent = true },
-        { "<c-n>", "<c-e>", desc = "scroll down", silent = true },
+        { "<c-up>", "<c-y>", desc = "scroll up", silent = true },
+        { "<c-down>", "<c-e>", desc = "scroll down", silent = true },
         { "<c-g>", "gg0vG$", desc = "select all", noremap = true, silent = true },
         { ">", ">gv", desc = "indent right", noremap = true, silent = true },
         { "<", "<gv", desc = "indent left", noremap = true, silent = true },

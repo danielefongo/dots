@@ -58,22 +58,22 @@ bindsym $mod+Return exec alacritty
 bindsym $mod+q kill
 
 # focus window
-bindsym $mod+m focus left
-bindsym $mod+n focus down
-bindsym $mod+e focus up
-bindsym $mod+i focus right
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
 
 # move window
-bindsym $mod+$shift+m move left
-bindsym $mod+$shift+n move down
-bindsym $mod+$shift+e move up
-bindsym $mod+$shift+i move right
+bindsym $mod+$shift+Left move left
+bindsym $mod+$shift+Down move down
+bindsym $mod+$shift+Up move up
+bindsym $mod+$shift+Right move right
 
 # resize
-bindsym $mod+$ctrl+m exec --no-startup-id i3resize left
-bindsym $mod+$ctrl+n exec --no-startup-id i3resize down
-bindsym $mod+$ctrl+e exec --no-startup-id i3resize up
-bindsym $mod+$ctrl+i exec --no-startup-id i3resize right
+bindsym $mod+$ctrl+Left exec --no-startup-id i3resize left
+bindsym $mod+$ctrl+Down exec --no-startup-id i3resize down
+bindsym $mod+$ctrl+Up exec --no-startup-id i3resize up
+bindsym $mod+$ctrl+Right exec --no-startup-id i3resize right
 
 # focus parents
 bindsym $mod+a focus parent
@@ -123,10 +123,8 @@ bindsym $mod+$shift+0 move container to workspace number $ws10
 bindsym $mod+Ctrl+r exec i3-input -F 'rename workspace to "%s"' -P 'Destination: '
 
 # move workspace
-bindsym $mod+Up move workspace to output up
-bindsym $mod+Left move workspace to output left
-bindsym $mod+Right move workspace to output right
-bindsym $mod+Down move workspace to output down
+bindsym $mod+$shift+comma move workspace to output nonprimary
+bindsym $mod+$shift+period move workspace to output primary
 
 # i3
 set $mode_system System (l) lock, (e) logout, (r) reload, ($shift+r) reboot, ($shift+s) shutdown

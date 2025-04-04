@@ -10,6 +10,7 @@
     fastmod
     fd
     jq
+    less
     ncdu
     ripgrep
     tldr

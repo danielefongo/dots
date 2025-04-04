@@ -14,7 +14,6 @@
     ./git
     ./gtk
     ./i3
-    ./less
     ./nix
     ./nvim
     ./picom

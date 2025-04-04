@@ -6,8 +6,8 @@ configuration {
   kb-remove-to-eol: "";
   kb-move-end: "";
   kb-accept-entry: "Return,KP_Enter";
-  kb-row-up: "Up,Control+e";
-  kb-row-down: "Down,Control+n";
+  kb-row-up: "Up";
+  kb-row-down: "Down";
   timeout {
       action: "kb-cancel";
       delay: 0;

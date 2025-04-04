@@ -59,10 +59,10 @@ return {
     keys = {
       { "<leader>tc", ":tabnew<cr>", desc = "new", silent = true },
       { "<leader>tw", ":tabclose<cr>", desc = "close", silent = true },
-      { "<leader>tn", ":tabnext<cr>", desc = "next", silent = true },
-      { "<leader>te", ":tabprevious<cr>", desc = "previous", silent = true },
-      { "<leader>tN", ":tabmove +1<cr>", desc = "move right", silent = true },
-      { "<leader>tE", ":tabmove -1<cr>", desc = "move left", silent = true },
+      { "<leader>t.", ":tabnext<cr>", desc = "next", silent = true },
+      { "<leader>t,", ":tabprevious<cr>", desc = "previous", silent = true },
+      { "<leader>t>", ":tabmove +1<cr>", desc = "move right", silent = true },
+      { "<leader>t<", ":tabmove -1<cr>", desc = "move left", silent = true },
     },
   },
 }

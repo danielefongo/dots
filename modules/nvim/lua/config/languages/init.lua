@@ -93,8 +93,8 @@ return {
         desc = "inlay toggle",
         silent = true,
       },
-      { "<leader>de", ":lua vim.diagnostic.goto_prev({ wrap = false })<cr>", desc = "previous", silent = true },
-      { "<leader>dn", ":lua vim.diagnostic.goto_next({ wrap = false })<cr>", desc = "next", silent = true },
+      { "<leader>d,", ":lua vim.diagnostic.goto_prev({ wrap = false })<cr>", desc = "previous", silent = true },
+      { "<leader>d.", ":lua vim.diagnostic.goto_next({ wrap = false })<cr>", desc = "next", silent = true },
     },
   },
   {

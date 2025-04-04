@@ -2,13 +2,4 @@
 # https://qiita.com/sfus/items/063797a1dd8fdc7d032f
 # https://github.com/jonas/tig/wiki/Bindings
 
-bind generic N next
-bind generic E previous
-
-bind generic n move-down
-bind generic e move-up
-
-bind generic k find-next
-bind generic K find-prev
-
 color cursor black green bold
