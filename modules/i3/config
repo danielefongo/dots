@@ -8,11 +8,6 @@ set $ws2 "2"
 set $ws3 "3"
 set $ws4 "4"
 set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
 
 # window interface
 client.focused {{ colors.background }} {{ theme.primary }} {{ colors.background }} {{ theme.secondary }}
@@ -101,11 +96,6 @@ bindsym $mod+2 workspace number $ws2
 bindsym $mod+3 workspace number $ws3
 bindsym $mod+4 workspace number $ws4
 bindsym $mod+5 workspace number $ws5
-bindsym $mod+6 workspace number $ws6
-bindsym $mod+7 workspace number $ws7
-bindsym $mod+8 workspace number $ws8
-bindsym $mod+9 workspace number $ws9
-bindsym $mod+0 workspace number $ws10
 
 # move container to workspace
 bindsym $mod+$shift+1 move container to workspace number $ws1
@@ -113,11 +103,6 @@ bindsym $mod+$shift+2 move container to workspace number $ws2
 bindsym $mod+$shift+3 move container to workspace number $ws3
 bindsym $mod+$shift+4 move container to workspace number $ws4
 bindsym $mod+$shift+5 move container to workspace number $ws5
-bindsym $mod+$shift+6 move container to workspace number $ws6
-bindsym $mod+$shift+7 move container to workspace number $ws7
-bindsym $mod+$shift+8 move container to workspace number $ws8
-bindsym $mod+$shift+9 move container to workspace number $ws9
-bindsym $mod+$shift+0 move container to workspace number $ws10
 
 # rename workspace
 bindsym $mod+Ctrl+r exec i3-input -F 'rename workspace to "%s"' -P 'Destination: '
