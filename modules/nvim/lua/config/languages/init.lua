@@ -169,6 +169,7 @@ return {
     },
   },
   require("config.languages.bash"),
+  require("config.languages.c"),
   require("config.languages.css"),
   require("config.languages.dockerfile"),
   require("config.languages.elixir"),
