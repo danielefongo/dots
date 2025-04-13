@@ -6,6 +6,7 @@
   home.packages = with pkgs; [
     awscli2
     bruno
+    cloudflared
     dbeaver-bin
     insomnia
     cloudflare-warp
