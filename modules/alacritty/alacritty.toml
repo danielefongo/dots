@@ -50,6 +50,16 @@ action = "Copy"
 key = "Y"
 mods = "Alt"
 
+[[keyboard.bindings]]
+action = "IncreaseFontSize"
+key = "+"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "ResetFontSize"
+key = "="
+mods = "Control"
+
 [terminal.shell]
 program = "zsh"
 

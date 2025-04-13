@@ -58,7 +58,7 @@ return {
     init = function() vim.opt.laststatus = 3 end,
     keys = {
       { "<leader>tc", ":tabnew<cr>", desc = "new", silent = true },
-      { "<leader>tw", ":tabclose<cr>", desc = "close", silent = true },
+      { "<leader>tq", ":tabclose<cr>", desc = "close", silent = true },
       { "<leader>t.", ":tabnext<cr>", desc = "next", silent = true },
       { "<leader>t,", ":tabprevious<cr>", desc = "previous", silent = true },
       { "<leader>t>", ":tabmove +1<cr>", desc = "move right", silent = true },
