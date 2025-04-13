@@ -10,6 +10,7 @@
     fastmod
     fd
     jq
+    kondo
     less
     ncdu
     ripgrep
