@@ -46,6 +46,7 @@ let
     refined-github
     tabliss
     ublock-origin
+    vimium
     videospeed
   ];
 in
