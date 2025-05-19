@@ -90,8 +90,9 @@ return {
       },
     },
     keys = {
+      { "s", function() require("flash").jump() end, desc = "seek", mode = { "n", "x" } },
       {
-        "s",
+        "S",
         function()
           require("flash").jump({ search = { mode = function(str) return "\\<" .. str end } })
         end,
