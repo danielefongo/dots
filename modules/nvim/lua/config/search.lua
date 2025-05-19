@@ -17,12 +17,13 @@ return {
 
       local layouts = {
         display
-          .horizontal({
-            display.vertical({ display.input(1), display.results() }),
+          .vertical({
+            display.input(1),
+            display.results(10),
             display.preview(),
           })
-          :finder_layout(),
-        display.vertical({ display.input(1), display.results() }):finder_layout(),
+          :ui_layout(),
+        display.vertical({ display.results(3), display.preview() }):ui_layout(),
       }
 
       local files = require("microscope-files")
