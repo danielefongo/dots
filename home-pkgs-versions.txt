@@ -37,7 +37,6 @@ i3restart
 insomnia-10.0.0
 jq-1.7.1-bin
 k9s-0.32.7
-keymapp-1.3.3
 kondo-0.8
 krew-0.4.4
 kubectl-1.31.2
@@ -81,7 +80,6 @@ tmuxinator-3.3.2
 tree-2.1.3
 vault-1.18.1
 vesktop
-Vial-0.7.1
 WebApp-0.0.13
 whatsapp-for-linux-1.6.5
 xbindkeys-1.8.7

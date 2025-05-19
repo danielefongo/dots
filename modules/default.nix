@@ -27,7 +27,6 @@
     ./theme
     ./tig
     ./tmux
-    ./vial
     ./wallpaper
     ./webapps
     ./xbindkeys
