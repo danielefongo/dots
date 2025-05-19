@@ -3,3 +3,7 @@
 #PersonalToolbar {
   background-color: var(--main-bg-color) !important;
 }
+
+.browserContainer {
+  background-color: white !important;
+}
