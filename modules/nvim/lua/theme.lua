@@ -104,7 +104,7 @@ local lush = function()
       CursorColumn({ SignColumn }),
       LineNr({ fg = colors.grey2 }),
       Cursor({ bg = colors.foreground, fg = colors.background }),
-      CursorLine({ bg = colors.background }),
+      CursorLine({ bg = colors.grey1 }),
       CursorLineNr({ bg = colors.background, gui = "bold" }),
       File({ fg = colors.foreground }),
       Directory({ fg = colors.cyan }),
