@@ -29,12 +29,12 @@ return {
   {
     "neovim/nvim-lspconfig",
     dependencies = {
-      "williamboman/mason.nvim",
+      "mason-org/mason.nvim",
       "ray-x/lsp_signature.nvim",
       "hrsh7th/cmp-nvim-lsp",
       { "folke/neodev.nvim", config = true },
       { "antosha417/nvim-lsp-file-operations", config = true },
-      { "williamboman/mason-lspconfig.nvim", config = function() end },
+      { "mason-org/mason-lspconfig.nvim", version = "^1.0.0", config = function() end },
     },
     opts = {},
     config = function(_, lsps)
@@ -130,7 +130,8 @@ return {
     },
   },
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
+    version = "^1.0.0",
     cmd = "Mason",
     opts = {
       install_root_dir = fn.stdpath("data") .. "/lsp",
