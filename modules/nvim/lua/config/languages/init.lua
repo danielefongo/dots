@@ -30,8 +30,7 @@ return {
     "neovim/nvim-lspconfig",
     dependencies = {
       "mason-org/mason.nvim",
-      "ray-x/lsp_signature.nvim",
-      "hrsh7th/cmp-nvim-lsp",
+      "saghen/blink.cmp",
       { "folke/neodev.nvim", config = true },
       { "antosha417/nvim-lsp-file-operations", config = true },
       { "mason-org/mason-lspconfig.nvim", version = "^1.0.0", config = function() end },
@@ -39,17 +38,16 @@ return {
     opts = {},
     config = function(_, lsps)
       local lsp = require("lspconfig")
-      local cmp = require("cmp_nvim_lsp")
-      local signature = require("lsp_signature")
+      local blink = require("blink.cmp")
       local mason_lsp = require("mason-lspconfig")
 
       local flags = { debounce_text_changes = 150 }
-      local capabilities = cmp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+      local capabilities = blink.get_lsp_capabilities(vim.lsp.protocol.make_client_capabilities())
 
       local function on_attach(client, bufnr)
         client.server_capabilities.semanticTokensProvider = nil
         client.server_capabilities.documentFormattingProvider = false
-        signature.on_attach({ bind = true }, bufnr)
       end
 
       local function setup(lsp_name)

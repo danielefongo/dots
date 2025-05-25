@@ -21,9 +21,6 @@ return {
               features = "all",
               command = "check",
             },
-            completion = {
-              limit = 100,
-            },
             diagnostics = {
               disabled = { "inactive-code" },
             },

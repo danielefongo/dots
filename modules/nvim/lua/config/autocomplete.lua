@@ -20,177 +20,91 @@ return {
     },
   },
   {
-    "hrsh7th/nvim-cmp",
-    event = { "InsertEnter" },
+    "saghen/blink.cmp",
+    events = { "InsertEnter", "CmdlineEnter" },
     dependencies = {
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-path",
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-cmdline",
+      {
+        "L3MON4D3/LuaSnip",
+        version = "2.*",
+        build = (function()
+          if vim.fn.has("win32") == 1 or vim.fn.executable("make") == 0 then return end
+          return "make install_jsregexp"
+        end)(),
+        dependencies = {
+          {
+            "rafamadriz/friendly-snippets",
+            config = function() require("luasnip.loaders.from_vscode").lazy_load() end,
+          },
+        },
+      },
     },
+    version = "1.*",
     opts = function()
-      local cmp = require("cmp")
       return {
-        window = {
-          completion = cmp.config.window.bordered(),
-          documentation = cmp.config.window.bordered(),
-        },
-        mapping = {
-          ["<up>"] = cmp.mapping.select_prev_item(),
-          ["<down>"] = cmp.mapping.select_next_item(),
-          ["<c-down>"] = cmp.mapping.scroll_docs(4),
-          ["<c-up>"] = cmp.mapping.scroll_docs(-4),
-          ["<cr>"] = cmp.mapping.confirm({ select = false }),
-          ["<c-x>"] = cmp.mapping.abort(),
-        },
-        sources = {
-          { name = "nvim_lsp" },
-          { name = "path" },
-          { name = "buffer", keyword_length = 2, max_item_count = 8 },
+        keymap = {
+          ["<up>"] = { "select_prev", "fallback" },
+          ["<down>"] = { "select_next", "fallback" },
+          ["<c-up>"] = { function(cmp) cmp.scroll_documentation_up(4) end },
+          ["<c-down>"] = { function(cmp) cmp.scroll_documentation_down(4) end },
+          ["<cr>"] = { "accept", "fallback" },
+          ["<c-x>"] = { "cancel", "fallback" },
         },
         completion = {
-          autocomplete = {
-            cmp.TriggerEvent.TextChanged,
-            cmp.TriggerEvent.InsertEnter,
+          documentation = {
+            auto_show = true,
+            auto_show_delay_ms = 500,
+            window = { border = "rounded" },
           },
-        },
-      }
-    end,
-  },
-  {
-    "hrsh7th/nvim-cmp",
-    dependencies = {
-      {
-        "garymjr/nvim-snippets",
-        opts = { friendly_snippets = true },
-        dependencies = { "rafamadriz/friendly-snippets" },
-      },
-    },
-    opts = function(_, opts)
-      opts.snippet = {
-        expand = function(item) return vim.snippet.expand(item.body) end,
-      }
-      table.insert(opts.sources, { name = "snippets" })
-    end,
-    keys = {
-      {
-        "<Tab>",
-        function() return vim.snippet.active({ direction = 1 }) and "<cmd>lua vim.snippet.jump(1)<cr>" or "<Tab>" end,
-        expr = true,
-        silent = true,
-        mode = { "i", "s" },
-      },
-      {
-        "<S-Tab>",
-        function() return vim.snippet.active({ direction = -1 }) and "<cmd>lua vim.snippet.jump(-1)<cr>" or "<S-Tab>" end,
-        expr = true,
-        silent = true,
-        mode = { "i", "s" },
-      },
-    },
-  },
-  {
-    "hrsh7th/nvim-cmp",
-    dependencies = { "onsails/lspkind.nvim" },
-    opts = function(_, opts)
-      local lspkind = require("lspkind")
-      opts.formatting = {
-        format = lspkind.cmp_format({
-          mode = "symbol_text",
-          maxwidth = 40,
-          ellipsis_char = "...",
-          before = function(_, vim_item)
-            vim_item.menu = ""
-            return vim_item
-          end,
-          symbol_map = {
-            Array = " ",
-            Boolean = "󰨙 ",
-            Class = " ",
-            Color = " ",
-            Control = " ",
-            Collapsed = " ",
-            Constant = "󰏿 ",
-            Constructor = " ",
-            Copilot = " ",
-            Enum = " ",
-            EnumMember = " ",
-            Event = " ",
-            Field = " ",
-            File = " ",
-            Folder = " ",
-            Function = "󰊕 ",
-            Interface = " ",
-            Key = " ",
-            Keyword = " ",
-            Method = "󰊕 ",
-            Module = " ",
-            Namespace = "󰦮 ",
-            Null = " ",
-            Number = "󰎠 ",
-            Object = " ",
-            Operator = " ",
-            Package = " ",
-            Property = " ",
-            Reference = " ",
-            Snippet = " ",
-            String = " ",
-            Struct = "󰆼 ",
-            Text = " ",
-            TypeParameter = " ",
-            Unit = " ",
-            Value = " ",
-            Variable = "󰀫 ",
+          list = {
+            selection = { preselect = false, auto_insert = true },
           },
-        }),
-      }
-    end,
-  },
-  {
-    "hrsh7th/cmp-cmdline",
-    dependencies = {
-      "hrsh7th/nvim-cmp",
-    },
-    event = "CmdlineEnter",
-    config = function()
-      local cmp = require("cmp")
-
-      local mapping = vim.tbl_deep_extend("force", cmp.mapping.preset.cmdline(), {
-        ["<c-down>"] = {
-          c = function()
-            local fn = function()
-              vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Down>", true, false, true), "n", true)
-            end
-            if cmp.visible() then fn = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }) end
-            fn()
-          end,
+          menu = {
+            border = "rounded",
+            draw = {
+              treesitter = { "lsp" },
+              columns = { { "kind_icon", "label", gap = 1 } },
+            },
+          },
+          ghost_text = { enabled = false },
         },
-        ["<c-up>"] = {
-          c = function()
-            local fn = function()
-              vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Up>", true, false, true), "n", true)
-            end
-            if cmp.visible() then fn = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }) end
-            fn()
-          end,
+        cmdline = {
+          keymap = {
+            preset = "inherit",
+            ["<cr>"] = {},
+            ["<esc>"] = {},
+          },
+          completion = { menu = { auto_show = true } },
         },
-      })
-
-      cmp.setup.cmdline(":", {
-        mapping = mapping,
-        sources = cmp.config.sources({
-          { name = "path" },
-        }, {
-          { name = "cmdline" },
-        }),
-        matching = { disallow_symbol_nonprefix_matching = false },
-      })
-      cmp.setup.cmdline("/", {
-        mapping = mapping,
+        fuzzy = { implementation = "prefer_rust_with_warning" },
+        signature = {
+          enabled = true,
+          window = { border = "rounded" },
+        },
+        snippets = { preset = "luasnip" },
         sources = {
-          { name = "buffer" },
+          default = { "lsp", "path", "snippets", "buffer" },
+          providers = {
+            lsp = {
+              score_offset = 4,
+              min_keyword_length = 0,
+            },
+            path = {
+              score_offset = 3,
+              min_keyword_length = 0,
+            },
+            snippets = {
+              score_offset = 2,
+              min_keyword_length = 2,
+              max_items = 5,
+            },
+            buffer = {
+              module = "blink.cmp.sources.buffer",
+              min_keyword_length = 3,
+              score_offset = 1,
+            },
+          },
         },
-      })
+      }
     end,
   },
 }
