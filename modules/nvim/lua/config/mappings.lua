@@ -22,6 +22,9 @@ return {
 
       { "<leader>g", group = "git" },
 
+      { "<leader>l", group = "lazy" },
+      { "<leader>lp", ":Lazy profile<cr>", desc = "profile" },
+
       { "<leader>o", group = "open" },
 
       { "<leader>s", group = "session" },
