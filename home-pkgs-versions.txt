@@ -22,7 +22,7 @@ entr-5.6
 fastmod-0.4.4
 fd-10.2.0
 fh-0.1.18
-firefox-137.0.1
+firefox-139.0
 flameshot-12.1.0-unstable-2024-09-01
 fzf
 gcc-wrapper-13.3.0
@@ -43,7 +43,7 @@ kubectl-1.31.2
 less-668
 man-db-2.13.0
 ncdu-2.6
-neovim-0.11.0
+neovim-0.11.1
 nix-rebuild
 ocr
 openssh-9.9p2
@@ -55,13 +55,13 @@ playerctl-2.4.1
 playerctl-status
 polybar-3.7.2
 pulseaudio-17.0
-python3.12-suite-py-1.43.0
+python3.12-suite-py-1.43.4-2496d
 python3-3.12.8
 rawtherapee-5.11
 redshift-1.12
 ripgrep-14.1.1
 rofi-1.7.5
-ruby-3.3.6
+ruby-3.3.8
 run_on_nvim
 sassc-3.6.2
 sesh-2.5.0
