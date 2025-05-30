@@ -87,6 +87,7 @@ return {
             lsp = {
               score_offset = 4,
               min_keyword_length = 0,
+              fallbacks = {},
             },
             path = {
               score_offset = 3,
