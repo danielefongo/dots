@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ inputs, pkgs, ... }:
 
 let
   nixGL = import ./nixgl.nix { pkgs = pkgs; };
@@ -8,6 +8,10 @@ in
   tmux = pkgs.callPackage ./tmux.nix { pkgs = super; };
   firefox-addons = pkgs.nur.repos.rycee.firefox-addons;
   codescene-cli = pkgs.callPackage ./codescene.nix { pkgs = super; };
+  plover = pkgs.callPackage ./plover.nix {
+    inherit inputs;
+    pkgs = super;
+  };
 
   # NixGL wrapped pkgs
   telegram-desktop = nixGL.wrapNixGL super.telegram-desktop;

@@ -18,6 +18,7 @@
     ./nvim
     ./picom
     ./playerctl
+    ./plover
     ./polybar
     ./rebuild
     ./redshift

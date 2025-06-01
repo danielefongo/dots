@@ -55,6 +55,7 @@ playerctl-2.4.1
 playerctl-status
 polybar-3.7.2
 pulseaudio-17.0
+python3.12-plover-master
 python3.12-suite-py-1.43.4-2496d
 python3-3.12.8
 rawtherapee-5.11

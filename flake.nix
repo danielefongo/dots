@@ -14,6 +14,7 @@
     };
     nurpkgs.url = "github:nix-community/NUR";
     nixgl.url = "github:nix-community/nixGL";
+    plover.url = "github:openstenoproject/plover-flake";
     suite_py.url = "git+ssh://git@github.com/primait/suite_py";
     prima-nix.url = "git+ssh://git@github.com/primait/prima.nix.git";
   };
@@ -51,7 +52,7 @@
               config.allowUnfree = true;
             };
           })
-          (import ./pkgs { inherit lib pkgs; })
+          (import ./pkgs { inherit lib pkgs inputs; })
         ];
       };
       lib = (
