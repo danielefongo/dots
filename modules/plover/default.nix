@@ -5,8 +5,6 @@
     plover
   ];
 
-  xdg.configFile."plover/plover.cfg".source = lib.outLink "plover/plover.cfg";
-
   systemd.user.services.plover = {
     Unit = {
       Description = "Plover Stenography Engine";
