@@ -3,7 +3,7 @@ module.exports = {
     contrast: 0,
     zen: false,
     focus: 6,
-    font: "JetBrainsMono Nerd Font",
+    font: "FiraCode Nerd Font",
     gap: 0,
     round: 0,
     border: 4,

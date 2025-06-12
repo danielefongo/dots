@@ -70,7 +70,7 @@ in
     profiles."personal" = {
       id = 0;
       isDefault = false;
-      extensions =
+      extensions.packages =
         with pkgs.firefox-addons;
         [
           darkreader
@@ -84,7 +84,7 @@ in
       id = 1;
       isDefault = true;
 
-      extensions = common_packages;
+      extensions.packages = common_packages;
     };
   };
 

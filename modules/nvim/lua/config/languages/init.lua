@@ -45,17 +45,20 @@ return {
 
       local capabilities = blink.get_lsp_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-      local function on_attach(client, bufnr)
-        client.server_capabilities.semanticTokensProvider = nil
-        client.server_capabilities.documentFormattingProvider = false
-      end
+      vim.api.nvim_create_autocmd("LspAttach", {
+        group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+        callback = function(ev)
+          local client = vim.lsp.get_client_by_id(ev.data.client_id)
+          client.server_capabilities.semanticTokensProvider = nil
+          client.server_capabilities.documentFormattingProvider = false
+        end,
+      })
 
       local function setup(lsp_name)
         local config = lsps[lsp_name]
 
         lsp[lsp_name].setup({
           capabilities = capabilities,
-          on_attach = config.on_attach or on_attach,
           flags = flags,
           cmd = config.cmd,
           settings = config.settings or {},
@@ -67,21 +70,38 @@ return {
 
       local ensure_installed = {}
       for lsp_name, _ in pairs(lsps) do
-        if not vim.tbl_contains(all_lsp_servers, lsp_name) then
-          setup(lsp_name)
-        else
-          table.insert(ensure_installed, lsp_name)
+        if vim.tbl_contains(all_lsp_servers, lsp_name) then table.insert(ensure_installed, lsp_name) end
+        setup(lsp_name)
+      end
+
+      local function find_lsp_for_filetype(filetype, configured_lsps)
+        if not filetype or filetype == "" then return nil end
+
+        for lsp_name, _ in pairs(configured_lsps or {}) do
+          local ok, lsp_config = pcall(function() return require("lspconfig")[lsp_name] end)
+
+          if ok and lsp_config and lsp_config.filetypes then
+            if vim.tbl_contains(lsp_config.filetypes, filetype) then return lsp_name end
+          end
         end
+
+        return nil
+      end
+
+      function _G.lsp_toggle(enabled)
+        local filetype = vim.bo.filetype
+        local lsp_name = find_lsp_for_filetype(filetype, lsps)
+
+        vim.lsp.enable(lsp_name, enabled)
       end
 
       mason_lsp.setup({
         ensure_installed = ensure_installed,
-        handlers = { setup },
       })
     end,
     keys = {
-      { "<leader>ce", ":LspStart<cr>", desc = "enable lsp", silent = true },
-      { "<leader>cE", ":LspStop<cr>", desc = "disable lsp", silent = true },
+      { "<leader>ce", ":lua lsp_toggle(true)<cr>", desc = "enable lsp", silent = true },
+      { "<leader>cE", ":lua lsp_toggle(false)<cr>", desc = "disable lsp", silent = true },
       { "<leader>cR", ":lua vim.lsp.buf.rename()<cr>", desc = "rename", silent = true },
       { "<leader>ca", ":lua vim.lsp.buf.code_action()<cr>", desc = "actions", mode = { "n", "v" }, silent = true },
       { "<leader>ch", ":lua vim.lsp.buf.hover()<cr>", desc = "signature", silent = true },
