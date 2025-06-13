@@ -1,7 +1,7 @@
 ---@diagnostic disable: undefined-global
 
 local colors = {
-  unknown = "{{ colors.unknown }}",
+  unknown = "#ff0000",
   strong_blue = "{{ colors.blue | stronger }}",
   strong_green = "{{ colors.green | stronger }}",
   strong_red = "{{ colors.red | stronger }}",
@@ -46,17 +46,42 @@ local colors = {
   foreground = "{{ colors.foreground }}",
 }
 
--- stylua: ignore
-local syntax = vim.fn.json_decode('{{ syntax | tojson | safe }}')
+local syntax = {
+  special = "{{ syntax.special }}",
+  statement = "{{ syntax.statement }}",
+  ["function"] = "{{ syntax.function }}",
+  variable = "{{ syntax.variable }}",
+  include = "{{ syntax.include }}",
+  keyword = "{{ syntax.keyword }}",
+  struct = "{{ syntax.struct }}",
+  string = "{{ syntax.string }}",
+  string_special = "{{ syntax.string_special }}",
+  regex = "{{ syntax.regex }}",
+  identifier = "{{ syntax.identifier }}",
+  field = "{{ syntax.field }}",
+  parameter = "{{ syntax.parameter }}",
+  property = "{{ syntax.property }}",
+  punctuation = "{{ syntax.punctuation }}",
+  constructor = "{{ syntax.constructor }}",
+  operator = "{{ syntax.operator }}",
+  preproc = "{{ syntax.preproc }}",
+  constant = "{{ syntax.constant }}",
+  tag = "{{ syntax.tag }}",
+  todo = "{{ syntax.todo }}",
+  number = "{{ syntax.number }}",
+  comment = "{{ syntax.comment }}",
+  type = "{{ syntax.type }}",
+  conditional = "{{ syntax.conditional }}",
+  macro = "{{ syntax.macro }}",
+  module = "{{ syntax.module }}",
+}
 
 local lush = function()
   local lush = require("lush")
-  local table_insert = table.insert
-  local pairs = pairs
 
   return lush(function(injected_functions)
     local sym = injected_functions.sym
-    local values = {
+    return {
       Unknown({ fg = colors.unknown }),
       NvimInternalError({ fg = colors.foreground, bg = colors.strong_red }),
 
@@ -94,7 +119,6 @@ local lush = function()
       MatchParen({ bg = colors.foreground, gui = "bold" }),
       WinBar({ fg = colors.grey8 }),
       WinBarNC({ WinBar }),
-      Special({ fg = colors.cyan }),
       SpecialKey({ fg = colors.grey4 }),
       Pmenu({ bg = colors.background_alt2 }),
       PmenuSel({ bg = colors.grey2 }),
@@ -121,12 +145,87 @@ local lush = function()
       DiffText({ Text }),
 
       Todo({ fg = syntax.todo, gui = "bold" }),
+      Identifier({ fg = syntax.identifier }),
+      Special({ fg = syntax.special }),
+      Operator({ fg = syntax.operator }),
+      PreProc({ fg = syntax.preproc }),
+      Constant({ fg = syntax.constant }),
+      sym("@constant.builtin")({ Constant }),
+      Boolean({ Constant }),
+      Number({ Constant }),
+      Comment({ fg = syntax.comment }),
+      Statement({ fg = syntax.statement }),
+      Exception({ Statement }),
+      Label({ Statement }),
+      Keyword({ fg = syntax.keyword, gui = "italic" }),
+      Conditional({ Keyword }),
+      Field({ fg = syntax.field }),
+      sym("@field")({ Field }),
+      Function({ fg = syntax["function"] }),
+      sym("@function.call")({ Function }),
+      sym("@function.builtin")({ Function }),
+      Macro({ fg = syntax.macro }),
+      sym("@function.macro")({ Macro }),
+      Type({ fg = syntax.type, gui = "bold" }),
+      Typedef({ Type }),
+      Structure({ Type }),
+      Enum({ Type }),
+      sym("@type.builtin")({ Type }),
+      Variable({ fg = syntax.variable }),
+      sym("@variable")({ Variable }),
+      sym("@variable.builtin")({ Variable }),
+      Parameter({ fg = syntax.parameter }),
+      sym("@variable.parameter")({ Parameter }),
+      sym("@variable.parameter.builtin")({ Parameter }),
+      Property({ fg = syntax.property }),
+      sym("@variable.member")({ Property }),
+      String({ fg = syntax.string }),
+      Character({ String }),
+      sym("@string.regexp")({ fg = syntax.regex }),
+      sym("@string.special")({ fg = syntax.string_special }),
+      Punctuation({ fg = syntax.punctuation }),
+      sym("@punctuation")({ Punctuation }),
+      sym("@punctuation.special")({ Punctuation }),
+      sym("@punctuation.bracket")({ Punctuation }),
+      Constructor({ fg = syntax.constructor }),
+      sym("@constructor")({ Constructor }),
+      Module({ fg = syntax.module }),
+      sym("@module")({ Module }),
+      sym("@module.builtin")({ Module }),
 
       DiagnosticError({ Error }),
       DiagnosticWarn({ Warning }),
       DiagnosticInfo({ Information }),
       DiagnosticHint({ Hint }),
       DiagnosticOk({ Information }),
+
+      CmpItemAbbrDeprecated({ Warning, gui = "strikethrough" }),
+      CmpItemKind({ Structure }),
+      CmpItemKindClass({ Structure }),
+      CmpItemKindColor({ fg = colors.foreground }),
+      CmpItemKindConstant({ Constant }),
+      CmpItemKindConstructor({ Constructor }),
+      CmpItemKindEnum({ Enum }),
+      CmpItemKindEnumMember({ Constant }),
+      CmpItemKindEvent({ Structure }),
+      CmpItemKindField({ Field }),
+      CmpItemKindFile({ File }),
+      CmpItemKindFolder({ Directory }),
+      CmpItemKindFunction({ Function }),
+      CmpItemKindInterface({ Structure }),
+      CmpItemKindKeyword({ Keyword }),
+      CmpItemKindMethod({ Function }),
+      CmpItemKindModule({ Module }),
+      CmpItemKindOperator({ Operator }),
+      CmpItemKindProperty({ Property }),
+      CmpItemKindReference({ Keyword }),
+      CmpItemKindSnippet({ fg = colors.foreground, gui = "italic" }),
+      CmpItemKindStruct({ Structure }),
+      CmpItemKindText({ Text }),
+      CmpItemKindTypeParameter({ Parameter }),
+      CmpItemKindUnit({ fg = colors.foreground }),
+      CmpItemKindValue({ fg = colors.foreground }),
+      CmpItemKindVariable({ Variable }),
 
       GitSignsStagedAdd({ StagedAdded }),
       GitSignsStagedAddLn({}),
@@ -213,12 +312,6 @@ local lush = function()
       FlashMatch({ fg = colors.grey4 }),
       FlashLabel({ fg = colors.red }),
     }
-
-    for k, v in pairs(syntax) do
-      table_insert(values, sym(k)({ fg = v.fg, bg = v.bg, gui = v.gui }))
-    end
-
-    return values
   end)
 end
 

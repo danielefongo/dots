@@ -36,9 +36,6 @@ module.exports = function (content, template) {
     }
     )
   })
-  env.addFilter('tojson', function (value) {
-    return JSON.stringify(value)
-  })
 
   if (rawTemplateStringCache == JSON.stringify(template)) {
     return env.renderString(content, templateCache.data)
