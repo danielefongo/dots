@@ -65,5 +65,13 @@
       lib = lib;
       overlays = overlays;
       user_data = user_data;
+
+      nixosConfigurations.testmachine = nixpkgs.lib.nixosSystem {
+        inherit system;
+        modules = [
+          ./configuration.nix
+          ./hardware-configuration.nix
+        ];
+      };
     };
 }
