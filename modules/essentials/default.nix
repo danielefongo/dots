@@ -8,5 +8,7 @@
     glibc
     openssl
     openssh
+    zip
+    unzip
   ];
 }
