@@ -1,9 +1,7 @@
 #!/bin/bash
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
-
 if command -v nix &>/dev/null; then
   # setup home-manager
-  cd "$SCRIPT_DIR/.."
+  cd "$WORK_DIR"
   home-manager switch --flake .
 fi

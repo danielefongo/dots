@@ -1,7 +1,5 @@
 #!/bin/bash
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
-
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_DATA_HOME=$HOME/.local/share
@@ -19,7 +17,7 @@ else
 
   if command -v nix &>/dev/null; then
     # run system manager
-    cd "$SCRIPT_DIR/.."
+    cd "$WORK_DIR"
     sudo -E $(which nix) run github:numtide/system-manager -- switch --flake .
   fi
 fi
