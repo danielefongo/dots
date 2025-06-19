@@ -71,6 +71,10 @@
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.windowManager.i3.enable = true;
+  programs.i3lock = {
+    enable = true;
+    package = pkgs.i3lock-fancy-rapid;
+  };
 
   # Configure keymap in X11
   services.xserver.xkb = {
