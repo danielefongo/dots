@@ -13,7 +13,7 @@
       };
 
       Service = {
-        ExecStart = lib.scriptToBinary ''
+        ExecStart = "${pkgs.writeShellScript "i3-keyboard-runner" ''
           #!/bin/bash
           autorandr -l default
           xset r rate 200 60
@@ -28,7 +28,7 @@
               done
             fi
           done
-        '';
+        ''}";
         Restart = "on-failure";
         RestartSec = 2;
       };

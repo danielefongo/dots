@@ -17,7 +17,7 @@
       };
 
       Service = {
-        ExecStart = lib.scriptToBinary ''
+        ExecStart = "${pkgs.writeShellScript "polybar-runner" ''
           #!/bin/bash
 
           CONFIG_FILE=$HOME/.config/polybar/config
@@ -30,7 +30,7 @@
           	MONITOR=$m ${pkgs.polybarFull}/bin/polybar top -c $CONFIG_FILE &
           done
           sleep infinity
-        '';
+        ''}";
         Restart = "on-failure";
         RestartSec = 2;
       };
