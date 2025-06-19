@@ -68,6 +68,14 @@
 
       nixosConfigurations.testmachine = nixpkgs.lib.nixosSystem {
         inherit system;
+        inherit lib;
+        inherit pkgs;
+
+        specialArgs = {
+          inherit inputs pkgs;
+          inherit (user_data) user home dots_path;
+        };
+
         modules = [
           ./configuration.nix
           ./hardware-configuration.nix
