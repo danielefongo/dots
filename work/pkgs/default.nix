@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ pkgs, ... }:
 
 let
   nixGL = import ./nixgl.nix { pkgs = pkgs; };

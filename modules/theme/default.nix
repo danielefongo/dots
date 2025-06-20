@@ -15,7 +15,7 @@ let
   '';
 in
 {
-  home.packages = with pkgs; [ theme ];
+  home.packages = [ theme ];
 
   systemd.user.services = {
     theme = {

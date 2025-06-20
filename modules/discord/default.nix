@@ -8,7 +8,7 @@ in
 {
   home.packages = [
     vesktop
-    (pkgs.makeDesktopItem ({
+    (pkgs.makeDesktopItem {
       name = "Vesktop";
       exec = "vesktop";
       icon = "${pkgs.discord}/share/icons/hicolor/256x256/apps/discord.png";
@@ -16,7 +16,7 @@ in
       startupNotify = true;
       startupWMClass = "Discord";
       terminal = false;
-    }))
+    })
   ];
 
   xdg.configFile."vesktop/themes/discord.theme.css".source =
