@@ -22,7 +22,6 @@
   outputs =
     {
       nixpkgs,
-      home-manager,
       system-manager,
       root-flake,
       ...

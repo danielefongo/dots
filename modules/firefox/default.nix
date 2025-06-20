@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}:
+{ pkgs, ... }:
 {
   imports = [ ./firefox.nix ];
 
@@ -12,7 +7,6 @@
 
     profiles = {
       personal = {
-        enable = true;
         isDefault = true;
         id = 0;
         addons = with pkgs.firefox-addons; [

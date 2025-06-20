@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}:
+{ pkgs, ... }:
 let
 
   commonAddons = with pkgs.firefox-addons; [
@@ -21,9 +16,10 @@ in
   firefox = {
     enable = true;
 
+    exec = "${pkgs.nixgl.nixGLIntel}/bin/nixGLIntel ${pkgs.firefox}/bin/firefox";
+
     profiles = {
       personal = {
-        enable = true;
         isDefault = false;
         id = 0;
         addons =
@@ -37,7 +33,6 @@ in
       };
 
       work = {
-        enable = true;
         id = 1;
         isDefault = true;
         addons = commonAddons;

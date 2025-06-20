@@ -4,101 +4,105 @@
   config,
   ...
 }:
-with lib;
+
 let
   cfg = config.firefox;
 
-  makeDesktopItem =
-    profileName: profileCfg:
-    pkgs.makeDesktopItem {
-      name = "firefox-${profileName}";
-      exec = "${pkgs.firefox}/bin/firefox -P ${profileName} --name Firefox %U";
-      desktopName = "Firefox ${profileName}";
-      icon = "${pkgs.firefox}/share/icons/hicolor/128x128/apps/firefox.png";
-      startupNotify = true;
-      startupWMClass = "Firefox";
-      terminal = false;
-      genericName = "Web Browser";
-      categories = [
-        "Network"
-        "WebBrowser"
-      ];
-      mimeTypes = [
-        "text/html"
-        "text/xml"
-        "application/xhtml+xml"
-        "application/vnd.mozilla.xul+xml"
-        "x-scheme-handler/http"
-        "x-scheme-handler/https"
-      ];
-    };
+  defaultProfileName = builtins.head (
+    lib.attrNames (lib.filterAttrs (profileName: p: p.isDefault) cfg.profiles)
+  );
 
+  staticEntry = {
+    name = "firefox";
+    value = {
+      name = "Firefox";
+      exec = "${pkgs.firefox}/bin/firefox %u";
+      icon = "firefox";
+      type = "Application";
+      noDisplay = true;
+    };
+  };
+
+  dynamicEntries = lib.filter (e: e != null) (
+    lib.mapAttrsToList (profileName: p: {
+      name = "firefox-" + profileName;
+      value = {
+        name = if profileName == defaultProfileName then "Firefox" else "Firefox " + profileName;
+        exec = "${cfg.exec} -P " + profileName + " --name Firefox %U";
+        icon = "${pkgs.firefox}/share/icons/hicolor/128x128/apps/firefox.png";
+        type = "Application";
+        genericName = "Web Browser";
+        categories = [
+          "Network"
+          "WebBrowser"
+        ];
+        mimeType = [
+          "text/html"
+          "text/xml"
+          "application/xhtml+xml"
+          "application/vnd.mozilla.xul+xml"
+          "x-scheme-handler/http"
+          "x-scheme-handler/https"
+        ];
+      };
+    }) cfg.profiles
+  );
+
+  allEntries = [ staticEntry ] ++ dynamicEntries;
 in
+
 {
   options.firefox = {
-    enable = mkEnableOption "Enable Firefox configuration with modular profiles";
+    enable = lib.mkEnableOption "Enable custom Firefox configuration";
 
-    profiles = mkOption {
-      type = types.attrsOf (
-        types.submodule {
+    exec = lib.mkOption {
+      type = lib.types.str;
+      default = "${pkgs.nixgl.nixGLIntel}/bin/nixGLIntel ${pkgs.firefox}/bin/firefox";
+    };
+
+    profiles = lib.mkOption {
+      type = lib.types.attrsOf (
+        lib.types.submodule {
           options = {
-            enable = mkEnableOption "Enable this Firefox profile";
-
-            isDefault = mkOption {
-              type = types.bool;
+            id = lib.mkOption {
+              type = lib.types.int;
+            };
+            isDefault = lib.mkOption {
+              type = lib.types.bool;
               default = false;
-              description = "Set this profile as the default one.";
             };
-
-            addons = mkOption {
-              type = types.listOf types.package;
+            addons = lib.mkOption {
+              type = lib.types.listOf lib.types.package;
               default = [ ];
-              description = "Additional Firefox extensions";
-            };
-
-            id = mkOption {
-              type = types.int;
-              description = "Profile ID, used by Firefox to identify the profile";
             };
           };
         }
       );
       default = { };
-      description = "Map of Firefox profiles to be configured";
     };
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     programs.firefox = {
       enable = true;
       policies.ExtensionSettings."*" = {
         installation_mode = "force_installed";
         allowed_types = [ "extension" ];
       };
-
-      profiles = lib.mapAttrs (
-        name: profileCfg:
-        mkIf profileCfg.enable {
-          id = profileCfg.id;
-          isDefault = profileCfg.isDefault;
-          extensions.packages = profileCfg.addons;
-        }
-      ) cfg.profiles;
+      profiles = lib.mapAttrs (profileName: p: {
+        id = p.id;
+        isDefault = p.isDefault;
+        extensions.packages = p.addons;
+      }) cfg.profiles;
     };
 
-    home.packages = lib.mapAttrsToList (
-      name: profileCfg:
-      mkIf (profileCfg.enable && !profileCfg.isDefault) (makeDesktopItem name profileCfg)
-    ) cfg.profiles;
+    xdg.desktopEntries = lib.listToAttrs allEntries;
 
-    home.file = mkMerge (
-      lib.mapAttrsToList (
-        name: profileCfg:
-        mkIf profileCfg.enable {
-          ".mozilla/firefox/${name}/user.js".source = lib.outLink "firefox/user.js";
-          ".mozilla/firefox/${name}/chrome".source = lib.outLink "firefox/chrome";
-        }
-      ) cfg.profiles
+    home.file = lib.mkMerge (
+      lib.mapAttrsToList (profileName: p: {
+        ".mozilla/firefox/${profileName}/user.js".source = lib.outLink "firefox/user.js";
+        ".mozilla/firefox/${profileName}/chrome".source = lib.outLink "firefox/chrome";
+      }) cfg.profiles
     );
   };
 }
