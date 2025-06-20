@@ -31,7 +31,6 @@ return {
     dependencies = {
       "mason-org/mason.nvim",
       "saghen/blink.cmp",
-      { "folke/neodev.nvim", config = true },
       { "antosha417/nvim-lsp-file-operations", config = true },
       { "mason-org/mason-lspconfig.nvim", version = "^1.0.0", config = function() end },
     },
