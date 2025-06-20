@@ -72,7 +72,7 @@
         inherit pkgs;
 
         specialArgs = {
-          inherit inputs pkgs;
+          inherit inputs;
           inherit (user_data) user home dots_path;
         };
 
