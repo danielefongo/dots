@@ -164,4 +164,15 @@
   system.stateVersion = "24.05"; # Did you read the comment?
   nix.settings.experimental-features = "nix-command flakes";
 
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [
+    stdenv.cc.cc
+    zlib
+    fuse3
+    icu
+    nss
+    openssl
+    curl
+    expat
+  ];
 }
