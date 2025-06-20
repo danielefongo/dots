@@ -15,5 +15,5 @@ fi
 
 dbus-update-activation-environment --systemd --all
 systemctl --user start --no-block earlyoom.service
-systemctl --user start --no-block theme.service
-systemctl --user start --wait i3.service
+
+exec i3

@@ -32,6 +32,7 @@ floating_modifier $mod
 
 # autostart
 exec --no-startup-id exec systemctl --user start --no-block i3-session.target
+exec --no-startup-id exec systemctl --user start --no-block theme.service
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id nm-applet
 
@@ -107,8 +108,8 @@ bindsym $mod+$shift+period move workspace to output next
 set $mode_system System (l) lock, (e) logout, (r) reload, ($shift+r) reboot, ($shift+s) shutdown
 mode "$mode_system" {
   bindsym l exec --no-startup-id i3lock-fancy-rapid 5 3, mode "default"
-  bindsym e exit
-  bindsym r reload, mode "default"
+  bindsym e exec --no-startup-id "systemctl --user stop i3-session.target && sleep 2 && i3-msg exit"
+  bindsym r exec --no-startup-id "systemctl --user restart i3-session.target && i3 reload", mode "default"
   bindsym $shift+r exec --no-startup-id shutdown now -r, mode "default"
   bindsym $shift+s exec --no-startup-id shutdown now, mode "default"
   bindsym Escape mode "default"
