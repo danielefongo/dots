@@ -57,7 +57,7 @@ in
 
     exec = lib.mkOption {
       type = lib.types.str;
-      default = "${pkgs.nixgl.nixGLIntel}/bin/nixGLIntel ${pkgs.firefox}/bin/firefox";
+      default = "${pkgs.firefox}/bin/firefox";
     };
 
     profiles = lib.mkOption {
