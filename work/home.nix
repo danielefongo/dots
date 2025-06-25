@@ -3,6 +3,8 @@
   user,
   prima-nix,
   home,
+  nixgl,
+  config,
   ...
 }:
 
@@ -43,6 +45,21 @@
     ./modules/firefox.nix
     ./modules/rebuild.nix
     prima-nix.homeManagerModules.gitleaks
+  ];
+
+  nixGL.packages = nixgl.packages;
+  nixGL.defaultWrapper = "mesa";
+  nixGL.installScripts = [ "mesa" ];
+
+  nixpkgs.overlays = [
+    (final: prev: {
+      alacritty = config.lib.nixGL.wrap prev.alacritty;
+      telegram-desktop = config.lib.nixGL.wrap prev.telegram-desktop;
+      whatsapp-for-linux = config.lib.nixGL.wrap prev.whatsapp-for-linux;
+      picom = config.lib.nixGL.wrap prev.picom;
+      vesktop = config.lib.nixGL.wrap prev.vesktop;
+      firefox = config.lib.nixGL.wrap prev.firefox;
+    })
   ];
 
   home.username = user;

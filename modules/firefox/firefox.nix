@@ -28,7 +28,7 @@ let
       name = "firefox-" + profileName;
       value = {
         name = if profileName == defaultProfileName then "Firefox" else "Firefox " + profileName;
-        exec = "${cfg.exec} -P " + profileName + " --name Firefox %U";
+        exec = "${pkgs.firefox}/bin/firefox -P " + profileName + " --name Firefox %U";
         icon = "${pkgs.firefox}/share/icons/hicolor/128x128/apps/firefox.png";
         type = "Application";
         genericName = "Web Browser";
@@ -55,11 +55,6 @@ in
   options.firefox = {
     enable = lib.mkEnableOption "Enable custom Firefox configuration";
 
-    exec = lib.mkOption {
-      type = lib.types.str;
-      default = "${pkgs.firefox}/bin/firefox";
-    };
-
     profiles = lib.mkOption {
       type = lib.types.attrsOf (
         lib.types.submodule {
@@ -85,6 +80,7 @@ in
   config = lib.mkIf cfg.enable {
     programs.firefox = {
       enable = true;
+      package = pkgs.firefox;
       policies.ExtensionSettings."*" = {
         installation_mode = "force_installed";
         allowed_types = [ "extension" ];

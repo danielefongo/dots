@@ -16,8 +16,6 @@ in
   firefox = {
     enable = true;
 
-    exec = "${pkgs.nixgl.nixGLIntel}/bin/nixGLIntel ${pkgs.firefox}/bin/firefox";
-
     profiles = {
       personal = {
         isDefault = false;

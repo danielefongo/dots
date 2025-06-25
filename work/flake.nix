@@ -13,9 +13,12 @@
     # work inputs
     system-manager = {
       url = "github:numtide/system-manager";
+      inputs.nixpkgs.follows = "root-flake/nixpkgs";
+    };
+    nixgl = {
+      url = "github:nix-community/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixgl.url = "github:nix-community/nixGL";
     suite_py.url = "git+ssh://git@github.com/primait/suite_py";
     prima-nix.url = "git+ssh://git@github.com/primait/prima.nix.git";
   };

@@ -1,5 +1,4 @@
 1password-8.10.76
-alacritty-0.15.1
 awscli2-2.27.2
 bruno-2.2.0
 btop-1.4.3
@@ -22,7 +21,6 @@ entr-5.7
 fastmod-0.4.4
 fd-10.2.0
 fh-0.1.22
-firefox-139.0.4
 flameshot-12.1.0-unstable-2025-05-04
 fzf
 gcc-wrapper-14.2.1.20250322
@@ -44,19 +42,24 @@ less-668
 man-db-2.13.0
 ncdu-2.8.2
 neovim-0.11.2
+nixGL-alacritty-0.15.1
+nixGL-firefox-139.0.4
+nixGLMesa
+nixGL-picom-12.5
+nixGL-telegram-desktop-5.13.1
+nixGL-wasistlos-1.7.0
 nix-rebuild
 ocr
 openssh-10.0p2
 openssl-3.4.1-bin
 pavucontrol-6.1
 peek-1.5.1
-picom-12.5
 playerctl-2.4.1
 playerctl-status
 polybar-3.7.2
 pulseaudio-17.0
 python3.12-plover-master
-python3.12-suite-py-1.43.4-2496d
+python3.12-suite-py-1.43.4-9e117
 python3-3.12.10
 rawtherapee-5.11
 redshift-1.12
@@ -71,7 +74,6 @@ sheldon-0.8.1
 slack-4.42.120
 spotify-1.2.59.514.g834e17d4
 systemd-257.5
-telegram-desktop-5.13.1
 theme
 thunar-4.20.3
 tig-2.5.12
@@ -81,7 +83,6 @@ tmuxinator-3.3.3
 tree-2.2.1
 vault-1.19.4
 vesktop
-wasistlos-1.7.0
 WebApp-0.0.13
 xbindkeys-1.8.7
 xclip-0.13
