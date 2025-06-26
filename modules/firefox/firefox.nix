@@ -8,49 +8,31 @@
 let
   cfg = config.firefox;
 
-  defaultProfileName = builtins.head (
-    lib.attrNames (lib.filterAttrs (profileName: p: p.isDefault) cfg.profiles)
-  );
+  nonDefaultProfiles = lib.filterAttrs (profileName: p: !p.isDefault) cfg.profiles;
 
-  staticEntry = {
-    name = "firefox";
+  nonDefaultDesktopEntries = lib.mapAttrsToList (profileName: p: {
+    name = "firefox " + profileName;
     value = {
-      name = "Firefox";
-      exec = "${pkgs.firefox}/bin/firefox %u";
-      icon = "firefox";
+      name = "Firefox " + profileName;
+      exec = "${pkgs.firefox}/bin/firefox -P " + profileName + " --name Firefox %U";
+      icon = "${pkgs.firefox}/share/icons/hicolor/128x128/apps/firefox.png";
       type = "Application";
-      noDisplay = true;
+      genericName = "Web Browser";
+      categories = [
+        "Network"
+        "WebBrowser"
+      ];
+      mimeType = [
+        "text/html"
+        "text/xml"
+        "application/xhtml+xml"
+        "application/vnd.mozilla.xul+xml"
+        "x-scheme-handler/http"
+        "x-scheme-handler/https"
+      ];
     };
-  };
-
-  dynamicEntries = lib.filter (e: e != null) (
-    lib.mapAttrsToList (profileName: p: {
-      name = "firefox-" + profileName;
-      value = {
-        name = if profileName == defaultProfileName then "Firefox" else "Firefox " + profileName;
-        exec = "${pkgs.firefox}/bin/firefox -P " + profileName + " --name Firefox %U";
-        icon = "${pkgs.firefox}/share/icons/hicolor/128x128/apps/firefox.png";
-        type = "Application";
-        genericName = "Web Browser";
-        categories = [
-          "Network"
-          "WebBrowser"
-        ];
-        mimeType = [
-          "text/html"
-          "text/xml"
-          "application/xhtml+xml"
-          "application/vnd.mozilla.xul+xml"
-          "x-scheme-handler/http"
-          "x-scheme-handler/https"
-        ];
-      };
-    }) cfg.profiles
-  );
-
-  allEntries = [ staticEntry ] ++ dynamicEntries;
+  }) nonDefaultProfiles;
 in
-
 {
   options.firefox = {
     enable = lib.mkEnableOption "Enable custom Firefox configuration";
@@ -92,7 +74,7 @@ in
       }) cfg.profiles;
     };
 
-    xdg.desktopEntries = lib.listToAttrs allEntries;
+    xdg.desktopEntries = lib.listToAttrs nonDefaultDesktopEntries;
 
     home.file = lib.mkMerge (
       lib.mapAttrsToList (profileName: p: {
