@@ -15,7 +15,6 @@
       Service = {
         ExecStart = "${pkgs.writeShellScript "i3-keyboard-runner" ''
           #!/bin/bash
-          autorandr -l default
           xset r rate 200 60
 
           udevadm monitor --environment --udev | while read -r line; do
