@@ -15,6 +15,6 @@ let
   merge = foldr (a: b: a // b) { };
   importLibs = libs: merge (map importLib libs);
 
-  libModules = importLibs (map toString (attrValues (modules.modulesIn ./.)));
+  libModules = modules.modulesIn ./. |> attrValues |> map toString |> importLibs;
 in
 pkgs.lib.extend (self: super: super // libModules)

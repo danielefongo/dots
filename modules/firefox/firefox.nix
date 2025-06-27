@@ -8,30 +8,33 @@
 let
   cfg = config.firefox;
 
-  nonDefaultProfiles = lib.filterAttrs (profileName: p: !p.isDefault) cfg.profiles;
-
-  nonDefaultDesktopEntries = lib.mapAttrsToList (profileName: p: {
-    name = "firefox " + profileName;
-    value = {
-      name = "Firefox " + profileName;
-      exec = "${pkgs.firefox}/bin/firefox -P " + profileName + " --name Firefox %U";
-      icon = "${pkgs.firefox}/share/icons/hicolor/128x128/apps/firefox.png";
-      type = "Application";
-      genericName = "Web Browser";
-      categories = [
-        "Network"
-        "WebBrowser"
-      ];
-      mimeType = [
-        "text/html"
-        "text/xml"
-        "application/xhtml+xml"
-        "application/vnd.mozilla.xul+xml"
-        "x-scheme-handler/http"
-        "x-scheme-handler/https"
-      ];
-    };
-  }) nonDefaultProfiles;
+  nonDefaultDesktopEntries =
+    cfg.profiles
+    |> lib.filterAttrs (profileName: p: !p.isDefault)
+    |> lib.mapAttrsToList (
+      profileName: p: {
+        name = "firefox " + profileName;
+        value = {
+          name = "Firefox " + profileName;
+          exec = "${pkgs.firefox}/bin/firefox -P " + profileName + " --name Firefox %U";
+          icon = "${pkgs.firefox}/share/icons/hicolor/128x128/apps/firefox.png";
+          type = "Application";
+          genericName = "Web Browser";
+          categories = [
+            "Network"
+            "WebBrowser"
+          ];
+          mimeType = [
+            "text/html"
+            "text/xml"
+            "application/xhtml+xml"
+            "application/vnd.mozilla.xul+xml"
+            "x-scheme-handler/http"
+            "x-scheme-handler/https"
+          ];
+        };
+      }
+    );
 in
 {
   options.firefox = {
@@ -67,20 +70,27 @@ in
         installation_mode = "force_installed";
         allowed_types = [ "extension" ];
       };
-      profiles = lib.mapAttrs (profileName: p: {
-        id = p.id;
-        isDefault = p.isDefault;
-        extensions.packages = p.addons;
-      }) cfg.profiles;
+      profiles =
+        cfg.profiles
+        |> lib.mapAttrs (
+          profileName: p: {
+            id = p.id;
+            isDefault = p.isDefault;
+            extensions.packages = p.addons;
+          }
+        );
     };
 
     xdg.desktopEntries = lib.listToAttrs nonDefaultDesktopEntries;
 
-    home.file = lib.mkMerge (
-      lib.mapAttrsToList (profileName: p: {
-        ".mozilla/firefox/${profileName}/user.js".source = lib.outLink "firefox/user.js";
-        ".mozilla/firefox/${profileName}/chrome".source = lib.outLink "firefox/chrome";
-      }) cfg.profiles
-    );
+    home.file =
+      cfg.profiles
+      |> lib.mapAttrsToList (
+        profileName: p: {
+          ".mozilla/firefox/${profileName}/user.js".source = lib.outLink "firefox/user.js";
+          ".mozilla/firefox/${profileName}/chrome".source = lib.outLink "firefox/chrome";
+        }
+      )
+      |> lib.mkMerge;
   };
 }
