@@ -162,7 +162,7 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.05"; # Did you read the comment?
-  nix.settings.experimental-features = "nix-command flakes";
+  nix.settings.experimental-features = "nix-command flakes pipe-operators";
 
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [
