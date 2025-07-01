@@ -1,7 +1,11 @@
 { lib, pkgs, ... }:
 
 {
-  home.packages = with pkgs; [ polybarFull ];
+  imports = [ ./scripts.nix ];
+
+  home.packages = with pkgs; [
+    polybarFull
+  ];
 
   xdg.configFile."polybar".source = lib.outLink "polybar";
 
