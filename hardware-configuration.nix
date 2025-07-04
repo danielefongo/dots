@@ -28,6 +28,16 @@
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
+  fileSystems."/mnt/data" =
+    { device = "/dev/disk/by-label/data";
+      fsType = "ext4";
+      options = [ 
+        "users" 
+        "nofail" 
+        "x-systemd.automount"
+      ];
+    };
+
   swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

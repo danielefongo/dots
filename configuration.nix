@@ -112,6 +112,7 @@
       "networkmanager"
       "wheel"
       "dialout"
+      "users"
     ];
     packages = with pkgs; [
       git
