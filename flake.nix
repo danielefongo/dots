@@ -66,7 +66,7 @@
       overlays = overlays;
       user_data = user_data;
 
-      nixosConfigurations.testmachine = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.tower = nixpkgs.lib.nixosSystem {
         inherit system;
         inherit lib;
         inherit pkgs;
