@@ -1,69 +1,73 @@
 {
-  description = "Work dotfiles";
+  description = "Work-specific extensions";
 
   inputs = {
-    # root flake inputs
-    root-flake.url = "../.";
-    nixpkgs.follows = "root-flake/nixpkgs";
-    nixpkgs-unstable.follows = "root-flake/nixpkgs-unstable";
-    home-manager.follows = "root-flake/home-manager";
-    nurpkgs.follows = "root-flake/nurpkgs";
-    plover.follows = "root-flake/plover";
-
-    # work inputs
+    # System Manager only for work
     system-manager = {
       url = "github:numtide/system-manager";
-      inputs.nixpkgs.follows = "root-flake/nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Work private inputs
     nixgl = {
       url = "github:nix-community/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    suite_py.url = "git+ssh://git@github.com/primait/suite_py";
-    prima-nix.url = "git+ssh://git@github.com/primait/prima.nix.git";
+    suite_py = {
+      url = "git+ssh://git@github.com/primait/suite_py";
+    };
+    prima-nix = {
+      url = "git+ssh://git@github.com/primait/prima.nix.git";
+    };
   };
+
   outputs =
     {
+      self,
       nixpkgs,
+      home-manager,
       system-manager,
-      root-flake,
+      nixgl,
+      suite_py,
+      prima-nix,
       ...
-    }@inputs:
+    }:
     let
       system = "x86_64-linux";
-      lib = root-flake.lib;
-      pkgs = import nixpkgs {
+
+      # Overlays specific to work
+      extraOverlays = [
+        nixgl.overlay
+        suite_py.overlays.default
+        (import ./pkgs {
+          inherit
+            nixpkgs
+            nixgl
+            suite_py
+            prima-nix
+            ;
+        })
+      ];
+
+      workPkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
-
-        overlays = root-flake.overlays ++ [
-          inputs.nixgl.overlay
-          inputs.suite_py.overlays.default
-          (import ./pkgs { inherit lib pkgs inputs; })
-        ];
+        overlays = extraOverlays;
       };
-
-      user_data = root-flake.user_data;
     in
     {
-      formatter.x85_64-linux = pkgs.nixfmt-rfc-style;
-
-      homeConfigurations."${user_data.user}" = pkgs.lib.homeManagerConfiguration {
-        inherit pkgs;
-        inherit lib;
-
-        extraSpecialArgs = inputs // {
-          inherit (user_data) user home dots_path;
+      # System Manager config for Work
+      systemConfigs = {
+        default = system-manager.lib.makeSystemConfig {
+          inherit workPkgs;
+          extraSpecialArgs = { inherit self system workPkgs; };
+          modules = [ ./system.nix ];
         };
-        modules = [ ./home.nix ];
       };
 
-      systemConfigs.default = system-manager.lib.makeSystemConfig {
-        extraSpecialArgs = inputs // {
-          inherit system;
-          inherit pkgs;
-        };
-        modules = [ ./system.nix ];
+      # Home Manager module for Work
+      homeModule = {
+        imports = [ ./home.nix ];
       };
     };
 }
