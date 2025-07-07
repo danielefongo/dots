@@ -1,7 +1,8 @@
 {
   lib,
   pkgs,
-  user,
+  inputs,
+  user_data,
   ...
 }:
 
@@ -13,23 +14,14 @@
     ../modules/linking.nix
     ../modules/networking.nix
     ../modules/sound.nix
+    ../modules/users/daniele.nix
     ./hardware-configuration.nix
+    inputs.home-manager.nixosModules.home-manager
   ];
 
   networking.hostName = "nixos";
 
   services.printing.enable = true;
-
-  users.users.danielefongo = {
-    isNormalUser = true;
-    description = user;
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-      "dialout"
-      "users"
-    ];
-  };
 
   system.stateVersion = "24.05";
 }

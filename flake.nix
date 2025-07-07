@@ -59,6 +59,18 @@
             ;
         }
       );
+
+      homeManager = {
+        home-manager.extraSpecialArgs = inputs // {
+          inherit system;
+          inherit
+            user
+            home
+            dots_path
+            pkgs
+            ;
+        };
+      };
     in
     {
       formatter.x85_64-linux = pkgs.nixfmt-rfc-style;
@@ -71,29 +83,12 @@
         inherit system lib pkgs;
 
         specialArgs = {
-          inherit inputs user;
+          inherit inputs user_data;
         };
 
         modules = [
           ./hosts/tower
-          {
-            imports = [
-              home-manager.nixosModules.home-manager
-            ];
-
-            home-manager.extraSpecialArgs = inputs // {
-              inherit system;
-              inherit
-                user
-                home
-                dots_path
-                pkgs
-                ;
-
-              users."${user}" = import ./home.nix;
-              backupFileExtension = "hm-bak";
-            };
-          }
+          homeManager
         ];
       };
     };
