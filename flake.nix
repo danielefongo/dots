@@ -68,17 +68,14 @@
       user_data = user_data;
 
       nixosConfigurations.tower = nixpkgs.lib.nixosSystem {
-        inherit system;
-        inherit lib;
-        inherit pkgs;
+        inherit system lib pkgs;
 
         specialArgs = {
-          inherit inputs;
+          inherit inputs user;
         };
 
         modules = [
-          ./configuration.nix
-          ./hardware-configuration.nix
+          ./hosts/tower
           {
             imports = [
               home-manager.nixosModules.home-manager
