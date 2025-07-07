@@ -48,6 +48,7 @@
         config.allowUnfree = true;
         overlays = overlays;
       };
+
       lib = (
         import ./lib {
           inherit
@@ -58,9 +59,36 @@
             ;
         }
       );
+
+      homeManager = {
+        home-manager.extraSpecialArgs = inputs // {
+          inherit system;
+          inherit
+            user
+            home
+            dots_path
+            pkgs
+            ;
+        };
+      };
     in
     {
       formatter.x85_64-linux = pkgs.nixfmt-rfc-style;
+
+      nixosConfigurations.tower = nixpkgs.lib.nixosSystem {
+        inherit system lib pkgs;
+
+        specialArgs = {
+          inherit inputs user_data;
+        };
+
+        modules = [
+          ./hosts/tower
+          homeManager
+        ];
+      };
+
+      # for work flake
       pkgs = pkgs;
       lib = lib;
       overlays = overlays;

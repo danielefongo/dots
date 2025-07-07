@@ -16,6 +16,7 @@
       python3
       nixfmt-rfc-style
       nixd
+      file
       cargo # mason
       entr
     ];
