@@ -1,43 +1,19 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 {
-  config,
   lib,
   pkgs,
-  inputs,
-  user,
-  home,
-  dots_path,
   ...
 }:
 
 {
   imports = [
-    # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    inputs.home-manager.nixosModules.default
-    #./home.nix
   ];
-  home-manager = {
-    extraSpecialArgs = {
-      inherit
-        user
-        home
-        dots_path
-        pkgs
-        ;
-    };
-    users."${user}" = import ./home.nix;
-    backupFileExtension = "hm-bak";
-  };
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "nixos";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary

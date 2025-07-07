@@ -48,6 +48,7 @@
         config.allowUnfree = true;
         overlays = overlays;
       };
+
       lib = (
         import ./lib {
           inherit
@@ -73,12 +74,29 @@
 
         specialArgs = {
           inherit inputs;
-          inherit (user_data) user home dots_path;
         };
 
         modules = [
           ./configuration.nix
           ./hardware-configuration.nix
+          {
+            imports = [
+              home-manager.nixosModules.home-manager
+            ];
+
+            home-manager.extraSpecialArgs = inputs // {
+              inherit system;
+              inherit
+                user
+                home
+                dots_path
+                pkgs
+                ;
+
+              users."${user}" = import ./home.nix;
+              backupFileExtension = "hm-bak";
+            };
+          }
         ];
       };
     };
