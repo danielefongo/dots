@@ -13,5 +13,6 @@
     telegram-desktop
     whatsapp-for-linux
     ocr
+    deskflow
   ];
 }
