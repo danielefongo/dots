@@ -1,4 +1,4 @@
-{ pkgs, dots_path, ... }:
+{ pkgs, user_data, ... }:
 
 let
   theme_package = pkgs.mkYarnPackage {
@@ -9,7 +9,7 @@ let
   };
 
   theme = pkgs.writeShellScriptBin "theme" ''
-    DOTS_PATH=${dots_path}
+    DOTS_PATH=${user_data.dots_path}
 
     ${theme_package}/bin/theme "$1" "$DOTS_PATH/theme.js" "$DOTS_PATH" "$DOTS_PATH/output"
   '';

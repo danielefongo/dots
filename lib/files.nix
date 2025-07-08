@@ -1,6 +1,8 @@
-{ dots_path, pkgs, ... }:
+{ user_data, pkgs, ... }:
 
 let
+  dots_path = user_data.dots_path;
+
   mkOutOfStoreSymlink =
     path:
     let

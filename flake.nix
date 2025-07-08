@@ -15,14 +15,11 @@
     { nixpkgs, home-manager, ... }@inputs:
     let
       system = "x86_64-linux";
-      user = "danielefongo";
-      home = "/home/danielefongo";
-      dots_path = "/home/danielefongo/dots";
 
       user_data = {
-        user = user;
-        home = home;
-        dots_path = dots_path;
+        user = "danielefongo";
+        home = "/home/danielefongo";
+        dots_path = "/home/danielefongo/dots";
       };
 
       overlays = [
@@ -55,20 +52,14 @@
             system
             inputs
             pkgs
-            dots_path
+            user_data
             ;
         }
       );
 
       homeManager = {
         home-manager.extraSpecialArgs = inputs // {
-          inherit system;
-          inherit
-            user
-            home
-            dots_path
-            pkgs
-            ;
+          inherit system pkgs user_data;
         };
       };
     in
@@ -76,7 +67,7 @@
       formatter.x85_64-linux = pkgs.nixfmt-rfc-style;
 
       nixosConfigurations.tower = nixpkgs.lib.nixosSystem {
-        inherit system lib pkgs;
+        inherit system pkgs lib;
 
         specialArgs = {
           inherit inputs user_data;

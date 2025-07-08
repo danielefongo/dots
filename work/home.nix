@@ -1,8 +1,7 @@
 {
   pkgs,
-  user,
+  user_data,
   prima-nix,
-  home,
   nixgl,
   config,
   ...
@@ -62,8 +61,8 @@
     })
   ];
 
-  home.username = user;
-  home.homeDirectory = home;
+  home.username = user_data.user;
+  home.homeDirectory = user_data.home;
   home.packages = with pkgs; [
     awscli2
     bruno

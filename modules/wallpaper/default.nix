@@ -1,10 +1,10 @@
-{ pkgs, dots_path, ... }:
+{ pkgs, user_data, ... }:
 
 let
   wallpaper = pkgs.writeShellScriptBin "wallpaper" ''
-    DESTINATION=${dots_path}/output/wallpaper/background.svg
+    DESTINATION=${user_data.dots_path}/output/wallpaper/background.svg
 
-    ${pkgs.feh}/bin/feh --bg-scale "${dots_path}/output/wallpaper/background.svg"
+    ${pkgs.feh}/bin/feh --bg-scale "${user_data.dots_path}/output/wallpaper/background.svg"
   '';
 in
 {

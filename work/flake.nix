@@ -49,19 +49,17 @@
       formatter.x85_64-linux = pkgs.nixfmt-rfc-style;
 
       homeConfigurations."${user_data.user}" = pkgs.lib.homeManagerConfiguration {
-        inherit pkgs;
-        inherit lib;
+        inherit pkgs lib;
 
         extraSpecialArgs = inputs // {
-          inherit (user_data) user home dots_path;
+          inherit user_data;
         };
         modules = [ ./home.nix ];
       };
 
       systemConfigs.default = system-manager.lib.makeSystemConfig {
         extraSpecialArgs = inputs // {
-          inherit system;
-          inherit pkgs;
+          inherit system pkgs;
         };
         modules = [ ./system.nix ];
       };

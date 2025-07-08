@@ -1,7 +1,7 @@
 {
   inputs,
   pkgs,
-  dots_path,
+  user_data,
   ...
 }:
 
@@ -11,7 +11,7 @@ let
 
   modules = importLib ./modules.nix;
 
-  importLib = file: import file { inherit inputs pkgs dots_path; };
+  importLib = file: import file { inherit inputs pkgs user_data; };
   merge = foldr (a: b: a // b) { };
   importLibs = libs: merge (map importLib libs);
 

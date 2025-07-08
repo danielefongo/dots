@@ -1,6 +1,5 @@
 {
-  user,
-  home,
+  user_data,
   ...
 }:
 {
@@ -39,8 +38,8 @@
     ../modules/zsh
   ];
 
-  home.username = user;
-  home.homeDirectory = home;
+  home.username = user_data.user;
+  home.homeDirectory = user_data.home;
 
   home.stateVersion = "25.05";
 

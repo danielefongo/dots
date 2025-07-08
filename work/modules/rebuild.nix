@@ -1,8 +1,8 @@
-{ pkgs, dots_path, ... }:
+{ pkgs, user_data, ... }:
 
 let
   nixRebuild = pkgs.writeShellScriptBin "nix-rebuild" ''
-    DOTS_PATH=${dots_path}
+    DOTS_PATH=${user_data.dots_path}
 
     cd $DOTS_PATH/work
     case "$1" in
