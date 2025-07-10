@@ -7,7 +7,7 @@ module.exports = {
     gap: 0,
     round: 0,
     border: 4,
-    fontSize: 12,
+    fontSize: 11,
     transparency: 0,
     colors: {
       background: '{{ "#1f2430" | contrasted(contrast) }}',
