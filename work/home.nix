@@ -9,37 +9,37 @@
 
 {
   imports = [
-    ../modules/alacritty
-    ../modules/apps
-    ../modules/btop
-    ../modules/discord
-    ../modules/docker
-    ../modules/dunst
-    ../modules/essentials
-    ../modules/flameshot
-    ../modules/fonts
-    ../modules/fzf
-    ../modules/git
-    ../modules/gtk
-    ../modules/i3
-    ../modules/nix
-    ../modules/nvim
-    ../modules/picom
-    ../modules/playerctl
-    ../modules/plover
-    ../modules/polybar
-    ../modules/redshift
-    ../modules/rofi
-    ../modules/sesh
-    ../modules/shell-utils
-    ../modules/theme
-    ../modules/tig
-    ../modules/tmux
-    ../modules/wallpaper
-    ../modules/webapps
-    ../modules/xbindkeys
-    ../modules/xsettingsd
-    ../modules/zsh
+    ../home/modules/alacritty
+    ../home/modules/apps
+    ../home/modules/btop
+    ../home/modules/discord
+    ../home/modules/docker
+    ../home/modules/dunst
+    ../home/modules/essentials
+    ../home/modules/flameshot
+    ../home/modules/fonts
+    ../home/modules/fzf
+    ../home/modules/git
+    ../home/modules/gtk
+    ../home/modules/i3
+    ../home/modules/nix
+    ../home/modules/nvim
+    ../home/modules/picom
+    ../home/modules/playerctl
+    ../home/modules/plover
+    ../home/modules/polybar
+    ../home/modules/redshift
+    ../home/modules/rofi
+    ../home/modules/sesh
+    ../home/modules/shell-utils
+    ../home/modules/theme
+    ../home/modules/tig
+    ../home/modules/tmux
+    ../home/modules/wallpaper
+    ../home/modules/webapps
+    ../home/modules/xbindkeys
+    ../home/modules/xsettingsd
+    ../home/modules/zsh
 
     ./modules/firefox.nix
     ./modules/rebuild.nix

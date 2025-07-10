@@ -15,7 +15,7 @@ export NIX_REMOTE=daemon
 eval "$(sheldon source)"
 
 # history
-HISTFILE=~/dots/modules/zsh/.zsh_history
+HISTFILE=~/dots/home/modules/zsh/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
 setopt appendhistory

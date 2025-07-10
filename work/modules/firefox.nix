@@ -11,7 +11,7 @@ let
   ];
 in
 {
-  imports = [ ../../modules/firefox/firefox.nix ];
+  imports = [ ../../home/modules/firefox/firefox.nix ];
 
   firefox = {
     enable = true;
