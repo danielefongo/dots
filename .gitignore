@@ -1,7 +1,10 @@
 node_modules
 output/
-result
 ignore/
 modules/nvim/lua/config/experiments.lua
 
+# System manager
 work/result
+
+# Nix check
+build/
