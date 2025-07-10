@@ -2,6 +2,7 @@
   user_data,
   ...
 }:
+
 {
   imports = [
     ../modules/alacritty
