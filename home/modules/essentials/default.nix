@@ -10,5 +10,6 @@
     openssh
     zip
     unzip
+    nfs-utils
   ];
 }
