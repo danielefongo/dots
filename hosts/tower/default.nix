@@ -13,6 +13,7 @@
     ../modules/i3.nix
     ../modules/linking.nix
     ../modules/networking.nix
+    ../modules/onepassword.nix
     ../modules/sound.nix
     ../modules/users/danielefongo.nix
     ./hardware-configuration.nix

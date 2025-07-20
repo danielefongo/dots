@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   services.xserver = {
@@ -15,4 +15,6 @@
     enable = true;
     package = pkgs.i3lock-fancy-rapid;
   };
+
+  services.gnome.gnome-keyring.enable = lib.mkDefault true;
 }
