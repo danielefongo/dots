@@ -27,15 +27,6 @@ in
     wantedBy = [ "multi-user.target" ];
   };
 
-  systemd.services.cpupower = {
-    enable = true;
-    serviceConfig = {
-      ExecStart = "${cpupower}/bin/cpupower frequency-set --governor performance";
-    };
-    description = "Sets CPU governor to performance";
-    wantedBy = [ "multi-user.target" ];
-  };
-
   systemd.services.earlyoom = {
     enable = true;
     serviceConfig = {
