@@ -5,7 +5,23 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    opts = function(_, lsps) lsps["pylsp"] = {} end,
+    opts = function(_, lsps)
+      lsps["pyright"] = {
+        settings = {
+          pyright = {
+            disableOrganizeImports = true,
+          },
+          python = {
+            analysis = {
+              extraPaths = { ".venv" },
+              autoSearchPaths = true,
+              diagnosticMode = "workspace",
+              useLibraryCodeForTypes = true,
+            },
+          },
+        },
+      }
+    end,
   },
   {
     "stevearc/conform.nvim",
