@@ -67,7 +67,7 @@
     awscli2
     bruno
     cloudflared
-    dbeaver-bin
+    jetbrains.datagrip
     insomnia
     cloudflare-warp
     k9s
