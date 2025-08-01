@@ -37,7 +37,14 @@
             config.allowUnfree = true;
           };
         })
-        (import ./pkgs { inherit lib pkgs inputs; })
+        (import ./pkgs {
+          inherit
+            lib
+            pkgs
+            inputs
+            user_data
+            ;
+        })
       ];
 
       pkgs = import nixpkgs {

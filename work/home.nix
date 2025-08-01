@@ -23,6 +23,7 @@
     ../home/modules/gtk
     ../home/modules/i3
     ../home/modules/nix
+    ../home/modules/nix-theme
     ../home/modules/nvim
     ../home/modules/picom
     ../home/modules/playerctl
@@ -32,7 +33,6 @@
     ../home/modules/rofi
     ../home/modules/sesh
     ../home/modules/shell-utils
-    ../home/modules/theme
     ../home/modules/tig
     ../home/modules/tmux
     ../home/modules/wallpaper

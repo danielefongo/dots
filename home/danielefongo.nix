@@ -20,6 +20,7 @@
     ./modules/gtk
     ./modules/i3
     ./modules/nix
+    ./modules/nix-theme
     ./modules/nvim
     ./modules/picom
     ./modules/playerctl
@@ -29,7 +30,6 @@
     ./modules/rofi
     ./modules/sesh
     ./modules/shell-utils
-    ./modules/theme
     ./modules/tig
     ./modules/tmux
     ./modules/wallpaper
