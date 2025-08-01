@@ -23,7 +23,6 @@
     ../home/modules/gtk
     ../home/modules/i3
     ../home/modules/nix
-    ../home/modules/nix-theme
     ../home/modules/nvim
     ../home/modules/picom
     ../home/modules/playerctl
@@ -76,7 +75,29 @@
     suite_py
     vault
     codescene-cli
+    nix-theme
   ];
+
+  systemd.user.services = {
+    theme = {
+      Unit = {
+        Description = "Theme";
+      };
+
+      Service = {
+        ExecStart = "${pkgs.writeShellScript "nix-theme-runner" ''
+          #!/bin/bash
+
+          while true; do
+            ${pkgs.nix-theme}/bin/nix-theme
+            sleep 2
+          done
+        ''}";
+        Restart = "on-failure";
+        RestartSec = 2;
+      };
+    };
+  };
 
   prima.gitleaks.enable = true;
 
