@@ -33,7 +33,12 @@ in
       work = {
         id = 1;
         isDefault = true;
-        addons = commonAddons;
+        addons =
+          with pkgs.firefox-addons;
+          [
+            grammarly
+          ]
+          ++ commonAddons;
       };
     };
   };
