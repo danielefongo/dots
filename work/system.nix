@@ -52,4 +52,15 @@ in
     after = [ "network.target" ];
     wantedBy = [ "multi-user.target" ];
   };
+
+  systemd.services.tailscaled = {
+    enable = true;
+    description = "Tailscale node agent";
+    after = [ "network.target" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${pkgs.tailscale}/bin/tailscaled";
+    };
+  };
 }
