@@ -13,7 +13,7 @@
   };
 
   home-manager = {
-    users."${user_data.user}" = import ../../../home/danielefongo.nix;
+    users."${user_data.user}" = import ../../../home/tower.nix;
     backupFileExtension = "hm-bak";
   };
 }
