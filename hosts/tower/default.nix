@@ -9,6 +9,7 @@
 {
   imports = [
     ../modules/base.nix
+    ../modules/docker.nix
     ../modules/games.nix
     ../modules/i3.nix
     ../modules/linking.nix
