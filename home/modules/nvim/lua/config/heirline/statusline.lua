@@ -79,7 +79,7 @@ local GitBranch = {
   {
     provider = function(self)
       local head = self.status_dict.head
-      if head:match("^INTSL") then head = head:match("^[^/]*") end
+      if head:match("^INTIG") then head = head:match("^[^/]*") end
       return " " .. head
     end,
     hl = { bold = true },
