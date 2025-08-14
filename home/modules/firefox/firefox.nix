@@ -16,7 +16,7 @@ let
         name = "firefox " + profileName;
         value = {
           name = "Firefox " + profileName;
-          exec = "${pkgs.firefox}/bin/firefox -P " + profileName + " --name Firefox %U";
+          exec = "${config.programs.firefox.finalPackage}/bin/firefox -P ${profileName} --name Firefox %U";
           icon = "${pkgs.firefox}/share/icons/hicolor/128x128/apps/firefox.png";
           type = "Application";
           genericName = "Web Browser";
@@ -66,10 +66,6 @@ in
     programs.firefox = {
       enable = true;
       package = pkgs.firefox;
-      policies.ExtensionSettings."*" = {
-        installation_mode = "force_installed";
-        allowed_types = [ "extension" ];
-      };
       profiles =
         cfg.profiles
         |> lib.mapAttrs (
@@ -79,6 +75,30 @@ in
             extensions.packages = p.addons;
           }
         );
+      policies = {
+        ExtensionSettings."*" = {
+          installation_mode = "force_installed";
+          allowed_types = [ "extension" ];
+        };
+        Preferences = {
+          "toolkit.legacyUserProfileCustomizations.stylesheets" = {
+            Value = true;
+            Status = "locked";
+          };
+          "extensions.autoDisableScopes" = {
+            Value = 0;
+            Status = "locked";
+          };
+          "browser.theme.toolbar-theme" = {
+            Value = 0;
+            Status = "locked";
+          };
+          "browser.theme.content-theme" = {
+            Value = 0;
+            Status = "locked";
+          };
+        };
+      };
     };
 
     xdg.desktopEntries = lib.listToAttrs nonDefaultDesktopEntries;
@@ -87,7 +107,6 @@ in
       cfg.profiles
       |> lib.mapAttrsToList (
         profileName: p: {
-          ".mozilla/firefox/${profileName}/user.js".source = lib.outLink "firefox/user.js";
           ".mozilla/firefox/${profileName}/chrome".source = lib.outLink "firefox/chrome";
         }
       )
