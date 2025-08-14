@@ -63,6 +63,7 @@
   home.username = user_data.user;
   home.homeDirectory = user_data.home;
   home.packages = with pkgs; [
+    slack
     awscli2
     bruno
     cloudflared

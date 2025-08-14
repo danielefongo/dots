@@ -9,7 +9,6 @@
     pavucontrol
     peek
     spotify
-    slack
     telegram-desktop
     whatsapp-for-linux
     ocr
