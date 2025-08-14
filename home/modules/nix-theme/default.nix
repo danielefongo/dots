@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  home.packages = [ pkgs.nix-theme ];
+  home.packages = [ pkgs.nix-scripts.nix-theme ];
 
   systemd.user.services = {
     theme = {
@@ -10,7 +10,7 @@
       };
 
       Service = {
-        ExecStart = "${pkgs.nix-theme}/bin/nix-theme watch";
+        ExecStart = "${pkgs.nix-scripts.nix-theme}/bin/nix-theme watch";
         Restart = "on-failure";
         RestartSec = 2;
       };

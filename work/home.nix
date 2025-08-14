@@ -41,7 +41,6 @@
     ../home/modules/zsh
 
     ./modules/firefox.nix
-    ./modules/rebuild.nix
     prima-nix.homeManagerModules.gitleaks
   ];
 
@@ -76,7 +75,7 @@
     suite_py
     vault
     codescene-cli
-    nix-theme
+    nix-scripts.nix-theme
   ];
 
   systemd.user.services = {
@@ -90,7 +89,7 @@
           #!/bin/bash
 
           while true; do
-            ${pkgs.nix-theme}/bin/nix-theme
+            ${pkgs.nix-scripts.nix-theme}/bin/nix-theme
             sleep 2
           done
         ''}";

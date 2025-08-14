@@ -12,7 +12,7 @@
     inherit inputs;
     pkgs = super;
   };
-  nix-theme = pkgs.callPackage ./nix-theme {
+  nix-scripts = pkgs.callPackage ./nix-scripts {
     inherit user_data;
     pkgs = super;
   };
