@@ -145,10 +145,26 @@ let
         work;;
     esac
   '';
+
+  nix-update-flakes = pkgs.writeShellScriptBin "nix-update-flakes" ''
+    #!${pkgs.runtimeShell}
+    set -euo pipefail
+
+    DOTS_PATH="${user_data.dots_path}"
+
+    cd "$DOTS_PATH"
+
+    echo "🔄 Updating flakes..."
+    nix flake update --flake .
+    nix flake update --flake ./work
+
+    ${nix-packages}/bin/nix-packages all
+  '';
 in
 {
   home.packages = [
     nix-check
     nix-packages
+    nix-update-flakes
   ];
 }
