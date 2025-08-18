@@ -32,12 +32,13 @@ return {
   {
     "stevearc/conform.nvim",
     opts = function(_, opts)
-      opts.options.formatters_by_ft.rust = { "rustfmt" }
-      opts.options.formatters.rustfmt = {
+      opts.options.formatters_by_ft.rust = { "rust" }
+      opts.options.formatters.rust = {
         command = "rustfmt",
         options = {
           default_edition = "2024",
         },
+        cwd = require("conform.util").root_file({ "rustfmt.toml", ".rustfmt.toml" }),
       }
     end,
   },
