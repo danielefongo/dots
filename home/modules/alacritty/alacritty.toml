@@ -42,12 +42,12 @@ style = "Regular"
 
 [[keyboard.bindings]]
 action = "Paste"
-key = "P"
+key = "V"
 mods = "Alt"
 
 [[keyboard.bindings]]
 action = "Copy"
-key = "Y"
+key = "C"
 mods = "Alt"
 
 [[keyboard.bindings]]
