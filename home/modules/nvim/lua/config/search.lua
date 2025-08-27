@@ -1,78 +1,107 @@
 return {
   {
-    "danielefongo/microscope",
-    dev = true,
-    dependencies = {
-      { "danielefongo/microscope-files", dev = true },
-      { "danielefongo/microscope-buffers", dev = true },
-      { "danielefongo/microscope-code", dev = true },
-      { "danielefongo/microscope-git", dev = true },
-      { "danielefongo/microscope-example", dev = true },
+    "folke/snacks.nvim",
+    opts = {
+      picker = {
+        enabled = true,
+        matcher = {
+          frecency = true,
+        },
+        show_empty = true,
+        win = {
+          input = {
+            keys = {
+              ["<esc>"] = "cancel",
+              ["<cr>"] = { "confirm", mode = { "n", "i" } },
+              ["<c-q>"] = { "qflist", mode = { "i", "n" } },
+              ["<c-s>"] = { "edit_split", mode = { "i", "n" } },
+              ["<c-v>"] = { "edit_vsplit", mode = { "i", "n" } },
+              ["q"] = "close",
+              ["?"] = "toggle_help_input",
+              ["<c-n>"] = { "cycle_win", mode = { "n", "i" } },
+              ["<c-w>"] = { "<c-s-w>", mode = { "i" }, expr = true, desc = "delete_word" },
+
+              ["<s-down>"] = { "history_forward", mode = { "i", "n" } },
+              ["<s-up>"] = { "history_back", mode = { "i", "n" } },
+
+              ["<down>"] = { "list_down", mode = { "i", "n" } },
+              ["<up>"] = { "list_up", mode = { "i", "n" } },
+              ["<tab>"] = { "select_and_next", mode = { "i", "n" } },
+              ["<s-tab>"] = { "select_and_prev", mode = { "i", "n" } },
+              ["G"] = "list_bottom",
+              ["gg"] = "list_top",
+              ["<c-a>"] = { "select_all", mode = { "n", "i" } },
+
+              ["<c-down>"] = { "preview_scroll_down", mode = { "i", "n" } },
+              ["<c-up>"] = { "preview_scroll_up", mode = { "i", "n" } },
+
+              ["<c-h>"] = { "toggle_hidden", mode = { "i", "n" } },
+              ["<c-i>"] = { "toggle_ignored", mode = { "i", "n" } },
+              ["<c-f>"] = { "toggle_maximize", mode = { "i", "n" } },
+              ["<c-p>"] = { "toggle_preview", mode = { "i", "n" } },
+              ["<c-g>"] = { "toggle_live", mode = { "i", "n" } },
+            },
+          },
+          list = {
+            keys = {
+              ["<esc>"] = "cancel",
+              ["<cr>"] = "confirm",
+              ["<c-q>"] = "qflist",
+              ["<c-s>"] = "edit_split",
+              ["<c-v>"] = "edit_vsplit",
+              ["i"] = "focus_input",
+              ["q"] = "close",
+              ["?"] = "toggle_help_list",
+              ["<c-n>"] = "cycle_win",
+
+              ["<down>"] = "list_down",
+              ["<up>"] = "list_up",
+
+              ["<down>"] = { "list_down", mode = { "n", "x" } },
+              ["<up>"] = { "list_up", mode = { "n", "x" } },
+              ["<tab>"] = { "select_and_next", mode = { "n", "x" } },
+              ["<s-tab>"] = { "select_and_prev", mode = { "n", "x" } },
+              ["<c-a>"] = "select_all",
+              ["G"] = "list_bottom",
+              ["gg"] = "list_top",
+
+              ["<c-down>"] = "preview_scroll_down",
+              ["<c-up>"] = "preview_scroll_up",
+
+              ["<c-h>"] = "toggle_hidden",
+              ["<c-i>"] = "toggle_ignored",
+              ["<c-f>"] = "toggle_maximize",
+              ["<c-p>"] = "toggle_preview",
+            },
+          },
+          preview = {
+            keys = {
+              ["<esc>"] = "cancel",
+              ["i"] = "focus_input",
+              ["q"] = "close",
+              ["<c-n>"] = "cycle_win",
+            },
+          },
+        },
+      },
     },
-    config = function()
-      local microscope = require("microscope")
-      local actions = require("microscope.builtin.actions")
-      local layouts = require("microscope.builtin.layouts")
-      local display = require("microscope.api.display")
-
-      local layouts = {
-        display
-          .vertical({
-            display.input(1),
-            display.results(10),
-            display.preview(),
-          })
-          :ui_layout(),
-        display.vertical({ display.results(3), display.preview() }):ui_layout(),
-      }
-
-      local files = require("microscope-files")
-      local buffers = require("microscope-buffers")
-      local code = require("microscope-code")
-      local git = require("microscope-git")
-      local example = require("microscope-example")
-
-      microscope.setup({
-        size = {
-          width = 150,
-          height = 50,
-        },
-        layout = layouts[1],
-        bindings = {
-          ["<down>"] = actions.next,
-          ["<up>"] = actions.previous,
-          ["<c-down>"] = actions.scroll_down,
-          ["<c-up>"] = actions.scroll_up,
-          ["<cr>"] = actions.open,
-          ["<esc>"] = actions.close,
-          ["<tab>"] = actions.select,
-          ["<c-f>"] = actions.toggle_full_screen,
-          ["<c-r>"] = actions.refine,
-          ["<c-q>"] = files.actions.quickfix,
-          ["<c-x>"] = files.actions.toggle_hidden,
-          ["<c-h>"] = actions.hide,
-          ["<c-u>"] = actions.rotate_layouts(layouts),
-        },
-      })
-
-      microscope.register(files.finders)
-      microscope.register(buffers.finders)
-      microscope.register(code.finders)
-      microscope.register(git.finders)
-      microscope.register(example.finders)
-    end,
     keys = {
-      { "<leader>cd", ":Microscope code_definitions<cr>", desc = "definitions", silent = true },
-      { "<leader>ci", ":Microscope code_implementations<cr>", desc = "impls", silent = true },
-      { "<leader>cr", ":Microscope code_references<cr>", desc = "references", silent = true },
-      { "<leader>ct", ":Microscope code_type_definition<cr>", desc = "typedefs", silent = true },
-      { "<leader>fb", ":Microscope buffer_grep<cr>", desc = "buffer text", silent = true },
-      { "<leader>fsb", ":Microscope code_buffer_symbols<cr>", desc = "buffer", silent = true },
-      { "<leader>fsw", ":Microscope code_workspace_symbols<cr>", desc = "workspace", silent = true },
-      { "<leader>fw", ":Microscope workspace_grep<cr>", desc = "workspace text", silent = true },
-      { "<leader>ob", ":Microscope buffer<cr>", desc = "buffer", silent = true },
-      { "<leader>of", ":Microscope file<cr>", desc = "file", silent = true },
-      { "<c-h>", ":MicroscopeResume<cr>", desc = "resume finder", silent = true },
+      { "<leader>cd", function() Snacks.picker.lsp_definitions() end, desc = "definitions", silent = true },
+      { "<leader>ci", function() Snacks.picker.lsp_implementations() end, desc = "implementations", silent = true },
+      { "<leader>cr", function() Snacks.picker.lsp_references() end, desc = "references", silent = true },
+      { "<leader>ct", function() Snacks.picker.lsp_type_definitions() end, desc = "type definitions", silent = true },
+
+      { "<leader>gb", function() Snacks.git.blame_line() end, desc = "blame line", silent = true },
+
+      { "<leader>fb", function() Snacks.picker.lines() end, desc = "buffer text", silent = true },
+      { "<leader>fsb", function() Snacks.picker.lsp_symbols() end, desc = "buffer", silent = true },
+      { "<leader>fsw", function() Snacks.picker.lsp_workspace_symbols() end, desc = "workspace", silent = true },
+      { "<leader>fw", function() Snacks.picker.grep() end, desc = "workspace text", silent = true },
+
+      { "<leader>ob", function() Snacks.picker.buffers() end, desc = "buffer", silent = true },
+      { "<leader>of", function() Snacks.picker.files() end, desc = "file", silent = true },
+      { "<leader>op", function() Snacks.picker.pickers() end, desc = "pickers", silent = true },
+      { "<leader>or", function() Snacks.picker.resume() end, desc = "resume", silent = true },
     },
   },
   {

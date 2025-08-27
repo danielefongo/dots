@@ -246,14 +246,6 @@ local lush = function()
       GitSignsStagedDeleteCul({ StagedRemoved }),
       GitSignsStagedTopdeleteCul({ StagedRemoved }),
 
-      MicroscopeMatch({ fg = colors.strong_red, gui = "bold" }),
-      MicroscopeColor1({ fg = colors.grey5 }),
-      MicroscopeColor2({ fg = colors.green }),
-      MicroscopeColor3({ Text }),
-      MicroscopeColor4({ Text }),
-      MicroscopeColor5({ Text }),
-      MicroscopeColor6({ Text }),
-
       NeogitBranch({ fg = colors.blue }),
       NeogitBranchHead({ fg = colors.blue, gui = "underline" }),
       NeogitRemote({ fg = colors.green }),
