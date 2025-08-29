@@ -72,6 +72,8 @@
     k9s
     kubectl
     krew
+    kubelogin-oidc
+    amazon-ecr-credential-helper
     suite_py
     vault
     codescene-cli
