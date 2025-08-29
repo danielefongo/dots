@@ -2,11 +2,6 @@
 
 set -euo pipefail
 
-has_attr() {
-  local ref="$1"
-  nix eval --json "$ref" >/dev/null 2>&1
-}
-
 is_nixos() {
   [ -r /etc/os-release ] && grep -q '^ID=nixos' /etc/os-release
 }
@@ -36,22 +31,13 @@ rebuild_non_nixos() {
   esac
 
   if [ "$MODE" != "-s" ]; then
-    if has_attr ".#homeConfigurations.$USER.activationPackage"; then
-      echo "🏠 home-manager switch (.#$USER)"
-      home-manager switch --flake ".#$USER"
-    else
-      echo "⚠️ homeConfigurations.$USER not found; skipping home-manager."
-    fi
+    echo "🏠 home-manager switch (.#$USER)"
+    home-manager switch --flake ".#$USER"
   fi
 
   if [ "$MODE" != "-h" ]; then
-    if has_attr ".#systemConfigs.default"; then
-      echo "🖥️ system-manager switch (.#default)"
-      sudo -E "$(which nix)" run github:numtide/system-manager -- switch --flake ".#default"
-    else
-      echo "⚠️ systemConfigs.default not found; falling back to root flake."
-      sudo -E "$(which nix)" run github:numtide/system-manager -- switch --flake .
-    fi
+    echo "🖥️ system-manager switch (.#default)"
+    sudo -E "$(which nix)" run github:numtide/system-manager -- switch --flake ".#default"
   fi
 }
 
