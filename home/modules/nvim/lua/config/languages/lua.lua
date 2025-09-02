@@ -14,8 +14,9 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    opts = function(_, lsps)
-      lsps["lua_ls"] = {
+    opts = function(_, opts)
+      opts.lsps["lua_ls"] = {
+        filetypes = { "lua" },
         settings = {
           Lua = {
             callSnippet = "Replace",

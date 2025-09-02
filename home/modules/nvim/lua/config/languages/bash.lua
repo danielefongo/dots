@@ -5,7 +5,11 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    opts = function(_, lsps) lsps["bashls"] = {} end,
+    opts = function(_, lsps)
+      lsps["bashls"] = {
+        filetypes = { "sh", "bash", "zsh" },
+      }
+    end,
   },
   {
     "stevearc/conform.nvim",

@@ -6,9 +6,10 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    opts = function(_, lsps)
-      lsps["elixirls"] = {
+    opts = function(_, opts)
+      opts.lsps["elixirls"] = {
         cmd = { fn.stdpath("data") .. "/lsp/bin/" .. "elixir-ls" },
+        filetypes = { "elixir", "eelixir", "heex" },
         settings = {
           elixirLS = {
             fetchDeps = false,

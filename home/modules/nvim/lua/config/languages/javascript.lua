@@ -8,7 +8,12 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    opts = function(_, lsps) lsps["ts_ls"] = {} end,
+    opts = function(_, opts)
+      opts.lsps["ts_ls"] = {
+        filetypes = { "javascript", "typescript" },
+        settings = {},
+      }
+    end,
   },
   {
     "stevearc/conform.nvim",

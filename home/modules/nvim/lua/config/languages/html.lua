@@ -5,7 +5,12 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    opts = function(_, lsps) lsps["html"] = {} end,
+    opts = function(_, opts)
+      opts.lsps["html"] = {
+        filetypes = { "html" },
+        settings = {},
+      }
+    end,
   },
   {
     "stevearc/conform.nvim",

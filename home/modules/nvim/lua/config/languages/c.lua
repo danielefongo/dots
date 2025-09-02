@@ -8,7 +8,12 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    opts = function(_, lsps) lsps["clangd"] = { settings = {} } end,
+    opts = function(_, opts)
+      opts.lsps["clangd"] = {
+        filetypes = { "c", "cpp" },
+        settings = {},
+      }
+    end,
   },
   {
     "stevearc/conform.nvim",

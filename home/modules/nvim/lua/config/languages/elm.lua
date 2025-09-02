@@ -5,7 +5,16 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    opts = function(_, lsps) lsps["elmls"] = {} end,
+    opts = function(_, opts)
+      opts.lsps["elmls"] = {
+        filetypes = { "elm" },
+        settings = {
+          elmLS = {
+            elmTestPath = "node_modules",
+          },
+        },
+      }
+    end,
   },
   {
     "stevearc/conform.nvim",

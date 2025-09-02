@@ -5,7 +5,12 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    opts = function(_, lsps) lsps["gdscript"] = {} end,
+    opts = function(_, opts)
+      opts.lsps["gdscript"] = {
+        filetypes = { "gdscript" },
+        settings = {},
+      }
+    end,
   },
   {
     "stevearc/conform.nvim",

@@ -24,7 +24,6 @@ return {
     "j-hui/fidget.nvim",
     event = "LspAttach",
     opts = {},
-    dependencies = { "neovim/nvim-lspconfig" },
   },
   {
     "neovim/nvim-lspconfig",
@@ -34,69 +33,38 @@ return {
       { "antosha417/nvim-lsp-file-operations", config = true },
       { "mason-org/mason-lspconfig.nvim", version = "^1.0.0", config = function() end },
     },
-    opts = {},
-    config = function(_, lsps)
-      local lsp = require("lspconfig")
-      local blink = require("blink.cmp")
+    opts = { lsps = {} },
+    config = function(_, opts)
       local mason_lsp = require("mason-lspconfig")
-
-      local flags = { debounce_text_changes = 150 }
-
-      local capabilities = blink.get_lsp_capabilities(vim.lsp.protocol.make_client_capabilities())
-
-      vim.api.nvim_create_autocmd("LspAttach", {
-        group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-        callback = function(ev)
-          local client = vim.lsp.get_client_by_id(ev.data.client_id)
-          client.server_capabilities.semanticTokensProvider = nil
-          client.server_capabilities.documentFormattingProvider = false
-        end,
-      })
-
-      local function setup(lsp_name)
-        local config = lsps[lsp_name]
-
-        lsp[lsp_name].setup({
-          capabilities = capabilities,
-          flags = flags,
-          cmd = config.cmd,
-          settings = config.settings or {},
-          autostart = false,
-        })
-      end
+      local blink = require("blink.cmp")
 
       local all_lsp_servers = vim.tbl_keys(require("mason-lspconfig.mappings.server").lspconfig_to_package)
 
       local ensure_installed = {}
-      for lsp_name, _ in pairs(lsps) do
+      for lsp_name, lsp_configuration in pairs(opts.lsps) do
         if vim.tbl_contains(all_lsp_servers, lsp_name) then table.insert(ensure_installed, lsp_name) end
-        setup(lsp_name)
+        vim.lsp.config[lsp_name] = vim.tbl_deep_extend(
+          "force",
+          lsp_configuration,
+          { capabilities = blink.get_lsp_capabilities(vim.lsp.protocol.make_client_capabilities()) }
+        )
       end
 
-      local function find_lsp_for_filetype(filetype, configured_lsps)
-        if not filetype or filetype == "" then return nil end
-
-        for lsp_name, _ in pairs(configured_lsps or {}) do
-          local ok, lsp_config = pcall(function() return require("lspconfig")[lsp_name] end)
-
-          if ok and lsp_config and lsp_config.filetypes then
-            if vim.tbl_contains(lsp_config.filetypes, filetype) then return lsp_name end
-          end
-        end
-
-        return nil
-      end
+      mason_lsp.setup({ ensure_installed = ensure_installed })
 
       function _G.lsp_toggle(enabled)
         local filetype = vim.bo.filetype
-        local lsp_name = find_lsp_for_filetype(filetype, lsps)
 
-        vim.lsp.enable(lsp_name, enabled)
+        for _, lsp_configuration in pairs(opts.lsps) do
+          if lsp_configuration.lsp_custom_toggle and lsp_configuration.lsp_custom_toggle[filetype] then
+            return lsp_configuration.lsp_custom_toggle[filetype](enabled)
+          end
+        end
+
+        for lsp_name, lsp_configuration in pairs(opts.lsps) do
+          if vim.tbl_contains(lsp_configuration.filetypes or {}, filetype) then vim.lsp.enable(lsp_name, enabled) end
+        end
       end
-
-      mason_lsp.setup({
-        ensure_installed = ensure_installed,
-      })
     end,
     keys = {
       { "<leader>ce", ":lua lsp_toggle(true)<cr>", desc = "enable lsp", silent = true },
@@ -136,6 +104,16 @@ return {
     config = function(_, opts)
       require("conform").setup(opts.options)
       require("mason-conform").setup()
+
+      vim.api.nvim_create_autocmd("LspAttach", {
+        group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+        callback = function(ev)
+          local client = vim.lsp.get_client_by_id(ev.data.client_id)
+          if not client then return end
+          client.server_capabilities.semanticTokensProvider = nil
+          client.server_capabilities.documentFormattingProvider = false
+        end,
+      })
 
       vim.api.nvim_create_autocmd("BufWritePre", {
         pattern = "*",
@@ -202,5 +180,6 @@ return {
   require("config.languages.nix"),
   require("config.languages.python"),
   require("config.languages.rust"),
+  -- require("config.languages.sql"),
   require("config.languages.toml"),
 }
