@@ -5,7 +5,7 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    opts = function(_, lsps) lsps["taplo"] = {} end,
+    opts = function(_, opts) opts.lsps["taplo"] = {} end,
   },
   {
     "stevearc/conform.nvim",

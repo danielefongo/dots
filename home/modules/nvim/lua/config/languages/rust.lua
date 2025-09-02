@@ -5,8 +5,9 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    opts = function(_, lsps)
-      lsps["rust_analyzer"] = {
+    opts = function(_, opts)
+      opts.lsps["rust_analyzer"] = {
+        filetypes = { "rust" },
         settings = {
           ["rust-analyzer"] = {
             assist = {

@@ -5,6 +5,11 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    opts = function(_, lsps) lsps["dockerls"] = {} end,
+    opts = function(_, opts)
+      opts.lsps["dockerls"] = {
+        filetypes = { "dockerfile" },
+        settings = {},
+      }
+    end,
   },
 }

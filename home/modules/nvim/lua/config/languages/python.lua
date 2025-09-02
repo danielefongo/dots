@@ -5,8 +5,8 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    opts = function(_, lsps)
-      lsps["pyright"] = {
+    opts = function(_, opts)
+      opts.lsps["pyright"] = {
         settings = {
           pyright = {
             disableOrganizeImports = true,

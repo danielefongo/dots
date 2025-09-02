@@ -5,9 +5,10 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    opts = function(_, lsps)
-      lsps["nixd"] = {
+    opts = function(_, opts)
+      opts.lsps["nixd"] = {
         cmd = { "nixd" },
+        filetypes = { "nix" },
         settings = {
           nixd = {
             nixpkgs = {
