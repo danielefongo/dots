@@ -86,22 +86,22 @@ return {
       },
     },
     keys = {
-      { "<leader>cd", function() Snacks.picker.lsp_definitions() end, desc = "definitions", silent = true },
-      { "<leader>ci", function() Snacks.picker.lsp_implementations() end, desc = "implementations", silent = true },
-      { "<leader>cr", function() Snacks.picker.lsp_references() end, desc = "references", silent = true },
-      { "<leader>ct", function() Snacks.picker.lsp_type_definitions() end, desc = "type definitions", silent = true },
+      lkey("cd", function() Snacks.picker.lsp_definitions() end, "definitions"),
+      lkey("ci", function() Snacks.picker.lsp_implementations() end, "implementations"),
+      lkey("cr", function() Snacks.picker.lsp_references() end, "references"),
+      lkey("ct", function() Snacks.picker.lsp_type_definitions() end, "type definitions"),
 
-      { "<leader>gb", function() Snacks.git.blame_line() end, desc = "blame line", silent = true },
+      lkey("gb", function() Snacks.git.blame_line() end, "blame line"),
 
-      { "<leader>fb", function() Snacks.picker.lines() end, desc = "buffer text", silent = true },
-      { "<leader>fsb", function() Snacks.picker.lsp_symbols() end, desc = "buffer", silent = true },
-      { "<leader>fsw", function() Snacks.picker.lsp_workspace_symbols() end, desc = "workspace", silent = true },
-      { "<leader>fw", function() Snacks.picker.grep() end, desc = "workspace text", silent = true },
+      lkey("fb", function() Snacks.picker.lines() end, "buffer text"),
+      lkey("fsb", function() Snacks.picker.lsp_symbols() end, "buffer"),
+      lkey("fsw", function() Snacks.picker.lsp_workspace_symbols() end, "workspace"),
+      lkey("fw", function() Snacks.picker.grep() end, "workspace text"),
 
-      { "<leader>ob", function() Snacks.picker.buffers() end, desc = "buffer", silent = true },
-      { "<leader>of", function() Snacks.picker.files() end, desc = "file", silent = true },
-      { "<leader>op", function() Snacks.picker.pickers() end, desc = "pickers", silent = true },
-      { "<leader>or", function() Snacks.picker.resume() end, desc = "resume", silent = true },
+      lkey("ob", function() Snacks.picker.buffers() end, "buffer"),
+      lkey("of", function() Snacks.picker.files() end, "file"),
+      lkey("op", function() Snacks.picker.pickers() end, "pickers"),
+      lkey("or", function() Snacks.picker.resume() end, "resume"),
     },
   },
   {
@@ -119,15 +119,10 @@ return {
       },
     },
     keys = {
-      { "s", function() require("flash").jump() end, desc = "seek", mode = { "n", "x" } },
-      {
-        "S",
-        function()
-          require("flash").jump({ search = { mode = function(str) return "\\<" .. str end } })
-        end,
-        desc = "seek",
-        mode = { "n", "x" },
-      },
+      key("s", function() require("flash").jump() end, "seek", { "n", "x" }),
+      key("S", function()
+        require("flash").jump({ search = { mode = function(str) return "\\<" .. str end } })
+      end, "seek", { "n", "x" }),
     },
   },
   {
@@ -138,18 +133,18 @@ return {
       },
     },
     keys = {
-      {
-        "<leader>fr",
+      lkey(
+        "fr",
         function() require("grug-far").open({ transient = true, prefills = { paths = vim.fn.expand("%") } }) end,
-        desc = "find and replace",
-        mode = { "n", "v" },
-      },
-      {
-        "<leader>fR",
+        "find and replace",
+        { "n", "v" }
+      ),
+      lkey(
+        "fR",
         function() require("grug-far").open({ transient = true }) end,
-        desc = "find and replace (workspace)",
-        mode = { "n", "v" },
-      },
+        "find and replace (workspace)",
+        { "n", "v" }
+      ),
     },
   },
 }

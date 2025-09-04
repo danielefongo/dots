@@ -33,11 +33,11 @@ return {
       },
     },
     keys = {
-      { "<leader>gS", ":Gitsigns undo_stage_hunk<cr>", desc = "stage hunk", silent = true },
-      { "<leader>gb", ":Gitsigns blame_line<cr>", desc = "blame line", silent = true },
-      { "<leader>gh", ":Gitsigns preview_hunk<cr>", desc = "preview hunk", silent = true },
-      { "<leader>gr", ":Gitsigns reset_hunk<cr>", desc = "reset hunk", silent = true },
-      { "<leader>gs", ":Gitsigns stage_hunk<cr>", desc = "stage hunk", silent = true },
+      lkey("gS", function() vim.cmd("Gitsigns undo_stage_hunk") end, "undo stage hunk"),
+      lkey("gb", function() vim.cmd("Gitsigns blame_line") end, "blame line"),
+      lkey("gh", function() vim.cmd("Gitsigns preview_hunk") end, "preview hunk"),
+      lkey("gr", function() vim.cmd("Gitsigns reset_hunk") end, "reset hunk"),
+      lkey("gs", function() vim.cmd("Gitsigns stage_hunk") end, "stage hunk"),
     },
   },
   {
@@ -58,7 +58,7 @@ return {
       },
     },
     keys = {
-      { "<leader>gg", ":Neogit<cr>", desc = "neo", silent = true },
+      lkey("gg", function() vim.cmd("Neogit") end, "neo"),
     },
   },
 }
