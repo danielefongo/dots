@@ -1,4 +1,4 @@
-theme = require("theme")
+_G.theme = require("theme")
 
 require("utils")
 
@@ -38,7 +38,7 @@ vim.g.tmux_navigator_no_mappings = true
 require("reload_theme")
 require("autocommands")
 
-if vim.loop.fs_stat(".nvim.lua") then
+if vim.uv.fs_stat(".nvim.lua") then
   -- Example of how to load a local configuration file
   -- require("plugins")({
   --   {
