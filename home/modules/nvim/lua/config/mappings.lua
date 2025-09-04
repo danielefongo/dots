@@ -14,6 +14,7 @@ return {
 
       { "<leader>c", group = "code" },
       { "<leader>cc", group = "colors" },
+      { "<leader>cp", group = "package" },
 
       { "<leader>d", group = "diagnostic" },
 

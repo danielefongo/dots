@@ -65,6 +65,12 @@ return {
           if vim.tbl_contains(lsp_configuration.filetypes or {}, filetype) then vim.lsp.enable(lsp_name, enabled) end
         end
       end
+
+      function _G.override_config(lsp_name, config)
+        vim.lsp.config(lsp_name, vim.tbl_deep_extend("force", vim.lsp.config[lsp_name] or {}, config or {}))
+        lsp_toggle(false)
+        vim.defer_fn(function() lsp_toggle(true) end, 100)
+      end
     end,
     keys = {
       { "<leader>ce", ":lua lsp_toggle(true)<cr>", desc = "enable lsp", silent = true },
