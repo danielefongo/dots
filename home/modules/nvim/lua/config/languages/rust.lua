@@ -107,7 +107,7 @@ return {
       vim.api.nvim_create_user_command("LspRustPickPackage", pick_rust_package, {})
     end,
     keys = {
-      { "<leader>cpp", ":LspRustPickPackage<cr>", desc = "Rust: pick package", silent = true },
+      lkey("cpp", function() vim.cmd("LspRustPickPackage") end, "Rust: pick package"),
     },
   },
   {

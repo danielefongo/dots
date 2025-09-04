@@ -27,3 +27,9 @@ function _G.missing_hls()
   })
   vim.fn.setreg("z", table.concat(missing, "\n"))
 end
+
+function _G.lgroup(lhs, group) return { lhs = "<leader>" .. lhs, group = group } end
+function _G.key(lhs, rhs, desc, modes)
+  return { lhs, rhs, desc = desc, noremap = true, silent = true, mode = modes or { "n" } }
+end
+function _G.lkey(lhs, rhs, desc, modes) return key("<leader>" .. lhs, rhs, desc, modes) end

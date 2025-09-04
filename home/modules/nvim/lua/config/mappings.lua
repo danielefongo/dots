@@ -9,43 +9,42 @@ return {
   opts = {
     preset = "helix",
     spec = {
-      { "<leader>b", group = "buffer" },
-      { "<leader>bs", ":lua scratch()<cr>", desc = "scratch", silent = true },
+      lgroup("b", "buffer"),
+      lkey("bs", function() scratch() end, "scratch"),
 
-      { "<leader>c", group = "code" },
-      { "<leader>cc", group = "colors" },
-      { "<leader>cp", group = "package" },
+      lgroup("c", "code"),
+      lgroup("cc", "colors"),
+      lgroup("cp", "package"),
 
-      { "<leader>d", group = "diagnostic" },
+      lgroup("d", "diagnostic"),
 
-      { "<leader>f", group = "find" },
-      { "<leader>fs", group = "symbol" },
+      lgroup("f", "find"),
+      lgroup("fs", "symbol"),
 
-      { "<leader>g", group = "git" },
+      lgroup("g", "git"),
 
-      { "<leader>l", group = "lazy" },
-      { "<leader>lp", ":Lazy profile<cr>", desc = "profile" },
+      lgroup("l", "lazy"),
+      lkey("lp", function() vim.cmd("Lazy profile") end, "profile"),
 
-      { "<leader>o", group = "open" },
+      lgroup("o", "open"),
 
-      { "<leader>s", group = "session" },
+      lgroup("s", "session"),
 
-      { "<leader>t", group = "tab" },
+      lgroup("t", "tab"),
 
-      { "<leader>v", group = "vim" },
-      { "<leader>vq", ":qa<cr>", desc = "quit", silent = true },
+      lgroup("v", "vim"),
+      lkey("vq", function() vim.cmd("qa") end, "quit"),
 
-      { "<leader>w", "<C-w>", desc = "windows" },
+      lkey("w", "<c-w>", "window"),
 
       -- others
       {
-        mode = { "n", "v" },
-        { "<a-q>", ":lua close_win()<cr>", desc = "close buffer", silent = true },
-        { "<c-up>", "<c-y>", desc = "scroll up", silent = true },
-        { "<c-down>", "<c-e>", desc = "scroll down", silent = true },
-        { "<c-g>", "gg0vG$", desc = "select all", noremap = true, silent = true },
-        { ">", ">gv", desc = "indent right", noremap = true, silent = true },
-        { "<", "<gv", desc = "indent left", noremap = true, silent = true },
+        key("<a-q>", function() close_win() end, "close buffer", { "n", "v" }),
+        key("<c-up>", "<c-y>", "scroll up", { "n", "v" }),
+        key("<c-down>", "<c-e>", "scroll down", { "n", "v" }),
+        key("<c-g>", "gg0vG$", "select all", { "n", "v" }),
+        key(">", ">gv", "indent right", { "n", "v" }),
+        key("<", "<gv", "indent left", { "n", "v" }),
       },
     },
   },

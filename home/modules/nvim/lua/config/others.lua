@@ -9,7 +9,7 @@ return {
     "tpope/vim-commentary",
     cmd = "Commentary",
     keys = {
-      { "<leader>;", ":Commentary<cr>", desc = "comment", mode = { "n", "v" }, silent = true },
+      lkey(";", ":Commentary<cr>", "comment", { "n", "v" }),
     },
   },
   {
@@ -50,46 +50,41 @@ return {
       }
     end,
     keys = {
-      { "<leader>ccp", ":CccPick<cr>", desc = "color pick" },
-      { "<leader>cct", ":CccHighlighterToggle<cr>", desc = "color highlight toggle" },
+      lkey("ccp", function() vim.cmd("CccPick") end, "color pick"),
+      lkey("cct", function() vim.cmd("CccHighlighterToggle") end, "color highlight toggle"),
     },
   },
   { "windwp/nvim-autopairs", opts = {}, event = "InsertEnter" },
   {
     "kazhala/close-buffers.nvim",
     keys = {
-      {
-        "<leader>bH",
-        ":lua require('close_buffers').delete({ type = 'other' })<cr>",
-        desc = "close all",
-        silent = true,
-      },
-      { "<leader>bk", ":lua require('close_buffers').delete({ type = 'this' })<cr>", desc = "close", silent = true },
-      { "<leader>bK", ":lua require('close_buffers').delete({ type = 'all' })<cr>", desc = "close all", silent = true },
+      lkey("bH", function() require("close_buffers").delete({ type = "other" }) end, "close other"),
+      lkey("bk", function() require("close_buffers").delete({ type = "this" }) end, "close"),
+      lkey("bK", function() require("close_buffers").delete({ type = "all" }) end, "close all"),
     },
   },
   {
     "christoomey/vim-tmux-navigator",
     init = function() vim.g.tmux_navigator_no_mappings = 1 end,
     keys = {
-      { "<M-left>", ":TmuxNavigateLeft<cr>", desc = "left", silent = true },
-      { "<M-down>", ":TmuxNavigateDown<cr>", desc = "down", silent = true },
-      { "<M-up>", ":TmuxNavigateUp<cr>", desc = "up", silent = true },
-      { "<M-right>", ":TmuxNavigateRight<cr>", desc = "right", silent = true },
+      key("<M-left>", function() vim.cmd("TmuxNavigateLeft") end, "left"),
+      key("<M-down>", function() vim.cmd("TmuxNavigateDown") end, "down"),
+      key("<M-up>", function() vim.cmd("TmuxNavigateUp") end, "up"),
+      key("<M-right>", function() vim.cmd("TmuxNavigateRight") end, "right"),
     },
   },
   {
     "danielefongo/tile.nvim",
     opts = { horizontal = 4, vertical = 2 },
     keys = {
-      { "<c-Down>", ":lua require('tile').resize_down()<cr>", desc = "resize down", silent = true },
-      { "<c-Left>", ":lua require('tile').resize_left()<cr>", desc = "resize left", silent = true },
-      { "<c-Right>", ":lua require('tile').resize_right()<cr>", desc = "resize right", silent = true },
-      { "<c-Up>", ":lua require('tile').resize_up()<cr>", desc = "resize up", silent = true },
-      { "<s-Down>", ":lua require('tile').shift_down()<cr>", desc = "shift down", silent = true },
-      { "<s-Left>", ":lua require('tile').shift_left()<cr>", desc = "shift left", silent = true },
-      { "<s-Right>", ":lua require('tile').shift_right()<cr>", desc = "shift right", silent = true },
-      { "<s-Up>", ":lua require('tile').shift_up()<cr>", desc = "shift up", silent = true },
+      key("<c-Down>", function() require("tile").resize_down() end, "resize down"),
+      key("<c-Left>", function() require("tile").resize_left() end, "resize left"),
+      key("<c-Right>", function() require("tile").resize_right() end, "resize right"),
+      key("<c-Up>", function() require("tile").resize_up() end, "resize up"),
+      key("<s-Down>", function() require("tile").shift_down() end, "shift down"),
+      key("<s-Left>", function() require("tile").shift_left() end, "shift left"),
+      key("<s-Right>", function() require("tile").shift_right() end, "shift right"),
+      key("<s-Up>", function() require("tile").shift_up() end, "shift up"),
     },
   },
   {

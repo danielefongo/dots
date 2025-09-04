@@ -14,8 +14,8 @@ return {
       })
     end,
     keys = {
-      { "<leader>sd", ":lua require('persisted').delete()<cr>", desc = "delete", silent = true },
-      { "<leader>sl", ":lua require('persisted').load()<cr>", desc = "load", silent = true },
+      lkey("sd", function() require("persisted").delete() end, "delete"),
+      lkey("sl", function() require("persisted").load() end, "load"),
     },
   },
 }

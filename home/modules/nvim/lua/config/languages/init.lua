@@ -1,3 +1,5 @@
+local lsp = vim.lsp
+
 return {
   {
     "nvim-treesitter/nvim-treesitter",
@@ -73,19 +75,14 @@ return {
       end
     end,
     keys = {
-      { "<leader>ce", ":lua lsp_toggle(true)<cr>", desc = "enable lsp", silent = true },
-      { "<leader>cE", ":lua lsp_toggle(false)<cr>", desc = "disable lsp", silent = true },
-      { "<leader>cR", ":lua vim.lsp.buf.rename()<cr>", desc = "rename", silent = true },
-      { "<leader>ca", ":lua vim.lsp.buf.code_action()<cr>", desc = "actions", mode = { "n", "v" }, silent = true },
-      { "<leader>ch", ":lua vim.lsp.buf.hover()<cr>", desc = "signature", silent = true },
-      {
-        "<leader>cH",
-        ":lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<cr>",
-        desc = "inlay toggle",
-        silent = true,
-      },
-      { "<leader>d,", ":lua vim.diagnostic.goto_prev({ wrap = false })<cr>", desc = "previous", silent = true },
-      { "<leader>d.", ":lua vim.diagnostic.goto_next({ wrap = false })<cr>", desc = "next", silent = true },
+      lkey("ce", function() lsp_toggle(true) end, "enable lsp"),
+      lkey("cE", function() lsp_toggle(false) end, "disable lsp"),
+      lkey("cR", function() vim.lsp.buf.rename() end, "rename"),
+      lkey("ca", function() vim.lsp.buf.code_action() end, "actions", { "n", "v" }),
+      lkey("ch", function() lsp.buf.hover() end, "signature"),
+      lkey("cH", function() lsp.inlay_hint.enable(not lsp.inlay_hint.is_enabled()) end, "signature", { "n", "i" }),
+      lkey("d,", function() vim.diagnostic.jump({ count = -1, float = true }) end, "previous"),
+      lkey("d.", function() vim.diagnostic.jump({ count = 1, float = true }) end, "next"),
     },
   },
   {
@@ -127,7 +124,7 @@ return {
       })
     end,
     keys = {
-      { "<leader>cf", ":lua require('conform').format({ bufnr = 0 })<cr>", desc = "format", silent = true },
+      lkey("cf", function() require("conform").format({ bufnr = 0 }) end, "format"),
     },
   },
   {
@@ -166,8 +163,8 @@ return {
     },
     dependencies = { "nvim-tree/nvim-web-devicons" },
     keys = {
-      { "<leader>dt", ":Trouble diagnostics toggle filter.buf=0<cr>", desc = "trouble buffer", silent = true },
-      { "<leader>dT", ":Trouble diagnostics toggle<cr>", desc = "trouble workspace", silent = true },
+      lkey("dt", function() vim.cmd("Trouble diagnostics toggle filter.buf=0") end, "trouble buffer"),
+      lkey("dT", function() vim.cmd("Trouble diagnostics toggle") end, "trouble workspace"),
     },
   },
   require("config.languages.bash"),
@@ -186,6 +183,5 @@ return {
   require("config.languages.nix"),
   require("config.languages.python"),
   require("config.languages.rust"),
-  -- require("config.languages.sql"),
   require("config.languages.toml"),
 }

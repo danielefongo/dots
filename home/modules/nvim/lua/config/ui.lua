@@ -14,7 +14,7 @@ return {
       provider_selector = function() return { "treesitter", "indent" } end,
     },
     keys = {
-      { "<c-f>", "za", desc = "toggle fold", silent = true },
+      key("<c-f>", "za", "toggle fold"),
     },
   },
   {
@@ -57,12 +57,12 @@ return {
     end,
     init = function() vim.opt.laststatus = 3 end,
     keys = {
-      { "<leader>tc", ":tabnew<cr>", desc = "new", silent = true },
-      { "<leader>tq", ":tabclose<cr>", desc = "close", silent = true },
-      { "<leader>t.", ":tabnext<cr>", desc = "next", silent = true },
-      { "<leader>t,", ":tabprevious<cr>", desc = "previous", silent = true },
-      { "<leader>t>", ":tabmove +1<cr>", desc = "move right", silent = true },
-      { "<leader>t<", ":tabmove -1<cr>", desc = "move left", silent = true },
+      lkey("tc", function() vim.cmd("tabnew") end, "new"),
+      lkey("tq", function() vim.cmd("tabclose") end, "close"),
+      lkey("t.", function() vim.cmd("tabnext") end, "next"),
+      lkey("t,", function() vim.cmd("tabprevious") end, "previous"),
+      lkey("t>", function() vim.cmd("tabmove +1") end, "move right"),
+      lkey("t<", function() vim.cmd("tabmove -1") end, "move left"),
     },
   },
 }
