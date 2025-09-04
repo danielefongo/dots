@@ -1,6 +1,6 @@
-opt = vim.opt
-fn = vim.fn
-api = vim.api
+_G.opt = vim.opt
+_G.fn = vim.fn
+_G.api = vim.api
 
 local highlights = require("utils.highlights")
 

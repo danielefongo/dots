@@ -1,4 +1,4 @@
-local watcher = vim.loop.new_fs_poll()
+local watcher = vim.uv.new_fs_poll()
 
 local function load_theme()
   package.loaded["theme"] = nil
@@ -10,6 +10,8 @@ local function load_theme()
 
   return require("theme")
 end
+
+if watcher == nil then return end
 
 watcher:start(
   vim.fn.stdpath("config") .. "/lua/theme.lua",
