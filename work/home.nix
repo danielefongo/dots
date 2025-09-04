@@ -76,7 +76,6 @@
     amazon-ecr-credential-helper
     suite_py
     vault
-    codescene-cli
     nix-scripts.nix-theme
   ];
 
