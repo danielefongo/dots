@@ -71,6 +71,7 @@
     cloudflare-warp
     k9s
     kubectl
+    kubectx
     krew
     kubelogin-oidc
     amazon-ecr-credential-helper
