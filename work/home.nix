@@ -32,6 +32,7 @@
     ../home/modules/rofi
     ../home/modules/sesh
     ../home/modules/shell-utils
+    ../home/modules/thunar
     ../home/modules/tig
     ../home/modules/tmux
     ../home/modules/wallpaper

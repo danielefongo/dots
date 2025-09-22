@@ -30,6 +30,7 @@
     ./modules/rofi
     ./modules/sesh
     ./modules/shell-utils
+    ./modules/thunar
     ./modules/tig
     ./modules/tmux
     ./modules/wallpaper
