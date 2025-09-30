@@ -8,11 +8,7 @@ return {
     opts = function(_, opts)
       opts.lsps["elmls"] = {
         filetypes = { "elm" },
-        settings = {
-          elmLS = {
-            elmTestPath = "node_modules",
-          },
-        },
+        settings = {},
       }
     end,
   },
