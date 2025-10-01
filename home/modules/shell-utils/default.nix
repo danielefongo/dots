@@ -18,6 +18,7 @@
     tree
     xclip
     zoxide
+    rip2
   ];
 
   programs.direnv = {

@@ -72,5 +72,10 @@ bindkey '^[s' s
 github = "zdharma-continuum/fast-syntax-highlighting"
 apply = ["defer"]
 
+[plugins.rip2]
+inline = '''
+alias rm="echo use rip instead."
+'''
+
 [plugins.compinit]
 inline = 'autoload -Uz compinit && compinit'
