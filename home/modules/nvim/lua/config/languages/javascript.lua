@@ -10,7 +10,12 @@ return {
     "neovim/nvim-lspconfig",
     opts = function(_, opts)
       opts.lsps["ts_ls"] = {
-        filetypes = { "javascript", "typescript" },
+        filetypes = {
+          "javascript",
+          "javascriptreact",
+          "typescript",
+          "typescriptreact",
+        },
         settings = {},
       }
     end,
