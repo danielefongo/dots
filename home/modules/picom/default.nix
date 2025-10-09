@@ -17,7 +17,7 @@
       };
 
       Service = {
-        ExecStart = "${pkgs.picom}/bin/picom";
+        ExecStart = "${pkgs.picom}/bin/picom --backend xrender --vsync";
         Restart = "on-failure";
         RestartSec = 2;
       };
