@@ -1,7 +1,8 @@
 .devtools-tabbar,
 #nav-bar,
-#PersonalToolbar {
-  background-color: var(--main-bg-color) !important;
+#PersonalToolbar,
+#TabsToolbar {
+  background-color: {{ colors.background_alt1 }} !important;
 }
 
 .browserContainer {
