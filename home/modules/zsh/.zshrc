@@ -28,6 +28,7 @@ setopt hist_ignore_all_dups
 setopt hist_find_no_dups
 setopt hist_expire_dups_first
 setopt hist_verify
+setopt hist_reduce_blanks
 
 # custom zshrc
 if [ -f ~/.custom_zshrc ]; then
