@@ -1,7 +1,7 @@
 const { exec } = require("child_process");
 
 module.exports = {
-  match: [{ pattern: ".xbindkeysrc", to: "xbindkeys" }],
+  match: [{ pattern: "xbindkeysrc", to: "xbindkeys" }],
   apply: (_) => {
     exec("systemctl --user is-active xbindkeys.service", (_, stdout) => {
       if (stdout.trim() === "active") {

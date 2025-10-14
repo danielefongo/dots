@@ -6,7 +6,7 @@
     xbindkeys
   ];
 
-  home.file.".xbindkeysrc".source = lib.outLink "xbindkeys/.xbindkeysrc";
+  home.file.".xbindkeysrc".source = lib.outLink "xbindkeys/xbindkeysrc";
 
   systemd.user.services = {
     xbindkeys = {

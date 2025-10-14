@@ -7,6 +7,6 @@
     ruby # for scm_breeze
   ];
 
-  home.file.".zshrc".source = lib.outLink "zsh/.zshrc";
+  home.file.".zshrc".source = lib.outLink "zsh/zshrc";
   xdg.configFile."sheldon".source = lib.outLink "sheldon";
 }
