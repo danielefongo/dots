@@ -3,11 +3,11 @@ module.exports = {
     contrast: 0,
     zen: false,
     focus: 6,
-    font: "FiraCode Nerd Font",
+    font: "JetBrainsMono Nerd Font",
     gap: 0,
     round: 0,
     border: 4,
-    fontSize: 11,
+    fontSize: 12,
     transparency: 0,
     colors: {
       background: '{{ "#1f2430" | contrasted(contrast) }}',
