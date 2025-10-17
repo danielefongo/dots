@@ -36,6 +36,24 @@ in
     wantedBy = [ "multi-user.target" ];
   };
 
+  systemd.services.bigswap = {
+    enable = true;
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.writeShellScript "bigswap" ''
+        swapfile="/bigswap"
+        if [[ ! -f $swapfile ]]; then
+          ${pkgs.coreutils}/bin/dd if=/dev/zero of=$swapfile bs=1024 count=32GB
+          ${pkgs.util-linux}/bin/mkswap $swapfile
+          ${pkgs.coreutils}/bin/chmod 600 $swapfile
+        fi
+        ${pkgs.util-linux}/bin/swapon $swapfile
+      ''}";
+    };
+    description = "Ensures 32GB swap file is created and enabled";
+    wantedBy = [ "multi-user.target" ];
+  };
+
   environment.etc."pam.d/i3lock".text = ''
     auth       required   pam_unix.so
     account    required   pam_unix.so
