@@ -193,6 +193,8 @@ local lush = function()
       sym("@module")({ Module }),
       sym("@module.builtin")({ Module }),
 
+      LspInlayHint({ fg = colors.grey4 }),
+
       DiagnosticError({ Error }),
       DiagnosticWarn({ Warning }),
       DiagnosticInfo({ Information }),
