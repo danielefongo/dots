@@ -73,18 +73,10 @@ format-warn-prefix = "󰘚 "
 format-warn-prefix-foreground = {{ theme.error }}
 
 [module/memory]
-type = internal/memory
-interval = 2
-warn-percentage = 90
-label = %percentage_used%%
-
-format = <label>
-format-prefix = " "
-format-prefix-foreground = {{ theme.primary }}
-
-format-warn = <label-warn>
-format-warn-prefix = " "
-format-warn-prefix-foreground = {{ theme.error }}
+type = custom/script
+interval = 3
+exec = mem-usage 90 "%{F{{ theme.primary }}} %{F-}<pct>%" "%{F{{ theme.error }}} %{F-}<pct>%"
+label = %output%
 
 [module/wlan]
 type = internal/network
