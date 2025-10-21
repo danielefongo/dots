@@ -1,3 +1,3 @@
 module.exports = {
-  match: [{ pattern: "**/*", to: "rofi" }],
+  match: [{ pattern: "config/**", to: "rofi" }],
 };
