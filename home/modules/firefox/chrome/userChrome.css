@@ -2,7 +2,7 @@
 #nav-bar,
 #PersonalToolbar,
 #TabsToolbar {
-  background-color: {{ colors.background_alt1 }} !important;
+  background-color: var(--background-color-canvas) !important;
 }
 
 .browserContainer {
