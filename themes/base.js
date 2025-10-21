@@ -1,4 +1,5 @@
 module.exports = {
+  name: "Base",
   data: {
     contrast: 0,
     zen: false,

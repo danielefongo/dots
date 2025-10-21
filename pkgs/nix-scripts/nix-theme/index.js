@@ -8,10 +8,29 @@ const templater = require('./template.js')
 const DotBlock = require('./dotblock.js')
 
 const watching = process.argv[2] == 'watch'
-const themeFile = path.resolve(process.argv[3])
+const baseThemeFile = path.resolve(process.argv[3])
 const dotsPath = path.resolve(process.argv[4])
 const outputPath = path.resolve(process.argv[5])
 const dotsMatch = path.join(dotsPath, '**/*.dots.js')
+const configPath = path.resolve(xdgConfigPath())
+
+function xdgConfigPath () {
+  if (process.env.XDG_CONFIG_HOME) {
+    return path.join(process.env.XDG_CONFIG_HOME, 'nix-theme.json')
+  }
+  return path.join(process.env.HOME, '.config', 'nix-theme.json')
+}
+
+function currentThemeFile () {
+  if (fs.existsSync(configPath)) {
+    const configContent = fs.readFileSync(configPath, 'utf8')
+    const config = JSON.parse(configContent)
+    if (config.themeFile) {
+      return path.resolve(config.themeFile)
+    }
+  }
+  return baseThemeFile
+}
 
 function removeFile (toFile) {
   if (fs.existsSync(toFile)) {
@@ -37,6 +56,7 @@ function writeFile (file, toFile, filter) {
     ? fs.readFileSync(destinationFile, 'utf8')
     : {}
 
+  let themeFile = currentThemeFile()
   delete require.cache[require.resolve(themeFile)]
   const template = require(themeFile)
 
@@ -137,9 +157,10 @@ const dotBlock = new DotBlock().on({
     }
 
     if (watching) {
+      const resolvedThemeFile = currentThemeFile();
       dotBlock.on({
-        match: themeFile,
-        path: themeFile,
+        match: resolvedThemeFile,
+        path: path.dirname(resolvedThemeFile),
         init: (file) => file,
         action: () => {
           for (const match of dotData.match) {
