@@ -12,11 +12,13 @@ local base_config = {
       },
       check = {
         features = "all",
+        workspace = false,
         overrideCommand = { "cargo", "check", "--message-format=json", "--tests" },
       },
       diagnostics = {
         disabled = { "inactive-code" },
       },
+      numThreads = 8,
     },
   },
 }
