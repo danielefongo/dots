@@ -46,6 +46,7 @@ module.exports = {
       special: "{{ colors.cyan }}",
       statement: "{{ colors.orange }}",
       function: "{{ colors.blue }}",
+      function_call: "{{ colors.blue }}",
       variable: "{{ colors.foreground }}",
       include: "{{ colors.red }}",
       keyword: "{{ colors.red }}",
