@@ -15,12 +15,26 @@ get_packages() {
   if ! out=$(nix eval --no-warn-dirty --json "$flake_ref#$attr_path" \
     --apply '
       ps:
-        builtins.map (p:
-          let parsed = builtins.parseDrvName p.name;
-              pname  = if p ? pname then p.pname else parsed.name;
-              ver    = if p ? version then p.version else (parsed.version or "");
-          in { inherit pname ver; }
-        ) ps
+        let
+          cleaned =
+            builtins.filter
+              (p: (p ? pname) || (p ? name) || (p ? meta && p.meta ? name))
+              ps;
+        in
+          builtins.map (p:
+            let
+              pname =
+                if p ? pname then p.pname
+                else if p ? name then (builtins.parseDrvName p.name).name
+                else if p ? meta && p.meta ? name then p.meta.name
+                else "(unknown)";
+
+              ver =
+                if p ? version then p.version
+                else if p ? name then ((builtins.parseDrvName p.name).version or "")
+                else "";
+            in { inherit pname ver; }
+          ) cleaned
     '); then
     echo -e "${RED}✗ nix eval failed for $flake_ref#$attr_path${NC}" >&2
     return 1
