@@ -7,6 +7,9 @@
 "playerctl previous"
     XF86AudioPrev
 
+"playerctl --player spotify play-pause"
+    Shift + XF86AudioPlay
+
 "playerctl --player spotify volume 0.05-"
     Shift + XF86AudioLowerVolume
 
