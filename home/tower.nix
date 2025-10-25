@@ -8,6 +8,7 @@
     ./modules/alacritty
     ./modules/apps
     ./modules/btop
+    ./modules/copyq
     ./modules/discord
     ./modules/docker
     ./modules/dunst

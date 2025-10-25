@@ -17,6 +17,7 @@ client.urgent {{ colors.background }} {{ theme.error }} {{ colors.background }} 
 hide_edge_borders none
 for_window [class=".*"] border pixel {{ border }}
 for_window [title="Screenshare"] floating enable
+for_window [class="copyq"] floating enable, resize set 1000 600, move position center
 
 # gaps
 {% if not zen %}
@@ -46,6 +47,9 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 # menu
 bindsym $mod+d exec rofi -show combi
 bindsym $mod+t exec rofi-theme
+
+# clipboard
+bindsym $mod+v exec copyq toggle
 
 # terminal
 bindsym $mod+Return exec alacritty

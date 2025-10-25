@@ -12,6 +12,7 @@
     ../home/modules/alacritty
     ../home/modules/apps
     ../home/modules/btop
+    ../home/modules/copyq
     ../home/modules/discord
     ../home/modules/docker
     ../home/modules/dunst
