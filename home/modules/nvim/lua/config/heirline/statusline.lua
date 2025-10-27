@@ -168,7 +168,7 @@ local Diagnostics = {
   Space,
 }
 
-local Ruler = { provider = "%l/%L" }
+local Ruler = { provider = "%7(%l/%L%): %c" }
 
 return {
   Space,
