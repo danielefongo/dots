@@ -5,7 +5,6 @@
 
 {
   imports = [
-    ./modules/alacritty
     ./modules/apps
     ./modules/btop
     ./modules/copyq
@@ -20,6 +19,7 @@
     ./modules/git
     ./modules/gtk
     ./modules/i3
+    ./modules/kitty
     ./modules/nix
     ./modules/nix-theme
     ./modules/nvim

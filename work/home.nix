@@ -9,7 +9,6 @@
 
 {
   imports = [
-    ../home/modules/alacritty
     ../home/modules/apps
     ../home/modules/btop
     ../home/modules/copyq
@@ -23,6 +22,7 @@
     ../home/modules/git
     ../home/modules/gtk
     ../home/modules/i3
+    ../home/modules/kitty
     ../home/modules/nix
     ../home/modules/nvim
     ../home/modules/picom
@@ -52,7 +52,7 @@
 
   nixpkgs.overlays = [
     (final: prev: {
-      alacritty = config.lib.nixGL.wrap prev.alacritty;
+      kitty = config.lib.nixGL.wrap prev.kitty;
       telegram-desktop = config.lib.nixGL.wrap prev.telegram-desktop;
       whatsapp-for-linux = config.lib.nixGL.wrap prev.whatsapp-for-linux;
       picom = config.lib.nixGL.wrap prev.picom;
