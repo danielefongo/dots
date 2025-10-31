@@ -83,6 +83,11 @@ return {
       lkey("cH", function() lsp.inlay_hint.enable(not lsp.inlay_hint.is_enabled()) end, "signature", { "n", "i" }),
       lkey("d,", function() vim.diagnostic.jump({ count = -1, float = true }) end, "previous"),
       lkey("d.", function() vim.diagnostic.jump({ count = 1, float = true }) end, "next"),
+      lkey("dh", function() vim.diagnostic.open_float() end, "help"),
+      lkey("ds", function()
+        local virtual_text = not vim.diagnostic.config().virtual_text
+        vim.diagnostic.config({ severity_sort = true, virtual_text = virtual_text })
+      end, "show"),
     },
   },
   {
