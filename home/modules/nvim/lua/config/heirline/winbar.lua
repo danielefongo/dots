@@ -1,5 +1,3 @@
-local utils = require("heirline.utils")
-
 local function make_navic_flexible_el(count)
   return {
     provider = function(self)

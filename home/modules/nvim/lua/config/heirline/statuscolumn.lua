@@ -101,44 +101,47 @@ local GitSigns = {
 
 local DiagnosticSigns = {
   init = function(self)
-    self.has_sign = false
-    self.highlight = nil
+    local lnum = vim.v.lnum - 1
+    local diags = vim.diagnostic.get(0, { lnum = lnum })
+
+    self.has_sign = #diags > 0
     self.severity = nil
 
-    local marks = get_marks_for_namespace("/diagnostic/signs")
-
-    if #marks > 0 then
-      self.has_sign = true
-      self.highlight = marks[1].highlight
-
-      local highlight = self.highlight
-      if highlight:match("Error") then
-        self.severity = "Error"
-      elseif highlight:match("Warn") then
-        self.severity = "Warn"
-      elseif highlight:match("Info") then
-        self.severity = "Info"
-      elseif highlight:match("Hint") then
-        self.severity = "Hint"
+    if self.has_sign then
+      local best = math.huge
+      for _, d in ipairs(diags) do
+        if d.severity and d.severity < best then best = d.severity end
       end
+      self.severity = best
     end
   end,
+
   provider = function(self)
     if not self.has_sign then return "" end
-
-    if self.severity == "Error" then
+    local s = vim.diagnostic.severity
+    if self.severity == s.ERROR then
       return " 󰅚"
-    elseif self.severity == "Warn" then
+    elseif self.severity == s.WARN then
       return " 󰀪"
-    elseif self.severity == "Info" then
+    elseif self.severity == s.INFO then
       return " 󰋽"
-    elseif self.severity == "Hint" then
+    elseif self.severity == s.HINT then
       return " 󰌶"
     else
       return "?"
     end
   end,
-  hl = function(self) return self.highlight or "StatusColumnBorder" end,
+
+  hl = function(self)
+    local s = vim.diagnostic.severity
+    local map = {
+      [s.ERROR] = "DiagnosticError",
+      [s.WARN] = "DiagnosticWarn",
+      [s.INFO] = "DiagnosticInfo",
+      [s.HINT] = "DiagnosticHint",
+    }
+    return map[self.severity] or "StatusColumnBorder"
+  end,
 }
 
 return {
