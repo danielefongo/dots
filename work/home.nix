@@ -37,7 +37,6 @@
     ../home/modules/tig
     ../home/modules/tmux
     ../home/modules/wallpaper
-    ../home/modules/webapps
     ../home/modules/xbindkeys
     ../home/modules/xsettingsd
     ../home/modules/zsh
