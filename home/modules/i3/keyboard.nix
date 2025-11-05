@@ -5,11 +5,11 @@
     i3-keyboard = {
       Unit = {
         Description = "i3 keyboard speed setter";
-        PartOf = [ "i3-session.target" ];
+        PartOf = [ "x11-session.target" ];
       };
 
       Install = {
-        WantedBy = [ "i3-session.target" ];
+        WantedBy = [ "x11-session.target" ];
       };
 
       Service = {

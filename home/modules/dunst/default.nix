@@ -17,11 +17,11 @@ in
     dunst = {
       Unit = {
         Description = "Dunst";
-        PartOf = [ "i3-session.target" ];
+        PartOf = [ "x11-session.target" ];
       };
 
       Install = {
-        WantedBy = [ "i3-session.target" ];
+        WantedBy = [ "x11-session.target" ];
       };
 
       Service = {

@@ -14,7 +14,7 @@
   xdg.configFile."i3".source = lib.outLink "i3";
 
   systemd.user.targets = {
-    i3-session = {
+    x11-session = {
       Unit = {
         Description = "i3 session";
         BindsTo = "graphical-session.target";
