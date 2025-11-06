@@ -19,6 +19,7 @@
       file
       cargo # mason
       entr
+      gh # snacks integration
     ];
   };
 

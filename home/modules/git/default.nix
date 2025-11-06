@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ pkgs, lib, ... }:
 
 {
   programs.git = {
@@ -21,4 +21,8 @@
       };
     };
   };
+
+  home.packages = with pkgs; [
+    gh
+  ];
 }
