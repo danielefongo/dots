@@ -29,7 +29,12 @@ function _G.missing_hls()
 end
 
 function _G.lgroup(lhs, group) return { lhs = "<leader>" .. lhs, group = group } end
-function _G.key(lhs, rhs, desc, modes)
-  return { lhs, rhs, desc = desc, noremap = true, silent = true, mode = modes or { "n" } }
+function _G.key(lhs, rhs, desc, modes, opts)
+  opts = opts or {}
+  opts.desc = desc
+  opts.mode = modes or { "n" }
+  opts.noremap = opts.remap ~= true
+  opts.silent = opts.silent ~= false
+  return vim.tbl_extend("force", { lhs, rhs }, opts)
 end
 function _G.lkey(lhs, rhs, desc, modes) return key("<leader>" .. lhs, rhs, desc, modes) end

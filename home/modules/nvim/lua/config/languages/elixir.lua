@@ -1,5 +1,4 @@
 return {
-  { "elixir-editors/vim-elixir", event = "LspAttach" },
   {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts) table.insert(opts.ensure_installed, "elixir") end,

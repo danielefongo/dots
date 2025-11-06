@@ -24,7 +24,7 @@ return {
       lgroup("g", "git"),
 
       lgroup("l", "lazy"),
-      lkey("lp", function() vim.cmd("Lazy profile") end, "profile"),
+      lkey("lp", function() require("lazy").profile() end, "profile"),
 
       lgroup("o", "open"),
 
@@ -45,6 +45,9 @@ return {
         key("<c-g>", "gg0vG$", "select all", { "n", "v" }),
         key(">", ">gv", "indent right", { "n", "v" }),
         key("<", "<gv", "indent left", { "n", "v" }),
+
+        key(";", "gcc", "comment", { "n" }, { remap = true }),
+        key(";", "gc", "comment", { "v" }, { remap = true }),
       },
     },
   },

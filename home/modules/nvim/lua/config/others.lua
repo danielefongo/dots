@@ -6,21 +6,7 @@ return {
     event = "BufReadPost",
   },
   {
-    "tpope/vim-commentary",
-    cmd = "Commentary",
-    keys = {
-      lkey(";", ":Commentary<cr>", "comment", { "n", "v" }),
-    },
-  },
-  {
-    "folke/todo-comments.nvim",
-    event = "BufReadPost",
-    dependencies = { { "nvim-lua/plenary.nvim" } },
-    opts = true,
-  },
-  {
     "uga-rosa/ccc.nvim",
-    event = "BufReadPost",
     opts = function()
       local ccc = require("ccc")
       return {
@@ -56,11 +42,14 @@ return {
   },
   { "windwp/nvim-autopairs", opts = {}, event = "InsertEnter" },
   {
-    "kazhala/close-buffers.nvim",
+    "folke/snacks.nvim",
     keys = {
-      lkey("bH", function() require("close_buffers").delete({ type = "other" }) end, "close other"),
-      lkey("bk", function() require("close_buffers").delete({ type = "this" }) end, "close"),
-      lkey("bK", function() require("close_buffers").delete({ type = "all" }) end, "close all"),
+      lkey("bH", function()
+        local current = vim.api.nvim_get_current_buf()
+        Snacks.bufdelete.other()
+      end, "close others"),
+      lkey("bk", function() Snacks.bufdelete.delete(0) end, "close"),
+      lkey("bK", function() Snacks.bufdelete.all() end, "close all"),
     },
   },
   {
@@ -89,7 +78,7 @@ return {
   },
   {
     "codethread/qmk.nvim",
-    event = "BufReadPost",
+    ft = { "c" },
     opts = {
       name = "LAYOUT",
       layout = {
