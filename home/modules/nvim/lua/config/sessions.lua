@@ -5,7 +5,16 @@ return {
     opts = {
       autostart = true,
       autoload = false,
-      should_save = function() return not vim.tbl_contains({ "gitcommit", "gitrebase", "lazy" }, vim.bo.filetype) end,
+      should_save = function()
+        if vim.tbl_contains({ "gitcommit", "gitrebase", "lazy" }, vim.bo.filetype) then return false end
+
+        local buffers = vim.api.nvim_list_bufs()
+        for _, buf in ipairs(buffers) do
+          if vim.api.nvim_buf_is_loaded(buf) and vim.api.nvim_buf_get_name(buf) ~= "" then return true end
+        end
+
+        return false
+      end,
     },
     init = function()
       vim.api.nvim_create_autocmd("User", {
