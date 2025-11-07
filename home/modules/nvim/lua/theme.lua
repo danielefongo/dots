@@ -111,7 +111,7 @@ local lush = function()
       CursorColumn({ SignColumn }),
       LineNr({ fg = colors.grey2 }),
       Cursor({ bg = colors.foreground, fg = colors.background }),
-      CursorLine({ bg = colors.grey1 }),
+      CursorLine({ bg = colors.background_alt2 }),
       CursorLineNr({ bg = colors.background, gui = "bold" }),
       File({ fg = colors.foreground }),
       Directory({ fg = colors.cyan }),
@@ -293,7 +293,7 @@ local heirline = {
 
   -- mode
   mode_normal = colors.green,
-  mode_insert = colors.cyan,
+  mode_insert = colors.blue,
   mode_visual = colors.magenta,
   mode_command = colors.orange,
   mode_terminal = colors.red,

@@ -1,3 +1,5 @@
+local modes = require("config.heirline.modes")
+
 local function get_marks_for_namespace(namespace_pattern)
   local lnum = vim.v.lnum - 1
   local result = {}
@@ -29,6 +31,7 @@ local function fold_opened(line) return vim.fn.foldclosed(line or vim.v.lnum) ==
 local Space = { provider = " " }
 
 local LineNumber = {
+  static = modes,
   { provider = "%=" },
   {
     provider = function()
@@ -41,10 +44,13 @@ local LineNumber = {
         return (#lnum == 1 and "  " or " ") .. lnum
       end
     end,
-    hl = function()
-      return {
-        fg = vim.v.lnum == vim.fn.getcurpos()[2] and "col_focused_number" or "col_number",
-      }
+    hl = function(self)
+      local mode = vim.fn.mode(1):sub(1, 1)
+      if vim.v.lnum == vim.fn.getcurpos()[2] then
+        return { fg = self.mode_colors[mode], bold = true }
+      else
+        return { fg = "col_number", bold = false }
+      end
     end,
   },
   { provider = " " },
@@ -77,25 +83,27 @@ local GitSigns = {
       self.highlight = marks[1].highlight
     end
   end,
+
   provider = function(self)
     if not self.has_sign then return " " end
 
     local highlight = self.highlight or ""
 
     if highlight:match("Add") then
-      return "▎"
+      return "▌"
     elseif highlight:match("Change") then
-      return "▎"
+      return "▌"
     elseif highlight:match("Delete") then
-      return "▁"
+      return "▄"
     elseif highlight:match("TopDelete") then
-      return "▔"
+      return "▀"
     elseif highlight:match("ChangeDelete") then
-      return "▎"
+      return "▌"
     else
-      return "▎"
+      return "▌"
     end
   end,
+
   hl = function(self) return self.highlight or "StatusColumnBorder" end,
 }
 
