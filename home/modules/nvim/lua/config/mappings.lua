@@ -48,6 +48,13 @@ return {
 
         key(";", "gcc", "comment", { "n" }, { remap = true }),
         key(";", "gc", "comment", { "v" }, { remap = true }),
+
+        key("*", function()
+          local save_cursor = vim.fn.getpos(".")
+          vim.fn.setreg("/", "\\<" .. vim.fn.expand("<cword>") .. "\\>")
+          vim.fn.setpos(".", save_cursor)
+          vim.cmd("set hlsearch")
+        end, "search", { "n", "v" }, { noremap = true }),
       },
     },
   },
