@@ -4,7 +4,7 @@ let
   wallpaper = pkgs.writeShellScriptBin "wallpaper" ''
     DESTINATION=${user_data.dots_path}/output/wallpaper/background.svg
 
-    ${pkgs.feh}/bin/feh --bg-scale "${user_data.dots_path}/output/wallpaper/background.svg"
+    ${pkgs.feh}/bin/feh --bg-center "${user_data.dots_path}/output/wallpaper/background.svg"
   '';
 in
 {
