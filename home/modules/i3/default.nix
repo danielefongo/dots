@@ -8,7 +8,7 @@
 
   home.packages = with pkgs; [
     i3
-    i3lock-fancy-rapid
+    i3lock-color
   ];
 
   xdg.configFile."i3".source = lib.outLink "i3";

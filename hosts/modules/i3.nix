@@ -13,7 +13,7 @@
 
   programs.i3lock = {
     enable = true;
-    package = pkgs.i3lock-fancy-rapid;
+    package = pkgs.i3lock-color;
   };
 
   services.gnome.gnome-keyring.enable = lib.mkDefault true;

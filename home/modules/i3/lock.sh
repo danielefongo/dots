@@ -1,0 +1,30 @@
+i3lock \
+  -i $DOTS_PATH/output/wallpaper/background.png \
+  --centered \
+  --clock \
+  --radius="16" \
+  --ring-width="5" \
+  --inside-color="{{ colors.background_alt1 | nohash }}" \
+  --ring-color="{{ theme.primary | nohash }}" \
+  --insidever-color="{{ colors.background_alt1 | nohash }}" \
+  --ringver-color="{{ theme.secondary | nohash }}" \
+  --insidewrong-color="{{ colors.background_alt1 | nohash }}" \
+  --ringwrong-color="{{ theme.error | stronger | nohash }}" \
+  --line-color="{{ colors.background_alt1 | nohash }}" \
+  --keyhl-color="{{ theme.secondary | nohash }}" \
+  --bshl-color="{{ theme.error | nohash }}" \
+  --verif-text="" \
+  --wrong-text="" \
+  --noinput-text="" \
+  --verif-font="{{ font }}" \
+  --wrong-font="{{ font }}" \
+  --ind-pos="x+w/2:y+h-r*2" \
+  --time-pos="x+w/2:y+r*2" \
+  --time-color="{{ theme.primary | nohash }}" \
+  --time-font="{{ font }}" \
+  --time-size="32" \
+  --date-pos="tx:ty+18" \
+  --date-color="{{ theme.primary | nohash }}" \
+  --date-font="{{ font }}" \
+  --date-size="12" \
+  --nofork

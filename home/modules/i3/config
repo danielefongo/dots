@@ -112,7 +112,7 @@ bindsym $mod+$shift+period move workspace to output next
 # i3
 set $mode_system System (l) lock, (e) logout, (r) reload, ($shift+r) reboot, ($shift+s) shutdown
 mode "$mode_system" {
-  bindsym l exec --no-startup-id i3lock-fancy-rapid 5 3, mode "default"
+  bindsym l exec --no-startup-id i3block, mode "default"
   bindsym e exec --no-startup-id "systemctl --user stop x11-session.target && sleep 2 && i3-msg exit"
   bindsym r exec --no-startup-id "systemctl --user restart x11-session.target && i3 reload", mode "default"
   bindsym $shift+r exec --no-startup-id shutdown now -r, mode "default"

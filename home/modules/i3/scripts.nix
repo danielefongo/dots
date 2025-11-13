@@ -1,4 +1,9 @@
-{ pkgs, ... }:
+{
+  user_data,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   i3resize = pkgs.writeShellScriptBin "i3resize" ''
@@ -28,10 +33,17 @@ let
 
     ${pkgs.xdotool}/bin/xdotool mousemove $X $Y
   '';
+
+  i3block = pkgs.writeShellScriptBin "i3block" ''
+    #!${pkgs.runtimeShell}
+    export DOTS_PATH="${user_data.dots_path}"
+    bash ${lib.outLink "i3/lock.sh"}
+  '';
 in
 {
   home.packages = [
     i3resize
     i3restart
+    i3block
   ];
 }

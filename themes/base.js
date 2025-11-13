@@ -85,5 +85,6 @@ module.exports = {
       const gradient = ((100 - 100 / (maxStep - 1)) / (maxStep - 1)) * step;
       return tc.mix(color, secondColor, gradient).toHexString();
     },
+    nohash: (_tc, color) => color.replace("#", ""),
   },
 };
