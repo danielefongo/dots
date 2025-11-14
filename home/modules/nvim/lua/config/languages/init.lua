@@ -23,11 +23,6 @@ return {
     main = "nvim-treesitter.configs",
   },
   {
-    "j-hui/fidget.nvim",
-    event = "LspAttach",
-    opts = {},
-  },
-  {
     "neovim/nvim-lspconfig",
     dependencies = {
       "mason-org/mason.nvim",

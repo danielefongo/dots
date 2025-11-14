@@ -298,6 +298,9 @@ local heirline = {
   mode_command = colors.orange,
   mode_terminal = colors.red,
 
+  -- lsp
+  lsp_progress = colors.grey6,
+
   -- diagnostics
   diagnostic_error = colors.strong_red,
   diagnostic_warn = colors.orange,

@@ -1,5 +1,25 @@
 return {
   {
+    "linrongbin16/lsp-progress.nvim",
+    opts = {
+      series_format = function(title, _, percentage, done)
+        local builder = {}
+        if title and title ~= "" then table.insert(builder, title) end
+        if percentage then table.insert(builder, string.format("%.0f%%", percentage)) end
+        return { msg = table.concat(builder, " "), done = done }
+      end,
+      client_format = function(_, _, series_messages)
+        if #series_messages == 0 then return end
+        local builder = {}
+        for _, series in ipairs(series_messages) do
+          if series.msg ~= "" then table.insert(builder, series.msg) end
+        end
+        if #builder == 0 then return nil end
+        return table.concat(builder, " | ")
+      end,
+    },
+  },
+  {
     "rktjmp/lush.nvim",
     lazy = false,
     config = function() require("lush")(require("theme").lush()) end,
@@ -37,6 +57,7 @@ return {
     dependencies = {
       "SmiteshP/nvim-navic",
       "kevinhwang91/nvim-ufo",
+      "linrongbin16/lsp-progress.nvim",
     },
     config = function()
       require("heirline").setup({

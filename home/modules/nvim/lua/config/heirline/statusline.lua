@@ -62,7 +62,7 @@ local FileType = {
   Space,
 }
 
-local Diagnostics = {
+local LspDiagnostics = {
   static = {
     error_icon = "󰅚 ",
     warn_icon = "󰀪 ",
@@ -119,13 +119,28 @@ local Diagnostics = {
 
 local Ruler = { provider = "%7(%l/%L%): %c" }
 
+local LspProgress = {
+  condition = function() return require("lsp-progress").progress() ~= "" end,
+  hl = { fg = "lsp_progress", bg = "background_dark" },
+  {
+    provider = function() return require("lsp-progress").progress() end,
+    update = {
+      "User",
+      pattern = "LspProgressStatusUpdated",
+      callback = vim.schedule_wrap(function() vim.cmd("redrawstatus") end),
+    },
+  },
+  Space,
+}
+
 return {
   Space,
   ViMode,
   FileNameWrapper,
   GitBranch,
   Align,
-  Diagnostics,
+  LspProgress,
+  LspDiagnostics,
   FileType,
   Ruler,
   Space,
