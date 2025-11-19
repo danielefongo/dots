@@ -10,9 +10,9 @@ set $ws4 "4"
 
 # window interface
 client.focused {{ colors.background }} {{ theme.primary }} {{ colors.background }} {{ theme.secondary }}
-client.focused_inactive {{ colors.background }} {{ colors.grey1 }} {{ colors.grey9 }} {{ theme.secondary }}
-client.unfocused {{ colors.background }} {{ colors.grey1 }} {{ colors.grey9 }} {{ colors.green }}
-client.urgent {{ colors.background }} {{ theme.error }} {{ colors.background }} {{ colors.green }}
+client.focused_inactive {{ colors.background_alt1 }} {{ colors.background_alt2 }} {{ theme.primary }} {{ theme.secondary }}
+client.unfocused {{ colors.background_alt1 }} {{ colors.background_alt2 }} {{ colors.grey9 }} {{ colors.green }}
+client.urgent {{ colors.background_alt1 }} {{ theme.error }} {{ colors.background }} {{ colors.green }}
 
 hide_edge_borders none
 for_window [class=".*"] border pixel {{ border }}
