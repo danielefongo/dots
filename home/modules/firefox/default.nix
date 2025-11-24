@@ -19,6 +19,7 @@
           ublock-origin
           vimium
           videospeed
+          libredirect
         ];
       };
     };

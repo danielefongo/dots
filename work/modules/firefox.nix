@@ -1,6 +1,5 @@
 { pkgs, ... }:
 let
-
   commonAddons = with pkgs.firefox-addons; [
     onepassword-password-manager
     refined-github
@@ -8,6 +7,7 @@ let
     ublock-origin
     vimium
     videospeed
+    libredirect
   ];
 in
 {
