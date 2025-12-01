@@ -120,7 +120,13 @@ local LspDiagnostics = {
 local Ruler = { provider = "%7(%l/%L%): %c" }
 
 local LspProgress = {
-  condition = function() return require("lsp-progress").progress() ~= "" end,
+  condition = function()
+    local clients = vim.lsp.get_clients({ bufnr = 0 })
+    local real_clients = vim.tbl_filter(function(c) return not c.name:match("copilot") end, clients)
+
+    return #real_clients > 0 and require("lsp-progress").progress() ~= ""
+  end,
+
   hl = { fg = "lsp_progress", bg = "background_dark" },
   {
     provider = function() return require("lsp-progress").progress() end,
