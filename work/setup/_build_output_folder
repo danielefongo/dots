@@ -4,5 +4,5 @@ if [ "$1" == '-d' ]; then
   sudo rm -rf "$WORK_DIR/../output"
   echo "Deleted output folder"
 else
-  theme
+  nix-theme
 fi
