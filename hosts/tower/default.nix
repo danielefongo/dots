@@ -13,6 +13,7 @@
     ../modules/docker.nix
     ../modules/games.nix
     ../modules/i3.nix
+    ../modules/keyboard.nix
     ../modules/linking.nix
     ../modules/networking.nix
     ../modules/onepassword.nix
