@@ -1,3 +1,8 @@
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = "*.h",
+  callback = function() vim.bo.filetype = "c" end,
+})
+
 return {
   {
     "nvim-treesitter/nvim-treesitter",
@@ -17,6 +22,9 @@ return {
   },
   {
     "stevearc/conform.nvim",
-    opts = function(_, opts) opts.options.formatters_by_ft.c = { "clang-format" } end,
+    opts = function(_, opts)
+      opts.options.formatters_by_ft.c = { "clang-format" }
+      opts.options.formatters_by_ft.cpp = { "clang-format" }
+    end,
   },
 }
