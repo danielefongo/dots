@@ -2,34 +2,36 @@ _G.theme = require("theme")
 
 require("utils")
 
-opt.jumpoptions = "stack"
-opt.backup = false
-opt.writebackup = false
-opt.swapfile = false
-opt.ruler = false
 opt.autoindent = true
+opt.backup = false
 opt.completeopt = "menuone,noinsert,noselect"
+opt.confirm = true
+opt.cursorline = true
 opt.expandtab = true
+opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+opt.foldcolumn = "1"
+opt.foldenable = true
+opt.foldlevel = 99
+opt.foldlevelstart = 99
 opt.hidden = true
+opt.ignorecase = true
+opt.iskeyword:append("-")
+opt.jumpoptions = "stack"
 opt.mouse = "a"
 opt.number = true
 opt.preserveindent = true
+opt.pumheight = 12
+opt.ruler = false
 opt.shiftwidth = 2
+opt.showmode = false
+opt.smartcase = true
 opt.smarttab = true
 opt.softtabstop = 4
+opt.swapfile = false
 opt.syntax = "on"
 opt.tabstop = 2
 opt.undofile = true
-opt.pumheight = 12
-opt.foldcolumn = "1"
-opt.foldlevel = 99
-opt.foldlevelstart = 99
-opt.foldenable = true
-opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
-opt.cursorline = true
-opt.confirm = true
-opt.showmode = false
-opt.iskeyword:append("-")
+opt.writebackup = false
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
