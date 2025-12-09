@@ -29,6 +29,7 @@ opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 opt.cursorline = true
 opt.confirm = true
 opt.showmode = false
+opt.iskeyword:append("-")
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
