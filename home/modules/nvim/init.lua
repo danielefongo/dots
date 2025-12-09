@@ -19,7 +19,6 @@ opt.smarttab = true
 opt.softtabstop = 4
 opt.syntax = "on"
 opt.tabstop = 2
-opt.clipboard = "unnamed,unnamedplus"
 opt.undofile = true
 opt.pumheight = 12
 opt.foldcolumn = "1"

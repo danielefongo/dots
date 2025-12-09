@@ -48,6 +48,9 @@ return {
 
         key(";", "gcc", "comment", { "n" }, { remap = true }),
         key(";", "gc", "comment", { "v" }, { remap = true }),
+
+        lkey("y", '"+y', "system yank", { "n", "v" }),
+        lkey("p", '"+p', "system paste", { "n", "v" }),
       },
     },
   },
