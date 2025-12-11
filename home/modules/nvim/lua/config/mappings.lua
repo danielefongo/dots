@@ -42,7 +42,6 @@ return {
         key("<a-q>", function() close_win() end, "close buffer", { "n", "v" }),
         key("<c-up>", "<c-y>", "scroll up", { "n", "v" }),
         key("<c-down>", "<c-e>", "scroll down", { "n", "v" }),
-        key("<c-g>", "gg0vG$", "select all", { "n", "v" }),
         key(">", ">gv", "indent right", { "n", "v" }),
         key("<", "<gv", "indent left", { "n", "v" }),
 
