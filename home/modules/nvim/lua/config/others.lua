@@ -1,5 +1,17 @@
 return {
   {
+    "2kabhishek/nerdy.nvim",
+    dependencies = { "folke/snacks.nvim" },
+    cmd = "Nerdy",
+    opts = {
+      max_recents = 30,
+      copy_to_clipboard = false,
+    },
+    keys = {
+      lkey("on", function() vim.cmd("Nerdy") end, "nerd fonts"),
+    },
+  },
+  {
     "gregorias/coerce.nvim",
     tag = "v3.0.0",
     config = true,
