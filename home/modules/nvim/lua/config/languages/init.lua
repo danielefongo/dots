@@ -23,6 +23,47 @@ return {
     main = "nvim-treesitter.configs",
   },
   {
+    "nvim-mini/mini.ai",
+    event = "BufReadPost",
+    dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
+    opts = function()
+      local ai = require("mini.ai")
+      return {
+        silent = true,
+        custom_textobjects = {
+          c = ai.gen_spec.treesitter({ a = "@class.outer", i = "@class.inner" }),
+          f = ai.gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }),
+          g = function()
+            local from = { line = 1, col = 1 }
+            local to = {
+              line = vim.fn.line("$"),
+              col = math.max(vim.fn.getline("$"):len(), 1),
+            }
+            return { from = from, to = to }
+          end,
+          ["/"] = ai.gen_spec.treesitter({ a = "@comment.outer", i = "@comment.inner" }),
+          o = ai.gen_spec.treesitter({
+            a = { "@block.outer", "@conditional.outer", "@loop.outer" },
+            i = { "@block.inner", "@conditional.inner", "@loop.inner" },
+          }),
+          s = { -- Single words in different cases (camelCase, snake_case, etc.)
+            {
+              "%u[%l%d]+%f[^%l%d]",
+              "%f[^%s%p][%l%d]+%f[^%l%d]",
+              "^[%l%d]+%f[^%l%d]",
+              "%f[^%s%p][%a%d]+%f[^%a%d]",
+              "^[%a%d]+%f[^%a%d]",
+            },
+            "^().*()$",
+          },
+          t = { "<([%p%w]-)%f[^<%w][^<>]->.-</%1>", "^<.->().*()</[^/]->$" },
+          u = ai.gen_spec.function_call(),
+          U = ai.gen_spec.function_call({ name_pattern = "[%w_]" }),
+        },
+      }
+    end,
+  },
+  {
     "neovim/nvim-lspconfig",
     dependencies = {
       "mason-org/mason.nvim",
