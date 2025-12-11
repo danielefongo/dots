@@ -30,6 +30,7 @@ opt.softtabstop = 4
 opt.swapfile = false
 opt.syntax = "on"
 opt.tabstop = 2
+opt.clipboard = "unnamed,unnamedplus"
 opt.undofile = true
 opt.writebackup = false
 
