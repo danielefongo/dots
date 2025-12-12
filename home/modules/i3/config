@@ -18,6 +18,7 @@ hide_edge_borders none
 for_window [class=".*"] border pixel {{ border }}
 for_window [title="Screenshare"] floating enable
 for_window [class="copyq"] floating enable, resize set 1000 600, move position center
+for_window [title="Qalculate!"] floating enable, resize set 1000 600, move position center
 
 # gaps
 {% if not zen %}

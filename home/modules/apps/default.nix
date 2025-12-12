@@ -12,5 +12,6 @@
     whatsapp-for-linux
     ocr
     deskflow
+    qalculate-gtk
   ];
 }
