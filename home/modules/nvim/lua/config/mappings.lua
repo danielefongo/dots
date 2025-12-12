@@ -9,6 +9,8 @@ return {
   opts = {
     preset = "helix",
     spec = {
+      lgroup("a", "ai"),
+
       lgroup("b", "buffer"),
       lkey("bs", function() scratch() end, "scratch"),
 
