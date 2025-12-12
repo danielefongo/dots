@@ -30,6 +30,8 @@ return {
 
       lgroup("o", "open"),
 
+      lgroup("m", "multi"),
+
       lgroup("s", "session"),
 
       lgroup("t", "tab"),

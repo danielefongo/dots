@@ -273,6 +273,14 @@ local lush = function()
       FlashBackdrop({ fg = colors.grey4 }),
       FlashMatch({ fg = colors.grey4 }),
       FlashLabel({ fg = colors.red }),
+
+      MultiCursorCursor({ reverse = true }),
+      MultiCursorVisual({ link = "Visual" }),
+      MultiCursorSign({ SignColumn }),
+      MultiCursorMatchPreview({ Search }),
+      MultiCursorDisabledCursor({ reverse = true }),
+      MultiCursorDisabledVisual({ Visual }),
+      MultiCursorDisabledSign({ SignColumn }),
     }
   end)
 end

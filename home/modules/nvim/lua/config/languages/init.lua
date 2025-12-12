@@ -116,7 +116,7 @@ return {
       lkey("cR", function() vim.lsp.buf.rename() end, "rename"),
       lkey("ca", function() vim.lsp.buf.code_action() end, "actions", { "n", "v" }),
       lkey("ch", function() lsp.buf.hover() end, "signature"),
-      lkey("cH", function() lsp.inlay_hint.enable(not lsp.inlay_hint.is_enabled()) end, "signature", { "n", "i" }),
+      lkey("cH", function() lsp.inlay_hint.enable(not lsp.inlay_hint.is_enabled()) end, "signature", { "n" }),
       lkey("d,", function() vim.diagnostic.jump({ count = -1, float = true }) end, "previous"),
       lkey("d.", function() vim.diagnostic.jump({ count = 1, float = true }) end, "next"),
       lkey("dh", function() vim.diagnostic.open_float() end, "help"),

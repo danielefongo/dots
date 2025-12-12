@@ -103,4 +103,60 @@ return {
       comment_preview = { position = "none" },
     },
   },
+  {
+    "jake-stewart/multicursor.nvim",
+    branch = "1.0",
+    event = "BufReadPost",
+    keys = {
+      lkey("mm", function() require("multicursor-nvim").matchCursors() end, "match", { "v" }),
+      lkey("mr", function() require("multicursor-nvim").restoreCursors() end, "restore", { "n" }),
+
+      key("I", function() require("multicursor-nvim").insertVisual() end, "insert", { "x" }),
+      key("A", function() require("multicursor-nvim").appendVisual() end, "append", { "x" }),
+
+      lkey("ma", function() require("multicursor-nvim").matchAllAddCursors() end, "add all cursors", { "n", "v" }),
+      key("<c-n>", function() require("multicursor-nvim").matchAddCursor(1) end, "add cursor", { "n", "v" }),
+      key("<c-p>", function() require("multicursor-nvim").matchAddCursor(-1) end, "add cursor prev", { "n", "v" }),
+      key("<c-s-n>", function() require("multicursor-nvim").matchSkipCursor(1) end, "skip cursor", { "n", "v" }),
+      key("<c-s-p>", function() require("multicursor-nvim").matchSkipCursor(-1) end, "skip cursor prev", { "n", "v" }),
+
+      lkey("mc", function() require("multicursor-nvim").addCursorOperator() end, "cursor", { "n", "v" }),
+      key("<c-pageup>", function() require("multicursor-nvim").lineAddCursor(-1) end, "up", { "n", "v" }),
+      key("<c-pagedown>", function() require("multicursor-nvim").lineAddCursor(1) end, "down", { "n", "v" }),
+      key("<c-s-pageup>", function() require("multicursor-nvim").lineSkipCursor(-1) end, "skip up", { "n", "v" }),
+      key("<c-s-pagedown>", function() require("multicursor-nvim").lineSkipCursor(1) end, "skip down", { "n", "v" }),
+    },
+    config = function()
+      mc = require("multicursor-nvim")
+      mc.setup()
+
+      local set = vim.keymap.set
+      vim.g.visual_cursors_toggle = false
+
+      mc.addKeymapLayer(function(layerSet)
+        layerSet({ "n", "x" }, "<c-q>", function()
+          mc.disableCursors()
+          if vim.g.visual_cursors_toggle then mc.enableCursors() end
+          vim.g.visual_cursors_toggle = not vim.g.visual_cursors_toggle
+        end)
+
+        layerSet({ "n", "x" }, "<c-x>", mc.deleteCursor)
+        layerSet({ "n", "x" }, "<c-a>", mc.addCursorOperator)
+
+        layerSet({ "n", "x" }, "<c-left>", mc.prevCursor)
+        layerSet({ "n", "x" }, "<c-right>", mc.nextCursor)
+        layerSet({ "n", "x" }, "<leader>x", mc.deleteCursor)
+
+        layerSet("n", "<esc>", function()
+          if not mc.cursorsEnabled() then
+            mc.disableCursors()
+            mc.enableCursors()
+          else
+            mc.clearCursors()
+          end
+          vim.g.visual_cursors_toggle = false
+        end)
+      end)
+    end,
+  },
 }
