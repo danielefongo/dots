@@ -43,7 +43,7 @@
   home.username = user_data.user;
   home.homeDirectory = user_data.home;
 
-  home.stateVersion = "25.05";
+  home.stateVersion = "25.11";
 
   programs.home-manager.enable = true;
 }

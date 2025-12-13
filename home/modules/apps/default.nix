@@ -9,7 +9,7 @@
     peek
     spotify
     telegram-desktop
-    whatsapp-for-linux
+    wasistlos
     ocr
     deskflow
     qalculate-gtk

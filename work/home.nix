@@ -45,9 +45,11 @@
     prima-nix.homeManagerModules.gitleaks
   ];
 
-  nixGL.packages = nixgl.packages;
-  nixGL.defaultWrapper = "mesa";
-  nixGL.installScripts = [ "mesa" ];
+  targets.genericLinux.nixGL = {
+    packages = nixgl.packages;
+    defaultWrapper = "mesa";
+    installScripts = [ "mesa" ];
+  };
 
   nixpkgs.overlays = [
     (final: prev: {
@@ -104,7 +106,7 @@
 
   prima.gitleaks.enable = true;
 
-  home.stateVersion = "25.05";
+  home.stateVersion = "25.11";
 
   programs.home-manager.enable = true;
 }
