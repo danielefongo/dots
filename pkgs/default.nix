@@ -8,6 +8,7 @@
 (self: super: {
   ocr = pkgs.callPackage ./ocr.nix { pkgs = super; };
   tmux = pkgs.callPackage ./tmux.nix { pkgs = super; };
+  tmuxinator = pkgs.callPackage ./tmuxinator.nix { pkgs = super; };
   firefox-addons = pkgs.callPackage ./firefox-addons.nix { pkgs = super; };
   plover = pkgs.callPackage ./plover.nix {
     inherit inputs;
