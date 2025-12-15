@@ -27,9 +27,11 @@
   xdg.configFile."nvim/lua".source = lib.outLink "nvim/lua";
   xdg.configFile."nvim/lazy-lock.json".source = lib.dotLink "home/modules/nvim/lazy-lock.json";
 
-  home.packages = [
-    pkgs.python3 # mason
+  home.packages = with pkgs; [
+    python3 # mason
+    nodejs # copilot
   ];
+
   home.sessionVariables = {
     EDITOR = "${pkgs.neovim}/bin/nvim";
   };
