@@ -23,6 +23,69 @@ return {
     main = "nvim-treesitter.configs",
   },
   {
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    init = function()
+      vim.api.nvim_create_user_command("InspectTextObjects", function()
+        local bufnr = vim.api.nvim_get_current_buf()
+        local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+        row = row - 1
+
+        local lang = vim.treesitter.language.get_lang(vim.bo.filetype)
+        if not lang then
+          print("Not supported language for textobjects: " .. vim.bo.filetype)
+          return
+        end
+
+        local ok, query = pcall(vim.treesitter.query.get, lang, "textobjects")
+        if not ok or not query then
+          print("Query textobjects not found for language: " .. lang)
+          return
+        end
+
+        local parser = vim.treesitter.get_parser(bufnr)
+        local root = parser:parse()[1]:root()
+        local items = {}
+
+        for id, node in query:iter_captures(root, bufnr) do
+          local name = query.captures[id]
+          local srow, scol, erow, ecol = node:range()
+          if srow <= row and row <= erow then
+            table.insert(items, { name = name, srow = srow, scol = scol, erow = erow, ecol = ecol })
+          end
+        end
+
+        local function get_depth(item, items)
+          local depth = 0
+          for _, other in ipairs(items) do
+            if other ~= item and other.srow <= item.srow and item.erow <= other.erow then depth = depth + 1 end
+          end
+          return depth
+        end
+
+        local output = {}
+        for _, item in ipairs(items) do
+          local depth = get_depth(item, items)
+          local indent = string.rep("  ", depth)
+          table.insert(
+            output,
+            string.format(
+              "%s@%s [%d:%d - %d:%d]",
+              indent,
+              item.name,
+              item.srow + 1,
+              item.scol + 1,
+              item.erow + 1,
+              item.ecol + 1
+            )
+          )
+        end
+
+        print(table.concat(output, "\n"))
+      end, {})
+    end,
+    command = "InspectTextObjects",
+  },
+  {
     "nvim-mini/mini.ai",
     event = "BufReadPost",
     dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
