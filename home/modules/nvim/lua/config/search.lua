@@ -119,10 +119,8 @@ return {
       },
     },
     keys = {
-      key("s", function() require("flash").jump() end, "seek", { "n", "x" }),
-      key("S", function()
-        require("flash").jump({ search = { mode = function(str) return "\\<" .. str end } })
-      end, "seek", { "n", "x" }),
+      key("s", function() require("flash").jump({ search = { mode = "fuzzy" } }) end, "fuzzy", { "n", "x", "v" }),
+      key("T", function() require("flash").treesitter() end, "ts", { "n", "x", "v" }),
     },
   },
 }

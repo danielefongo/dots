@@ -32,6 +32,8 @@ return {
 
       lgroup("m", "multi"),
 
+      lgroup("s", "seek"),
+
       lgroup("t", "tab"),
 
       lgroup("v", "vim"),

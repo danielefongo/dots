@@ -270,9 +270,9 @@ local lush = function()
       NeogitDiffDeleteCursor({ Removed }),
       NeogitDiffDeleteHighlight({ Removed }),
 
-      FlashBackdrop({ fg = colors.grey4 }),
+      FlashBackdrop({ fg = colors.grey3 }),
       FlashMatch({ fg = colors.grey4 }),
-      FlashLabel({ fg = colors.red }),
+      FlashLabel({ fg = colors.grey9, gui = "bold" }),
 
       MultiCursorCursor({ reverse = true }),
       MultiCursorVisual({ link = "Visual" }),
