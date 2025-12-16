@@ -1,5 +1,15 @@
 return {
   {
+    "RRethy/vim-illuminate",
+    event = "BufReadPost",
+    opts = {
+      providers = { "lsp", "treesitter", "regex" },
+      delay = 100,
+      filetypes_denylist = { "dirbuf", "dirvish", "oil" },
+    },
+    config = function(_, opts) require("illuminate").configure(opts) end,
+  },
+  {
     "linrongbin16/lsp-progress.nvim",
     opts = {
       series_format = function(title, _, percentage, done)
