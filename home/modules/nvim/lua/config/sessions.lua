@@ -23,8 +23,8 @@ return {
       })
     end,
     keys = {
-      lkey("sd", function() require("persisted").delete() end, "delete"),
-      lkey("sl", function() require("persisted").load() end, "load"),
+      lkey("vsd", function() require("persisted").delete() end, "session delete"),
+      lkey("vsl", function() require("persisted").load() end, "session load"),
     },
   },
 }

@@ -32,11 +32,10 @@ return {
 
       lgroup("m", "multi"),
 
-      lgroup("s", "session"),
-
       lgroup("t", "tab"),
 
       lgroup("v", "vim"),
+      lgroup("vs", "session"),
       lkey("vq", function() vim.cmd("qa") end, "quit"),
 
       lkey("w", "<c-w>", "window"),
