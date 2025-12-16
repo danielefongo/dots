@@ -99,6 +99,7 @@ return {
       lkey("fw", function() Snacks.picker.grep() end, "workspace text"),
 
       lkey("ob", function() Snacks.picker.buffers() end, "buffer"),
+      lkey("oh", function() Snacks.picker.command_history() end, "history"),
       lkey("of", function() Snacks.picker.files() end, "file"),
       lkey("op", function() Snacks.picker.pickers() end, "pickers"),
       lkey("or", function() Snacks.picker.resume() end, "resume"),

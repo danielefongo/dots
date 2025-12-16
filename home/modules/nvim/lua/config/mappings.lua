@@ -12,7 +12,6 @@ return {
       lgroup("a", "ai"),
 
       lgroup("b", "buffer"),
-      lkey("bs", function() scratch() end, "scratch"),
 
       lgroup("c", "code"),
       lgroup("cc", "colors"),
@@ -29,6 +28,7 @@ return {
       lkey("lp", function() require("lazy").profile() end, "profile"),
 
       lgroup("o", "open"),
+      lkey("os", function() scratch() end, "scratch"),
 
       lgroup("m", "multi"),
 
