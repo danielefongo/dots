@@ -19,7 +19,6 @@
   "mason.nvim": { "branch": "main", "commit": "fc98833b6da5de5a9c5b1446ac541577059555be" },
   "mini.ai": { "branch": "main", "commit": "bfb26d9072670c3aaefab0f53024b2f3729c8083" },
   "multicursor.nvim": { "branch": "1.0", "commit": "a0ea3303a6c4b233cf3272fb1e358d4c842e5260" },
-  "neogit": { "branch": "master", "commit": "8c75d6d010a5b6d28bc50f2976fe9f341cf268bc" },
   "nerdy.nvim": { "branch": "main", "commit": "23cfd42ba5ae9e97c180a4ef7f7effd14e6d79b7" },
   "nvim-autopairs": { "branch": "master", "commit": "7a2c97cccd60abc559344042fefb1d5a85b3e33b" },
   "nvim-lsp-file-operations": { "branch": "master", "commit": "9744b738183a5adca0f916527922078a965515ed" },

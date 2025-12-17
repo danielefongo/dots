@@ -41,24 +41,12 @@ return {
     },
   },
   {
-    "TimUntersberger/neogit",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    init = function()
-      vim.api.nvim_create_autocmd("FileType", {
-        pattern = { "NeogitStatus" },
-        group = vim.api.nvim_create_augroup("NeogitStatusOptions", {}),
-        callback = function() vim.opt.foldcolumn = "0" end,
-      })
-    end,
+    "folke/snacks.nvim",
     opts = {
-      signs = {
-        section = { "", "" },
-        item = { "", "" },
-        hunk = { "", "" },
-      },
+      lazygit = {},
     },
     keys = {
-      lkey("gg", function() vim.cmd("Neogit") end, "neo"),
+      lkey("gg", function() Snacks.lazygit() end, "lazygit"),
     },
   },
 }
