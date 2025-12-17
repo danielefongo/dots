@@ -5,6 +5,11 @@ export XDG_CACHE_HOME=$HOME/.cache
 export XDG_DATA_HOME=$HOME/.local/share
 
 if [ "$1" == "-d" ]; then
+  if command -v nix &>/dev/null; then
+    cd "$WORK_DIR"
+    sudo -E $(which nix) run github:numtide/system-manager -- deactivate
+  fi
+
   for n in $(seq 1 10); do
     sudo userdel nixbld$n
   done
