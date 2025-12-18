@@ -1,6 +1,6 @@
 { lib, pkgs, ... }:
 
-{
+lib.optionalModule "x11.i3" { } (cfg: {
   imports = [
     ./keyboard.nix
     ./scripts.nix
@@ -22,4 +22,4 @@
       };
     };
   };
-}
+})

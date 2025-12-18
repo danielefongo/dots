@@ -10,7 +10,7 @@ let
     ${pkgs.dunst}/bin/dunst
   '';
 in
-{
+lib.optionalModule "x11.dunst" { } (cfg: {
   xdg.configFile."dunst".source = lib.outLink "dunst";
 
   systemd.user.services = {
@@ -31,4 +31,4 @@ in
       };
     };
   };
-}
+})

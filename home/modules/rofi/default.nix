@@ -15,11 +15,11 @@ let
       ${builtins.readFile file}
     '';
 in
-{
+lib.optionalModule "x11.rofi" { } (cfg: {
   home.packages = with pkgs; [
     rofi
     (script-gen "rofi-theme" ./scripts/theme.sh)
   ];
 
   xdg.configFile."rofi".source = lib.outLink "rofi/config";
-}
+})

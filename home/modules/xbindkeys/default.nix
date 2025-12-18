@@ -1,6 +1,6 @@
 { lib, pkgs, ... }:
 
-{
+lib.optionalModule "x11.xbindkeys" { } (cfg: {
   home.packages = with pkgs; [
     playerctl
     xbindkeys
@@ -26,4 +26,4 @@
       };
     };
   };
-}
+})

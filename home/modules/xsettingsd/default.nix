@@ -1,6 +1,6 @@
 { lib, pkgs, ... }:
 
-{
+lib.optionalModule "x11.xsettingsd" { } (cfg: {
   home.packages = with pkgs; [ xsettingsd ];
 
   xdg.configFile."xsettingsd".source = lib.outLink "xsettingsd";
@@ -23,4 +23,4 @@
       };
     };
   };
-}
+})

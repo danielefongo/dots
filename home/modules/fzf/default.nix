@@ -6,8 +6,8 @@ let
     ${pkgs.fzf}/bin/fzf "$@"
   '';
 in
-{
+lib.optionalModule "shell.fzf" { } (cfg: {
   home.packages = [ fzfWrapper ];
 
   home.file.".fzf.conf".source = lib.outLink "fzf/fzf.conf";
-}
+})

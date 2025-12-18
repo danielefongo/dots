@@ -1,6 +1,6 @@
 { lib, pkgs, ... }:
 
-{
+lib.optionalModule "x11.redshift" { } (cfg: {
   home.packages = with pkgs; [ redshift ];
 
   xdg.configFile."redshift.conf".source = lib.outLink "redshift/redshift.conf";
@@ -23,4 +23,4 @@
       };
     };
   };
-}
+})

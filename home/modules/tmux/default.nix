@@ -8,7 +8,7 @@ let
     pkgs.writeShellScriptBin "tmux_window_name" (builtins.readFile ./scripts/window_name.sh)
   );
 in
-{
+lib.optionalModule "terminal.tmux" { } (cfg: {
   home.packages = with pkgs; [
     entr
     tmux
@@ -18,4 +18,4 @@ in
   ];
 
   xdg.configFile."tmux/tmux.conf".source = lib.outLink "tmux/tmux.conf";
-}
+})

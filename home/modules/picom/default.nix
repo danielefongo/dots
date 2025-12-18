@@ -1,6 +1,6 @@
 { lib, pkgs, ... }:
 
-{
+lib.optionalModule "x11.picom" { } (cfg: {
   home.packages = [ pkgs.picom ];
 
   xdg.configFile."picom".source = lib.outLink "picom";
@@ -23,4 +23,4 @@
       };
     };
   };
-}
+})

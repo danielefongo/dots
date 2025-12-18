@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
-{
+lib.optionalModule "apps.plover" { } (cfg: {
   home.packages = with pkgs; [
     plover
   ];
@@ -21,4 +21,4 @@
       WantedBy = [ "default.target" ];
     };
   };
-}
+})

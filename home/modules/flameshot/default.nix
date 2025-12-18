@@ -1,6 +1,6 @@
 { lib, pkgs, ... }:
 
-{
+lib.optionalModule "x11.flameshot" { } (cfg: {
   home.packages = with pkgs; [ flameshot ];
 
   xdg.configFile."flameshot".source = lib.outLink "flameshot";
@@ -23,4 +23,4 @@
       };
     };
   };
-}
+})

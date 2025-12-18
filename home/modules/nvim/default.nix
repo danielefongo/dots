@@ -1,6 +1,6 @@
 { lib, pkgs, ... }:
 
-{
+lib.optionalModule "shell.nvim" { } (cfg: {
   programs.neovim = {
     package = pkgs.unstable.neovim-unwrapped;
     enable = true;
@@ -35,4 +35,4 @@
   home.sessionVariables = {
     EDITOR = "${pkgs.neovim}/bin/nvim";
   };
-}
+})

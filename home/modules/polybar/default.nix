@@ -1,6 +1,6 @@
 { lib, pkgs, ... }:
 
-{
+lib.optionalModule "x11.polybar" { } (cfg: {
   imports = [ ./scripts.nix ];
 
   home.packages = with pkgs; [
@@ -40,4 +40,4 @@
       };
     };
   };
-}
+})

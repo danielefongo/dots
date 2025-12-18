@@ -5,7 +5,7 @@ let
     ${pkgs.vesktop}/bin/vesktop "$@"
   '';
 in
-{
+lib.optionalModule "apps.discord" { } (cfg: {
   home.packages = [
     vesktop
     (pkgs.makeDesktopItem {
@@ -23,4 +23,4 @@ in
     lib.outLink "discord/themes/discord.theme.css";
   xdg.configFile."vesktop/settings/settings.json".source =
     lib.outLink "discord/settings/settings.json";
-}
+})

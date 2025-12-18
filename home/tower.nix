@@ -1,43 +1,12 @@
 {
+  pkgs,
   user_data,
   ...
 }:
 
 {
   imports = [
-    ./modules/apps
-    ./modules/btop
-    ./modules/copyq
-    ./modules/discord
-    ./modules/docker
-    ./modules/dunst
-    ./modules/essentials
-    ./modules/firefox
-    ./modules/flameshot
-    ./modules/fonts
-    ./modules/fzf
-    ./modules/git
-    ./modules/gtk
-    ./modules/i3
-    ./modules/kitty
-    ./modules/nix
-    ./modules/nix-theme
-    ./modules/nvim
-    ./modules/picom
-    ./modules/playerctl
-    ./modules/plover
-    ./modules/polybar
-    ./modules/redshift
-    ./modules/rofi
-    ./modules/sesh
-    ./modules/shell-utils
-    ./modules/thunar
-    ./modules/tig
-    ./modules/tmux
-    ./modules/wallpaper
-    ./modules/xbindkeys
-    ./modules/xsettingsd
-    ./modules/zsh
+    ./modules/default.nix
   ];
 
   home.username = user_data.user;
@@ -46,4 +15,34 @@
   home.stateVersion = "25.11";
 
   programs.home-manager.enable = true;
+
+  module = {
+    apps.full.enable = true;
+    nix.theme.enable = true;
+    shell.full.enable = true;
+    i3.enable = true;
+    virtualisation.docker.enable = true;
+    others.playerctl.enable = true;
+    others.tailscale.enable = true;
+    terminal.full.enable = true;
+  };
+  module.apps.full.firefox.profiles = {
+    personal = {
+      isDefault = true;
+      id = 0;
+
+      addons = with pkgs.firefox-addons; [
+        darkreader
+        flagfox
+        clearurls
+        onepassword-password-manager
+        refined-github
+        tabliss
+        ublock-origin
+        vimium
+        videospeed
+        libredirect
+      ];
+    };
+  };
 }
