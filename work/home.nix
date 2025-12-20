@@ -84,6 +84,13 @@
     vault
   ];
 
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "x-scheme-handler/slack" = "slack.desktop";
+    };
+  };
+
   prima.gitleaks.enable = true;
 
   home.stateVersion = "25.05";
