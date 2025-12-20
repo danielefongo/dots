@@ -33,6 +33,7 @@
     ./tmux
     ./wallpaper
     ./xbindkeys
+    ./xnviewmp
     ./xsettingsd
     ./zsh
   ];
