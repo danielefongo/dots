@@ -7,6 +7,7 @@
     pulseaudio
     pavucontrol
     peek
+    pix
     spotify
     telegram-desktop
     whatsapp-for-linux
