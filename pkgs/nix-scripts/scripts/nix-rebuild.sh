@@ -32,7 +32,7 @@ rebuild_non_nixos() {
 
   if [ "$MODE" != "-s" ]; then
     echo "🏠 home-manager switch (.#$USER)"
-    home-manager switch --flake ".#$USER"
+    home-manager switch -b hm-bak --flake ".#$USER"
   fi
 
   if [ "$MODE" != "-h" ]; then

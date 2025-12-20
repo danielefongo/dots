@@ -3,5 +3,5 @@
 if command -v nix &>/dev/null; then
   # setup home-manager
   cd "$WORK_DIR"
-  home-manager switch --flake .
+  home-manager switch -b hm-bak --flake .
 fi
