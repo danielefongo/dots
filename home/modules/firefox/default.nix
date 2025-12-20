@@ -1,27 +1,16 @@
-{ pkgs, ... }:
-{
-  imports = [ ./firefox.nix ];
+{ lib, ... }:
 
-  firefox = {
-    enable = true;
-
+lib.withCfg "firefox"
+  {
     profiles = {
-      personal = {
-        isDefault = true;
-        id = 0;
-        addons = with pkgs.firefox-addons; [
-          darkreader
-          flagfox
-          clearurls
-          onepassword-password-manager
-          refined-github
-          tabliss
-          ublock-origin
-          vimium
-          videospeed
-          libredirect
-        ];
-      };
+      type = lib.types.attrs;
     };
-  };
-}
+  }
+  (cfg: {
+    imports = [ ./firefox.nix ];
+
+    firefox = {
+      enable = true;
+      profiles = cfg.profiles;
+    };
+  })

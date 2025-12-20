@@ -9,45 +9,49 @@
 
 {
   imports = [
-    ../home/modules/apps
-    ../home/modules/btop
-    ../home/modules/copyq
-    ../home/modules/discord
-    ../home/modules/docker
-    ../home/modules/dunst
-    ../home/modules/essentials
-    ../home/modules/flameshot
-    ../home/modules/fonts
-    ../home/modules/fzf
-    ../home/modules/git
-    ../home/modules/gtk
-    ../home/modules/i3
-    ../home/modules/kitty
-    ../home/modules/nix
-    ../home/modules/nvim
-    ../home/modules/picom
-    ../home/modules/playerctl
-    ../home/modules/plover
-    ../home/modules/polybar
-    ../home/modules/redshift
-    ../home/modules/rofi
-    ../home/modules/sesh
-    ../home/modules/shell-utils
-    ../home/modules/thunar
-    ../home/modules/tig
-    ../home/modules/tmux
-    ../home/modules/wallpaper
-    ../home/modules/xbindkeys
-    ../home/modules/xsettingsd
-    ../home/modules/zsh
+    ../home/modules
 
-    ./modules/firefox.nix
     prima-nix.homeManagerModules.gitleaks
   ];
 
   nixGL.packages = nixgl.packages;
   nixGL.defaultWrapper = "mesa";
   nixGL.installScripts = [ "mesa" ];
+
+  cfg.nix_theme.polling = true;
+  cfg.firefox.profiles = {
+    personal = {
+      isDefault = false;
+      id = 0;
+      addons = with pkgs.firefox-addons; [
+        onepassword-password-manager
+        refined-github
+        tabliss
+        ublock-origin
+        vimium
+        videospeed
+        libredirect
+        darkreader
+        flagfox
+        clearurls
+      ];
+    };
+
+    work = {
+      id = 1;
+      isDefault = true;
+      addons = with pkgs.firefox-addons; [
+        onepassword-password-manager
+        refined-github
+        tabliss
+        ublock-origin
+        vimium
+        videospeed
+        libredirect
+        grammarly
+      ];
+    };
+  };
 
   nixpkgs.overlays = [
     (final: prev: {
@@ -78,29 +82,7 @@
     amazon-ecr-credential-helper
     suite_py
     vault
-    nix-scripts.nix-theme
   ];
-
-  systemd.user.services = {
-    theme = {
-      Unit = {
-        Description = "Theme";
-      };
-
-      Service = {
-        ExecStart = "${pkgs.writeShellScript "nix-theme-runner" ''
-          #!/bin/bash
-
-          while true; do
-            ${pkgs.nix-scripts.nix-theme}/bin/nix-theme
-            sleep 2
-          done
-        ''}";
-        Restart = "on-failure";
-        RestartSec = 2;
-      };
-    };
-  };
 
   prima.gitleaks.enable = true;
 

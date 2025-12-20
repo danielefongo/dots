@@ -1,0 +1,39 @@
+{ ... }:
+
+{
+  imports = [
+    ./apps
+    ./btop
+    ./copyq
+    ./discord
+    ./docker
+    ./dunst
+    ./essentials
+    ./firefox
+    ./flameshot
+    ./fonts
+    ./fzf
+    ./git
+    ./gtk
+    ./i3
+    ./kitty
+    ./nix
+    ./nix-theme
+    ./nvim
+    ./picom
+    ./playerctl
+    ./plover
+    ./polybar
+    ./redshift
+    ./rofi
+    ./sesh
+    ./shell-utils
+    ./thunar
+    ./tig
+    ./tmux
+    ./wallpaper
+    ./xbindkeys
+    ./xsettingsd
+    ./zsh
+  ];
+}
