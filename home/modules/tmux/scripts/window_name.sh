@@ -15,8 +15,6 @@ if [[ -z "$FIRST_PANE_PATH" ]]; then
   exit 1
 fi
 
-FOLDER_NAME=$(basename "$FIRST_PANE_PATH")
-
 CMDS=()
 
 PANE_LIST=$(tmux list-panes -t "$WINDOW_ID" -F '#{pane_index}' 2>/dev/null)
@@ -31,7 +29,7 @@ done <<<"$PANE_LIST"
 
 if [[ ${#CMDS[@]} -gt 0 ]]; then
   CMDS_STR="${CMDS[*]}"
-  echo "$FOLDER_NAME ($CMDS_STR)"
+  echo "$CMDS_STR"
 else
-  echo "$FOLDER_NAME"
+  echo "-"
 fi
