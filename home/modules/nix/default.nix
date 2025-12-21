@@ -8,4 +8,12 @@
     nix-scripts.nix-update-flakes
     nix-scripts.nix-rebuild
   ];
+
+  nix = {
+    settings.experimental-features = [
+      "nix-command"
+      "flakes"
+      "pipe-operators"
+    ];
+  };
 }

@@ -10,7 +10,4 @@ elif ! command -v nix &>/dev/null; then
   nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
   nix-channel --update
   nix-shell '<home-manager>' -A install
-  rm -rf ~/.config/nix/nix.conf
-  mkdir -p ~/.config/nix/
-  cp -rf "$WORK_DIR/nix.conf" ~/.config/nix/nix.conf
 fi

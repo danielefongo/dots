@@ -84,6 +84,8 @@
     vault
   ];
 
+  nix.package = pkgs.nix;
+
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
