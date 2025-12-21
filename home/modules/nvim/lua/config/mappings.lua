@@ -31,6 +31,8 @@ return {
       lkey("os", function() scratch() end, "scratch"),
 
       lgroup("m", "multi"),
+      lkey("w/", "<c-w>v", "split vertical"),
+      lkey("w_", "<c-w>s", "split horizontal"),
 
       lgroup("s", "seek"),
 
