@@ -9,8 +9,10 @@
     nix-scripts.nix-rebuild
   ];
 
-  nix = {
-    settings.experimental-features = [
+  nix.settings = {
+    max-jobs = "auto";
+    cores = 0;
+    experimental-features = [
       "nix-command"
       "flakes"
       "pipe-operators"
