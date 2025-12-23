@@ -5,8 +5,9 @@
     fh
     nix-scripts.nix-check
     nix-scripts.nix-packages-diff
-    nix-scripts.nix-update-flakes
     nix-scripts.nix-rebuild
+    nix-scripts.nix-tools
+    nix-scripts.nix-update-flakes
   ];
 
   nix.settings = {

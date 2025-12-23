@@ -18,5 +18,6 @@ in
   nix-rebuild = nix-script-gen "nix-rebuild" ./scripts/nix-rebuild.sh;
   nix-check = nix-script-gen "nix-check" ./scripts/nix-check.sh;
   nix-packages-diff = nix-script-gen "nix-packages-diff" ./scripts/nix-packages-diff.sh;
+  nix-tools = nix-script-gen "nix-tools" ./scripts/nix-tools.sh;
   nix-update-flakes = nix-script-gen "nix-update-flakes" ./scripts/nix-update-flakes.sh;
 }
