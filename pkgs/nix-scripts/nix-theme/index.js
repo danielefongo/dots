@@ -38,7 +38,7 @@ function removeFile (toFile) {
   }
 }
 
-function writeFile (file, toFile, filter) {
+function writeFile (file, toFile, filter, raw) {
   const destinationFile = toFile
   const destinationFileFolder = path.dirname(destinationFile)
 
@@ -56,11 +56,11 @@ function writeFile (file, toFile, filter) {
     ? fs.readFileSync(destinationFile, 'utf8')
     : {}
 
-  let themeFile = currentThemeFile()
+  const themeFile = currentThemeFile()
   delete require.cache[require.resolve(themeFile)]
   const template = require(themeFile)
 
-  const newContent = templater(content, template)
+  const newContent = raw ? content : templater(content, template)
 
   if (newContent != oldContent) {
     fs.writeFileSync(destinationFile, newContent)
@@ -125,7 +125,7 @@ const dotBlock = new DotBlock().on({
       }
 
       try {
-        output = writeFile(file, to, filter)
+        output = writeFile(file, to, filter, match.raw)
       } catch (e) {
         console.log(`Templating failed on file ${file}, reason: ${e}`)
         exec(`notify-send -t 5000 -a "Templating" -u critical "${file}"`)
@@ -157,7 +157,7 @@ const dotBlock = new DotBlock().on({
     }
 
     if (watching) {
-      const resolvedThemeFile = currentThemeFile();
+      const resolvedThemeFile = currentThemeFile()
       dotBlock.on({
         match: resolvedThemeFile,
         path: path.dirname(resolvedThemeFile),
