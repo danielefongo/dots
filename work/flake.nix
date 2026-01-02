@@ -36,7 +36,7 @@
         inherit system;
         config.allowUnfree = true;
 
-        overlays = root-flake.overlays ++ [
+        overlays = root-flake.overlays.default ++ [
           inputs.nixgl.overlay
           inputs.suite_py.overlays.default
           (import ./pkgs { inherit lib pkgs inputs; })
@@ -46,7 +46,7 @@
       user_data = root-flake.user_data;
     in
     {
-      formatter.x85_64-linux = pkgs.nixfmt-rfc-style;
+      formatter.x86_64-linux = pkgs.nixfmt-rfc-style;
 
       homeConfigurations."${user_data.user}" = pkgs.lib.homeManagerConfiguration {
         inherit pkgs lib;

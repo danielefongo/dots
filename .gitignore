@@ -3,5 +3,6 @@ output/
 ignore/
 modules/nvim/lua/config/experiments.lua
 
-# System manager
+# Result
 work/result
+result

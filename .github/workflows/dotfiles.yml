@@ -1,0 +1,64 @@
+
+name: dotfiles
+
+on:
+  push:
+    branches:
+      - "**"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v25
+
+      - name: Tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y zip
+
+      - name: Build nix-theme
+        env:
+          DOTS_USER: danielefongo
+          DOTS_HOME: /tmp
+          DOTS_PATH: /home/danielefongo/dots
+        run: |
+          cd "$GITHUB_WORKSPACE"
+          nix build .#nix-theme \
+            --extra-experimental-features nix-command \
+            --extra-experimental-features flakes \
+            --extra-experimental-features pipe-operators \
+            --impure
+
+      - name: Generate theme
+        run: |
+          ls ./result
+          ls ./result/bin
+          ./result/bin/nix-theme
+
+      - name: Zip output
+        run: |
+          cd "$GITHUB_WORKSPACE"
+          ls -la
+          zip -r dotfiles.zip output
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dotfiles
+          path: $GITHUB_WORKSPACE/dotfiles.zip
+
+      - name: Release (main only)
+        if: github.ref == 'refs/heads/main'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest
+          name: Latest build
+          files: $GITHUB_WORKSPACE/dotfiles.zip
+

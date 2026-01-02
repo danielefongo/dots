@@ -11,8 +11,14 @@
     nurpkgs.url = "github:nix-community/NUR";
     plover.url = "github:openstenoproject/plover-flake";
   };
+
   outputs =
-    { nixpkgs, home-manager, ... }@inputs:
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      ...
+    }@inputs:
     let
       system = "x86_64-linux";
 
@@ -24,7 +30,9 @@
 
       overlays = [
         inputs.nurpkgs.overlays.default
-        (self: super: { lib = super.lib // home-manager.lib // { hm = home-manager.lib.hm; }; })
+        (self: super: {
+          lib = super.lib // home-manager.lib // { hm = home-manager.lib.hm; };
+        })
         (self: super: {
           config = super.config // {
             allowUnfree = true;
@@ -53,16 +61,14 @@
         overlays = overlays;
       };
 
-      lib = (
-        import ./lib {
-          inherit
-            system
-            inputs
-            pkgs
-            user_data
-            ;
-        }
-      );
+      lib = import ./lib {
+        inherit
+          system
+          inputs
+          pkgs
+          user_data
+          ;
+      };
 
       homeManager = {
         home-manager.extraSpecialArgs = inputs // {
@@ -71,7 +77,7 @@
       };
     in
     {
-      formatter.x85_64-linux = pkgs.nixfmt-rfc-style;
+      formatter.${system} = pkgs.nixfmt-rfc-style;
 
       nixosConfigurations.tower = nixpkgs.lib.nixosSystem {
         inherit system pkgs lib;
@@ -86,10 +92,36 @@
         ];
       };
 
-      # for work flake
+      # for work flake (ORA valido)
       pkgs = pkgs;
       lib = lib;
-      overlays = overlays;
+      overlays = {
+        default = overlays;
+      };
       user_data = user_data;
+
+      packages.${system} = {
+        nix-theme =
+          (pkgs.callPackage ./pkgs/nix-scripts {
+            user_data =
+              let
+                env = builtins.getEnv;
+                require =
+                  name:
+                  let
+                    v = env name;
+                  in
+                  if v == "" then throw "${name} is not set" else v;
+              in
+              {
+                user = require "DOTS_USER";
+                home = require "DOTS_HOME";
+                dots_path = require "DOTS_PATH";
+              };
+          }).nix-theme;
+
+        default = self.packages.${system}.nix-theme;
+      };
+
     };
 }
