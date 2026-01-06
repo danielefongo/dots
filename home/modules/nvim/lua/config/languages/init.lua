@@ -139,7 +139,7 @@ return {
       local mason_lsp = require("mason-lspconfig")
       local blink = require("blink.cmp")
 
-      local all_lsp_servers = vim.tbl_keys(require("mason-lspconfig.mappings.server").lspconfig_to_package)
+      local all_lsp_servers = vim.tbl_keys(require("mason-lspconfig").get_mappings().lspconfig_to_mason)
 
       local ensure_installed = {}
       for lsp_name, lsp_configuration in pairs(opts.lsps) do
