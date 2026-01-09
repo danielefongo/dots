@@ -1,7 +1,7 @@
 return {
   {
     "olimorris/persisted.nvim",
-    lazy = false,
+    event = "VeryLazy",
     opts = {
       autostart = true,
       autoload = false,
@@ -16,6 +16,13 @@ return {
         return false
       end,
     },
+    config = function(_, opts)
+      local persisted = require("persisted")
+
+      persisted.setup(opts)
+
+      if vim.fn.argc() == 0 then persisted.load() end
+    end,
     init = function()
       vim.api.nvim_create_autocmd("User", {
         pattern = "PersistedSavePre",
@@ -23,8 +30,12 @@ return {
       })
     end,
     keys = {
-      lkey("vsd", function() require("persisted").delete() end, "session delete"),
-      lkey("vsl", function() require("persisted").load() end, "session load"),
+      lkey("vsd", function() require("persisted").delete() end, "delete"),
+      lkey("vsl", function() require("persisted").load() end, "load"),
+      lkey("vsk", function()
+        require("persisted").stop()
+        vim.cmd("%bdelete")
+      end, "kill"),
     },
   },
 }
