@@ -2,10 +2,10 @@
   description = "Dotfiles";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/release-25.05";
+    nixpkgs.url = "github:nixos/nixpkgs/release-25.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nurpkgs.url = "github:nix-community/NUR";
@@ -66,7 +66,7 @@
 
       homeManager = {
         home-manager.extraSpecialArgs = inputs // {
-          inherit system pkgs user_data;
+          inherit pkgs user_data;
         };
       };
     in
@@ -74,7 +74,7 @@
       formatter.x85_64-linux = pkgs.nixfmt-rfc-style;
 
       nixosConfigurations.tower = nixpkgs.lib.nixosSystem {
-        inherit system pkgs lib;
+        inherit pkgs lib;
 
         specialArgs = {
           inherit inputs user_data;

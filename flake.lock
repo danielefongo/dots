@@ -28,43 +28,43 @@
         ]
       },
       "locked": {
-        "lastModified": 1758463745,
-        "narHash": "sha256-uhzsV0Q0I9j2y/rfweWeGif5AWe0MGrgZ/3TjpDYdGA=",
+        "lastModified": 1767910483,
+        "narHash": "sha256-MOU5YdVu4DVwuT5ztXgQpPuRRBjSjUGIdUzOQr9iQOY=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "3b955f5f0a942f9f60cdc9cacb7844335d0f21c3",
+        "rev": "82fb7dedaad83e5e279127a38ef410bcfac6d77c",
         "type": "github"
       },
       "original": {
         "owner": "nix-community",
-        "ref": "release-25.05",
+        "ref": "release-25.11",
         "repo": "home-manager",
         "type": "github"
       }
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1760088435,
-        "narHash": "sha256-/8nKMzBGL37BndLufaBe+6fsCwMGss86VO37F0zp4E8=",
+        "lastModified": 1767994882,
+        "narHash": "sha256-762QvgN2pQIkmwH2+AGnTiL+uM428U2BgulBc2XTonQ=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "ece39ffb45aaf7aa8a92ec3631cc5db01c210e4b",
+        "rev": "5eb5ee003fbdda3217180af2f9bcc0c03d72008f",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
-        "ref": "release-25.05",
+        "ref": "release-25.11",
         "repo": "nixpkgs",
         "type": "github"
       }
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1759831965,
-        "narHash": "sha256-vgPm2xjOmKdZ0xKA6yLXPJpjOtQPHfaZDRtH+47XEBo=",
+        "lastModified": 1767892417,
+        "narHash": "sha256-dhhvQY67aboBk8b0/u0XB6vwHdgbROZT3fJAjyNh5Ww=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "c9b6fb798541223bbb396d287d16f43520250518",
+        "rev": "3497aa5c9457a9d88d71fa93a4a8368816fbeeba",
         "type": "github"
       },
       "original": {
@@ -76,11 +76,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1759831965,
-        "narHash": "sha256-vgPm2xjOmKdZ0xKA6yLXPJpjOtQPHfaZDRtH+47XEBo=",
+        "lastModified": 1767892417,
+        "narHash": "sha256-dhhvQY67aboBk8b0/u0XB6vwHdgbROZT3fJAjyNh5Ww=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "c9b6fb798541223bbb396d287d16f43520250518",
+        "rev": "3497aa5c9457a9d88d71fa93a4a8368816fbeeba",
         "type": "github"
       },
       "original": {
@@ -92,11 +92,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1759831965,
-        "narHash": "sha256-vgPm2xjOmKdZ0xKA6yLXPJpjOtQPHfaZDRtH+47XEBo=",
+        "lastModified": 1767767207,
+        "narHash": "sha256-Mj3d3PfwltLmukFal5i3fFt27L6NiKXdBezC1EBuZs4=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "c9b6fb798541223bbb396d287d16f43520250518",
+        "rev": "5912c1772a44e31bf1c63c0390b90501e5026886",
         "type": "github"
       },
       "original": {
@@ -112,11 +112,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1760083541,
-        "narHash": "sha256-9IcKohgoH2WXYBcccqjTO0BnKMsHlDiEphyg7IQPaWg=",
+        "lastModified": 1767995338,
+        "narHash": "sha256-z5wZCMhspfvdctEiQpna7zWNYi83dIST6PMD4TaehQA=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "c84cfd2c38e5802149b7dd619f2d0eba522d0bc3",
+        "rev": "f3f2085f472c8eaaa859c6905861272d0c0d4597",
         "type": "github"
       },
       "original": {
@@ -129,40 +129,22 @@
       "inputs": {
         "nixpkgs": "nixpkgs_3",
         "plover": "plover_2",
-        "plover-machine-hid": "plover-machine-hid",
         "plover-stroke": "plover-stroke",
         "plover2cat": "plover2cat",
         "plover_plugins_registry": "plover_plugins_registry",
-        "pyobjc": "pyobjc",
         "rtf-tokenize": "rtf-tokenize"
       },
       "locked": {
-        "lastModified": 1760068000,
-        "narHash": "sha256-IU5ZmuoTXGURjS2i+4Qb9pNF3a2kvTyG7mtqz50eD24=",
+        "lastModified": 1767845553,
+        "narHash": "sha256-EA5oAaZ/zrckNfs6FEy2N1ol/tNlDI9zLsi5zkuSa3Q=",
         "owner": "openstenoproject",
         "repo": "plover-flake",
-        "rev": "19b7206357b929e76b42507f72e77e13aa81b78b",
+        "rev": "75d2e2ecba88c6418bbbb75da43855850364d0c7",
         "type": "github"
       },
       "original": {
         "owner": "openstenoproject",
         "repo": "plover-flake",
-        "type": "github"
-      }
-    },
-    "plover-machine-hid": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1757266704,
-        "narHash": "sha256-S+NBVnLjWdINTRpNIZvGotNGiMVSnvq1NZRPnKCmZyM=",
-        "owner": "dnaq",
-        "repo": "plover-machine-hid",
-        "rev": "db917f8b2545964fdaa2f664d1d1e2afafae96a1",
-        "type": "github"
-      },
-      "original": {
-        "owner": "dnaq",
-        "repo": "plover-machine-hid",
         "type": "github"
       }
     },
@@ -201,11 +183,11 @@
     "plover_2": {
       "flake": false,
       "locked": {
-        "lastModified": 1759777126,
-        "narHash": "sha256-mYVF4T855B9/FLD4rBGqLPleqqw//Au33XrCN+5z+W0=",
+        "lastModified": 1767634382,
+        "narHash": "sha256-zmgYNNORQ3bNOCyjs4x8NXcPS4yQD8qtwqfmjFW2/9w=",
         "owner": "openstenoproject",
         "repo": "plover",
-        "rev": "502c0a43aeffe5594b56d5843aebb821002f85bf",
+        "rev": "6213a0d446171b33ca9d2b6c2c9bb00344c442cb",
         "type": "github"
       },
       "original": {
@@ -217,33 +199,16 @@
     "plover_plugins_registry": {
       "flake": false,
       "locked": {
-        "lastModified": 1756352162,
-        "narHash": "sha256-m8znoAJPbir4FvSqJ7Kl3pARd+7lJxJ2jPw0ZXKtb6M=",
+        "lastModified": 1766765190,
+        "narHash": "sha256-hLdwfT1YrNWvVWrwm3yAhxcxgZvKK6QOyFjj47QquVs=",
         "owner": "openstenoproject",
         "repo": "plover_plugins_registry",
-        "rev": "cdcc136e9d840d71a14c1ada8ea5a4959f7ddb26",
+        "rev": "741564491936e2bca179094f8c19f18627c89186",
         "type": "github"
       },
       "original": {
         "owner": "openstenoproject",
         "repo": "plover_plugins_registry",
-        "type": "github"
-      }
-    },
-    "pyobjc": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1736669867,
-        "narHash": "sha256-Kj1CH1+RYTFszao9G7P3fnsgBjTcvsq4ZpxdjHzQ520=",
-        "owner": "ronaldoussoren",
-        "repo": "pyobjc",
-        "rev": "e29d3a0c80b5bb852e4311ce10827efab9844c6c",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ronaldoussoren",
-        "ref": "v11.0",
-        "repo": "pyobjc",
         "type": "github"
       }
     },

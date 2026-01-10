@@ -1,9 +1,9 @@
 { pkgs, lib, ... }:
 
 {
+  services.displayManager.gdm.enable = true;
   services.xserver = {
     enable = true;
-    displayManager.gdm.enable = true;
     windowManager.i3.enable = true;
     xkb = {
       layout = "us";

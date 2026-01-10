@@ -3,14 +3,11 @@
 {
   programs.git = {
     enable = true;
-    delta = {
-      enable = true;
-    };
     includes = [
       { path = lib.outLink "git/delta"; }
       { path = lib.outLink "git/extra_config"; }
     ];
-    extraConfig = {
+    settings = {
       user = {
         name = "danielefongo";
         email = "danielefongo@gmail.com";
@@ -20,6 +17,11 @@
         excludesfile = builtins.toString (lib.outLink "git/ignore");
       };
     };
+  };
+
+  programs.delta = {
+    enable = true;
+    enableGitIntegration = true;
   };
 
   home.packages = with pkgs; [
