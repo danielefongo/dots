@@ -15,7 +15,6 @@
   programs.home-manager.enable = true;
 
   home.packages = [ pkgs.google-chrome ];
-  cfg.nix_theme.polling = false;
   cfg.firefox.enable = false;
   cfg.firefox.profiles = {
     personal = {

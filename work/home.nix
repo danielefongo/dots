@@ -20,7 +20,6 @@
     installScripts = [ "mesa" ];
   };
 
-  cfg.nix_theme.polling = true;
   cfg.firefox.profiles = {
     personal = {
       isDefault = false;
