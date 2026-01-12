@@ -160,7 +160,7 @@ animation-low-framerate = 500
 [module/temperature]
 type = custom/script
 interval = 3
-exec = cpu-temp 75 "%{F{{ theme.primary }}} %{F-}<temp>°C" "%{F{{ theme.error }}} %{F-}<temp>°C"
+exec = cpu-temp 85 "%{F{{ theme.primary }}} %{F-}<temp>°C" "%{F{{ theme.error }}} %{F-}<temp>°C"
 label = %output%
 
 [module/pulseaudio]
