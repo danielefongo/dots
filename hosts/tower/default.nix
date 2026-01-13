@@ -1,8 +1,5 @@
 {
-  lib,
-  pkgs,
   inputs,
-  user_data,
   ...
 }:
 

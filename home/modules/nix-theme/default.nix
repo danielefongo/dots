@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   home.packages = [ pkgs.nix-scripts.nix-theme ];
