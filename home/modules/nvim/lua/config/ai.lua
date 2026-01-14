@@ -28,14 +28,18 @@ return {
       "folke/snacks.nvim",
     },
     opts = {
-      strategies = {
+      interactions = {
         chat = {
-          name = "copilot",
-          model = "claude-sonnet-4.5",
+          adapter = {
+            name = "copilot",
+            model = "claude-sonnet-4.5",
+          },
         },
         inline = {
-          name = "copilot",
-          model = "claude-sonnet-4.5",
+          adapter = {
+            name = "copilot",
+            model = "claude-sonnet-4.5",
+          },
         },
       },
       display = {
@@ -48,8 +52,9 @@ return {
       },
     },
     keys = {
-      lkey("ac", function() require("codecompanion").chat() end, "chat"),
-      lkey("aa", function() require("codecompanion").actions({}) end, "actions"),
+      lkey("ac", function() require("codecompanion").chat({}) end, "chat"),
+      lkey("aa", function() require("codecompanion").chat({ params = { adapter = "opencode" } }) end, "agentic"),
+      lkey("aA", function() require("codecompanion").actions({}) end, "actions"),
       lkey("ai", function()
         local companion = require("codecompanion")
         local input = vim.fn.input("Enter your message: ")
