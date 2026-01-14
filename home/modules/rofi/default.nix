@@ -17,8 +17,11 @@ let
 in
 {
   home.packages = with pkgs; [
+    libnotify
     rofi
+    xdotool
     (script-gen "rofi-theme" ./scripts/theme.sh)
+    (script-gen "rofi-otp" ./scripts/otp.sh)
   ];
 
   xdg.configFile."rofi".source = lib.outLink "rofi/config";

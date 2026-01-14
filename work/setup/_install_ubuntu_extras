@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if [ "$1" == '-d' ]; then
+  sudo apt remove -y libpam-u2f
+elif ! command -v nix &>/dev/null; then
+  sudo apt install -y libpam-u2f
+fi

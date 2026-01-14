@@ -55,11 +55,30 @@ in
   };
 
   environment.etc."pam.d/i3lock".text = ''
+    auth       sufficient ${pkgs.pam_u2f}/lib/security/pam_u2f.so authfile=/etc/u2f_keys
     auth       required   pam_unix.so
     account    required   pam_unix.so
     password   required   pam_unix.so
     session    required   pam_unix.so
   '';
+
+  systemd.services.pcsclite = {
+    enable = true;
+    description = "PC/SC Smart Card Daemon";
+    after = [ "network.target" ];
+    wantedBy = [ "multi-user.target" ];
+
+    environment = {
+      PCSCLITE_HP_DROPDIR = "${pkgs.ccid}/pcsc/drivers";
+    };
+
+    serviceConfig = {
+      ExecStart = "${pkgs.pcsclite}/bin/pcscd -f -d";
+      Type = "simple";
+      Restart = "on-failure";
+      RestartSec = "5s";
+    };
+  };
 
   systemd.services.warp-svc = {
     enable = true;

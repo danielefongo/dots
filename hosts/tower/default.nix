@@ -15,6 +15,7 @@
     ../modules/networking.nix
     ../modules/onepassword.nix
     ../modules/sound.nix
+    ../modules/yubikey.nix
     ../modules/users/danielefongo.nix
     ./hardware-configuration.nix
     inputs.home-manager.nixosModules.home-manager

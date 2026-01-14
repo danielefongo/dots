@@ -16,3 +16,4 @@ export PATH="$PATH:$HOME/.nix-profile/bin"
 ./_install_xsessions_desktop $OPTION
 ./_build_output_folder $OPTION
 ./_set_user_permissions $OPTION
+./_install_ubuntu_extras $OPTION

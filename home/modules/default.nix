@@ -36,6 +36,7 @@
     ./xbindkeys
     ./xnviewmp
     ./xsettingsd
+    ./yubikey
     ./zsh
   ];
 }
