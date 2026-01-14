@@ -81,7 +81,7 @@ build_diff() {
     [[ -n "$pname" ]] || continue
     new_packages_map["$pname"]="$version"
 
-    if [[ -n "${old_packages_map[$pname]}" || "${old_packages_map[$pname]+_}" ]]; then
+    if [[ "${old_packages_map[$pname]+_}" ]]; then
       if [[ "${old_packages_map[$pname]}" != "$version" ]]; then
         updated_packages+=("$pname")
       fi

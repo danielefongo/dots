@@ -1,5 +1,6 @@
 {
   inputs,
+  lib,
   pkgs,
   user_data,
   ...
@@ -14,7 +15,7 @@
     pkgs = super;
   };
   nix-scripts = pkgs.callPackage ./nix-scripts {
-    inherit user_data;
+    inherit lib user_data;
     pkgs = super;
   };
 })

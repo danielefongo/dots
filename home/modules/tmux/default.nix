@@ -1,20 +1,16 @@
-{ lib, pkgs, ... }:
+{
+  lib,
+  pkgs,
+  ...
+}:
 
-let
-  run_on_nvim = (
-    pkgs.writeShellScriptBin "tmux_run_on_nvim" (builtins.readFile ./scripts/run_on_nvim.sh)
-  );
-  tmux_window_name = (
-    pkgs.writeShellScriptBin "tmux_window_name" (builtins.readFile ./scripts/window_name.sh)
-  );
-in
 {
   home.packages = with pkgs; [
     entr
     tmux
     tmuxinator
-    run_on_nvim
-    tmux_window_name
+    (lib.dotScript "tmux_run_on_nvim" ./scripts/run_on_nvim.sh [ ])
+    (lib.dotScript "tmux_window_name" ./scripts/window_name.sh [ ])
   ];
 
   xdg.configFile."tmux/tmux.conf".source = lib.outLink "tmux/tmux.conf";

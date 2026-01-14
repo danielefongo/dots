@@ -1,10 +1,10 @@
 { lib, pkgs, ... }:
 
 {
-  imports = [ ./scripts.nix ];
-
   home.packages = with pkgs; [
     polybarFull
+    (lib.dotScript "cpu-temp" ./scripts/cpu_temp.sh [ pkgs.lm_sensors ])
+    (lib.dotScript "mem-usage" ./scripts/mem_usage.sh [ ])
   ];
 
   xdg.configFile."polybar".source = lib.outLink "polybar";
