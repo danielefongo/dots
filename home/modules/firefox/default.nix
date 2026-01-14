@@ -5,16 +5,12 @@ lib.withCfg "firefox"
     profiles = {
       type = lib.types.attrs;
     };
-    enable = {
-      type = lib.types.bool;
-      default = true;
-    };
   }
   (cfg: {
     imports = [ ./firefox.nix ];
 
     firefox = {
-      enable = cfg.enable;
+      enable = true;
       profiles = cfg.profiles;
     };
 

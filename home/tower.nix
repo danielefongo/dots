@@ -14,8 +14,6 @@
 
   programs.home-manager.enable = true;
 
-  home.packages = [ pkgs.google-chrome ];
-  cfg.firefox.enable = false;
   cfg.firefox.profiles = {
     personal = {
       isDefault = true;
