@@ -20,6 +20,7 @@
     ./nix
     ./nix-theme
     ./nvim
+    ./opencode
     ./picom
     ./playerctl
     ./plover
