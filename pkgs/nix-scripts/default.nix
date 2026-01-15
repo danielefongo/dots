@@ -15,4 +15,5 @@
   nix-packages = lib.dotScript "nix-packages" ./scripts/nix-packages.sh [ ];
   nix-tools = lib.dotScript "nix-tools" ./scripts/nix-tools.sh [ ];
   nix-update-flakes = lib.dotScript "nix-update-flakes" ./scripts/nix-update-flakes.sh [ ];
+  nix-tests = lib.dotScript "nix-tests" ./scripts/nix-tests.sh [ pkgs.fzf ];
 }

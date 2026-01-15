@@ -8,7 +8,9 @@ let
       builtins.readDir
       (mapAttrsToList (
         name: type:
-        if type == "regular" && hasSuffix ".nix" name && name != "default.nix" then
+        if
+          type == "regular" && hasSuffix ".nix" name && name != "default.nix" && !(hasSuffix "_test.nix" name)
+        then
           [
             {
               name = removeSuffix ".nix" name;
