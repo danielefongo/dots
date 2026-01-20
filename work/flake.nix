@@ -17,10 +17,16 @@
     };
     nixgl = {
       url = "github:nix-community/nixGL";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "root-flake/nixpkgs";
     };
-    suite_py.url = "git+ssh://git@github.com/primait/suite_py";
-    prima-nix.url = "git+ssh://git@github.com/primait/prima.nix.git";
+    suite_py = {
+      url = "git+ssh://git@github.com/primait/suite_py";
+      inputs.nixpkgs.follows = "root-flake/nixpkgs-unstable";
+    };
+    prima-nix = {
+      url = "git+ssh://git@github.com/primait/prima.nix.git";
+      inputs.nixpkgs.follows = "root-flake/nixpkgs-unstable";
+    };
   };
   outputs =
     {

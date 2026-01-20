@@ -8,8 +8,14 @@
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nurpkgs.url = "github:nix-community/NUR";
-    plover.url = "github:openstenoproject/plover-flake";
+    nurpkgs = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    plover = {
+      url = "github:openstenoproject/plover-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs =
     { nixpkgs, home-manager, ... }@inputs:
