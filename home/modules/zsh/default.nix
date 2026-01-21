@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   home.packages = with pkgs; [
@@ -7,6 +7,6 @@
     ruby # for scm_breeze
   ];
 
-  home.file.".zshrc".source = lib.outLink "zsh/zshrc";
-  xdg.configFile."sheldon".source = lib.outLink "sheldon";
+  home.file.".zshrc".source = pkgs.dot.outLink "zsh/zshrc";
+  xdg.configFile."sheldon".source = pkgs.dot.outLink "sheldon";
 }

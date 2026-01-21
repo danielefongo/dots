@@ -1,7 +1,7 @@
-{ lib, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   home.packages = with pkgs; [ btop ];
 
-  xdg.configFile."btop".source = lib.outLink "btop";
+  xdg.configFile."btop".source = pkgs.dot.outLink "btop";
 }

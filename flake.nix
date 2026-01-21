@@ -30,14 +30,26 @@
 
       overlays = [
         inputs.nurpkgs.overlays.default
-        (self: super: { lib = super.lib // home-manager.lib // { hm = home-manager.lib.hm; }; })
-        (self: super: {
-          config = super.config // {
+        (final: prev: { lib = prev.lib // home-manager.lib // { hm = home-manager.lib.hm; }; })
+        (final: prev: {
+          lib =
+            prev.lib
+            // (import ./lib {
+              lib = prev.lib;
+              inherit
+                system
+                inputs
+                user_data
+                ;
+            });
+        })
+        (final: prev: {
+          config = prev.config // {
             allowUnfree = true;
             allowAliases = true;
           };
         })
-        (self: super: {
+        (final: prev: {
           unstable = import inputs.nixpkgs-unstable {
             inherit system;
             config.allowUnfree = true;
@@ -45,7 +57,6 @@
         })
         (import ./pkgs {
           inherit
-            lib
             pkgs
             inputs
             user_data
@@ -59,17 +70,6 @@
         overlays = overlays;
       };
 
-      lib = (
-        import ./lib {
-          inherit
-            system
-            inputs
-            pkgs
-            user_data
-            ;
-        }
-      );
-
       homeManager = {
         home-manager.extraSpecialArgs = inputs // {
           inherit pkgs user_data;
@@ -80,9 +80,10 @@
       formatter.x85_64-linux = pkgs.nixfmt-rfc-style;
 
       nixosConfigurations.tower = nixpkgs.lib.nixosSystem {
-        inherit pkgs lib;
+        inherit pkgs;
 
         specialArgs = {
+          lib = pkgs.lib;
           inherit inputs user_data;
         };
 
@@ -94,8 +95,6 @@
 
       # for work flake
       pkgs = pkgs;
-      lib = lib;
-      overlays = overlays;
       user_data = user_data;
     };
 }

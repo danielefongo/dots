@@ -107,7 +107,7 @@ in
       cfg.profiles
       |> lib.mapAttrsToList (
         profileName: p: {
-          ".mozilla/firefox/${profileName}/chrome".source = lib.outLink "firefox/chrome";
+          ".mozilla/firefox/${profileName}/chrome".source = pkgs.dot.outLink "firefox/chrome";
         }
       )
       |> lib.mkMerge;

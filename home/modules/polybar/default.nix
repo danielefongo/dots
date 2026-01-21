@@ -1,13 +1,13 @@
-{ lib, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   home.packages = with pkgs; [
     polybarFull
-    (lib.dotScript "cpu-temp" ./scripts/cpu_temp.sh [ pkgs.lm_sensors ])
-    (lib.dotScript "mem-usage" ./scripts/mem_usage.sh [ ])
+    (pkgs.dot.script "cpu-temp" ./scripts/cpu_temp.sh [ pkgs.lm_sensors ])
+    (pkgs.dot.script "mem-usage" ./scripts/mem_usage.sh [ ])
   ];
 
-  xdg.configFile."polybar".source = lib.outLink "polybar";
+  xdg.configFile."polybar".source = pkgs.dot.outLink "polybar";
 
   systemd.user.services = {
     polybar = {

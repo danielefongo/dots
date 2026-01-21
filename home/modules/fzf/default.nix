@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ pkgs, ... }:
 
 let
   fzfWrapper = pkgs.writeShellScriptBin "fzf" ''
@@ -9,5 +9,5 @@ in
 {
   home.packages = [ fzfWrapper ];
 
-  home.file.".fzf.conf".source = lib.outLink "fzf/fzf.conf";
+  home.file.".fzf.conf".source = pkgs.dot.outLink "fzf/fzf.conf";
 }

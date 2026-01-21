@@ -1,20 +1,20 @@
 {
+  lib,
   inputs,
-  pkgs,
   user_data,
   ...
 }:
 
 let
   inherit (builtins) attrValues map;
-  inherit (pkgs.lib) foldr;
+  inherit (lib) foldr;
 
   modules = importLib ./modules.nix;
 
-  importLib = file: import file { inherit inputs pkgs user_data; };
+  importLib = file: import file { inherit inputs user_data lib; };
   merge = foldr (a: b: a // b) { };
   importLibs = libs: merge (map importLib libs);
 
-  libModules = modules.modulesIn ./. |> attrValues |> map toString |> importLibs;
+  libModules = modules.modulesIn ./. |> map toString |> importLibs;
 in
-pkgs.lib.extend (self: super: super // libModules)
+lib.extend (final: prev: prev // libModules)

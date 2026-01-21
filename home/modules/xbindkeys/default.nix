@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   home.packages = with pkgs; [
@@ -6,7 +6,7 @@
     xbindkeys
   ];
 
-  home.file.".xbindkeysrc".source = lib.outLink "xbindkeys/xbindkeysrc";
+  home.file.".xbindkeysrc".source = pkgs.dot.outLink "xbindkeys/xbindkeysrc";
 
   systemd.user.services = {
     xbindkeys = {

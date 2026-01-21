@@ -1,42 +1,5 @@
-{ ... }:
+{ lib, ... }:
 
 {
-  imports = [
-    ./apps
-    ./btop
-    ./copyq
-    ./discord
-    ./docker
-    ./dunst
-    ./essentials
-    ./firefox
-    ./flameshot
-    ./fonts
-    ./fzf
-    ./git
-    ./gtk
-    ./i3
-    ./kitty
-    ./nix
-    ./nix-theme
-    ./nvim
-    ./opencode
-    ./picom
-    ./playerctl
-    ./plover
-    ./polybar
-    ./redshift
-    ./rofi
-    ./sesh
-    ./shell-utils
-    ./thunar
-    ./tig
-    ./tmux
-    ./wallpaper
-    ./xbindkeys
-    ./xnviewmp
-    ./xsettingsd
-    ./yubikey
-    ./zsh
-  ];
+  imports = lib.modulesIn ./.;
 }

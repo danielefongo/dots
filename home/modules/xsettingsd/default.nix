@@ -1,9 +1,9 @@
-{ lib, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   home.packages = with pkgs; [ xsettingsd ];
 
-  xdg.configFile."xsettingsd".source = lib.outLink "xsettingsd";
+  xdg.configFile."xsettingsd".source = pkgs.dot.outLink "xsettingsd";
 
   systemd.user.services = {
     xsettingsd = {

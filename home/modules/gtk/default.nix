@@ -1,7 +1,7 @@
-{ lib, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   home.packages = with pkgs; [ sassc ];
 
-  home.file.".themes/gtk-theme".source = lib.outLink "gtk";
+  home.file.".themes/gtk-theme".source = pkgs.dot.outLink "gtk";
 }

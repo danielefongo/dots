@@ -1,21 +1,24 @@
 {
   inputs,
-  lib,
   pkgs,
   user_data,
   ...
 }:
 
-(self: super: {
-  ocr = pkgs.callPackage ./ocr.nix { pkgs = super; };
-  tmuxinator = pkgs.callPackage ./tmuxinator.nix { pkgs = super; };
-  firefox-addons = pkgs.callPackage ./firefox-addons.nix { pkgs = super; };
+(final: prev: rec {
+  ocr = pkgs.callPackage ./ocr.nix { pkgs = prev; };
+  tmuxinator = pkgs.callPackage ./tmuxinator.nix { pkgs = prev; };
+  firefox-addons = pkgs.callPackage ./firefox-addons.nix { pkgs = prev; };
   plover = pkgs.callPackage ./plover.nix {
     inherit inputs;
-    pkgs = super;
+    pkgs = prev;
+  };
+
+  dot = import ./dot.nix {
+    inherit pkgs user_data inputs;
   };
   nix-scripts = pkgs.callPackage ./nix-scripts {
-    inherit lib user_data;
-    pkgs = super;
+    inherit user_data dot;
+    pkgs = prev;
   };
 })

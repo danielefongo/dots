@@ -1,3 +1,5 @@
-{ ... }:
+{ inputs, ... }:
 
-(self: super: { })
+(final: prev: {
+  homeManagerConfiguration = inputs.home-manager.lib.homeManagerConfiguration;
+})

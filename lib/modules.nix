@@ -1,34 +1,18 @@
-{ pkgs, ... }:
+{ lib, ... }:
 
-with pkgs.lib;
+with lib;
 let
-  modulesIn = (
+  modulesIn =
     dir:
     pipe dir [
       builtins.readDir
-      (mapAttrsToList (
+      (filterAttrs (
         name: type:
-        if type == "regular" && hasSuffix ".nix" name && name != "default.nix" then
-          [
-            {
-              name = removeSuffix ".nix" name;
-              value = dir + "/${name}";
-            }
-          ]
-        else if type == "directory" && pathExists (dir + "/${name}/default.nix") then
-          [
-            {
-              inherit name;
-              value = dir + "/${name}";
-            }
-          ]
-        else
-          [ ]
+        (type == "regular" && hasSuffix ".nix" name && name != "default.nix")
+        || (type == "directory" && pathExists (dir + "/${name}/default.nix"))
       ))
-      concatLists
-      listToAttrs
-    ]
-  );
+      (mapAttrsToList (name: _: dir + "/${name}"))
+    ];
 
   withCfg = name: paramSpec: moduleConfigFn: {
     imports = [

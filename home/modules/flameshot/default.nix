@@ -1,9 +1,9 @@
-{ lib, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   home.packages = with pkgs; [ flameshot ];
 
-  xdg.configFile."flameshot".source = lib.outLink "flameshot";
+  xdg.configFile."flameshot".source = pkgs.dot.outLink "flameshot";
 
   systemd.user.services = {
     flameshot = {

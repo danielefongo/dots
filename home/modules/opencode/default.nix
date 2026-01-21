@@ -1,7 +1,7 @@
-{ lib, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   home.packages = [ pkgs.unstable.opencode ];
 
-  xdg.configFile."opencode/config.json".source = lib.outLink "opencode/config.json";
+  xdg.configFile."opencode/config.json".source = pkgs.dot.outLink "opencode/config.json";
 }
