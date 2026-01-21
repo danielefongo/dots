@@ -31,6 +31,9 @@
       overlays = [
         inputs.nurpkgs.overlays.default
         (self: super: {
+          lib = super.lib // inputs.home-manager.lib // { hm = inputs.home-manager.lib.hm; };
+        })
+        (self: super: {
           lib =
             super.lib
             // (import ./lib {
@@ -63,6 +66,8 @@
         })
       ];
 
+      lib = pkgs.lib;
+
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
@@ -82,7 +87,7 @@
         inherit pkgs;
 
         specialArgs = {
-          inherit inputs user_data;
+          inherit inputs user_data lib;
         };
 
         modules = [
