@@ -3,5 +3,5 @@
 {
   home.packages = with pkgs; [ sesh ];
 
-  xdg.configFile."sesh/sesh.toml".source = lib.outLink "sesh/sesh.toml";
+  xdg.configFile."sesh/sesh.toml".source = pkgs.outLink "sesh/sesh.toml";
 }

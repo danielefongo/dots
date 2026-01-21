@@ -3,7 +3,7 @@
 {
   home.packages = with pkgs; [ xsettingsd ];
 
-  xdg.configFile."xsettingsd".source = lib.outLink "xsettingsd";
+  xdg.configFile."xsettingsd".source = pkgs.outLink "xsettingsd";
 
   systemd.user.services = {
     xsettingsd = {

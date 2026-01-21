@@ -3,7 +3,7 @@
 {
   home.packages = with pkgs; [ redshift ];
 
-  xdg.configFile."redshift.conf".source = lib.outLink "redshift/redshift.conf";
+  xdg.configFile."redshift.conf".source = pkgs.outLink "redshift/redshift.conf";
 
   systemd.user.services = {
     redshift = {

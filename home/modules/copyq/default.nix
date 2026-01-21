@@ -5,7 +5,7 @@
     copyq
   ];
 
-  xdg.configFile."copyq/copyq.conf".source = lib.outLink "copyq/copyq.conf";
+  xdg.configFile."copyq/copyq.conf".source = pkgs.outLink "copyq/copyq.conf";
 
   services.copyq.enable = true;
 }

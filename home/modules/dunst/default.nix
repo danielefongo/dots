@@ -11,7 +11,7 @@ let
   '';
 in
 {
-  xdg.configFile."dunst".source = lib.outLink "dunst";
+  xdg.configFile."dunst".source = pkgs.outLink "dunst";
 
   systemd.user.services = {
     dunst = {

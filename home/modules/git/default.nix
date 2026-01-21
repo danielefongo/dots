@@ -4,8 +4,8 @@
   programs.git = {
     enable = true;
     includes = [
-      { path = lib.outLink "git/delta"; }
-      { path = lib.outLink "git/extra_config"; }
+      { path = pkgs.outLink "git/delta"; }
+      { path = pkgs.outLink "git/extra_config"; }
     ];
     settings = {
       user = {
@@ -14,7 +14,7 @@
       };
       core = {
         editor = "nvim";
-        excludesfile = builtins.toString (lib.outLink "git/ignore");
+        excludesfile = builtins.toString (pkgs.outLink "git/ignore");
       };
     };
   };

@@ -20,9 +20,9 @@ in
   ];
 
   xdg.configFile."vesktop/themes/discord.theme.css".source =
-    lib.outLink "discord/themes/discord.theme.css";
+    pkgs.outLink "discord/themes/discord.theme.css";
   xdg.configFile."vesktop/settings/settings.json".source =
-    lib.outLink "discord/settings/settings.json";
+    pkgs.outLink "discord/settings/settings.json";
 
   xdg.mimeApps = {
     enable = true;

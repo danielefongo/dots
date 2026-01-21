@@ -3,7 +3,7 @@
 {
   home.packages = with pkgs; [ flameshot ];
 
-  xdg.configFile."flameshot".source = lib.outLink "flameshot";
+  xdg.configFile."flameshot".source = pkgs.outLink "flameshot";
 
   systemd.user.services = {
     flameshot = {

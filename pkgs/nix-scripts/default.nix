@@ -2,6 +2,7 @@
   lib,
   pkgs,
   user_data,
+  scripts,
   ...
 }:
 
@@ -10,9 +11,9 @@
     inherit user_data pkgs;
   };
 
-  nix-rebuild = lib.dotScript "nix-rebuild" ./scripts/nix-rebuild.sh [ ];
-  nix-check = lib.dotScript "nix-check" ./scripts/nix-check.sh [ ];
-  nix-packages = lib.dotScript "nix-packages" ./scripts/nix-packages.sh [ ];
-  nix-tools = lib.dotScript "nix-tools" ./scripts/nix-tools.sh [ ];
-  nix-update-flakes = lib.dotScript "nix-update-flakes" ./scripts/nix-update-flakes.sh [ ];
+  nix-rebuild = scripts.dotScript "nix-rebuild" ./scripts/nix-rebuild.sh [ ];
+  nix-check = scripts.dotScript "nix-check" ./scripts/nix-check.sh [ ];
+  nix-packages = scripts.dotScript "nix-packages" ./scripts/nix-packages.sh [ ];
+  nix-tools = scripts.dotScript "nix-tools" ./scripts/nix-tools.sh [ ];
+  nix-update-flakes = scripts.dotScript "nix-update-flakes" ./scripts/nix-update-flakes.sh [ ];
 }

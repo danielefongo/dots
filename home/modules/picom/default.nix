@@ -3,7 +3,7 @@
 {
   home.packages = [ pkgs.picom ];
 
-  xdg.configFile."picom".source = lib.outLink "picom";
+  xdg.configFile."picom".source = pkgs.outLink "picom";
 
   systemd.user.services = {
     picom = {

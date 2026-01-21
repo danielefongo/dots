@@ -61,10 +61,10 @@
 
       lib = (
         import ./lib {
+          lib = pkgs.lib;
           inherit
             system
             inputs
-            pkgs
             user_data
             ;
         }

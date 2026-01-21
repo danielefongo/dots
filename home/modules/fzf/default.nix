@@ -9,5 +9,5 @@ in
 {
   home.packages = [ fzfWrapper ];
 
-  home.file.".fzf.conf".source = lib.outLink "fzf/fzf.conf";
+  home.file.".fzf.conf".source = pkgs.outLink "fzf/fzf.conf";
 }
