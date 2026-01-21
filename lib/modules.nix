@@ -16,49 +16,16 @@ let
 
   withCfg = name: paramSpec: moduleConfigFn: {
     imports = [
-      (
-        {
-          config,
-          lib,
-          ...
-        }:
-        let
-          modulePath = [ "cfg" ] ++ (lib.splitString "." name);
-          makeOptions = lib.mapAttrs (
-            paramName: paramDef:
-            lib.mkOption {
-              type = paramDef.type;
-              description = paramDef.description or "";
-            }
-            // (lib.optionalAttrs (paramDef ? default) { default = paramDef.default; })
-          ) paramSpec;
-        in
-        {
-          imports = (moduleConfigFn { }).imports or [ ];
-          options = lib.setAttrByPath modulePath (
-            lib.mkOption {
-              type = lib.types.submodule {
-                options = makeOptions;
-                freeformType = lib.types.attrs;
-              };
-            }
-          );
-          config =
-            let
-              moduleConfig = lib.attrByPath modulePath { } config;
-              params = moduleConfig;
-              configWithParams = moduleConfigFn params;
-              configWithNoImports = lib.attrsets.removeAttrs configWithParams [ "imports" ];
-            in
-            configWithNoImports;
-        }
-      )
+      ((opts.withConfig { prefix = "cfg"; }).module name paramSpec (cfg: moduleConfigFn cfg))
     ];
+
+    cfg.${name}.enable = true;
   };
 in
 {
   inherit
     modulesIn
     withCfg
+    opts
     ;
 }

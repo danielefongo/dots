@@ -7,6 +7,10 @@
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-optional-modules = {
+      url = "github:danielefongo/nix-optional-modules";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nurpkgs = {
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -30,6 +34,11 @@
       mkOverlays = inputs: pkgs: [
         inputs.nurpkgs.overlays.default
         (final: prev: { lib = prev.lib // home-manager.lib // { hm = home-manager.lib.hm; }; })
+        (final: prev: {
+          lib = prev.lib // {
+            opts = inputs.nix-optional-modules.lib;
+          };
+        })
         (final: prev: {
           lib =
             prev.lib
