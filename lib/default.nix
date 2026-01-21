@@ -6,7 +6,7 @@
 }:
 
 let
-  inherit (builtins) attrValues map;
+  inherit (builtins) map;
   inherit (lib) foldr;
 
   modules = importLib ./modules.nix;

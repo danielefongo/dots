@@ -1,6 +1,5 @@
 {
   description = "Dotfiles";
-
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/release-25.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -28,7 +27,7 @@
         dots_path = "/home/danielefongo/dots";
       };
 
-      overlays = [
+      mkOverlays = inputs: pkgs: [
         inputs.nurpkgs.overlays.default
         (final: prev: { lib = prev.lib // home-manager.lib // { hm = home-manager.lib.hm; }; })
         (final: prev: {
@@ -36,11 +35,7 @@
             prev.lib
             // (import ./lib {
               lib = prev.lib;
-              inherit
-                system
-                inputs
-                user_data
-                ;
+              inherit system inputs user_data;
             });
         })
         (final: prev: {
@@ -56,19 +51,25 @@
           };
         })
         (import ./pkgs {
-          inherit
-            pkgs
-            inputs
-            user_data
-            ;
+          inherit pkgs inputs user_data;
         })
       ];
 
-      pkgs = import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-        overlays = overlays;
-      };
+      mkPkgs =
+        {
+          system,
+          extraOverlays ? [ ],
+        }:
+        let
+          pkgs = import inputs.nixpkgs {
+            inherit system;
+            config.allowUnfree = true;
+            overlays = (mkOverlays inputs pkgs) ++ extraOverlays;
+          };
+        in
+        pkgs;
+
+      pkgs = mkPkgs { inherit system; };
 
       homeManager = {
         home-manager.extraSpecialArgs = inputs // {
@@ -93,8 +94,6 @@
         ];
       };
 
-      # for work flake
-      pkgs = pkgs;
-      user_data = user_data;
+      inherit inputs user_data mkPkgs;
     };
 }

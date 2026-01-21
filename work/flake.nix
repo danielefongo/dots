@@ -1,15 +1,8 @@
 {
   description = "Work dotfiles";
-
   inputs = {
-    # root flake inputs
+    # root flake
     root-flake.url = "../.";
-    nixpkgs.follows = "root-flake/nixpkgs";
-    nixpkgs-unstable.follows = "root-flake/nixpkgs-unstable";
-    home-manager.follows = "root-flake/home-manager";
-    nurpkgs.follows = "root-flake/nurpkgs";
-    plover.follows = "root-flake/plover";
-
     # work inputs
     system-manager = {
       url = "github:numtide/system-manager";
@@ -29,19 +22,14 @@
     };
   };
   outputs =
-    {
-      nixpkgs,
-      system-manager,
-      root-flake,
-      ...
-    }@inputs:
+    { root-flake, ... }@work_inputs:
     let
+      inputs = root-flake.inputs // work_inputs;
       system = "x86_64-linux";
-      pkgs = import nixpkgs {
+      pkgs = root-flake.mkPkgs {
         inherit system;
-        config.allowUnfree = true;
 
-        overlays = root-flake.pkgs.overlays ++ [
+        extraOverlays = [
           inputs.nixgl.overlay
           inputs.suite_py.overlays.default
           (import ./pkgs { inherit pkgs inputs; })
@@ -55,14 +43,13 @@
 
       homeConfigurations."${user_data.user}" = pkgs.homeManagerConfiguration {
         inherit pkgs;
-
         extraSpecialArgs = inputs // {
           inherit user_data;
         };
         modules = [ ./home.nix ];
       };
 
-      systemConfigs.default = system-manager.lib.makeSystemConfig {
+      systemConfigs.default = inputs.system-manager.lib.makeSystemConfig {
         extraSpecialArgs = inputs // {
           inherit system pkgs;
         };

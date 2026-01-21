@@ -329,27 +329,7 @@
     },
     "root": {
       "inputs": {
-        "home-manager": [
-          "root-flake",
-          "home-manager"
-        ],
         "nixgl": "nixgl",
-        "nixpkgs": [
-          "root-flake",
-          "nixpkgs"
-        ],
-        "nixpkgs-unstable": [
-          "root-flake",
-          "nixpkgs-unstable"
-        ],
-        "nurpkgs": [
-          "root-flake",
-          "nurpkgs"
-        ],
-        "plover": [
-          "root-flake",
-          "plover"
-        ],
         "prima-nix": "prima-nix",
         "root-flake": "root-flake",
         "suite_py": "suite_py",
