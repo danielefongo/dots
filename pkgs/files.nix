@@ -1,13 +1,19 @@
-{ user_data, pkgs, ... }:
+{
+  inputs,
+  user_data,
+  pkgs,
+  ...
+}:
 
 let
   dots_path = user_data.dots_path;
+  hm = inputs.home-manager.lib.hm;
 
   mkOutOfStoreSymlink =
     path:
     let
       pathStr = toString path;
-      name = pkgs.lib.hm.strings.storeFileName (baseNameOf pathStr);
+      name = hm.strings.storeFileName (baseNameOf pathStr);
     in
     pkgs.runCommandLocal name { } "ln -s ${pkgs.lib.escapeShellArg pathStr} $out";
 in

@@ -8,7 +8,7 @@
 let
 
   files = import ./files.nix {
-    inherit pkgs user_data;
+    inherit pkgs user_data inputs;
   };
   scripts = import ./scripts.nix {
     inherit pkgs user_data;
@@ -29,4 +29,6 @@ in
     inherit user_data scripts;
     pkgs = super;
   };
+
+  homeManagerConfiguration = inputs.home-manager.lib.homeManagerConfiguration;
 })

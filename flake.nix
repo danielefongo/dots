@@ -18,7 +18,7 @@
     };
   };
   outputs =
-    { nixpkgs, home-manager, ... }@inputs:
+    { nixpkgs, ... }@inputs:
     let
       system = "x86_64-linux";
 
@@ -30,7 +30,6 @@
 
       overlays = [
         inputs.nurpkgs.overlays.default
-        (self: super: { lib = super.lib // home-manager.lib // { hm = home-manager.lib.hm; }; })
         (self: super: {
           lib =
             super.lib
@@ -94,8 +93,6 @@
 
       # for work flake
       pkgs = pkgs;
-      lib = pkgs.lib;
-      overlays = overlays;
       user_data = user_data;
     };
 }
