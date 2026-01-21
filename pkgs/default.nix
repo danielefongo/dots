@@ -1,6 +1,5 @@
 {
   inputs,
-  lib,
   pkgs,
   user_data,
   ...
@@ -27,7 +26,7 @@ in
   inherit (scripts) dotScript;
 
   nix-scripts = pkgs.callPackage ./nix-scripts {
-    inherit lib user_data scripts;
+    inherit user_data scripts;
     pkgs = super;
   };
 })

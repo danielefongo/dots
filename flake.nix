@@ -32,6 +32,18 @@
         inputs.nurpkgs.overlays.default
         (self: super: { lib = super.lib // home-manager.lib // { hm = home-manager.lib.hm; }; })
         (self: super: {
+          lib =
+            super.lib
+            // (import ./lib {
+              lib = super.lib;
+              inherit
+                system
+                inputs
+                user_data
+                ;
+            });
+        })
+        (self: super: {
           config = super.config // {
             allowUnfree = true;
             allowAliases = true;
@@ -45,7 +57,6 @@
         })
         (import ./pkgs {
           inherit
-            lib
             pkgs
             inputs
             user_data
@@ -59,17 +70,6 @@
         overlays = overlays;
       };
 
-      lib = (
-        import ./lib {
-          lib = pkgs.lib;
-          inherit
-            system
-            inputs
-            user_data
-            ;
-        }
-      );
-
       homeManager = {
         home-manager.extraSpecialArgs = inputs // {
           inherit pkgs user_data;
@@ -80,7 +80,7 @@
       formatter.x85_64-linux = pkgs.nixfmt-rfc-style;
 
       nixosConfigurations.tower = nixpkgs.lib.nixosSystem {
-        inherit pkgs lib;
+        inherit pkgs;
 
         specialArgs = {
           inherit inputs user_data;
@@ -94,7 +94,7 @@
 
       # for work flake
       pkgs = pkgs;
-      lib = lib;
+      lib = pkgs.lib;
       overlays = overlays;
       user_data = user_data;
     };
