@@ -8,6 +8,7 @@
     nix-scripts.nix-rebuild
     nix-scripts.nix-tools
     nix-scripts.nix-update-flakes
+    nix-tests
   ];
 
   nix.settings = {

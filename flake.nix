@@ -11,6 +11,10 @@
       url = "github:danielefongo/nix-optional-modules";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-tests = {
+      url = "github:danielefongo/nix-tests";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nurpkgs = {
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -33,6 +37,7 @@
 
       mkOverlays = inputs: pkgs: [
         inputs.nurpkgs.overlays.default
+        inputs.nix-tests.overlays.default
         (final: prev: { lib = prev.lib // home-manager.lib // { hm = home-manager.lib.hm; }; })
         (final: prev: {
           lib = prev.lib // {
