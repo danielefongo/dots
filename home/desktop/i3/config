@@ -47,6 +47,7 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 # menu
 bindsym $mod+d exec rofi -show combi
 bindsym $mod+t exec rofi-theme
+bindsym $mod+$shift+t exec nix-theme
 bindsym $mod+o exec rofi-otp
 
 # clipboard

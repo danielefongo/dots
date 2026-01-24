@@ -28,6 +28,7 @@
   module.system.enable = true;
   module.terminal.enable = true;
 
+  module.system.theme.service = false;
   module.apps.firefox.profiles = {
     personal = {
       isDefault = false;
