@@ -1,6 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
+  imports = lib.modulesIn ./.;
+
   home.packages = with pkgs; [
     _1password-gui
     rawtherapee

@@ -1,9 +1,13 @@
-{ user_data, ... }:
+{ user_data, pkgs, ... }:
 
+let
+  userName = user_data.user;
+  userHome = user_data.home;
+in
 {
-  users.users."${user_data.user}" = {
+  users.users.${userName} = {
     isNormalUser = true;
-    description = user_data.user;
+    description = userName;
     extraGroups = [
       "networkmanager"
       "wheel"
@@ -12,8 +16,34 @@
     ];
   };
 
-  home-manager = {
-    users."${user_data.user}" = import ../../../home/tower.nix;
-    backupFileExtension = "hm-bak";
+  home-manager.users.${userName} = {
+    imports = [ ../../../home ];
+
+    home = {
+      username = userName;
+      homeDirectory = userHome;
+      stateVersion = "25.11";
+    };
+
+    programs.home-manager.enable = true;
+
+    cfg.firefox.profiles.personal = {
+      isDefault = true;
+      id = 0;
+      addons = with pkgs.firefox-addons; [
+        darkreader
+        flagfox
+        clearurls
+        onepassword-password-manager
+        refined-github
+        tabliss
+        ublock-origin
+        vimium
+        videospeed
+        libredirect
+      ];
+    };
   };
+
+  home-manager.backupFileExtension = "hm-bak";
 }

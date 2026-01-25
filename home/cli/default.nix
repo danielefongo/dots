@@ -1,6 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
+  imports = lib.modulesIn ./.;
+
   home.packages = with pkgs; [
     choose
     cloc
@@ -19,6 +21,7 @@
     xclip
     zoxide
     rip2
+    tailscale
   ];
 
   programs.direnv = {
