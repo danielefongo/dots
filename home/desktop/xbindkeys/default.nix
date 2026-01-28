@@ -1,12 +1,14 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
-{
+lib.opts.module "desktop.xbindkeys" { } (cfg: {
   home.packages = with pkgs; [
     playerctl
     xbindkeys
   ];
 
   home.file.".xbindkeysrc".source = pkgs.dot.outLink "xbindkeys/xbindkeysrc";
+
+  module.desktop.playerctl.enable = true;
 
   systemd.user.services = {
     xbindkeys = {
@@ -26,4 +28,4 @@
       };
     };
   };
-}
+})

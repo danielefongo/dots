@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
-{
+lib.opts.module "apps.xnviewmp" { } (cfg: {
   home.packages = with pkgs; [
     xnviewmp
   ];
@@ -45,4 +45,4 @@
       "image/x-fuji-raf" = "xnviewmp.desktop";
     };
   };
-}
+})

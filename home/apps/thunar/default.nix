@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
-{
+lib.opts.module "apps.thunar" { } (cfg: {
   home.packages = with pkgs.xfce; [
     thunar
     tumbler
@@ -26,4 +26,4 @@
   };
 
   targets.genericLinux.enable = true;
-}
+})

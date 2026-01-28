@@ -1,4 +1,8 @@
-{ user_data, pkgs, ... }:
+{
+  user_data,
+  pkgs,
+  ...
+}:
 
 let
   userName = user_data.user;
@@ -27,7 +31,15 @@ in
 
     programs.home-manager.enable = true;
 
-    cfg.firefox.profiles.personal = {
+    module.apps.enable = true;
+    module.cli.enable = true;
+    module.desktop.enable = true;
+    module.editor.enable = true;
+    module.shell.enable = true;
+    module.system.enable = true;
+    module.terminal.enable = true;
+
+    module.apps.firefox.profiles.personal = {
       isDefault = true;
       id = 0;
       addons = with pkgs.firefox-addons; [

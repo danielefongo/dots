@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
-{
+lib.opts.module "desktop.i3" { } (cfg: {
   imports = [
     ./keyboard.nix
   ];
@@ -24,4 +24,9 @@
       };
     };
   };
-}
+
+  module.system.theme.enable = true;
+  module.apps.copyq.enable = true;
+  module.apps.ocr.enable = true;
+  module.terminal.kitty.enable = true;
+})

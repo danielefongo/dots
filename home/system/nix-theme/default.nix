@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
-{
+lib.opts.module "system.theme" { } (cfg: {
   home.packages = [ pkgs.nix-scripts.nix-theme ];
 
   systemd.user.services.theme = {
@@ -13,4 +13,4 @@
       RestartSec = 2;
     };
   };
-}
+})

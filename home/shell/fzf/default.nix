@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
 let
   fzfWrapper = pkgs.writeShellScriptBin "fzf" ''
@@ -6,8 +6,8 @@ let
     ${pkgs.fzf}/bin/fzf "$@"
   '';
 in
-{
+lib.opts.module "shell.fzf" { } (cfg: {
   home.packages = [ fzfWrapper ];
 
   home.file.".fzf.conf".source = pkgs.dot.outLink "fzf/fzf.conf";
-}
+})

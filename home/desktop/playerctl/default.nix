@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
 let
   playerctlStatus = pkgs.writeShellScriptBin "playerctl-status" ''
@@ -29,9 +29,9 @@ let
     fi
   '';
 in
-{
+lib.opts.module "desktop.playerctl" { } (cfg: {
   home.packages = [
     pkgs.playerctl
     playerctlStatus
   ];
-}
+})

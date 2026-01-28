@@ -20,7 +20,15 @@
     installScripts = [ "mesa" ];
   };
 
-  cfg.firefox.profiles = {
+  module.apps.enable = true;
+  module.cli.enable = true;
+  module.desktop.enable = true;
+  module.editor.enable = true;
+  module.shell.enable = true;
+  module.system.enable = true;
+  module.terminal.enable = true;
+
+  module.apps.firefox.profiles = {
     personal = {
       isDefault = false;
       id = 0;

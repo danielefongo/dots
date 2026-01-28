@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
-{
+lib.opts.module "cli.git" { } (cfg: {
   programs.git = {
     enable = true;
     includes = [
@@ -28,4 +28,4 @@
     gh
     lazygit
   ];
-}
+})

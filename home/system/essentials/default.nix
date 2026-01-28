@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
-{
+lib.opts.module "system.essentials" { } (cfg: {
   home.packages = with pkgs; [
     gcc
     cmake
@@ -12,4 +12,4 @@
     unzip
     nfs-utils
   ];
-}
+})

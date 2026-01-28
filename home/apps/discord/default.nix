@@ -1,11 +1,11 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
 let
   vesktop = pkgs.writeShellScriptBin "vesktop" ''
     ${pkgs.vesktop}/bin/vesktop "$@"
   '';
 in
-{
+lib.opts.module "apps.discord" { } (cfg: {
   home.packages = [
     vesktop
     (pkgs.makeDesktopItem {
@@ -30,4 +30,4 @@ in
       "x-scheme-handler/discord" = "vesktop.desktop";
     };
   };
-}
+})

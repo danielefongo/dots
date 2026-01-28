@@ -14,18 +14,18 @@ let
       (mapAttrsToList (name: _: dir + "/${name}"))
     ];
 
-  withCfg = name: paramSpec: moduleConfigFn: {
+  package = name: pkg: {
     imports = [
-      ((opts.withConfig { prefix = "cfg"; }).module name paramSpec (cfg: moduleConfigFn cfg))
+      (opts.module "${name}" { } (cfg: {
+        home.packages = [ pkg ];
+      }))
     ];
-
-    cfg.${name}.enable = true;
   };
 in
 {
   inherit
     modulesIn
-    withCfg
     opts
+    package
     ;
 }

@@ -1,6 +1,6 @@
 { lib, ... }:
 
-lib.withCfg "firefox"
+lib.opts.module "apps.firefox"
   {
     profiles = {
       type = lib.types.attrs;

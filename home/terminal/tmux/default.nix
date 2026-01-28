@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
-{
+lib.opts.module "terminal.tmux" { } (cfg: {
   home.packages = with pkgs; [
     entr
     tmux
@@ -10,4 +10,4 @@
   ];
 
   xdg.configFile."tmux/tmux.conf".source = pkgs.dot.outLink "tmux/tmux.conf";
-}
+})

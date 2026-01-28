@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
-{
+lib.opts.module "desktop.rofi" { } (cfg: {
   home.packages = with pkgs; [
     rofi
     (pkgs.dot.script "rofi-theme" ./scripts/theme.sh [ ])
@@ -12,4 +12,7 @@
   ];
 
   xdg.configFile."rofi".source = pkgs.dot.outLink "rofi/config";
-}
+
+  module.cli.yubikey.enable = true;
+  module.system.theme.enable = true;
+})

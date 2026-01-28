@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
 let
   dunstWrapper = pkgs.writeShellScriptBin "dunst" ''
@@ -10,7 +10,7 @@ let
     ${pkgs.dunst}/bin/dunst
   '';
 in
-{
+lib.opts.module "desktop.dunst" { } (cfg: {
   xdg.configFile."dunst".source = pkgs.dot.outLink "dunst";
 
   systemd.user.services = {
@@ -31,4 +31,4 @@ in
       };
     };
   };
-}
+})

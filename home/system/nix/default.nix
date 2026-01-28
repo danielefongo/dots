@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
-{
+lib.opts.module "system.nix" { } (cfg: {
   home.packages = with pkgs; [
     fh
     nix-scripts.nix-check
@@ -20,4 +20,4 @@
       "pipe-operators"
     ];
   };
-}
+})
