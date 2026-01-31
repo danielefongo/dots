@@ -2,7 +2,6 @@
   pkgs,
   user_data,
   prima-nix,
-  nixgl,
   config,
   ...
 }:
@@ -15,9 +14,12 @@
   ];
 
   targets.genericLinux.nixGL = {
-    packages = nixgl.packages;
-    defaultWrapper = "mesa";
-    installScripts = [ "mesa" ];
+    packages = pkgs.nixgl;
+    defaultWrapper = "nvidia";
+    installScripts = [
+      "mesa"
+      "nvidia"
+    ];
   };
 
   module.apps.enable = true;
@@ -65,12 +67,22 @@
 
   nixpkgs.overlays = [
     (final: prev: {
-      kitty = config.lib.nixGL.wrap prev.kitty;
-      telegram-desktop = config.lib.nixGL.wrap prev.telegram-desktop;
-      whatsapp-for-linux = config.lib.nixGL.wrap prev.whatsapp-for-linux;
+      i3 = config.lib.nixGL.wrap prev.i3;
       picom = config.lib.nixGL.wrap prev.picom;
-      vesktop = config.lib.nixGL.wrap prev.vesktop;
+      rofi = config.lib.nixGL.wrap prev.rofi;
+      polybar = config.lib.nixGL.wrap prev.polybar;
+      polybarFull = config.lib.nixGL.wrap prev.polybarFull;
+      i3lock-color = config.lib.nixGL.wrap prev.i3lock-color;
+      flameshot = config.lib.nixGL.wrap prev.flameshot;
+      redshift = config.lib.nixGL.wrap prev.redshift;
+
+      kitty = config.lib.nixGL.wrap prev.kitty;
       firefox = config.lib.nixGL.wrap prev.firefox;
+      spotify = config.lib.nixGL.wrap prev.spotify;
+      telegram-desktop = config.lib.nixGL.wrap prev.telegram-desktop;
+      vesktop = config.lib.nixGL.wrap (pkgs.electronWithGPU prev.vesktop);
+      wasistlos = config.lib.nixGL.wrap prev.wasistlos;
+      slack = config.lib.nixGL.wrap (pkgs.electronWithGPU prev.slack);
     })
   ];
 

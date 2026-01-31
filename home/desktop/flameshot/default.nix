@@ -17,7 +17,7 @@ lib.opts.module "desktop.flameshot" { } (cfg: {
       };
 
       Service = {
-        ExecStart = "${pkgs.flameshot}/bin/flameshot";
+        ExecStart = lib.getExe pkgs.flameshot;
         Restart = "on-failure";
         RestartSec = 2;
       };

@@ -1,13 +1,8 @@
 { lib, pkgs, ... }:
 
-let
-  vesktop = pkgs.writeShellScriptBin "vesktop" ''
-    ${pkgs.vesktop}/bin/vesktop "$@"
-  '';
-in
 lib.opts.module "apps.discord" { } (cfg: {
   home.packages = [
-    vesktop
+    pkgs.vesktop
     (pkgs.makeDesktopItem {
       name = "Vesktop";
       exec = "vesktop";

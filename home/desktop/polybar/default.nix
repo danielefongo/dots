@@ -31,10 +31,10 @@ lib.opts.module "desktop.polybar" { } (cfg: {
 
           while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
-          export WLAN=$(${pkgs.iw}/bin/iw dev | awk '$1=="Interface"{print $2}' | head -n1)
+          export WLAN=$(${lib.getExe pkgs.iw} dev | awk '$1=="Interface"{print $2}' | head -n1)
 
-          for m in $(${pkgs.polybarFull}/bin/polybar --list-monitors | cut -d":" -f1); do
-          	MONITOR=$m ${pkgs.polybarFull}/bin/polybar top -c $CONFIG_FILE &
+          for m in $(${lib.getExe pkgs.polybarFull} --list-monitors | cut -d":" -f1); do
+            MONITOR=$m ${lib.getExe pkgs.polybarFull} top -c $CONFIG_FILE &
           done
           sleep infinity
         ''}";

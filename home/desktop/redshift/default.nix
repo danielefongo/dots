@@ -17,7 +17,7 @@ lib.opts.module "desktop.redshift" { } (cfg: {
       };
 
       Service = {
-        ExecStart = "${pkgs.redshift}/bin/redshift";
+        ExecStart = lib.getExe pkgs.redshift;
         Restart = "on-failure";
         RestartSec = 2;
       };

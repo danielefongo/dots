@@ -32,7 +32,7 @@
         extraOverlays = [
           inputs.nixgl.overlay
           inputs.suite_py.overlays.default
-          (import ./pkgs { inherit pkgs inputs; })
+          (import ./pkgs { inherit pkgs inputs system; })
         ];
       };
 

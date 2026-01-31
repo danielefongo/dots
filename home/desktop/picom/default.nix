@@ -17,7 +17,7 @@ lib.opts.module "desktop.picom" { } (cfg: {
       };
 
       Service = {
-        ExecStart = "${pkgs.picom}/bin/picom --backend xrender --vsync";
+        ExecStart = lib.getExe pkgs.picom;
         Restart = "on-failure";
         RestartSec = 2;
       };
