@@ -14,6 +14,8 @@ if [ "$1" == "-d" ]; then
     sudo userdel nixbld$n
   done
   sudo groupdel nixbld
+
+  sudo systemctl unmask power-profiles-daemon.service
 else
   sudo groupadd -r nixbld || true
   for n in $(seq 1 10); do sudo useradd -c "Nix build user $n" \
@@ -25,4 +27,6 @@ else
     cd "$WORK_DIR"
     sudo -E $(which nix) run github:numtide/system-manager -- switch --flake .
   fi
+
+  sudo systemctl mask power-profiles-daemon.service
 fi

@@ -1,0 +1,7 @@
+# https://gitlab.com/ananicy-cpp/ananicy-cpp#supported-attributes
+
+{"name": "cargo", "nice": 10, "sched": "batch"}
+{"name": "rustc", "nice": 10, "sched": "batch"}
+{"name": "rust-analyzer", "nice": 15, "sched": "batch", "ioclass": "idle"}
+
+{"name": "falcon-sensor-bpf", "sched": "batch", "ioclass": "idle", "cgroup": "cpu0_5"}

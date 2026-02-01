@@ -51,9 +51,9 @@
 
       systemConfigs.default = inputs.system-manager.lib.makeSystemConfig {
         extraSpecialArgs = inputs // {
-          inherit system pkgs;
+          inherit user_data system pkgs;
         };
-        modules = [ ./system.nix ];
+        modules = [ ./system ];
       };
     };
 }

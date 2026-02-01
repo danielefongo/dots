@@ -1,10 +1,12 @@
 { pkgs, ... }:
 
-let
-  cpupower = pkgs.linuxKernel.packages.linux_latest_libre.cpupower;
-in
 {
   nixpkgs.hostPlatform = "x86_64-linux";
+
+  imports = [
+    ./memory.nix
+    ./power.nix
+  ];
 
   systemd.services.dockerd = {
     enable = true;
@@ -24,33 +26,6 @@ in
       ExecStart = "${pkgs.nix}/bin/nix-daemon";
     };
     description = "Runs nix daemon";
-    wantedBy = [ "multi-user.target" ];
-  };
-
-  systemd.services.earlyoom = {
-    enable = true;
-    serviceConfig = {
-      ExecStart = "${pkgs.earlyoom}/bin/earlyoom";
-    };
-    description = "Runs earlyOOM daemon";
-    wantedBy = [ "multi-user.target" ];
-  };
-
-  systemd.services.bigswap = {
-    enable = true;
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = "${pkgs.writeShellScript "bigswap" ''
-        swapfile="/bigswap"
-        if [[ ! -f $swapfile ]]; then
-          ${pkgs.util-linux}/bin/fallocate -l 32G $swapfile 
-          ${pkgs.util-linux}/bin/mkswap $swapfile
-          ${pkgs.coreutils}/bin/chmod 600 $swapfile
-        fi
-        ${pkgs.util-linux}/bin/swapon $swapfile
-      ''}";
-    };
-    description = "Ensures 32GB swap file is created and enabled";
     wantedBy = [ "multi-user.target" ];
   };
 
