@@ -7,7 +7,7 @@ lib.opts.module "system.nix" { } (cfg: {
     nix-scripts.nix-packages
     nix-scripts.nix-rebuild
     nix-scripts.nix-tools
-    nix-scripts.nix-update-flakes
+    nix-scripts.nix-update
     nix-tests
   ];
 
