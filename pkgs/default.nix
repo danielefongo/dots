@@ -9,6 +9,7 @@
   ocr = pkgs.callPackage ./ocr.nix { pkgs = prev; };
   tmuxinator = pkgs.callPackage ./tmuxinator.nix { pkgs = prev; };
   firefox-addons = pkgs.callPackage ./firefox-addons.nix { pkgs = prev; };
+  discord = pkgs.callPackage ./discord { pkgs = prev; };
   plover = pkgs.callPackage ./plover.nix {
     inherit inputs;
     pkgs = prev;
