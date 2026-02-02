@@ -31,7 +31,6 @@
   module.terminal.enable = true;
 
   module.apps.discord.vesktop = false;
-  module.system.theme.service = false;
   module.apps.firefox.profiles = {
     personal = {
       isDefault = false;
