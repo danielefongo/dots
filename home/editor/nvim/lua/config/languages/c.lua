@@ -23,8 +23,13 @@ return {
   {
     "stevearc/conform.nvim",
     opts = function(_, opts)
-      opts.options.formatters_by_ft.c = { "clang-format" }
-      opts.options.formatters_by_ft.cpp = { "clang-format" }
+      opts.options.formatters_by_ft.c = { "clang_format" }
+      opts.options.formatters_by_ft.cpp = { "clang_format" }
+      opts.options.formatters.clang_format = {
+        command = "clang-format",
+        args = { "-assume-filename", "$FILENAME" },
+        stdin = true,
+      }
     end,
   },
 }
