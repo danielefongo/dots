@@ -22,7 +22,7 @@ done
 
 if [ "$USE_LATEST" -eq 1 ]; then
   echo "📦 using nixpkgs latest"
-  exec nix shell "${TOOLS[@]/#/nixpkgs#}"
+  exec nix shell "${TOOLS[@]/#/nixpkgs#}" -c zsh
 else
   if [ -d "$WORK_PATH" ]; then
     BASE="$WORK_PATH"
@@ -31,5 +31,5 @@ else
   fi
 
   echo "📦 using nixpkgs from flake: $BASE"
-  exec nix shell --inputs-from "$BASE" "${TOOLS[@]/#/nixpkgs#}"
+  exec nix shell --inputs-from "$BASE" "${TOOLS[@]/#/nixpkgs#}" -c zsh
 fi
