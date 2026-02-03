@@ -17,9 +17,11 @@
 
 window {
   location: north;
-  width: 100%;
+  width: calc(100% - {{ gap * 2 }}px);
+  y-offset: {{ gap }}px;
   height: {{ fontSize * 3 }}px;
   padding: {{ fontSize * 0.5 }}px;
+  border-radius: {{ round }}px;
   background-color: {{ colors.background_alt1 }};
   children: [ mainbox, message ];
 }
@@ -52,6 +54,7 @@ listview {
 element {
   padding: 1px 8px;
   spacing: 4px;
+  border-radius: {{ round }}px;
 }
 
 element selected {
