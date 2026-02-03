@@ -3,15 +3,47 @@ local lsp = vim.lsp
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "main",
     build = ":TSUpdate",
     event = "BufReadPost",
     opts = {
       ensure_installed = {},
-      sync_install = false,
-      auto_install = true,
-      highlight = {
-        enable = true,
-      },
+    },
+    init = function()
+      vim.api.nvim_create_autocmd("FileType", {
+        callback = function(args)
+          local bufnr = args.buf
+          local ft = vim.bo[bufnr].filetype
+          if ft == "" then return end
+
+          local lang = vim.treesitter.language.get_lang(ft) or ft
+          if pcall(vim.treesitter.start, bufnr, lang) then
+            vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+            vim.wo[0][0].foldmethod = "expr"
+            vim.bo[bufnr].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+          end
+        end,
+      })
+    end,
+    config = function(_, opts)
+      local ts = require("nvim-treesitter")
+
+      ts.setup({ install_dir = vim.fn.stdpath("data") .. "/site" })
+
+      local to_install = {}
+      for _, lang in ipairs(opts.ensure_installed) do
+        local ok = pcall(vim.treesitter.language.inspect, lang)
+        if not ok then table.insert(to_install, lang) end
+      end
+
+      if #to_install > 0 then ts.install(to_install) end
+    end,
+  },
+  {
+    "MeanderingProgrammer/treesitter-modules.nvim",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    event = "BufReadPost",
+    opts = {
       incremental_selection = {
         enable = true,
         keymaps = {
@@ -20,10 +52,10 @@ return {
         },
       },
     },
-    main = "nvim-treesitter.configs",
   },
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
+    branch = "main",
     init = function()
       vim.api.nvim_create_user_command("InspectTextObjects", function()
         local bufnr = vim.api.nvim_get_current_buf()

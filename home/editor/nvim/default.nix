@@ -20,12 +20,13 @@ lib.opts.module "editor.nvim" { } (cfg: {
       cargo # mason
       entr
       gh # snacks integration
+      tree-sitter
     ];
   };
 
   xdg.configFile."nvim/init.lua".source = pkgs.dot.outLink "nvim/init.lua";
   xdg.configFile."nvim/lua".source = pkgs.dot.outLink "nvim/lua";
-  xdg.configFile."nvim/lazy-lock.json".source = pkgs.dot.link "home/modules/nvim/lazy-lock.json";
+  xdg.configFile."nvim/lazy-lock.json".source = pkgs.dot.link "home/editor/nvim/lazy-lock.json";
 
   home.packages = with pkgs; [
     python3 # mason
