@@ -31,24 +31,7 @@
   module.terminal.enable = true;
 
   module.apps.discord.vesktop = false;
-  module.apps.firefox.profiles = {
-    personal = {
-      isDefault = false;
-      id = 0;
-      addons = with pkgs.firefox-addons; [
-        onepassword-password-manager
-        refined-github
-        tabliss
-        ublock-origin
-        vimium
-        videospeed
-        libredirect
-        darkreader
-        flagfox
-        clearurls
-      ];
-    };
-
+  module.apps.firefox.extraProfiles = {
     work = {
       id = 1;
       isDefault = true;
@@ -61,6 +44,7 @@
         videospeed
         libredirect
         grammarly
+        yet-another-smooth-scrolling
       ];
     };
   };

@@ -38,23 +38,6 @@ in
     module.shell.enable = true;
     module.system.enable = true;
     module.terminal.enable = true;
-
-    module.apps.firefox.profiles.personal = {
-      isDefault = true;
-      id = 0;
-      addons = with pkgs.firefox-addons; [
-        darkreader
-        flagfox
-        clearurls
-        onepassword-password-manager
-        refined-github
-        tabliss
-        ublock-origin
-        vimium
-        videospeed
-        libredirect
-      ];
-    };
   };
 
   home-manager.backupFileExtension = "hm-bak";
