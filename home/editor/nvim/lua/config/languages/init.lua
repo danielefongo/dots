@@ -260,7 +260,7 @@ return {
       })
     end,
     keys = {
-      lkey("cf", function() require("conform").format({ bufnr = 0 }) end, "format"),
+      lkey("cf", function() require("conform").format({ bufnr = 0 }) end, "format", { "n", "v" }),
     },
   },
   {
