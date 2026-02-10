@@ -5,8 +5,8 @@ let
     home.packages = [
       (pkgs.makeDesktopItem {
         name = "Vesktop";
-        exec = "vesktop";
-        icon = "${pkgs.vesktop}/share/icons/hicolor/256x256/apps/vesktop.png";
+        exec = "${lib.getExe pkgs.vesktop}";
+        icon = "${pkgs.discord}/share/icons/hicolor/256x256/apps/discord.png";
         desktopName = "Discord";
         startupNotify = true;
         startupWMClass = "VesktopDiscord";
