@@ -6,8 +6,8 @@ let
       inherit system;
       config.allowUnfree = true;
     };
-    nvidiaVersion = "580.95.05";
-    nvidiaHash = "19w227zb4qfrwpj6g53nk8d4zm832cfg3sfdn839haw4ivpz17l4";
+    nvidiaVersion = "590.48.01";
+    nvidiaHash = "12fnddljvgxksil6n3d5a35wwg8kkq82kkglhz63253qjc3giqmr";
     enable32bits = false;
   };
 
