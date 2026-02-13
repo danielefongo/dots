@@ -1,6 +1,6 @@
 { lib, pkgs, ... }:
 
-lib.opts.module "shell.zsh" { } (cfg: {
+lib.opts.module "shell.zsh" { } (_: {
   home.packages = with pkgs; [
     zsh
     sheldon

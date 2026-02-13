@@ -1,6 +1,6 @@
 { lib, pkgs, ... }:
 
-lib.opts.module "desktop.xsettingsd" { } (cfg: {
+lib.opts.module "desktop.xsettingsd" { } (_: {
   home.packages = with pkgs; [ xsettingsd ];
 
   xdg.configFile."xsettingsd".source = pkgs.dot.outLink "xsettingsd";

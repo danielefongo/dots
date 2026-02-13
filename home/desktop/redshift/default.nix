@@ -1,6 +1,6 @@
 { lib, pkgs, ... }:
 
-lib.opts.module "desktop.redshift" { } (cfg: {
+lib.opts.module "desktop.redshift" { } (_: {
   home.packages = with pkgs; [ redshift ];
 
   xdg.configFile."redshift.conf".source = pkgs.dot.outLink "redshift/redshift.conf";

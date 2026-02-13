@@ -1,6 +1,6 @@
 { lib, pkgs, ... }:
 
-lib.opts.module "desktop.i3" { } (cfg: {
+lib.opts.module "desktop.i3" { } (_: {
   imports = [
     ./keyboard.nix
   ];

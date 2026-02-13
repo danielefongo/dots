@@ -1,6 +1,6 @@
 { lib, pkgs, ... }:
 
-lib.opts.module "terminal.tmux" { } (cfg: {
+lib.opts.module "terminal.tmux" { } (_: {
   home.packages = with pkgs; [
     entr
     tmux

@@ -144,11 +144,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1769598477,
-        "narHash": "sha256-N2fqfi2J8vFomuzzNjRcnhyOEdwrX0QYUcSD729NoTY=",
+        "lastModified": 1770996935,
+        "narHash": "sha256-1KuGd5PeAEhyQtIkzuRws65khcJ0ve4yySnghHCypM8=",
         "owner": "danielefongo",
         "repo": "nix-optional-modules",
-        "rev": "2e345ec6c12f3f2fcd4f0dce2d1f46f904744852",
+        "rev": "77eea42854e3835a3c2e7ff95a0425754b9ea4bb",
         "type": "github"
       },
       "original": {
@@ -164,11 +164,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1769068173,
-        "narHash": "sha256-15wR24L37+o2bfUhMQtsvXcON+du16IhlcZDXer1fhk=",
+        "lastModified": 1769604180,
+        "narHash": "sha256-VWvx/i+DOc2yyHUV552dxKNXlLEqkuYye6tgMcK8kHA=",
         "owner": "danielefongo",
         "repo": "nix-tests",
-        "rev": "88a10f4418e0946ca6abdac811fafa8fe30c0d70",
+        "rev": "86277c022691e47eea33ffc2140598321d3e9fda",
         "type": "github"
       },
       "original": {

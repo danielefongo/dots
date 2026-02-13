@@ -1,6 +1,6 @@
 { lib, pkgs, ... }:
 
-lib.opts.module "desktop.picom" { } (cfg: {
+lib.opts.module "desktop.picom" { } (_: {
   home.packages = [ pkgs.picom ];
 
   xdg.configFile."picom".source = pkgs.dot.outLink "picom";

@@ -1,6 +1,6 @@
 { lib, pkgs, ... }:
 
-lib.opts.module "apps.xnviewmp" { } (cfg: {
+lib.opts.module "apps.xnviewmp" { } (_: {
   home.packages = with pkgs; [
     xnviewmp
   ];

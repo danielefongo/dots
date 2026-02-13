@@ -1,6 +1,6 @@
 { lib, pkgs, ... }:
 
-lib.opts.module "cli.git" { } (cfg: {
+lib.opts.module "cli.git" { } (_: {
   programs.git = {
     enable = true;
     includes = [

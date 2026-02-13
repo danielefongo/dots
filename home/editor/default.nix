@@ -1,5 +1,5 @@
 { lib, ... }:
 
-lib.opts.module "editor" { } (cfg: {
+lib.opts.module "editor" { } (_: {
   imports = lib.modulesIn ./.;
 })

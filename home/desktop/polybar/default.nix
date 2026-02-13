@@ -1,6 +1,6 @@
 { lib, pkgs, ... }:
 
-lib.opts.module "desktop.polybar" { } (cfg: {
+lib.opts.module "desktop.polybar" { } (_: {
   home.packages = with pkgs; [
     polybarFull
     (pkgs.dot.script "cpu-temp" ./scripts/cpu_temp.sh [ pkgs.lm_sensors ])

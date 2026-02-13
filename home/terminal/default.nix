@@ -1,5 +1,5 @@
 { lib, ... }:
 
-lib.opts.module "terminal" { } (cfg: {
+lib.opts.module "terminal" { } (_: {
   imports = lib.modulesIn ./.;
 })

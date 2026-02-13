@@ -1,6 +1,6 @@
 { lib, pkgs, ... }:
 
-lib.opts.module "desktop.xbindkeys" { } (cfg: {
+lib.opts.module "desktop.xbindkeys" { } (_: {
   home.packages = with pkgs; [
     playerctl
     xbindkeys

@@ -1,5 +1,5 @@
 { lib, ... }:
 
-lib.opts.module "system" { } (cfg: {
+lib.opts.module "system" { } (_: {
   imports = lib.modulesIn ./.;
 })

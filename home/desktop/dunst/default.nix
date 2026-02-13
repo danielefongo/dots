@@ -10,7 +10,7 @@ let
     ${pkgs.dunst}/bin/dunst
   '';
 in
-lib.opts.module "desktop.dunst" { } (cfg: {
+lib.opts.module "desktop.dunst" { } (_: {
   xdg.configFile."dunst".source = pkgs.dot.outLink "dunst";
 
   systemd.user.services = {

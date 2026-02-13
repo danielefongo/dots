@@ -1,4 +1,9 @@
-{ lib, pkgs, user_data, ... }:
+{
+  lib,
+  pkgs,
+  user_data,
+  ...
+}:
 
 let
   svg2png = pkgs.writeShellScriptBin "svg2png" ''
@@ -18,7 +23,7 @@ let
     ${pkgs.feh}/bin/feh --bg-center "${user_data.dots_path}/output/wallpaper/background.svg"
   '';
 in
-lib.opts.module "desktop.wallpaper" { } (cfg: {
+lib.opts.module "desktop.wallpaper" { } (_: {
   systemd.user.services = {
     wallpaper = {
       Unit = {

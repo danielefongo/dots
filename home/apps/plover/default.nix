@@ -1,6 +1,6 @@
 { lib, pkgs, ... }:
 
-lib.opts.module "apps.plover" { } (cfg: {
+lib.opts.module "apps.plover" { } (_: {
   home.packages = with pkgs; [
     plover
   ];

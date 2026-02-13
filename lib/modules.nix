@@ -16,7 +16,7 @@ let
 
   package = name: pkg: {
     imports = [
-      (opts.module "${name}" { } (cfg: {
+      (opts.module "${name}" { } (_: {
         home.packages = [ pkg ];
       }))
     ];

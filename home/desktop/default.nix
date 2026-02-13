@@ -1,6 +1,6 @@
 { lib, ... }:
 
-lib.opts.module "desktop" { } (cfg: {
+lib.opts.module "desktop" { } (_: {
   imports = lib.modulesIn ./. ++ [
     (lib.opts.bundle "desktop.x11" [
       "desktop.dunst"

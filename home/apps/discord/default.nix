@@ -46,9 +46,9 @@ lib.opts.module "apps.discord"
     };
   }
   (
-    cfg:
+    { moduleConfig, ... }:
     lib.mkMerge [
-      (lib.mkIf cfg.vesktop vesktop)
-      (lib.mkIf (!cfg.vesktop) discord)
+      (lib.mkIf moduleConfig.vesktop vesktop)
+      (lib.mkIf (!moduleConfig.vesktop) discord)
     ]
   )

@@ -1,6 +1,6 @@
 { lib, pkgs, ... }:
 
-lib.opts.module "desktop.rofi" { } (cfg: {
+lib.opts.module "desktop.rofi" { } (_: {
   home.packages = with pkgs; [
     rofi
     (pkgs.dot.script "rofi-theme" ./scripts/theme.sh [ ])

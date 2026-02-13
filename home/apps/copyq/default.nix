@@ -1,6 +1,6 @@
 { lib, pkgs, ... }:
 
-lib.opts.module "apps.copyq" { } (cfg: {
+lib.opts.module "apps.copyq" { } (_: {
   home.packages = with pkgs; [
     copyq
   ];

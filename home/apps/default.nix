@@ -1,6 +1,6 @@
 { lib, pkgs, ... }:
 
-lib.opts.module "apps" { } (cfg: {
+lib.opts.module "apps" { } (_: {
   imports = (lib.modulesIn ./.) ++ [
     (lib.package "apps.onepassword" pkgs._1password-gui)
     (lib.package "apps.rawtherapee" pkgs.rawtherapee)
@@ -12,7 +12,7 @@ lib.opts.module "apps" { } (cfg: {
     ])
     (lib.package "apps.peek" pkgs.peek)
     (lib.package "apps.spotify" pkgs.spotify)
-    (lib.opts.module "apps.telegram" { } (cfg: {
+    (lib.opts.module "apps.telegram" { } (_: {
       home.packages = [ pkgs.telegram-desktop ];
 
       xdg.mimeApps = {

@@ -1,6 +1,6 @@
 { lib, pkgs, ... }:
 
-lib.opts.module "editor.nvim" { } (cfg: {
+lib.opts.module "editor.nvim" { } (_: {
   programs.neovim = {
     package = pkgs.unstable.neovim-unwrapped;
     enable = true;

@@ -8,9 +8,9 @@ lib.opts.module "apps.firefox"
     };
   }
   (
-    cfg:
+    { moduleConfig, ... }:
     let
-      hasExtraDefault = lib.any (p: p.isDefault or false) (lib.attrValues cfg.extraProfiles);
+      hasExtraDefault = lib.any (p: p.isDefault or false) (lib.attrValues moduleConfig.extraProfiles);
 
       personalProfile = {
         personal = {
@@ -32,7 +32,7 @@ lib.opts.module "apps.firefox"
         };
       };
 
-      allProfiles = personalProfile // cfg.extraProfiles;
+      allProfiles = personalProfile // moduleConfig.extraProfiles;
     in
     {
       imports = [ ./firefox.nix ];
