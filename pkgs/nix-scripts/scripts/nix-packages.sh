@@ -58,8 +58,15 @@ list_packages() {
 build_diff() {
   local path="$1"
   local attr_path="$2"
+  local compare_hash="${3:-main}"
+  local resolved_hash
 
-  if ! old_packages=$(get_packages "git+file://$PWD?dir=$path&ref=main&rev=$(git rev-parse main)" "$attr_path"); then
+  if ! resolved_hash=$(git rev-parse "$compare_hash"); then
+    echo -e "${RED}✗ Failed to resolve git reference: $compare_hash${NC}" >&2
+    return 1
+  fi
+
+  if ! old_packages=$(get_packages "git+file://$PWD?dir=$path&rev=$resolved_hash" "$attr_path"); then
     return 1
   fi
 
@@ -114,12 +121,13 @@ build_diff() {
 
 nixos_all() {
   local mode="$1"
+  local compare_hash="$2"
   mapfile -t hosts < <(nix eval --no-warn-dirty --json .#nixosConfigurations --apply builtins.attrNames | jq -r '.[]')
 
   for h in "${hosts[@]}"; do
     if [[ "$mode" == "diff" ]]; then
       echo "🔎 packages diff on nixos: $h home"
-      build_diff "." "nixosConfigurations.$h.config.home-manager.users.$USER.home.packages"
+      build_diff "." "nixosConfigurations.$h.config.home-manager.users.$USER.home.packages" "$compare_hash"
     else
       echo "🔎 packages on nixos: $h home"
       list_packages "." "nixosConfigurations.$h.config.home-manager.users.$USER.home.packages"
@@ -129,12 +137,13 @@ nixos_all() {
 
 nixos_some() {
   local mode="$1"
-  shift
+  local compare_hash="$2"
+  shift 2
 
   for h in "$@"; do
     if [[ "$mode" == "diff" ]]; then
       echo "🔎 packages diff on nixos: $h home"
-      build_diff "." "nixosConfigurations.$h.config.home-manager.users.$USER.home.packages"
+      build_diff "." "nixosConfigurations.$h.config.home-manager.users.$USER.home.packages" "$compare_hash"
     else
       echo "🔎 packages on nixos: $h home"
       list_packages "." "nixosConfigurations.$h.config.home-manager.users.$USER.home.packages"
@@ -144,39 +153,52 @@ nixos_some() {
 
 work() {
   local mode="$1"
+  local compare_hash="$2"
   if [[ "$mode" == "diff" ]]; then
     echo "🔎 packages diff on work home"
-    build_diff "./work" "homeConfigurations.$USER.config.home.packages"
+    build_diff "./work" "homeConfigurations.$USER.config.home.packages" "$compare_hash"
   else
     echo "🔎 packages on work home"
     list_packages "./work" "homeConfigurations.$USER.config.home.packages"
   fi
 }
 
-# Parse arguments to extract mode and filter out -d
 mode="list"
+compare_hash="main"
 args=()
+skip_next=false
+
 for arg in "$@"; do
+  if [[ "$skip_next" == true ]]; then
+    skip_next=false
+    continue
+  fi
+
   if [[ "$arg" == "-d" ]]; then
     mode="diff"
+  elif [[ "$arg" == "-c" ]]; then
+    skip_next=true
+    shift
+    compare_hash="$1"
   else
     args+=("$arg")
   fi
+  shift
 done
 
 case "${args[0]:-}" in
 nixos)
   if ((${#args[@]} > 1)); then
-    nixos_some "$mode" "${args[@]:1}"
+    nixos_some "$mode" "$compare_hash" "${args[@]:1}"
   else
-    nixos_all "$mode"
+    nixos_all "$mode" "$compare_hash"
   fi
   ;;
 work)
-  work "$mode"
+  work "$mode" "$compare_hash"
   ;;
 *)
-  nixos_all "$mode"
-  work "$mode"
+  nixos_all "$mode" "$compare_hash"
+  work "$mode" "$compare_hash"
   ;;
 esac
