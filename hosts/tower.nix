@@ -8,7 +8,7 @@ args@{
 }:
 
 let
-  configurations = import ./configurations.nix args;
+  mods = import ../mod args;
 
   hardware = {
     boot.initrd.availableKernelModules = [
@@ -52,7 +52,7 @@ let
 in
 {
   imports = [
-    (configurations.home user {
+    (mods.home user {
       mod.home.apps.audio.enable = true;
       mod.home.apps.chat.enable = true;
       mod.home.apps.copyq.enable = true;
@@ -76,7 +76,7 @@ in
       mod.home.system.enable = true;
       mod.home.terminal.enable = true;
     })
-    (configurations.host user hardware {
+    (mods.host user hardware {
       mod.host.base.enable = true;
       mod.host.bluetooth.enable = true;
       mod.host.docker.enable = lib.hasHomeModule config "cli.docker";
