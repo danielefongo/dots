@@ -3,7 +3,7 @@ args@{
   pkgs,
   lib,
   config,
-  user_data,
+  user,
   ...
 }:
 
@@ -52,7 +52,7 @@ let
 in
 {
   imports = [
-    (configurations.home user_data {
+    (configurations.home user {
       mod.home.apps.audio.enable = true;
       mod.home.apps.chat.enable = true;
       mod.home.apps.copyq.enable = true;
@@ -76,7 +76,7 @@ in
       mod.home.system.enable = true;
       mod.home.terminal.enable = true;
     })
-    (configurations.host user_data hardware {
+    (configurations.host user hardware {
       mod.host.base.enable = true;
       mod.host.bluetooth.enable = true;
       mod.host.docker.enable = lib.hasHomeModule config "cli.docker";

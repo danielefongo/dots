@@ -36,18 +36,18 @@
         ];
       };
 
-      user_data = {
-        user = "danielefongo";
+      user = {
+        name = "danielefongo";
         home = "/home/danielefongo";
       };
     in
     {
       formatter.x85_64-linux = pkgs.nixfmt-rfc-style;
 
-      homeConfigurations."${user_data.user}" = pkgs.homeManagerConfiguration {
+      homeConfigurations."${user.name}" = pkgs.homeManagerConfiguration {
         inherit pkgs;
         extraSpecialArgs = inputs // {
-          inherit user_data;
+          inherit user;
         };
         modules = [ ./home.nix ];
       };

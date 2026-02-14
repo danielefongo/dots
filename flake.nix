@@ -30,8 +30,8 @@
       system = "x86_64-linux";
 
       dots_path = "/home/danielefongo/dots";
-      user_data = {
-        user = "danielefongo";
+      user = {
+        name = "danielefongo";
         home = "/home/danielefongo";
       };
 
@@ -93,7 +93,7 @@
 
         specialArgs = {
           lib = pkgs.lib;
-          inherit inputs user_data;
+          inherit inputs user;
         };
 
         modules = [
@@ -103,7 +103,7 @@
 
       inherit
         inputs
-        user_data
+        user
         dots_path
         mkPkgs
         ;

@@ -6,21 +6,21 @@
 }:
 
 {
-  home = user_data: config: {
+  home = user: config: {
     imports = [
       inputs.home-manager.nixosModules.home-manager
     ];
 
     home-manager.extraSpecialArgs = inputs // {
-      inherit pkgs user_data;
+      inherit pkgs user;
     };
 
-    home-manager.users.${user_data.user} = {
+    home-manager.users.${user.name} = {
       imports = [ ../mod/home ];
 
       home = {
-        username = user_data.user;
-        homeDirectory = user_data.home;
+        username = user.name;
+        homeDirectory = user.home;
         stateVersion = "25.11";
       };
 
@@ -32,17 +32,17 @@
   };
 
   host =
-    user_data: hardware: config:
+    user: hardware: config:
     {
       imports = [
         ../mod/host
         (modulesPath + "/installer/scan/not-detected.nix")
       ];
 
-      users.users.${user_data.user} = {
-        home = user_data.home;
+      users.users.${user.name} = {
+        home = user.home;
         isNormalUser = true;
-        description = user_data.user;
+        description = user.name;
         extraGroups = [
           "networkmanager"
           "wheel"

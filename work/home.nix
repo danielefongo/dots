@@ -1,6 +1,6 @@
 {
   pkgs,
-  user_data,
+  user,
   prima-nix,
   config,
   ...
@@ -86,8 +86,8 @@
     })
   ];
 
-  home.username = user_data.user;
-  home.homeDirectory = user_data.home;
+  home.username = user.name;
+  home.homeDirectory = user.home;
   home.packages = with pkgs; [
     slack
     awscli2

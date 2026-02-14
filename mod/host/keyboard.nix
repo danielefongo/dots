@@ -1,7 +1,7 @@
 {
   lib,
   pkgs,
-  user_data,
+  user,
   ...
 }:
 
@@ -13,5 +13,5 @@ lib.hostOpts.module "keyboard" { } (_: {
     SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", MODE="0666"
   '';
 
-  users.users."${user_data.user}".extraGroups = [ "plugdev" ];
+  users.users."${user.name}".extraGroups = [ "plugdev" ];
 })
