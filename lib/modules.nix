@@ -31,9 +31,14 @@ let
   hasHomeModule =
     config: module:
     let
-      path = [ "mod" "home" ] ++ (splitString "." module) ++ [ "enable" ];
+      path = [
+        "mod"
+        "home"
+      ]
+      ++ (splitString "." module)
+      ++ [ "enable" ];
     in
-    any (user: attrByPath path false user) (attrValues config.home-manager.users);
+    any (user: (attrByPath path false user) == true) (attrValues config.home-manager.users);
 in
 {
   inherit
