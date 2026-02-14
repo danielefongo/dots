@@ -37,7 +37,7 @@ lib.homeOpts.module "editor.nvim" { } (_: {
     EDITOR = "${pkgs.neovim}/bin/nvim";
   };
 
-  mod.home.shell.fzf.enable = true;
+  mod.home.cli.fzf.enable = true;
   mod.home.cli.ripgrep.enable = true;
   mod.home.cli.opencode.enable = true;
 })

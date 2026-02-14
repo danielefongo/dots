@@ -6,7 +6,7 @@ let
     ${pkgs.fzf}/bin/fzf "$@"
   '';
 in
-lib.homeOpts.module "shell.fzf" { } (_: {
+lib.homeOpts.module "cli.fzf" { } (_: {
   home.packages = [ fzfWrapper ];
 
   home.file.".fzf.conf".source = pkgs.dot.outLink "fzf/fzf.conf";
