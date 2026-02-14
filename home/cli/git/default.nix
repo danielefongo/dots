@@ -1,6 +1,6 @@
 { lib, pkgs, ... }:
 
-lib.opts.module "cli.git" { } (_: {
+lib.homeOpts.module "cli.git" { } (_: {
   programs.git = {
     enable = true;
     includes = [

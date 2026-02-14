@@ -1,6 +1,6 @@
-{ ... }:
+{ lib, ... }:
 
-{
+lib.hostOpts.module "base" { } (_: {
   nix.settings.experimental-features = "nix-command flakes pipe-operators";
 
   boot.loader = {
@@ -23,4 +23,4 @@
       LC_TIME = "it_IT.UTF-8";
     };
   };
-}
+})

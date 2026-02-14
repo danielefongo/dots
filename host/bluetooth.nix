@@ -1,10 +1,11 @@
 {
+  lib,
   config,
   pkgs,
   ...
 }:
 
-{
+lib.hostOpts.module "bluetooth" { } (_: {
   hardware.firmware = with pkgs; [
     linux-firmware
     rtl8761b-firmware
@@ -33,4 +34,4 @@
   };
 
   services.blueman.enable = true;
-}
+})

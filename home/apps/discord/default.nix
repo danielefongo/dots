@@ -38,7 +38,7 @@ let
     };
   };
 in
-lib.opts.module "apps.discord"
+lib.homeOpts.module "apps.discord"
   {
     vesktop = {
       type = lib.types.bool;

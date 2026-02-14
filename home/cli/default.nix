@@ -1,6 +1,6 @@
 { pkgs, lib, ... }:
 
-lib.opts.module "cli" { } (_: {
+lib.homeOpts.module "cli" { } (_: {
   imports = (lib.modulesIn ./.) ++ [
     (lib.package "cli.choose" pkgs.choose)
     (lib.package "cli.cloc" pkgs.cloc)
@@ -21,7 +21,7 @@ lib.opts.module "cli" { } (_: {
     (lib.package "cli.rip" pkgs.rip2)
     (lib.package "cli.tailscale" pkgs.tailscale)
     (lib.package "cli.yubikey" pkgs.yubikey-manager)
-    (lib.opts.module "cli.direnv" { } (_: {
+    (lib.homeOpts.module "cli.direnv" { } (_: {
       programs.direnv = {
         enable = true;
         nix-direnv.enable = true;

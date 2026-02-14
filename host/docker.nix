@@ -1,6 +1,6 @@
-{ ... }:
+{ lib, ... }:
 
-{
+lib.hostOpts.module "docker" { } (_: {
   virtualisation.docker = {
     enable = true;
     daemon.settings = {
@@ -14,4 +14,4 @@
       setSocketVariable = true;
     };
   };
-}
+})

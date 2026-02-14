@@ -3,5 +3,5 @@
 {
   imports = lib.modulesIn ./.;
 
-  module.apps.plover.enable = false;
+  mod.home.apps.plover.enable = false;
 }

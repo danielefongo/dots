@@ -1,6 +1,6 @@
 { lib, pkgs, ... }:
 
-lib.opts.module "system.essentials" { } (_: {
+lib.homeOpts.module "system.essentials" { } (_: {
   home.packages = with pkgs; [
     gcc
     cmake

@@ -1,6 +1,6 @@
 { lib, pkgs, ... }:
 
-lib.opts.module "desktop.xbindkeys" { } (_: {
+lib.homeOpts.module "desktop.xbindkeys" { } (_: {
   home.packages = with pkgs; [
     playerctl
     xbindkeys
@@ -8,7 +8,7 @@ lib.opts.module "desktop.xbindkeys" { } (_: {
 
   home.file.".xbindkeysrc".source = pkgs.dot.outLink "xbindkeys/xbindkeysrc";
 
-  module.desktop.playerctl.enable = true;
+  mod.home.desktop.playerctl.enable = true;
 
   systemd.user.services = {
     xbindkeys = {

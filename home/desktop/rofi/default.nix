@@ -1,6 +1,6 @@
 { lib, pkgs, ... }:
 
-lib.opts.module "desktop.rofi" { } (_: {
+lib.homeOpts.module "desktop.rofi" { } (_: {
   home.packages = with pkgs; [
     rofi
     (pkgs.dot.script "rofi-theme" ./scripts/theme.sh [ ])
@@ -13,6 +13,6 @@ lib.opts.module "desktop.rofi" { } (_: {
 
   xdg.configFile."rofi".source = pkgs.dot.outLink "rofi/config";
 
-  module.cli.yubikey.enable = true;
-  module.system.theme.enable = true;
+  mod.home.cli.yubikey.enable = true;
+  mod.home.system.theme.enable = true;
 })

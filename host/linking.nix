@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
-{
+lib.hostOpts.module "linking" { } (_: {
   programs.nix-ld = {
     enable = true;
     libraries = with pkgs; [
@@ -14,4 +14,4 @@
       expat
     ];
   };
-}
+})

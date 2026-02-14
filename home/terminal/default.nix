@@ -1,5 +1,5 @@
 { lib, ... }:
 
-lib.opts.module "terminal" { } (_: {
+lib.homeOpts.module "terminal" { } (_: {
   imports = lib.modulesIn ./.;
 })

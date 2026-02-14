@@ -1,11 +1,11 @@
 { lib, pkgs, ... }:
 
-lib.opts.module "desktop.xsettingsd" { } (_: {
+lib.homeOpts.module "desktop.xsettingsd" { } (_: {
   home.packages = with pkgs; [ xsettingsd ];
 
   xdg.configFile."xsettingsd".source = pkgs.dot.outLink "xsettingsd";
 
-  module.desktop.gtk.enable = true;
+  mod.home.desktop.gtk.enable = true;
 
   systemd.user.services = {
     xsettingsd = {

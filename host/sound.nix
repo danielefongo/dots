@@ -1,6 +1,6 @@
-{ ... }:
+{ lib, ... }:
 
-{
+lib.hostOpts.module "sound" { } (_: {
   services.pulseaudio.enable = false;
   services.pipewire = {
     enable = true;
@@ -10,4 +10,4 @@
   };
 
   security.rtkit.enable = true;
-}
+})

@@ -1,6 +1,6 @@
 { lib, pkgs, ... }:
 
-lib.opts.module "system.theme" { } (_: {
+lib.homeOpts.module "system.theme" { } (_: {
   home.packages = [ pkgs.nix-scripts.nix-theme ];
 
   systemd.user.services.theme = {

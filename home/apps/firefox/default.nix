@@ -1,6 +1,6 @@
 { lib, pkgs, ... }:
 
-lib.opts.module "apps.firefox"
+lib.homeOpts.module "apps.firefox"
   {
     extraProfiles = {
       type = lib.types.attrs;

@@ -1,6 +1,6 @@
 { lib, pkgs, ... }:
 
-lib.opts.module "desktop.flameshot" { } (_: {
+lib.homeOpts.module "desktop.flameshot" { } (_: {
   home.packages = with pkgs; [ flameshot ];
 
   xdg.configFile."flameshot".source = pkgs.dot.outLink "flameshot";

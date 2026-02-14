@@ -1,8 +1,8 @@
 { lib, ... }:
 
-lib.opts.module "desktop" { } (_: {
+lib.homeOpts.module "desktop" { } (_: {
   imports = lib.modulesIn ./. ++ [
-    (lib.opts.bundle "desktop.x11" [
+    (lib.homeOpts.bundle "desktop.x11" [
       "desktop.dunst"
       "desktop.flameshot"
       "desktop.i3"

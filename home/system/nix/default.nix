@@ -1,6 +1,6 @@
 { lib, pkgs, ... }:
 
-lib.opts.module "system.nix" { } (_: {
+lib.homeOpts.module "system.nix" { } (_: {
   home.packages = with pkgs; [
     fh
     nix-scripts.nix-check

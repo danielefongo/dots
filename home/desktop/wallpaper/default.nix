@@ -21,7 +21,7 @@ let
     pkgs.feh
   ];
 in
-lib.opts.module "desktop.wallpaper" { } (_: {
+lib.homeOpts.module "desktop.wallpaper" { } (_: {
   systemd.user.services = {
     wallpaper = {
       Unit = {

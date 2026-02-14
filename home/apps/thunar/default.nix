@@ -1,6 +1,6 @@
 { lib, pkgs, ... }:
 
-lib.opts.module "apps.thunar" { } (_: {
+lib.homeOpts.module "apps.thunar" { } (_: {
   home.packages = with pkgs.xfce; [
     thunar
     tumbler

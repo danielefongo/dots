@@ -29,7 +29,7 @@ let
     fi
   '';
 in
-lib.opts.module "desktop.playerctl" { } (_: {
+lib.homeOpts.module "desktop.playerctl" { } (_: {
   home.packages = [
     pkgs.playerctl
     playerctlStatus

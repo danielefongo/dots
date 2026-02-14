@@ -1,6 +1,6 @@
 { lib, pkgs, ... }:
 
-lib.opts.module "editor.nvim" { } (_: {
+lib.homeOpts.module "editor.nvim" { } (_: {
   programs.neovim = {
     package = pkgs.unstable.neovim-unwrapped;
     enable = true;
@@ -37,6 +37,7 @@ lib.opts.module "editor.nvim" { } (_: {
     EDITOR = "${pkgs.neovim}/bin/nvim";
   };
 
-  module.shell.fzf.enable = true;
-  module.cli.enable = true;
+  mod.home.shell.fzf.enable = true;
+  mod.home.cli.ripgrep.enable = true;
+  mod.home.cli.opencode.enable = true;
 })

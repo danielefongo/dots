@@ -1,6 +1,10 @@
-{ pkgs, lib, ... }:
-
 {
+  pkgs,
+  lib,
+  ...
+}:
+
+lib.hostOpts.module "i3" { } (_: {
   services.displayManager.gdm.enable = true;
   services.xserver = {
     enable = true;
@@ -26,4 +30,4 @@
   };
 
   services.gnome.gnome-keyring.enable = lib.mkDefault true;
-}
+})

@@ -2,6 +2,12 @@
 
 with lib;
 let
+  homeOpts = lib.opts.withConfig {
+    prefix = "mod.home";
+  };
+  hostOpts = lib.opts.withConfig {
+    prefix = "mod.host";
+  };
   modulesIn =
     dir:
     pipe dir [
@@ -16,16 +22,25 @@ let
 
   package = name: pkg: {
     imports = [
-      (opts.module "${name}" { } (_: {
+      (homeOpts.module "${name}" { } (_: {
         home.packages = [ pkg ];
       }))
     ];
   };
+
+  hasHomeModule =
+    config: module:
+    let
+      path = [ "mod" "home" ] ++ (splitString "." module) ++ [ "enable" ];
+    in
+    any (user: attrByPath path false user) (attrValues config.home-manager.users);
 in
 {
   inherit
     modulesIn
-    opts
     package
+    homeOpts
+    hostOpts
+    hasHomeModule
     ;
 }

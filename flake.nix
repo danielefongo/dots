@@ -84,12 +84,6 @@
         pkgs;
 
       pkgs = mkPkgs { inherit system; };
-
-      homeManager = {
-        home-manager.extraSpecialArgs = inputs // {
-          inherit pkgs user_data;
-        };
-      };
     in
     {
       formatter.x85_64-linux = pkgs.nixfmt-rfc-style;
@@ -103,8 +97,7 @@
         };
 
         modules = [
-          ./hosts/tower
-          homeManager
+          ./hosts/tower.nix
         ];
       };
 

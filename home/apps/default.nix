@@ -1,18 +1,23 @@
 { lib, pkgs, ... }:
 
-lib.opts.module "apps" { } (_: {
+lib.homeOpts.module "apps" { } (_: {
   imports = (lib.modulesIn ./.) ++ [
     (lib.package "apps.onepassword" pkgs._1password-gui)
     (lib.package "apps.rawtherapee" pkgs.rawtherapee)
     (lib.package "apps.pulseaudio" pkgs.pulseaudio)
     (lib.package "apps.pavucontrol" pkgs.pavucontrol)
-    (lib.opts.bundle "apps.audio" [
+    (lib.homeOpts.bundle "apps.audio" [
       "apps.pulseaudio"
       "apps.pavucontrol"
     ])
     (lib.package "apps.peek" pkgs.peek)
     (lib.package "apps.spotify" pkgs.spotify)
-    (lib.opts.module "apps.telegram" { } (_: {
+    (lib.homeOpts.bundle "apps.chat" [
+      "apps.telegram"
+      "apps.whatsapp"
+      "apps.discord"
+    ])
+    (lib.homeOpts.module "apps.telegram" { } (_: {
       home.packages = [ pkgs.telegram-desktop ];
 
       xdg.mimeApps = {
@@ -27,5 +32,6 @@ lib.opts.module "apps" { } (_: {
     (lib.package "apps.ocr" pkgs.ocr)
     (lib.package "apps.deskflow" pkgs.deskflow)
     (lib.package "apps.qalculate" pkgs.qalculate-gtk)
+    (lib.package "apps.steam" pkgs.steam)
   ];
 })

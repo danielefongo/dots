@@ -1,6 +1,6 @@
 { lib, pkgs, ... }:
 
-lib.opts.module "desktop.polybar" { } (_: {
+lib.homeOpts.module "desktop.polybar" { } (_: {
   home.packages = with pkgs; [
     polybarFull
     (pkgs.dot.script "cpu-temp" ./scripts/cpu_temp.sh [ pkgs.lm_sensors ])
@@ -9,8 +9,8 @@ lib.opts.module "desktop.polybar" { } (_: {
 
   xdg.configFile."polybar".source = pkgs.dot.outLink "polybar";
 
-  module.apps.audio.enable = true;
-  module.desktop.playerctl.enable = true;
+  mod.home.apps.audio.enable = true;
+  mod.home.desktop.playerctl.enable = true;
 
   systemd.user.services = {
     polybar = {

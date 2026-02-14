@@ -1,5 +1,5 @@
 { lib, ... }:
 
-lib.opts.module "shell" { } (_: {
+lib.homeOpts.module "shell" { } (_: {
   imports = lib.modulesIn ./.;
 })

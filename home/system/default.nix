@@ -1,5 +1,5 @@
 { lib, ... }:
 
-lib.opts.module "system" { } (_: {
+lib.homeOpts.module "system" { } (_: {
   imports = lib.modulesIn ./.;
 })

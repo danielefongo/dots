@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
-{
+lib.hostOpts.module "yubikey" { } (_: {
   services.pcscd = {
     enable = true;
     plugins = [ pkgs.ccid ];
@@ -17,4 +17,4 @@
       session    required   pam_unix.so
     '';
   };
-}
+})

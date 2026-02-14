@@ -1,10 +1,11 @@
 {
+  lib,
   pkgs,
   user_data,
   ...
 }:
 
-{
+lib.hostOpts.module "keyboard" { } (_: {
   services.udev.packages = [ pkgs.qmk-udev-rules ];
 
   services.udev.extraRules = ''
@@ -13,4 +14,4 @@
   '';
 
   users.users."${user_data.user}".extraGroups = [ "plugdev" ];
-}
+})
