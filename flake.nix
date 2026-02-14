@@ -29,10 +29,10 @@
     let
       system = "x86_64-linux";
 
+      dots_path = "/home/danielefongo/dots";
       user_data = {
         user = "danielefongo";
         home = "/home/danielefongo";
-        dots_path = "/home/danielefongo/dots";
       };
 
       mkOverlays = inputs: pkgs: [
@@ -49,7 +49,7 @@
             prev.lib
             // (import ./lib {
               lib = prev.lib;
-              inherit system inputs user_data;
+              inherit system inputs;
             });
         })
         (final: prev: {
@@ -65,7 +65,7 @@
           };
         })
         (import ./pkgs {
-          inherit pkgs inputs user_data;
+          inherit pkgs inputs dots_path;
         })
       ];
 
@@ -108,6 +108,11 @@
         ];
       };
 
-      inherit inputs user_data mkPkgs;
+      inherit
+        inputs
+        user_data
+        dots_path
+        mkPkgs
+        ;
     };
 }

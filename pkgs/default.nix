@@ -1,7 +1,7 @@
 {
   inputs,
   pkgs,
-  user_data,
+  dots_path,
   ...
 }:
 
@@ -16,10 +16,10 @@
   };
 
   dot = import ./dot.nix {
-    inherit pkgs user_data inputs;
+    inherit pkgs dots_path inputs;
   };
   nix-scripts = pkgs.callPackage ./nix-scripts {
-    inherit user_data dot;
+    inherit dots_path dot;
     pkgs = prev;
   };
 })

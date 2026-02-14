@@ -1,12 +1,11 @@
 {
   inputs,
-  user_data,
+  dots_path,
   pkgs,
   ...
 }:
 
 let
-  dots_path = user_data.dots_path;
   hm = inputs.home-manager.lib.hm;
 
   mkOutOfStoreSymlink =
@@ -30,10 +29,8 @@ in
       text = ''
         #!${pkgs.runtimeShell}
         set -eo pipefail
-        export DOTS_PATH="${user_data.dots_path}"
-        export USER="${user_data.user}"
+        export DOTS_PATH="${dots_path}"
         : $DOTS_PATH
-        : $USER
         ${builtins.readFile file}
       '';
     };

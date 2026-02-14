@@ -1,7 +1,7 @@
-{ user_data, pkgs, ... }:
+{ dots_path, pkgs, ... }:
 
 let
-  this_path = "${user_data.dots_path}/work/system/";
+  this_path = "${dots_path}/work/system/";
 in
 {
   systemd.services.auto-cpufreq = {

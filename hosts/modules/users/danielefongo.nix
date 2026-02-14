@@ -1,6 +1,5 @@
 {
   user_data,
-  pkgs,
   ...
 }:
 

@@ -1,7 +1,6 @@
 {
   lib,
   pkgs,
-  user_data,
   ...
 }:
 
@@ -17,11 +16,10 @@ let
     ${pkgs.librsvg}/bin/rsvg-convert -d "$dpi" -p "$dpi" "$in" > "$out" || true
   '';
 
-  wallpaper = pkgs.writeShellScriptBin "wallpaper" ''
-    ${svg2png}/bin/svg2png ${user_data.dots_path}/output/wallpaper/background.svg
-
-    ${pkgs.feh}/bin/feh --bg-center "${user_data.dots_path}/output/wallpaper/background.svg"
-  '';
+  wallpaper = pkgs.dot.script "wallpaper" ./wallpaper.sh [
+    svg2png
+    pkgs.feh
+  ];
 in
 lib.opts.module "desktop.wallpaper" { } (_: {
   systemd.user.services = {

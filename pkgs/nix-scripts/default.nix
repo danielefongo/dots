@@ -1,13 +1,13 @@
 {
   pkgs,
-  user_data,
+  dots_path,
   dot,
   ...
 }:
 
 {
   nix-theme = pkgs.callPackage ./nix-theme {
-    inherit user_data pkgs;
+    inherit dots_path pkgs;
   };
 
   nix-rebuild = dot.script "nix-rebuild" ./scripts/nix-rebuild.sh [ ];

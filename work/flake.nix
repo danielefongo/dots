@@ -36,7 +36,10 @@
         ];
       };
 
-      user_data = root-flake.user_data;
+      user_data = {
+        user = "danielefongo";
+        home = "/home/danielefongo";
+      };
     in
     {
       formatter.x85_64-linux = pkgs.nixfmt-rfc-style;
@@ -51,7 +54,8 @@
 
       systemConfigs.default = inputs.system-manager.lib.makeSystemConfig {
         extraSpecialArgs = inputs // {
-          inherit user_data system pkgs;
+          inherit system pkgs;
+          dots_path = root-flake.dots_path;
         };
         modules = [ ./system ];
       };
