@@ -16,7 +16,7 @@
     };
 
     home-manager.users.${user_data.user} = {
-      imports = [ ../home ];
+      imports = [ ../mod/home ];
 
       home = {
         username = user_data.user;
@@ -35,7 +35,7 @@
     user_data: hardware: config:
     {
       imports = [
-        ../host
+        ../mod/host
         (modulesPath + "/installer/scan/not-detected.nix")
       ];
 

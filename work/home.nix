@@ -8,7 +8,7 @@
 
 {
   imports = [
-    ../home
+    ../mod/home
 
     prima-nix.homeManagerModules.gitleaks
   ];

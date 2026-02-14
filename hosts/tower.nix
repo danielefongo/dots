@@ -1,4 +1,4 @@
-input@{
+args@{
   inputs,
   pkgs,
   lib,
@@ -8,7 +8,7 @@ input@{
 }:
 
 let
-  configurations = import ./configurations.nix input;
+  configurations = import ./configurations.nix args;
 
   hardware = {
     boot.initrd.availableKernelModules = [
