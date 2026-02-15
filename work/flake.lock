@@ -144,11 +144,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1770996935,
-        "narHash": "sha256-1KuGd5PeAEhyQtIkzuRws65khcJ0ve4yySnghHCypM8=",
+        "lastModified": 1771097727,
+        "narHash": "sha256-L8rjOJUXjh73bRVRIRF6plXoDVF7RBbVxtLdXWYYTsw=",
         "owner": "danielefongo",
         "repo": "nix-optional-modules",
-        "rev": "77eea42854e3835a3c2e7ff95a0425754b9ea4bb",
+        "rev": "2cfc10e6dee085ee97a7d7e5b1e0887cd8d71ebc",
         "type": "github"
       },
       "original": {
