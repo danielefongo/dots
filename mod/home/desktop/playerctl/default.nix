@@ -4,10 +4,10 @@ let
   playerctlStatus = pkgs.writeShellScriptBin "playerctl-status" ''
     #!/bin/env bash
     PLAYER="$1"
-    NOPLAYER_FORMAT=$(echo "$2" | sed -E 's/<([^>]+)>/{{ \1 }}/g')
-    STOPPED_FORMAT=$(echo "$3" | sed -E 's/<([^>]+)>/{{ \1 }}/g')
-    PLAY_FORMAT=$(echo "$4" | sed -E 's/<([^>]+)>/{{ \1 }}/g')
-    PAUSE_FORMAT=$(echo "$5" | sed -E 's/<([^>]+)>/{{ \1 }}/g')
+    NOPLAYER_FORMAT=$(echo "$2" | sed -E 's/<([^>/ ]+)>/{{ \1 }}/g')
+    STOPPED_FORMAT=$(echo "$3" | sed -E 's/<([^>/ ]+)>/{{ \1 }}/g')
+    PLAY_FORMAT=$(echo "$4" | sed -E 's/<([^>/ ]+)>/{{ \1 }}/g')
+    PAUSE_FORMAT=$(echo "$5" | sed -E 's/<([^>/ ]+)>/{{ \1 }}/g')
 
     PLAYERCTL_STATUS=$(playerctl --player=$PLAYER status 2>/dev/null)
     EXIT_CODE=$?
