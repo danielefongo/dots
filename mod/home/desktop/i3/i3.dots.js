@@ -7,7 +7,7 @@ module.exports = {
   ],
   apply: (_, files) => {
     if (files.some((f) => f.endsWith("config"))) {
-      exec("i3restart");
+      exec("i3-restart");
     }
   },
 };

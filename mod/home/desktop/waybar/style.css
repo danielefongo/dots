@@ -1,0 +1,63 @@
+* {
+  border: none;
+  border-radius: 0;
+  font-family: {{ font }};
+  font-size: {{ fontSize + 4 }}px;
+  font-weight: normal;
+}
+
+window#waybar {
+  background-color: transparent;
+  color: {{ colors.foreground }};
+}
+
+window#waybar > box {
+  background: {{ colors.background }};
+  border-radius: {{ round }}px;
+  padding: 0 {{ round }}px;
+  margin: 0;
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#temperature,
+#network,
+#pulseaudio,
+#tray,
+#custom-spotify {
+  padding: {{ fontSize // 4 }}px {{ fontSize // 1.5 }}px;
+  color: {{ colors.foreground }};
+}
+
+#workspaces {
+  padding: {{ fontSize // 4 }}px 0;
+  color: {{ colors.foreground }};
+}
+
+#workspaces button {
+  padding: {{ fontSize // 4 }}px 10px;
+  color: {{ colors.foreground }};
+  background: transparent;
+  border-bottom: {{ fontSize // 3 }}px solid transparent;
+  margin-bottom: -{{ fontSize // 3 }}px;
+}
+
+#workspaces button.focused,
+#workspaces button.active {
+  color: {{ theme.secondary }};
+  border-bottom: {{ fontSize // 3 }}px solid {{ theme.secondary }};
+}
+
+#workspaces button.urgent {
+  color: {{ theme.error }};
+  border-bottom: {{ fontSize // 3 }}px solid {{ theme.error }};
+}
+
+@keyframes blink {
+  to {
+    background-color: {{ theme.error }};
+    color: {{ colors.background }};
+  }
+}

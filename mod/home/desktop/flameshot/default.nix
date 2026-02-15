@@ -5,22 +5,20 @@ lib.homeOpts.module "desktop.flameshot" { } (_: {
 
   xdg.configFile."flameshot".source = pkgs.dot.outLink "flameshot";
 
-  systemd.user.services = {
-    flameshot = {
-      Unit = {
-        Description = "Flameshot";
-        PartOf = [ "x11-session.target" ];
-      };
+  systemd.user.services.flameshot = {
+    Unit = {
+      Description = "Flameshot";
+      PartOf = [ "x11-session.target" ];
+    };
 
-      Install = {
-        WantedBy = [ "x11-session.target" ];
-      };
+    Install = {
+      WantedBy = [ "x11-session.target" ];
+    };
 
-      Service = {
-        ExecStart = lib.getExe pkgs.flameshot;
-        Restart = "on-failure";
-        RestartSec = 2;
-      };
+    Service = {
+      ExecStart = lib.getExe pkgs.flameshot;
+      Restart = "on-failure";
+      RestartSec = 2;
     };
   };
 })

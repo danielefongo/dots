@@ -74,7 +74,7 @@
       polybarFull = config.lib.nixGL.wrap prev.polybarFull;
       i3lock-color = config.lib.nixGL.wrap prev.i3lock-color;
       flameshot = config.lib.nixGL.wrap prev.flameshot;
-      redshift = config.lib.nixGL.wrap prev.redshift;
+      gammastep = config.lib.nixGL.wrap prev.gammastep;
 
       kitty = config.lib.nixGL.wrap prev.kitty;
       firefox = config.lib.nixGL.wrap prev.firefox;

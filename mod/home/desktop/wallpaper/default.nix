@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   pkgs,
   ...
@@ -16,27 +17,35 @@ let
     ${pkgs.librsvg}/bin/rsvg-convert -d "$dpi" -p "$dpi" "$in" > "$out" || true
   '';
 
-  wallpaper = pkgs.dot.script "wallpaper" ./wallpaper.sh [
-    svg2png
-    pkgs.feh
-  ];
+  isWayland = lib.hasHomeModule config "desktop.wayland";
+  sessionTarget = if isWayland then "wayland-session.target" else "x11-session.target";
+
+  wallpaper =
+    if isWayland then
+      pkgs.dot.script "wallpaper" ./wallpaper-wayland.sh [
+        svg2png
+        pkgs.swaybg
+      ]
+    else
+      pkgs.dot.script "wallpaper" ./wallpaper-x11.sh [
+        svg2png
+        pkgs.feh
+      ];
 in
 lib.homeOpts.module "desktop.wallpaper" { } (_: {
-  systemd.user.services = {
-    wallpaper = {
-      Unit = {
-        Description = "Wallpaper";
-        PartOf = [ "x11-session.target" ];
-      };
+  systemd.user.services.wallpaper = {
+    Unit = {
+      Description = "Wallpaper";
+      PartOf = [ sessionTarget ];
+    };
 
-      Install = {
-        WantedBy = [ "x11-session.target" ];
-      };
+    Install = {
+      WantedBy = [ sessionTarget ];
+    };
 
-      Service = {
-        Type = "simple";
-        ExecStart = "${wallpaper}/bin/wallpaper";
-      };
+    Service = {
+      Type = "simple";
+      ExecStart = "${wallpaper}/bin/wallpaper";
     };
   };
 })

@@ -10,22 +10,20 @@ lib.homeOpts.module "desktop.xbindkeys" { } (_: {
 
   mod.home.desktop.playerctl.enable = true;
 
-  systemd.user.services = {
-    xbindkeys = {
-      Unit = {
-        Description = "Xbindkeys";
-        PartOf = [ "x11-session.target" ];
-      };
+  systemd.user.services.xbindkeys = {
+    Unit = {
+      Description = "Xbindkeys";
+      PartOf = [ "x11-session.target" ];
+    };
 
-      Install = {
-        WantedBy = [ "x11-session.target" ];
-      };
+    Install = {
+      WantedBy = [ "x11-session.target" ];
+    };
 
-      Service = {
-        ExecStart = "${pkgs.xbindkeys}/bin/xbindkeys -n";
-        Restart = "always";
-        RestartSec = 2;
-      };
+    Service = {
+      ExecStart = "${pkgs.xbindkeys}/bin/xbindkeys -n";
+      Restart = "always";
+      RestartSec = 2;
     };
   };
 })

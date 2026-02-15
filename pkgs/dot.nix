@@ -22,7 +22,12 @@ in
 
   link = path: mkOutOfStoreSymlink "${dots_path}/${path}";
   script =
-    name: file: deps:
+    name: source: deps:
+    let
+      content =
+        if builtins.isPath source then builtins.readFile source
+        else "bash ${source}";
+    in
     pkgs.writeShellApplication {
       inherit name;
       runtimeInputs = deps;
@@ -31,7 +36,7 @@ in
         set -eo pipefail
         export DOTS_PATH="${dots_path}"
         : $DOTS_PATH
-        ${builtins.readFile file}
+        ${content}
       '';
     };
 }

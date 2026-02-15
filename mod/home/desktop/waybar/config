@@ -1,0 +1,83 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": {{ fontSize * 2 + 1 }},
+  "spacing": {{ fontSize // 3 }},
+  "margin-top": {{ gap }},
+  "margin-left": {{ gap }},
+  "margin-right": {{ gap }},
+
+  "modules-left": ["niri/workspaces", "custom/spotify"],
+  "modules-center": ["clock"],
+  "modules-right": ["pulseaudio", "memory", "cpu", "temperature", "battery", "network", "tray"],
+
+  "niri/workspaces": {
+    "format": "{index}",
+    "on-click": "activate"
+  },
+
+  "custom/spotify": {
+    "exec": "playerctl-status spotify '' '' \"<span color='{{ theme.primary }}'></span> <title> (<artist>)\" \"<span color='{{ theme.primary }}'></span> <title> (<artist>)\"",
+    "interval": 1,
+    "exec-if": "pgrep spotify",
+    "escape": false
+  },
+
+  "clock": {
+    "interval": 1,
+    "format": "<span color='{{ theme.primary }}'>󰃭</span> {:%Y-%m-%d %H:%M:%S}",
+    "tooltip": false
+  },
+
+  "cpu": {
+    "interval": 2,
+    "format": "<span color='{{ theme.primary }}'>󰘚</span> {usage}%",
+    "tooltip": false
+  },
+
+  "memory": {
+    "interval": 3,
+    "format": "<span color='{{ theme.primary }}'></span> {percentage}%",
+    "tooltip": false
+  },
+
+  "temperature": {
+    "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+    "critical-threshold": 75,
+    "format": "<span color='{{ theme.primary }}'></span> {temperatureC}°C",
+    "format-critical": "<span color='{{ theme.error }}'></span> {temperatureC}°C",
+  },
+
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{icon} {capacity}%",
+    "format-charging": "<span color='{{ theme.info }}'>󰂇</span> {capacity}%",
+    "format-plugged": "<span color='{{ theme.info }}'>󰁹</span> {capacity}%",
+    "format-warning": "<span color='{{ theme.warn }}'>{icon}</span> {capacity}%",
+    "format-critical": "<span color='{{ theme.error }}'>{icon}</span> {capacity}%",
+    "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+  },
+
+  "network": {
+    "format-wifi": "<span color='{{ theme.primary }}'>󰖩</span> {essid}",
+    "format-ethernet": "<span color='{{ theme.primary }}'>󰈀</span> {ipaddr}",
+    "format-disconnected": "<span color='{{ theme.error }}'>󰖪</span> Offline",
+    "tooltip": false
+  },
+
+  "pulseaudio": {
+    "format": "<span color='{{ theme.primary }}'>{icon}</span>  {volume}%",
+    "format-muted": " muted",
+    "format-icons": {
+      "default": ["", "", "", ""]
+    },
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+  },
+
+  "tray": {
+    "spacing": 10
+  }
+}

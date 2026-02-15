@@ -35,6 +35,7 @@ floating_modifier $mod
 # autostart
 exec --no-startup-id exec systemctl --user start --no-block x11-session.target
 exec --no-startup-id exec systemctl --user start --no-block theme.service
+exec --no-startup-id xss-lock -- i3-lock
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id nm-applet
 
@@ -72,10 +73,10 @@ bindsym $mod+$shift+Up move up
 bindsym $mod+$shift+Right move right
 
 # resize
-bindsym $mod+$ctrl+Left exec --no-startup-id i3resize left
-bindsym $mod+$ctrl+Down exec --no-startup-id i3resize down
-bindsym $mod+$ctrl+Up exec --no-startup-id i3resize up
-bindsym $mod+$ctrl+Right exec --no-startup-id i3resize right
+bindsym $mod+$ctrl+Left exec --no-startup-id i3-resize left
+bindsym $mod+$ctrl+Down exec --no-startup-id i3-resize down
+bindsym $mod+$ctrl+Up exec --no-startup-id i3-resize up
+bindsym $mod+$ctrl+Right exec --no-startup-id i3-resize right
 
 # focus parents
 bindsym $mod+a focus parent
@@ -111,17 +112,8 @@ bindsym $mod+$shift+4 move container to workspace number $ws4
 # move workspace
 bindsym $mod+$shift+period move workspace to output next
 
-# i3
-set $mode_system System (l) lock, (e) logout, (r) reload, ($shift+r) reboot, ($shift+s) shutdown
-mode "$mode_system" {
-  bindsym l exec --no-startup-id i3block, mode "default"
-  bindsym e exec --no-startup-id "systemctl --user stop x11-session.target && sleep 2 && i3-msg exit"
-  bindsym r exec --no-startup-id "systemctl --user restart x11-session.target && i3 reload", mode "default"
-  bindsym $shift+r exec --no-startup-id shutdown now -r, mode "default"
-  bindsym $shift+s exec --no-startup-id shutdown now, mode "default"
-  bindsym Escape mode "default"
-}
-bindsym $mod+u mode "$mode_system"
+# power
+bindsym $mod+u exec rofi-power
 
 # screenshots
 bindsym Print exec flameshot gui

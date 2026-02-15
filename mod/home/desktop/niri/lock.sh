@@ -1,0 +1,25 @@
+swaylock \
+  -i $DOTS_PATH/output/wallpaper/background.png \
+  --scaling center \
+  --clock \
+  --indicator \
+  --effect-blur 10x3 \
+  --indicator-radius 100 \
+  --indicator-thickness 8 \
+  --datestr "%d %B %Y" \
+  --timestr "%H:%M:%S" \
+  --inside-color "{{ colors.background_alt1 | nohash }}" \
+  --ring-color "{{ theme.primary | nohash }}" \
+  --inside-ver-color "{{ colors.background_alt1 | nohash }}" \
+  --ring-ver-color "{{ theme.secondary | nohash }}" \
+  --inside-wrong-color "{{ colors.background_alt1 | nohash }}" \
+  --ring-wrong-color "{{ theme.error | stronger | nohash }}" \
+  --line-color "{{ colors.background_alt1 | nohash }}" \
+  --key-hl-color "{{ theme.secondary | nohash }}" \
+  --bs-hl-color "{{ theme.error | nohash }}" \
+  --text-color "{{ theme.primary | nohash }}" \
+  --text-ver-color "{{ theme.secondary | nohash }}" \
+  --text-wrong-color "{{ theme.error | stronger | nohash }}" \
+  --font "{{ font }}" \
+  --font-size 32 \
+  --daemonize

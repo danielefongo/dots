@@ -8,10 +8,20 @@ lib.homeOpts.module "desktop" { } (_: {
       "desktop.i3"
       "desktop.picom"
       "desktop.polybar"
-      "desktop.redshift"
+      "desktop.gammastep"
       "desktop.wallpaper"
       "desktop.xbindkeys"
       "desktop.xsettingsd"
+      "desktop.picom"
+    ])
+    (lib.homeOpts.bundle "desktop.wayland" [
+      "desktop.niri"
+      "desktop.waybar"
+      "desktop.gsettings"
+      "desktop.gammastep"
+      "desktop.wallpaper"
+      "desktop.dunst"
+      "desktop.swappy"
     ])
   ];
 })

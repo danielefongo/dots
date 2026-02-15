@@ -10,6 +10,7 @@ module.exports = {
     border: 4,
     fontSize: 12,
     transparency: 0,
+    animations: true,
     colors: {
       background: '{{ "#1f2430" | contrasted(contrast) }}',
       background_alt1: "{{ colors.background | light_darken(3) }}",

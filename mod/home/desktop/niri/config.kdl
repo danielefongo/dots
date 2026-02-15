@@ -1,0 +1,194 @@
+environment {
+    QT_QPA_PLATFORM "wayland"
+}
+
+workspace "1"
+workspace "2"
+workspace "3"
+workspace "4"
+
+input {
+    keyboard {
+        xkb {
+          layout "us"
+        }
+        repeat-delay 200
+        repeat-rate 60
+    }
+
+    warp-mouse-to-focus mode="center-xy"
+    focus-follows-mouse
+    workspace-auto-back-and-forth
+    mod-key "Super"
+}
+
+output "LG Electronics LG ULTRAWIDE 308NTJJ0S260" {
+    mode "3440x1440"
+    variable-refresh-rate
+    focus-at-startup
+    backdrop-color "{{ colors.background_alt1 }}"
+
+    hot-corners {
+        off
+    }
+
+    layout {
+        default-column-width { proportion 0.50; }
+    }
+}
+
+layout {
+    gaps {{ gap }}
+
+    always-center-single-column true
+
+    border {
+        width {{ border }}
+        active-color "{{ theme.primary }}"
+        inactive-color "{{ colors.background_alt2 }}"
+        urgent-color "{{ theme.error }}"
+    }
+
+    focus-ring {
+        off
+    }
+
+    shadow {
+        on
+    }
+
+    tab-indicator {
+        hide-when-single-tab
+    }
+}
+
+prefer-no-csd
+
+hotkey-overlay {
+    skip-at-startup
+}
+
+spawn-at-startup "systemctl" "--user" "start" "--no-block" "wayland-session.target"
+spawn-at-startup "systemctl" "--user" "start" "--no-block" "theme.service"
+
+window-rule {
+    open-maximized false
+    geometry-corner-radius {{ round }}
+    clip-to-geometry true
+    {% if transparency > 0 %}
+    opacity {{ (100 - transparency) / 100 }};
+    {% endif %}
+}
+
+window-rule {
+    match title="Screenshare"
+    open-floating true
+}
+
+window-rule {
+    match app-id="copyq"
+    open-floating true
+    default-column-width { fixed 1000; }
+}
+
+window-rule {
+    match title="Qalculate!"
+    open-floating true
+    default-column-width { fixed 1000; }
+}
+
+binds {
+    // Menu
+    Mod+D { spawn "rofi" "-show" "combi"; }
+    Mod+T { spawn "rofi-theme"; }
+    Mod+Shift+T { spawn "nix-theme"; }
+    Mod+O { spawn "rofi-otp"; }
+    Mod+U { spawn "rofi-power"; }
+
+    // Clipboard
+    Mod+V { spawn "copyq" "toggle"; }
+
+    // Terminal
+    Mod+Return { spawn "kitty"; }
+
+    // Kill window
+    Mod+Q { close-window; }
+
+    // Focus window
+    Mod+Left { focus-column-left; }
+    Mod+Right { focus-column-right; }
+    Mod+Down { focus-window-down; }
+    Mod+Up { focus-window-up; }
+
+    // Move window
+    Mod+Shift+Left { move-column-left; }
+    Mod+Shift+Right { move-column-right; }
+    Mod+Shift+Down { move-window-down; }
+    Mod+Shift+Up { move-window-up; }
+
+    // Resize
+    Mod+Ctrl+Left { set-column-width "-10%"; }
+    Mod+Ctrl+Right { set-column-width "+10%"; }
+    Mod+Ctrl+Down { set-window-height "-10%"; }
+    Mod+Ctrl+Up { set-window-height "+10%"; }
+
+    // Fullscreen
+    Mod+F { fullscreen-window; }
+
+    // Layout
+    Mod+W { toggle-column-tabbed-display; }
+    Mod+Slash { consume-window-into-column; }
+    Mod+Shift+Slash { expel-window-from-column; }
+
+    // Floating
+    Mod+Space { spawn "sh" "-c" "niri msg action toggle-window-floating && niri msg action center-window"; }
+
+    // Workspaces overview
+    Mod+A { toggle-overview; }
+
+    // Workspaces
+    Mod+1 { focus-workspace "1"; }
+    Mod+2 { focus-workspace "2"; }
+    Mod+3 { focus-workspace "3"; }
+    Mod+4 { focus-workspace "4"; }
+
+    // Move to workspace
+    Mod+Shift+1 { move-column-to-workspace "1"; }
+    Mod+Shift+2 { move-column-to-workspace "2"; }
+    Mod+Shift+3 { move-column-to-workspace "3"; }
+    Mod+Shift+4 { move-column-to-workspace "4"; }
+
+    // Move workspace to monitor
+    Mod+Shift+Period { move-workspace-to-monitor-right; }
+
+    // Screenshots
+    Print { spawn "screenshot"; }
+    Shift+Print { spawn "ocr"; }
+
+    // Notifications
+    Mod+Shift+K { spawn "dunstctl" "set-paused" "toggle"; }
+
+    // Media
+    XF86AudioRaiseVolume { spawn "pactl" "set-sink-volume" "@DEFAULT_SINK@" "+10%"; }
+    XF86AudioLowerVolume { spawn "pactl" "set-sink-volume" "@DEFAULT_SINK@" "-10%"; }
+    XF86AudioMute { spawn "pactl" "set-sink-mute" "@DEFAULT_SINK@" "toggle"; }
+    XF86AudioMicMute { spawn "pactl" "set-source-mute" "@DEFAULT_SOURCE@" "toggle"; }
+    XF86AudioPlay { spawn "playerctl" "play-pause"; }
+    XF86AudioNext { spawn "playerctl" "next"; }
+    XF86AudioPrev { spawn "playerctl" "previous"; }
+    Shift+XF86AudioPlay { spawn "playerctl" "--player" "spotify" "play-pause"; }
+    Shift+XF86AudioLowerVolume { spawn "playerctl" "--player" "spotify" "volume" "0.05-"; }
+    Shift+XF86AudioRaiseVolume { spawn "playerctl" "--player" "spotify" "volume" "0.05+"; }
+}
+
+cursor {
+    xcursor-theme "Adwaita"
+    xcursor-size {{ fontSize * 2 }}
+}
+
+animations {
+    {% if not animations %}
+    off
+    {% endif %}
+    slowdown 1.0
+}

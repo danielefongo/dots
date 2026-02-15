@@ -59,7 +59,7 @@ in
       mod.home.apps.firefox.enable = true;
       mod.home.apps.ocr.enable = true;
       mod.home.apps.onepassword.enable = true;
-      mod.home.apps.peek.enable = true;
+      # mod.home.apps.peek.enable = true;
       mod.home.apps.qalculate.enable = true;
       mod.home.apps.spotify.enable = true;
       mod.home.apps.steam.enable = true;
@@ -68,7 +68,7 @@ in
 
       mod.home.cli.enable = true;
 
-      mod.home.desktop.x11.enable = true;
+      mod.home.desktop.wayland.enable = true;
       mod.home.desktop.rofi.enable = true;
 
       mod.home.editor.enable = true;
@@ -81,6 +81,7 @@ in
       mod.host.bluetooth.enable = true;
       mod.host.docker.enable = lib.hasHomeModule config "cli.docker";
       mod.host.i3.enable = lib.hasHomeModule config "desktop.i3";
+      mod.host.niri.enable = lib.hasHomeModule config "desktop.niri";
       mod.host.keyboard.enable = true;
       mod.host.linking.enable = true;
       mod.host.networking.enable = true;

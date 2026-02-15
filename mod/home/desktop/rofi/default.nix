@@ -9,6 +9,7 @@ lib.homeOpts.module "desktop.rofi" { } (_: {
       yubikey-manager
       xdotool
     ])
+    (pkgs.dot.script "rofi-power" ./scripts/power.sh [ systemd ])
   ];
 
   xdg.configFile."rofi".source = pkgs.dot.outLink "rofi/config";

@@ -12,35 +12,33 @@ lib.homeOpts.module "desktop.polybar" { } (_: {
   mod.home.apps.audio.enable = true;
   mod.home.desktop.playerctl.enable = true;
 
-  systemd.user.services = {
-    polybar = {
-      Unit = {
-        Description = "Polybar";
-        PartOf = [ "x11-session.target" ];
-      };
+  systemd.user.services.polybar = {
+    Unit = {
+      Description = "Polybar";
+      PartOf = [ "x11-session.target" ];
+    };
 
-      Install = {
-        WantedBy = [ "x11-session.target" ];
-      };
+    Install = {
+      WantedBy = [ "x11-session.target" ];
+    };
 
-      Service = {
-        ExecStart = "${pkgs.writeShellScript "polybar-runner" ''
-          #!/bin/bash
+    Service = {
+      ExecStart = "${pkgs.writeShellScript "polybar-runner" ''
+        #!/bin/bash
 
-          CONFIG_FILE=$HOME/.config/polybar/config
+        CONFIG_FILE=$HOME/.config/polybar/config
 
-          while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
+        while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
-          export WLAN=$(${lib.getExe pkgs.iw} dev | awk '$1=="Interface"{print $2}' | head -n1)
+        export WLAN=$(${lib.getExe pkgs.iw} dev | awk '$1=="Interface"{print $2}' | head -n1)
 
-          for m in $(${lib.getExe pkgs.polybarFull} --list-monitors | cut -d":" -f1); do
-            MONITOR=$m ${lib.getExe pkgs.polybarFull} top -c $CONFIG_FILE &
-          done
-          sleep infinity
-        ''}";
-        Restart = "on-failure";
-        RestartSec = 2;
-      };
+        for m in $(${lib.getExe pkgs.polybarFull} --list-monitors | cut -d":" -f1); do
+          MONITOR=$m ${lib.getExe pkgs.polybarFull} top -c $CONFIG_FILE &
+        done
+        sleep infinity
+      ''}";
+      Restart = "on-failure";
+      RestartSec = 2;
     };
   };
 })
