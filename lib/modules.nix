@@ -37,8 +37,9 @@ let
       ]
       ++ (splitString "." module)
       ++ [ "enable" ];
+      users = if config ? home-manager then config.home-manager.users else { current = config; };
     in
-    any (user: (attrByPath path false user) == true) (attrValues config.home-manager.users);
+    any (user: (attrByPath path false user) == true) (attrValues users);
 in
 {
   inherit
