@@ -14,9 +14,9 @@ offset-x = {{ gap }}
 override-redirect = true
 wm-restack = i3
 border-size = {{ fontSize * 0.5 }}
-border-color = {{ colors.magic_background }}
+border-color = {{ colors.background }}
 
-background = {{ colors.magic_background }}
+background = {{ colors.background }}
 foreground = {{ colors.grey9 }}
 
 line-size = {{ fontSize // 3 }}
