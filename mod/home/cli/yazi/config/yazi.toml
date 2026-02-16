@@ -1,0 +1,11 @@
+[mgr]
+ratio = [1, 2, 2]
+show_hidden = true
+
+[preview]
+wrap = "yes"
+tab_size = 2
+image_delay = 100
+
+[which]
+sort_sensitive = false
