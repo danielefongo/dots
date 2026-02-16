@@ -1,8 +1,11 @@
 { lib, pkgs, ... }:
 
+let
+  pkg = pkgs.unstable.neovim-unwrapped;
+in
 lib.homeOpts.module "editor.nvim" { } (_: {
   programs.neovim = {
-    package = pkgs.unstable.neovim-unwrapped;
+    package = pkg;
     enable = true;
     viAlias = true;
     vimAlias = true;
@@ -34,7 +37,7 @@ lib.homeOpts.module "editor.nvim" { } (_: {
   ];
 
   home.sessionVariables = {
-    EDITOR = "${pkgs.neovim}/bin/nvim";
+    EDITOR = "${pkg}/bin/nvim";
   };
 
   mod.home.cli.fzf.enable = true;

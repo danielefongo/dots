@@ -7,6 +7,9 @@ export XDG_DATA_HOME="${HOME}/.local/share"
 if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then
   . $HOME/.nix-profile/etc/profile.d/nix.sh
 fi
+if [ -e $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh ]; then
+  . $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh
+fi
 if [ -d $HOME/.nix-profile/share/zsh/site-functions ]; then
   fpath=($HOME/.nix-profile/share/zsh/site-functions $fpath)
 fi
