@@ -52,7 +52,7 @@
   mod.home.apps.peek.enable = true;
   mod.home.apps.qalculate.enable = true;
   mod.home.apps.spotify.enable = true;
-  mod.home.apps.thunar.enable = true;
+  mod.home.apps.yazi.enable = true;
   mod.home.apps.xnviewmp.enable = true;
 
   mod.home.cli.enable = true;
