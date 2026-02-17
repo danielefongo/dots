@@ -31,6 +31,7 @@ in
     pkgs.writeShellApplication {
       inherit name;
       runtimeInputs = deps;
+      excludeShellChecks = [ "SC2016" ];
       text = ''
         #!${pkgs.runtimeShell}
         set -eo pipefail

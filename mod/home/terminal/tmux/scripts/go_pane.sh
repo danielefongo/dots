@@ -1,11 +1,13 @@
 #!/bin/bash
 
-DIRECTION="${1:-horizontal}"
-JOIN_FLAG=$([[ "$DIRECTION" == "horizontal" ]] && echo "-h" || echo "-v")
-
 tmux_list_panes --exclude-current |
   fzf --ansi --delimiter='|' --with-nth=2 \
     --preview-window right:70% \
     --preview 'target=$(echo {} | cut -d"|" -f1); tmux capture-pane -ep -t "$target" 2>/dev/null || echo "Unable to preview pane"' |
   cut -d'|' -f1 |
-  xargs -r tmux join-pane "$JOIN_FLAG" -s
+  {
+    read -r selected
+    if [ -n "$selected" ]; then
+      tmux switch-client -t "$selected"
+    fi
+  }
