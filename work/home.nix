@@ -56,6 +56,7 @@
   mod.home.apps.xnviewmp.enable = true;
 
   mod.home.cli.enable = true;
+  mod.home.cli.opencode.enable = false;
 
   mod.home.desktop.x11.enable = true;
   mod.home.desktop.rofi.enable = true;
@@ -63,6 +64,7 @@
   mod.home.editor.enable = true;
   mod.home.shell.enable = true;
   mod.home.system.enable = true;
+  mod.home.system.theme.service = false;
   mod.home.terminal.enable = true;
 
   nixpkgs.overlays = [
