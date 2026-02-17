@@ -21,12 +21,11 @@ in
   outFile = path: "${dots_path}/output/${path}";
 
   link = path: mkOutOfStoreSymlink "${dots_path}/${path}";
+  relativeLink = dir: path: mkOutOfStoreSymlink "${toString dir}/${path}";
   script =
     name: source: deps:
     let
-      content =
-        if builtins.isPath source then builtins.readFile source
-        else "bash ${source}";
+      content = if builtins.isPath source then builtins.readFile source else "bash ${source}";
     in
     pkgs.writeShellApplication {
       inherit name;

@@ -29,7 +29,7 @@ lib.homeOpts.module "editor.nvim" { } (_: {
 
   xdg.configFile."nvim/init.lua".source = pkgs.dot.outLink "nvim/init.lua";
   xdg.configFile."nvim/lua".source = pkgs.dot.outLink "nvim/lua";
-  xdg.configFile."nvim/lazy-lock.json".source = pkgs.dot.link "home/editor/nvim/lazy-lock.json";
+  xdg.configFile."nvim/lazy-lock.json".source = pkgs.dot.relativeLink ./. "lazy-lock.json";
 
   home.packages = with pkgs; [
     python3 # mason
