@@ -17,9 +17,14 @@ input {
     }
 
     warp-mouse-to-focus mode="center-xy"
-    focus-follows-mouse
     workspace-auto-back-and-forth
     mod-key "Super"
+}
+
+output "LG Electronics LG TV SSCR2 0x01010101" {
+    mode "1920x1080@120.000"
+    focus-at-startup
+    backdrop-color "{{ colors.background_alt1 }}"
 }
 
 output "LG Electronics LG ULTRAWIDE 308NTJJ0S260" {
