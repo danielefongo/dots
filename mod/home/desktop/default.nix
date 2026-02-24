@@ -5,23 +5,23 @@ lib.homeOpts.module "desktop" { } (_: {
     (lib.homeOpts.bundle "desktop.x11" [
       "desktop.dunst"
       "desktop.flameshot"
+      "desktop.gammastep"
       "desktop.i3"
       "desktop.picom"
+      "desktop.picom"
       "desktop.polybar"
-      "desktop.gammastep"
       "desktop.wallpaper"
       "desktop.xbindkeys"
       "desktop.xsettingsd"
-      "desktop.picom"
     ])
     (lib.homeOpts.bundle "desktop.wayland" [
-      "desktop.niri"
-      "desktop.waybar"
-      "desktop.gsettings"
-      "desktop.gammastep"
-      "desktop.wallpaper"
       "desktop.dunst"
-      "desktop.swappy"
+      "desktop.flameshot"
+      "desktop.gammastep"
+      "desktop.gsettings"
+      "desktop.niri"
+      "desktop.wallpaper"
+      "desktop.waybar"
     ])
   ];
 })

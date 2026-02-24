@@ -57,7 +57,6 @@ in
       mod.home.apps.chat.enable = true;
       mod.home.apps.copyq.enable = true;
       mod.home.apps.firefox.enable = true;
-      mod.home.apps.ocr.enable = true;
       mod.home.apps.onepassword.enable = true;
       # mod.home.apps.peek.enable = true;
       mod.home.apps.qalculate.enable = true;

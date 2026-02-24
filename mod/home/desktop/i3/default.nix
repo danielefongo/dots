@@ -26,6 +26,5 @@ lib.homeOpts.module "desktop.i3" { } (_: {
 
   mod.home.system.theme.enable = true;
   mod.home.apps.copyq.enable = true;
-  mod.home.apps.ocr.enable = true;
   mod.home.terminal.kitty.enable = true;
 })

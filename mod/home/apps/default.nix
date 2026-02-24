@@ -29,7 +29,6 @@ lib.homeOpts.module "apps" { } (_: {
       };
     }))
     (lib.package "apps.whatsapp" pkgs.wasistlos)
-    (lib.package "apps.ocr" pkgs.ocr)
     (lib.package "apps.deskflow" pkgs.deskflow)
     (lib.package "apps.qalculate" pkgs.qalculate-gtk)
     (lib.package "apps.steam" pkgs.steam)

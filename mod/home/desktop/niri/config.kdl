@@ -167,7 +167,7 @@ binds {
     Mod+Shift+Period { move-workspace-to-monitor-right; }
 
     // Screenshots
-    Print { spawn "screenshot"; }
+    Print { spawn "flameshot" "gui"; }
     Shift+Print { spawn "ocr"; }
 
     // Notifications

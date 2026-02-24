@@ -51,15 +51,17 @@ lib.hostOpts.module "niri" { } (_: {
   xdg.portal = {
     enable = true;
     extraPortals = with pkgs; [
-      xdg-desktop-portal-gnome
+      xdg-desktop-portal-wlr
       xdg-desktop-portal-gtk
       gnome-keyring
     ];
     config.niri = {
       default = [
-        "gnome"
+        "wlr"
         "gtk"
       ];
+      "org.freedesktop.impl.portal.Screenshot" = [ "wlr" ];
+      "org.freedesktop.impl.portal.ScreenCast" = [ "wlr" ];
       "org.freedesktop.impl.portal.Access" = [ "gtk" ];
       "org.freedesktop.impl.portal.Notification" = [ "gtk" ];
       "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];

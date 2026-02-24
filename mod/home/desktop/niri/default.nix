@@ -65,7 +65,7 @@ lib.homeOpts.module "desktop.niri" { } (_: {
 
   mod.home.apps.audio.enable = true;
   mod.home.apps.copyq.enable = true;
-  mod.home.apps.ocr.enable = true;
+  mod.home.desktop.flameshot.enable = true;
   mod.home.desktop.playerctl.enable = true;
   mod.home.system.theme.enable = true;
   mod.home.terminal.kitty.enable = true;
