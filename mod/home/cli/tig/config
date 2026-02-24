@@ -1,5 +1,5 @@
 # ref:
-# https://qiita.com/sfus/items/063797a1dd8fdc7d032f
-# https://github.com/jonas/tig/wiki/Bindings
+# https://github.com/jonas/tig/blob/master/tigrc
 
-color cursor black green bold
+color cursor        black	green	bold
+color cursor-blur		black	blue
