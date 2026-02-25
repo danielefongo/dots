@@ -9,6 +9,7 @@ lib.homeOpts.module "cli" { } (_: {
     (lib.package "cli.dust" pkgs.dust)
     (lib.package "cli.fastmod" pkgs.fastmod)
     (lib.package "cli.fd" pkgs.fd)
+    (lib.package "cli.jdupes" pkgs.jdupes)
     (lib.package "cli.jq" pkgs.jq)
     (lib.package "cli.kondo" pkgs.kondo)
     (lib.package "cli.less" pkgs.less)
