@@ -22,6 +22,13 @@ return {
             callSnippet = "Replace",
             diagnostics = { globals = { "vim" } },
             format = { enable = false },
+            workspace = {
+              checkThirdParty = false,
+              library = {
+                vim.env.VIMRUNTIME,
+                "${3rd}/luv/library",
+              },
+            },
           },
         },
       }
