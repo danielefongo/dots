@@ -23,6 +23,7 @@
   };
 
   mod.home.apps.audio.enable = true;
+  mod.home.apps.chat.enable = true;
   mod.home.apps.discord = {
     enable = true;
     vesktop = false;
