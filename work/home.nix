@@ -64,7 +64,6 @@
   mod.home.editor.enable = true;
   mod.home.shell.enable = true;
   mod.home.system.enable = true;
-  mod.home.system.theme.service = false;
   mod.home.terminal.enable = true;
 
   nixpkgs.overlays = [

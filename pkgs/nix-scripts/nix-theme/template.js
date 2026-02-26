@@ -3,7 +3,7 @@ const Nunjucks = require('nunjucks')
 
 const env = Nunjucks.configure('.', {
   trimBlocks: true,
-  throwOnUndefined: true
+  throwOnUndefined: true,
 })
 
 function generateComputed (computed, full) {
@@ -14,7 +14,7 @@ function generateComputed (computed, full) {
       } else if (isObject(value)) {
         computed[key] = generateComputed(value, full)
       }
-    } catch (_) { }
+    } catch (_) {}
   })
 
   return computed
@@ -30,11 +30,14 @@ let templateCache
 module.exports = function (content, template) {
   Object.entries(template.filters || {}).forEach(([key, value]) => {
     env.addFilter(key, (...args) => {
-      if (![...args].find(value => typeof value === 'string' && value.includes('{{'))) {
+      if (
+        ![...args].find(
+          (value) => typeof value === 'string' && value.includes('{{'),
+        )
+      ) {
         return value(tinycolor, ...args)
       }
-    }
-    )
+    })
   })
 
   if (rawTemplateStringCache == JSON.stringify(template)) {
