@@ -69,6 +69,7 @@ in
 
       mod.home.desktop.wayland.enable = true;
       mod.home.desktop.rofi.enable = true;
+      mod.home.desktop.gammastep.enable = false;
 
       mod.home.editor.enable = true;
       mod.home.shell.enable = true;
