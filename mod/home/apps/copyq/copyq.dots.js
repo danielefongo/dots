@@ -1,7 +1,7 @@
 const { exec } = require("child_process");
 
 module.exports = {
-  match: [{ pattern: "**/*", to: "copyq" }],
+  match: [{ pattern: "**/copyq*", to: "copyq" }],
   apply: (_) => {
     exec("systemctl --user is-active copyq.service", (_, stdout) => {
       if (stdout.trim() === "active") {
