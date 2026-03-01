@@ -52,6 +52,7 @@ lib.hostOpts.module "niri" { } (_: {
     enable = true;
     extraPortals = with pkgs; [
       xdg-desktop-portal-wlr
+      xdg-desktop-portal-gnome
       xdg-desktop-portal-gtk
       gnome-keyring
     ];
@@ -61,7 +62,7 @@ lib.hostOpts.module "niri" { } (_: {
         "gtk"
       ];
       "org.freedesktop.impl.portal.Screenshot" = [ "wlr" ];
-      "org.freedesktop.impl.portal.ScreenCast" = [ "wlr" ];
+      "org.freedesktop.impl.portal.ScreenCast" = [ "gnome" ];
       "org.freedesktop.impl.portal.Access" = [ "gtk" ];
       "org.freedesktop.impl.portal.Notification" = [ "gtk" ];
       "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
