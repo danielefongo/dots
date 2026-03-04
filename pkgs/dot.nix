@@ -24,7 +24,7 @@ in
   script =
     name: source: deps:
     let
-      content = if builtins.isPath source then builtins.readFile source else "bash ${source}";
+      content = if builtins.isPath source then builtins.readFile source else source;
     in
     pkgs.writeShellApplication {
       inherit name;

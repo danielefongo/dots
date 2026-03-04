@@ -9,6 +9,16 @@ const glob = require('glob')
 const templater = require('./template.js')
 const { Watcher, event } = require('./watcher.js')
 
+let notificationTimer = null
+
+function notifyError () {
+  if (notificationTimer) clearTimeout(notificationTimer)
+  notificationTimer = setTimeout(() => {
+    notificationTimer = null
+    exec(`notify-send -t 5000 -a "Templating" -u critical "Templating Error" "Check logs for details"`)
+  }, 200)
+}
+
 const watching = process.argv[2] === 'watch'
 const baseThemeFile = path.resolve(process.argv[3])
 const dotsPath = path.resolve(process.argv[4])
@@ -141,7 +151,7 @@ function action (dot, match, file, evt, applier) {
     }
   } catch (e) {
     console.log(`Templating failed on ${file}: ${e}`)
-    exec(`notify-send -t 5000 -a "Templating" -u critical "${file}"`)
+    notifyError()
   }
 }
 

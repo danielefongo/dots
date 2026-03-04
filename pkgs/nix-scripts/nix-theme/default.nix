@@ -1,4 +1,8 @@
-{ pkgs, dots_path }:
+{
+  dot,
+  pkgs,
+  dots_path,
+}:
 
 let
   theme_package = pkgs.mkYarnPackage {
@@ -8,8 +12,6 @@ let
     yarnLock = ./yarn.lock;
   };
 in
-(pkgs.writeShellScriptBin "nix-theme" ''
-  DOTS_PATH=${dots_path}
-
-  ${theme_package}/bin/theme "$1" "$DOTS_PATH/themes/base.js" "$DOTS_PATH" "$DOTS_PATH/output"
-'')
+dot.script "nix-theme" ''
+  ${theme_package}/bin/theme "''${1:-}" "$DOTS_PATH/themes/base.js" "$DOTS_PATH" "$DOTS_PATH/output"
+'' [ pkgs.libnotify ]

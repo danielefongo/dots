@@ -7,7 +7,7 @@
 
 {
   nix-theme = pkgs.callPackage ./nix-theme {
-    inherit dots_path pkgs;
+    inherit dots_path pkgs dot;
   };
 
   nix-rebuild = dot.script "nix-rebuild" ./scripts/nix-rebuild.sh [ ];
