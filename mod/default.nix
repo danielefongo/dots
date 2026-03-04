@@ -16,7 +16,10 @@
     };
 
     home-manager.users.${user.name} = {
-      imports = [ ./home ];
+      imports = [
+        inputs.zen-browser.homeModules.beta
+        ./home
+      ];
 
       home = {
         username = user.name;

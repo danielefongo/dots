@@ -1,6 +1,9 @@
-{ lib, pkgs, ... }:
-
-lib.homeOpts.module "apps.firefox"
+{
+  lib,
+  pkgs,
+  ...
+}:
+lib.homeOpts.module "apps.zen-browser"
   {
     extraProfiles = {
       type = lib.types.attrs;
@@ -21,17 +24,15 @@ lib.homeOpts.module "apps.firefox"
           isDefault = !hasExtraDefault;
           id = 0;
           addons = with pkgs.firefox-addons; [
-            darkreader
+            {
+              addon = onepassword-password-manager;
+              pinned = true;
+            }
             flagfox
             clearurls
-            onepassword-password-manager
-            refined-github
-            tabliss
             ublock-origin
             vimium
             videospeed
-            libredirect
-            yet-another-smooth-scrolling
           ];
         };
       };
@@ -41,7 +42,7 @@ lib.homeOpts.module "apps.firefox"
     {
       imports = [ ./package.nix ];
 
-      firefox = {
+      zen-browser = {
         enable = true;
         default = moduleConfig.default;
         profiles = allProfiles;

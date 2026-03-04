@@ -1,6 +1,7 @@
-args@{
+{
   inputs,
   pkgs,
+  modulesPath,
   lib,
   config,
   user,
@@ -8,7 +9,13 @@ args@{
 }:
 
 let
-  mods = import ../mod args;
+  mods = import ../mod {
+    inherit
+      pkgs
+      inputs
+      modulesPath
+      ;
+  };
 
   hardware = {
     boot.initrd.availableKernelModules = [
@@ -56,6 +63,8 @@ in
       mod.home.apps.audio.enable = true;
       mod.home.apps.chat.enable = true;
       mod.home.apps.copyq.enable = true;
+      mod.home.apps.zen-browser.enable = true;
+      mod.home.apps.zen-browser.default = true;
       mod.home.apps.firefox.enable = true;
       mod.home.apps.onepassword.enable = true;
       # mod.home.apps.peek.enable = true;

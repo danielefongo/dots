@@ -49,7 +49,10 @@
         extraSpecialArgs = inputs // {
           inherit user;
         };
-        modules = [ ./home.nix ];
+        modules = [
+          inputs.zen-browser.homeModules.beta
+          ./home.nix
+        ];
       };
 
       systemConfigs.default = inputs.system-manager.lib.makeSystemConfig {

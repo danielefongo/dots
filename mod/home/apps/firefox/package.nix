@@ -13,25 +13,18 @@ let
     |> lib.filterAttrs (profileName: p: !p.isDefault)
     |> lib.mapAttrsToList (
       profileName: p: {
-        name = "firefox " + profileName;
+        name = "firefox-" + profileName;
+
         value = {
           name = "Firefox " + profileName;
           exec = "${config.programs.firefox.finalPackage}/bin/firefox -P ${profileName} --name Firefox %U";
           icon = "${pkgs.firefox}/share/icons/hicolor/128x128/apps/firefox.png";
           type = "Application";
-          genericName = "Web Browser";
           categories = [
             "Network"
             "WebBrowser"
           ];
-          mimeType = [
-            "text/html"
-            "text/xml"
-            "application/xhtml+xml"
-            "application/vnd.mozilla.xul+xml"
-            "x-scheme-handler/http"
-            "x-scheme-handler/https"
-          ];
+          mimeType = [ ];
         };
       }
     );
@@ -39,6 +32,11 @@ in
 {
   options.firefox = {
     enable = lib.mkEnableOption "Enable custom Firefox configuration";
+
+    default = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+    };
 
     profiles = lib.mkOption {
       type = lib.types.attrsOf (
@@ -101,7 +99,46 @@ in
       };
     };
 
-    xdg.desktopEntries = lib.listToAttrs nonDefaultDesktopEntries;
+    xdg.desktopEntries =
+      let
+        defaultProfile =
+          cfg.profiles
+          |> lib.filterAttrs (name: p: p.isDefault)
+          |> lib.mapAttrsToList (name: p: name)
+          |> lib.head;
+      in
+      lib.listToAttrs nonDefaultDesktopEntries
+      // {
+        firefox = {
+          name = "Firefox";
+          exec = "${config.programs.firefox.finalPackage}/bin/firefox -P ${defaultProfile} --name Firefox %U";
+          icon = "${pkgs.firefox}/share/icons/hicolor/128x128/apps/firefox.png";
+          type = "Application";
+          categories = [
+            "Network"
+            "WebBrowser"
+          ];
+          mimeType = [ ];
+        };
+      };
+
+    xdg.mimeApps = lib.mkIf cfg.default {
+      enable = true;
+      defaultApplications = {
+        "application/x-extension-htm" = "firefox.desktop";
+        "application/x-extension-html" = "firefox.desktop";
+        "application/x-extension-shtml" = "firefox.desktop";
+        "application/xhtml+xml" = "firefox.desktop";
+        "application/x-extension-xhtml" = "firefox.desktop";
+        "application/x-extension-xht" = "firefox.desktop";
+        "text/html" = "firefox.desktop";
+        "x-scheme-handler/http" = "firefox.desktop";
+        "x-scheme-handler/https" = "firefox.desktop";
+        "x-scheme-handler/chrome" = "firefox.desktop";
+        "x-scheme-handler/about" = "firefox.desktop";
+        "x-scheme-handler/unknown" = "firefox.desktop";
+      };
+    };
 
     home.file =
       cfg.profiles

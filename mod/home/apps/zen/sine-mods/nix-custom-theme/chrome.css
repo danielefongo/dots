@@ -1,0 +1,29 @@
+@-moz-document url("chrome://browser/content/browser.xhtml") {
+  :root {
+    color-scheme: dark !important;
+    
+    --zen-primary-color: {{ colors.grey4 }} !important;
+    --toolbarbutton-icon-fill: {{ colors.foreground }} !important;
+    --toolbar-field-color: {{ colors.foreground }} !important;
+    --tab-selected-textcolor: {{ theme.secondary }} !important;
+    --toolbar-color: {{ colors.foreground }} !important;
+    --arrowpanel-color: {{ colors.grey8 }} !important;
+    --arrowpanel-background: {{ colors.background_alt1 }} !important;
+    --sidebar-text-color: {{ colors.foreground }} !important;
+    --zen-main-browser-background: {{ colors.background }} !important;
+    --zen-sidebar-notification-bg: {{ colors.background_alt1 }} !important;
+  }
+
+  #titlebar {
+    background-color: {{ colors.background }} !important;
+  }
+
+  .urlbar-background {
+    background-color: {{ colors.background_alt1 }} !important;
+  }
+
+  #zen-media-controls-toolbar, zen-sidebar-notification {
+    width: min(90%, 300px);
+    margin: 4px auto;
+  }
+}

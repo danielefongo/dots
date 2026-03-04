@@ -7,6 +7,7 @@
 
 (final: prev: rec {
   tmuxinator = pkgs.callPackage ./tmuxinator.nix { pkgs = prev; };
+  zen-browser = inputs.zen-browser.packages.${prev.stdenv.hostPlatform.system}.beta;
   firefox-addons = pkgs.callPackage ./firefox-addons.nix { pkgs = prev; };
   discord = pkgs.callPackage ./discord { pkgs = prev; };
   plover = pkgs.callPackage ./plover.nix {

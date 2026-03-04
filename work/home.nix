@@ -30,6 +30,7 @@
   };
   mod.home.apps.firefox = {
     enable = true;
+    default = false;
     extraProfiles = {
       work = {
         id = 1;
@@ -44,6 +45,27 @@
           libredirect
           grammarly
           yet-another-smooth-scrolling
+        ];
+      };
+    };
+  };
+  mod.home.apps.zen-browser = {
+    enable = true;
+    default = true;
+    extraProfiles = {
+      work = {
+        id = 1;
+        isDefault = true;
+        addons = with pkgs.firefox-addons; [
+          {
+            addon = onepassword-password-manager;
+            pinned = true;
+          }
+          videospeed
+          refined-github
+          ublock-origin
+          vimium
+          grammarly
         ];
       };
     };
@@ -79,6 +101,7 @@
 
       kitty = config.lib.nixGL.wrap prev.kitty;
       firefox = config.lib.nixGL.wrap prev.firefox;
+      zen-browser = config.lib.nixGL.wrap prev.zen-browser;
       spotify = config.lib.nixGL.wrap prev.spotify;
       telegram-desktop = config.lib.nixGL.wrap prev.telegram-desktop;
       vesktop = config.lib.nixGL.wrap (pkgs.electronWithGPU prev.vesktop);

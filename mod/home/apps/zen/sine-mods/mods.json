@@ -1,0 +1,20 @@
+{
+  "nix-custom-theme": {
+    "id": "nix-custom-theme",
+    "name": "Nix Custom Theme",
+    "description": "Custom theme managed by Nix",
+    "version": "1.0.0",
+    "enabled": true,
+    "no-updates": true,
+    "origin": "store",
+    "scripts": {
+      "hot-reload.uc.js": {
+        "name": "Hot Reload",
+        "description": "Watches chrome.css for changes and injects updated styles",
+        "include": [
+          "chrome://browser/content/browser.xhtml"
+        ]
+      }
+    }
+  }
+}
