@@ -3,11 +3,11 @@
 lib.homeOpts.module "system.nix" { } (_: {
   home.packages = with pkgs; [
     fh
-    nix-scripts.nix-check
-    nix-scripts.nix-packages
-    nix-scripts.nix-rebuild
-    nix-scripts.nix-tools
-    nix-scripts.nix-update
+    nix-check
+    nix-packages
+    nix-rebuild
+    nix-tools
+    nix-update
     nix-tests
   ];
 

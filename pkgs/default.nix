@@ -4,22 +4,17 @@
   dots_path,
   ...
 }:
-
-(final: prev: rec {
-  tmuxinator = pkgs.callPackage ./tmuxinator.nix { pkgs = prev; };
-  zen-browser = inputs.zen-browser.packages.${prev.stdenv.hostPlatform.system}.beta;
-  firefox-addons = pkgs.callPackage ./firefox-addons.nix { pkgs = prev; };
-  discord = pkgs.callPackage ./discord { pkgs = prev; };
-  plover = pkgs.callPackage ./plover.nix {
-    inherit inputs;
-    pkgs = prev;
-  };
-
-  dot = import ./dot.nix {
-    inherit pkgs dots_path inputs;
-  };
-  nix-scripts = pkgs.callPackage ./nix-scripts {
-    inherit dots_path dot;
-    pkgs = prev;
-  };
-})
+let
+  mkOverlay = file: import file { inherit pkgs dots_path inputs; };
+in
+final: prev:
+[
+  (mkOverlay ./tmuxinator.nix)
+  (mkOverlay ./firefox-addons.nix)
+  (mkOverlay ./discord)
+  (mkOverlay ./plover.nix)
+  (mkOverlay ./dot.nix)
+  (mkOverlay ./nix-scripts)
+  (mkOverlay ./zen-browser.nix)
+]
+|> builtins.foldl' (acc: overlay: acc // (overlay final (prev // acc))) { }

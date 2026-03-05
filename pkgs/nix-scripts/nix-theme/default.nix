@@ -1,5 +1,4 @@
 {
-  dot,
   pkgs,
   dots_path,
 }:
@@ -12,6 +11,6 @@ let
     yarnLock = ./yarn.lock;
   };
 in
-dot.script "nix-theme" ''
+pkgs.dot.script "nix-theme" ''
   ${theme_package}/bin/theme "''${1:-}" "$DOTS_PATH/themes/base.js" "$DOTS_PATH" "$DOTS_PATH/output"
 '' [ pkgs.libnotify ]

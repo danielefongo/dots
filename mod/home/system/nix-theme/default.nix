@@ -3,13 +3,13 @@
 lib.homeOpts.module "system.theme" { } (
   { moduleConfig, ... }:
   {
-    home.packages = [ pkgs.nix-scripts.nix-theme ];
+    home.packages = [ pkgs.nix-theme ];
 
     systemd.user.services.theme = {
       Unit.Description = "Theme";
 
       Service = {
-        ExecStart = "${pkgs.nix-scripts.nix-theme}/bin/nix-theme watch";
+        ExecStart = "${pkgs.nix-theme}/bin/nix-theme watch";
 
         Restart = "on-failure";
         RestartSec = 2;

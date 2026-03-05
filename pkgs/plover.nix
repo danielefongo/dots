@@ -1,7 +1,9 @@
-{ inputs, system, ... }:
+{ inputs, pkgs, ... }:
 
-(inputs.plover.packages.${system}.plover.withPlugins (
-  ps: with ps; [
-    plover-lapwing-aio
-  ]
-))
+final: prev: {
+  plover = inputs.plover.packages.${prev.system}.plover.withPlugins (
+    ps: with ps; [
+      plover-lapwing-aio
+    ]
+  );
+}
