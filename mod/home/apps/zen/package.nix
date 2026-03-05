@@ -163,6 +163,8 @@ in
               "browser.urlbar.suggest.history" = false;
               "browser.urlbar.suggest.recentsearches" = false;
               "network.cookie.cookieBehavior" = 5;
+              "network.trr.mode" = 3;
+              "network.trr.uri" = "https://firefox.dns.nextdns.io/";
               "privacy.firstparty.isolate" = true;
               "zen.downloads.download-animation" = false;
               "zen.tabs.select-recently-used-on-close" = false;
