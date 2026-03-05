@@ -9,12 +9,13 @@ let
 in
 final: prev:
 [
-  (mkOverlay ./tmuxinator.nix)
-  (mkOverlay ./firefox-addons.nix)
   (mkOverlay ./discord)
-  (mkOverlay ./plover.nix)
   (mkOverlay ./dot.nix)
+  (mkOverlay ./firefox-addons.nix)
   (mkOverlay ./nix-scripts)
+  (mkOverlay ./plover.nix)
+  (mkOverlay ./text.nix)
+  (mkOverlay ./tmuxinator.nix)
   (mkOverlay ./zen-browser.nix)
 ]
 |> builtins.foldl' (acc: overlay: acc // (overlay final (prev // acc))) { }

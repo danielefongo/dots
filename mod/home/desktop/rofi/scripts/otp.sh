@@ -30,4 +30,5 @@ fi
 SELECTED_CODE="${ACCOUNT_CODES[$selection_index]}"
 
 sleep 0.2
-xdotool type --delay 10 "$SELECTED_CODE"
+
+type-text "$SELECTED_CODE"

@@ -1,5 +1,13 @@
-{ lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
+let
+  isWayland = lib.hasHomeModule config "desktop.wayland";
+in
 lib.homeOpts.module "desktop.rofi" { } (_: {
   home.packages = with pkgs; [
     rofi
@@ -7,7 +15,7 @@ lib.homeOpts.module "desktop.rofi" { } (_: {
     (pkgs.dot.script "rofi-otp" ./scripts/otp.sh [
       libnotify
       yubikey-manager
-      xdotool
+      (type-text isWayland)
     ])
     (pkgs.dot.script "rofi-power" ./scripts/power.sh [ systemd ])
   ];

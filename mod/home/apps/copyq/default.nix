@@ -10,12 +10,9 @@ let
   sessionTarget = if isWayland then "wayland-session.target" else "x11-session.target";
 in
 lib.homeOpts.module "apps.copyq" { } (_: {
-  home.packages = [
-    pkgs.copyq
-    (pkgs.dot.script "copyq-paste" ./scripts/paste.sh (
-      lib.optionals isWayland [ pkgs.wtype ]
-      ++ lib.optionals (!isWayland) [ pkgs.xdotool ]
-    ))
+  home.packages = with pkgs; [
+    copyq
+    (paste-text isWayland)
   ];
 
   xdg.configFile."copyq/copyq.conf".source = pkgs.dot.outLink "copyq/copyq.conf";
