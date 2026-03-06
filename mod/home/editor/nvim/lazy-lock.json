@@ -20,7 +20,6 @@
   "mini.ai": { "branch": "main", "commit": "9eae720f2b20f6ad28cbfa0ddc524e10dc2c3201" },
   "multicursor.nvim": { "branch": "1.0", "commit": "630dd29dd696bc977cb81d7dd2fa6bb280f60fc4" },
   "nerdy.nvim": { "branch": "main", "commit": "97b0914dece80204a777f04c94b9980da0f7ac88" },
-  "nvim-autopairs": { "branch": "master", "commit": "59bce2eef357189c3305e25bc6dd2d138c1683f5" },
   "nvim-lsp-file-operations": { "branch": "master", "commit": "b9c795d3973e8eec22706af14959bc60c579e771" },
   "nvim-lspconfig": { "branch": "master", "commit": "3f58aeca0c6ece8a9fb8782ea3fcb6024f285be3" },
   "nvim-navic": { "branch": "master", "commit": "f5eba192f39b453675d115351808bd51276d9de5" },

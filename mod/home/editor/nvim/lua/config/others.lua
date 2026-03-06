@@ -52,7 +52,6 @@ return {
       lkey("cct", function() vim.cmd("CccHighlighterToggle") end, "color highlight toggle"),
     },
   },
-  { "windwp/nvim-autopairs", opts = {}, event = "InsertEnter" },
   {
     "folke/snacks.nvim",
     keys = {
