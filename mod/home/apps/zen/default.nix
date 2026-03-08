@@ -28,9 +28,13 @@ lib.homeOpts.module "apps.zen-browser"
               addon = onepassword-password-manager;
               pinned = true;
             }
+            {
+              addon = ublock-origin;
+              pinned = true;
+            }
+            darkreader
             flagfox
             clearurls
-            ublock-origin
             vimium
             videospeed
           ];

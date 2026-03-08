@@ -6,6 +6,18 @@ let
 in
 {
   firefox-addons = addons // {
+    graphql-inspector = addons.buildFirefoxXpiAddon {
+      pname = "GraphQL Inspector";
+      version = "2.19.0";
+      addonId = "warrenjday@graphqlnetworkinspector.com";
+      url = "https://addons.mozilla.org/firefox/downloads/file/4214326/graphql_network_inspector-2.19.0.xpi";
+      sha256 = "sha256-a/m0w0XAXsfePVv+bUzfuvmtecTNvStx5X6rWq65g3E=";
+      meta = {
+        homepage = "https://addons.mozilla.org/en-US/firefox/addon/graphql-network-inspector/";
+        description = "A platform agnostic network inspector specifically built for GraphQL. Clearly see individual GraphQL requests including support for query batching. Works with any client including Apollo and Relay.";
+      };
+    };
+
     libredirect = addons.buildFirefoxXpiAddon {
       pname = "LibRedirect";
       version = "3.2.0";

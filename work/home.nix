@@ -61,11 +61,16 @@
             addon = onepassword-password-manager;
             pinned = true;
           }
+          {
+            addon = ublock-origin;
+            pinned = true;
+          }
           videospeed
           refined-github
-          ublock-origin
           vimium
           grammarly
+          stylebot-web
+          graphql-inspector
         ];
       };
     };
