@@ -9,6 +9,8 @@ const glob = require('glob')
 const templater = require('./template.js')
 const { Watcher, event } = require('./watcher.js')
 
+const IGNORE_PATTERNS = ['**/*nix', '**/.direnv/**', '**/node_modules/**']
+
 let notificationTimer = null
 
 function notifyError () {
@@ -102,6 +104,7 @@ function loadDots () {
     dot: true,
     cwd: dotsPath,
     nodir: true,
+    ignore: IGNORE_PATTERNS,
   })
   return dotFiles.map(loadDot)
 }
@@ -157,7 +160,7 @@ function action (dot, match, file, evt, applier) {
 
 function createWatcher (dot) {
   const applier = createApplier(dot)
-  const watcher = new Watcher(dot.dotPath, [dotsMatch, '**/*nix'])
+  const watcher = new Watcher(dot.dotPath, [dotsMatch, ...IGNORE_PATTERNS])
   dot.matches.forEach((match) => {
     watcher.on(match.pattern, (file, evt) =>
       action(dot, match, file, evt, applier),
@@ -230,7 +233,7 @@ function watch () {
     })
   }
 
-  const dotsWatcher = new Watcher(dotsPath, ['**/*nix', '.direnv/**', 'node_modules/**'])
+  const dotsWatcher = new Watcher(dotsPath, IGNORE_PATTERNS)
   dotsWatcher
     .on(dotsMatch, (dotFile, evt) => {
       switch (evt) {
