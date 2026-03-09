@@ -1,4 +1,15 @@
 #!/usr/bin/env bash
 
 cd "$(dirname "$(readlink -f "$0")")"
+
+# Compile GTK 3.24
 sassc -a -M -t compact ./gtk-3.24/gtk.scss ./gtk-3.24/gtk.css
+
+# Symlink gtk-3.24 to gtk-3.0 for GTK-3 apps
+ln -sfn gtk-3.24 ./gtk-3.0
+
+# Compile GTK 4.22
+sassc -a -M -t compact ./gtk-4.22/gtk.scss ./gtk-4.22/gtk.css
+
+# Symlink gtk-4.22 to gtk-4.0 for GTK-4 apps (pavucontrol, etc)
+ln -sfn gtk-4.22 ./gtk-4.0

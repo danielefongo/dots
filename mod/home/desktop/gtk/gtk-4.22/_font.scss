@@ -1,0 +1,4 @@
+@mixin with-font($scale: 1) {
+  font-size: calc({{fontSize}}px * #{$scale});
+  font-family: "{{ font }}";
+}
