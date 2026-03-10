@@ -18,6 +18,14 @@ return {
       },
       server_opts_overrides = {},
     },
+    config = function(_, opts)
+      require("copilot").setup(opts)
+      vim.cmd("Copilot disable")
+    end,
+    keys = {
+      lkey("ae", ":Copilot enable<cr>", "enable ai"),
+      lkey("ad", ":Copilot disable<cr>", "disable ai"),
+    },
   },
   {
     "olimorris/codecompanion.nvim",
