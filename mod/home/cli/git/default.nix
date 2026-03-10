@@ -1,4 +1,9 @@
-{ lib, pkgs, ... }:
+{
+  lib,
+  pkgs,
+  user,
+  ...
+}:
 
 lib.homeOpts.module "cli.git" { } (_: {
   programs.git = {
@@ -15,6 +20,9 @@ lib.homeOpts.module "cli.git" { } (_: {
       core = {
         editor = "nvim";
         excludesfile = builtins.toString (pkgs.dot.outLink "git/ignore");
+      };
+      safe = {
+        directory = "${user.home}/mounts/*";
       };
     };
   };
