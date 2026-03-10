@@ -10,7 +10,15 @@ let
     packageJSON = ./package.json;
     yarnLock = ./yarn.lock;
   };
+
+  script = pkgs.writeShellApplication {
+    name = "nix-theme";
+    runtimeInputs = [ pkgs.libnotify ];
+    text = ''
+      #!${pkgs.runtimeShell}
+      set -eo pipefail
+      ${theme_package}/bin/theme "''${1:-}" "${dots_path}/themes/base.js" "${dots_path}" "${dots_path}/output"
+    '';
+  };
 in
-pkgs.dot.script "nix-theme" ''
-  ${theme_package}/bin/theme "''${1:-}" "$DOTS_PATH/themes/base.js" "$DOTS_PATH" "$DOTS_PATH/output"
-'' [ pkgs.libnotify ]
+script
