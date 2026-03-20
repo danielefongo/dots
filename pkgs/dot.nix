@@ -26,7 +26,13 @@ in
     script =
       name: source: deps:
       let
-        content = if builtins.isPath source then builtins.readFile source else "bash ${source}";
+        content =
+          if builtins.isPath source then
+            builtins.readFile source
+          else if builtins.isString source then
+            source
+          else
+            "bash ${source}";
       in
       prev.writeShellApplication {
         inherit name;
