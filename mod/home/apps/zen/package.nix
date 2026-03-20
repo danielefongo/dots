@@ -165,7 +165,6 @@ in
               "network.cookie.cookieBehavior" = 5;
               "network.trr.mode" = 3;
               "network.trr.uri" = "https://firefox.dns.nextdns.io/";
-              "privacy.firstparty.isolate" = true;
               "zen.downloads.download-animation" = false;
               "zen.tabs.select-recently-used-on-close" = false;
               "zen.tabs.show-newtab-vertical" = false;
