@@ -14,6 +14,7 @@ final: prev:
   (mkOverlay ./firefox-addons.nix)
   (mkOverlay ./nix-scripts)
   (mkOverlay ./plover.nix)
+  (mkOverlay ./sops.nix)
   (mkOverlay ./text.nix)
   (mkOverlay ./tmuxinator.nix)
   (mkOverlay ./zen-browser.nix)

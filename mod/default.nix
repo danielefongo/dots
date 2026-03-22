@@ -18,6 +18,7 @@
     home-manager.users.${user.name} = {
       imports = [
         inputs.zen-browser.homeModules.beta
+        inputs.sops-nix.homeManagerModules.sops
         ./home
       ];
 

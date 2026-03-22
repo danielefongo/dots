@@ -84,6 +84,14 @@ in
       mod.home.shell.enable = true;
       mod.home.system.enable = true;
       mod.home.terminal.enable = true;
+
+      mod.home.secrets.enable = true;
+      mod.home.secrets.secrets.dummy = {
+        file = ../mod/home/secrets/secrets.yaml;
+        entries = {
+          dummy = "dummy";
+        };
+      };
     })
     (mods.host user hardware {
       mod.host.base.enable = true;

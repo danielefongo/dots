@@ -93,6 +93,14 @@
   mod.home.system.enable = true;
   mod.home.terminal.enable = true;
 
+  mod.home.secrets.enable = true;
+  mod.home.secrets.secrets.dummy = {
+    file = ../mod/home/secrets/secrets.yaml;
+    entries = {
+      dummy = "dummy";
+    };
+  };
+
   nixpkgs.overlays = [
     (final: prev: {
       i3 = config.lib.nixGL.wrap prev.i3;
