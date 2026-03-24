@@ -94,6 +94,17 @@
   mod.home.terminal.enable = true;
 
   mod.home.secrets.enable = true;
+
+  mod.home.secrets.secrets.work_credentials = {
+    file = ./secrets.yaml;
+    entries = {
+      npmrc = ".npmrc";
+      aws_config = ".aws/config";
+      cargo_credentials = ".cargo/credentials.toml";
+      suite_py_config = ".suite_py/config.yml";
+    };
+  };
+
   mod.home.secrets.secrets.dummy = {
     file = ../mod/home/secrets/secrets.yaml;
     entries = {
