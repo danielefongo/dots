@@ -33,6 +33,7 @@ lib.homeOpts.module "apps.zen-browser"
               pinned = true;
             }
             darkreader
+            tabliss
             flagfox
             clearurls
             vimium

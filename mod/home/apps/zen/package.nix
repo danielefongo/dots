@@ -168,6 +168,7 @@ in
               "zen.downloads.download-animation" = false;
               "zen.tabs.select-recently-used-on-close" = false;
               "zen.tabs.show-newtab-vertical" = false;
+              "zen.urlbar.replace-newtab" = false;
               "zen.view.compact.toolbar-flash-popup" = true;
               "zen.view.compact.toolbar-flash-popup.duration" = 1000;
               "zen.window-sync.sync-only-pinned-tabs" = true;

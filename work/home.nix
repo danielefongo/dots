@@ -66,6 +66,7 @@
             pinned = true;
           }
           videospeed
+          tabliss
           refined-github
           vimium
           grammarly
