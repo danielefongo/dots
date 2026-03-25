@@ -28,27 +28,6 @@
     enable = true;
     vesktop = false;
   };
-  mod.home.apps.firefox = {
-    enable = true;
-    default = false;
-    extraProfiles = {
-      work = {
-        id = 1;
-        isDefault = true;
-        addons = with pkgs.firefox-addons; [
-          onepassword-password-manager
-          refined-github
-          tabliss
-          ublock-origin
-          vimium
-          videospeed
-          libredirect
-          grammarly
-          yet-another-smooth-scrolling
-        ];
-      };
-    };
-  };
   mod.home.apps.zen-browser = {
     enable = true;
     default = true;
