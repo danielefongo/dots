@@ -4,7 +4,7 @@ lib.homeOpts.module "terminal.tmux" { } (_: {
   home.packages = with pkgs; [
     entr
     tmux
-    tmuxinator
+    unstable.tmuxinator
     (pkgs.dot.script "tmux_run_on_nvim" ./scripts/run_on_nvim.sh [ ])
     (pkgs.dot.script "tmux_window_name" ./scripts/window_name.sh [ ])
     (pkgs.dot.script "tmux_list_panes" ./scripts/list_panes.sh [ ])

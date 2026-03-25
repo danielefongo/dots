@@ -68,7 +68,7 @@ lib.homeOpts.module "secrets" opts (
   {
     home.packages = [
       pkgs.age
-      pkgs.sops
+      pkgs.unstable.sops
     ];
     sops = {
       age.keyFile = "${home}/.config/sops/age/keys.txt";
