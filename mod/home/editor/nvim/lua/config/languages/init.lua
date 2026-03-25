@@ -162,14 +162,12 @@ return {
     "neovim/nvim-lspconfig",
     dependencies = {
       "mason-org/mason.nvim",
-      "saghen/blink.cmp",
       { "antosha417/nvim-lsp-file-operations", config = true },
       { "mason-org/mason-lspconfig.nvim", version = "^1.0.0", config = function() end },
     },
     opts = { lsps = {} },
     config = function(_, opts)
       local mason_lsp = require("mason-lspconfig")
-      local blink = require("blink.cmp")
 
       local all_lsp_servers = vim.tbl_keys(require("mason-lspconfig").get_mappings().lspconfig_to_mason)
 
@@ -179,7 +177,7 @@ return {
         vim.lsp.config[lsp_name] = vim.tbl_deep_extend(
           "force",
           lsp_configuration,
-          { capabilities = blink.get_lsp_capabilities(vim.lsp.protocol.make_client_capabilities()) }
+          { capabilities = vim.lsp.protocol.make_client_capabilities() }
         )
       end
 
