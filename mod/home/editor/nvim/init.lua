@@ -2,6 +2,7 @@ _G.theme = require("theme")
 
 require("utils")
 
+opt.scrolloff = 999
 opt.autoindent = true
 opt.backup = false
 opt.completeopt = "menuone,noinsert,noselect"
