@@ -34,6 +34,7 @@ opt.tabstop = 2
 opt.clipboard = "unnamed,unnamedplus"
 opt.undofile = true
 opt.writebackup = false
+opt.mouse = ""
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
