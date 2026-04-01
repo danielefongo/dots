@@ -11,3 +11,7 @@ creation_rules:
     key_groups:
     - age:
       - *work
+  - path_regex: work/zshrc$
+    key_groups:
+    - age:
+      - *work

@@ -74,7 +74,6 @@
   mod.home.terminal.enable = true;
 
   mod.home.secrets.enable = true;
-
   mod.home.secrets.secrets.work_credentials = {
     file = ./secrets.yaml;
     entries = {
@@ -84,11 +83,17 @@
       suite_py_config = ".suite_py/config.yml";
     };
   };
-
   mod.home.secrets.secrets.dummy = {
     file = ../mod/home/secrets/secrets.yaml;
     entries = {
       dummy = "dummy";
+    };
+  };
+  mod.home.secrets.secrets.work_zshrc = {
+    file = ./zshrc;
+    format = "binary";
+    entries = {
+      zshrc = ".custom_zshrc";
     };
   };
 
