@@ -15,7 +15,7 @@ local ViMode = {
   },
   hl = function(self)
     local mode = self.mode:sub(1, 1)
-    return { fg = self.mode_colors[mode], bg = "background_dark", bold = true }
+    return "HeirlineStatusMode" .. self.mode_colors[mode]
   end,
   provider = function(self) return " %1(" .. self.mode_names[self.mode] .. "%)" end,
   Space,
@@ -24,14 +24,13 @@ local ViMode = {
 local GitBranch = {
   condition = conditions.is_git_repo,
   init = function(self) self.status_dict = vim.b.gitsigns_status_dict end,
-  hl = { fg = "git_branch", bg = "background_dark" },
+  hl = "HeirlineStatusGitBranch",
   {
     provider = function(self)
       local head = self.status_dict.head
       if head:match("^INTIG") then head = head:match("^[^/]*") end
       return " " .. head
     end,
-    hl = { bold = true },
   },
   Space,
 }
@@ -42,6 +41,7 @@ local FileName = {
     if self.relname == "" then self.relname = "[No Name]" end
   end,
   flexible = 2,
+  hl = "HeirlineStatusFileName",
   { provider = function(self) return self.relname end },
   { provider = function(self) return vim.fn.pathshorten(self.relname) end },
   { provider = function(self) return vim.fn.fnamemodify(self.filename, ":t") end },
@@ -50,14 +50,13 @@ local FileName = {
 local FileNameWrapper = {
   init = function(self) self.filename = vim.api.nvim_buf_get_name(0) end,
   update = { "BufEnter", "DirChanged", "BufModifiedSet", "VimResized" },
-  hl = { fg = "file_path", bg = "background_dark" },
   FileName,
   { provider = "%<" },
   Space,
 }
 
 local FileType = {
-  hl = { fg = "file_type", bg = "background_dark" },
+  hl = "HeirlineStatusFileType",
   provider = function() return vim.bo.filetype end,
   Space,
 }
@@ -82,12 +81,11 @@ local LspDiagnostics = {
     "DiagnosticChanged",
     callback = vim.schedule_wrap(function(_) vim.cmd.redrawstatus() end),
   },
-  hl = { bg = "background_dark" },
-  { provider = "[", hl = { fg = "diagnostic_surround" } },
+  { provider = "[", hl = "HeirlineStatusDiagnosticSurround" },
   {
     condition = function(self) return self.errors > 0 end,
     provider = function(self) return string.format("%s%s", self.error_icon, self.errors) end,
-    hl = { fg = "diagnostic_error", bold = true },
+    hl = "HeirlineStatusDiagnosticError",
   },
   {
     condition = function(self) return self.warnings > 0 end,
@@ -95,7 +93,7 @@ local LspDiagnostics = {
       local prefix = self.errors > 0 and " " or ""
       return string.format("%s%s%s", prefix, self.warn_icon, self.warnings)
     end,
-    hl = { fg = "diagnostic_warn", bold = true },
+    hl = "HeirlineStatusDiagnosticWarn",
   },
   {
     condition = function(self) return self.info > 0 end,
@@ -103,7 +101,7 @@ local LspDiagnostics = {
       local prefix = (self.errors > 0 or self.warnings > 0) and " " or ""
       return string.format("%s%s%s", prefix, self.info_icon, self.info)
     end,
-    hl = { fg = "diagnostic_info", bold = true },
+    hl = "HeirlineStatusDiagnosticInfo",
   },
   {
     condition = function(self) return self.hints > 0 end,
@@ -111,13 +109,16 @@ local LspDiagnostics = {
       local prefix = (self.errors > 0 or self.warnings > 0 or self.info > 0) and " " or ""
       return string.format("%s%s%s", prefix, self.hint_icon, self.hints)
     end,
-    hl = { fg = "diagnostic_hint", bold = true },
+    hl = "HeirlineStatusDiagnosticHint",
   },
-  { provider = "]", hl = { fg = "diagnostic_surround" } },
+  { provider = "]", hl = "HeirlineStatusDiagnosticSurround" },
   Space,
 }
 
-local Ruler = { provider = "%7(%l/%L%): %c" }
+local Ruler = {
+  hl = "HeirlineStatusRuler",
+  provider = "%7(%l/%L%): %c",
+}
 
 local LspProgress = {
   condition = function()
@@ -126,8 +127,7 @@ local LspProgress = {
 
     return #real_clients > 0 and require("lsp-progress").progress() ~= ""
   end,
-
-  hl = { fg = "lsp_progress", bg = "background_dark" },
+  hl = "HeirlineStatusLsp",
   {
     provider = function() return require("lsp-progress").progress() end,
     update = {

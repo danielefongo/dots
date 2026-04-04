@@ -11,6 +11,8 @@ local function make_navic_flexible_el(count)
   }
 end
 
+local Space = { provider = " " }
+
 local Navic = {
   static = {
     type_hl = {
@@ -63,7 +65,7 @@ local Navic = {
         if i < length then
           table.insert(child, {
             provider = " > ",
-            hl = { fg = "navic_separator", bg = "background_light" },
+            hl = "HeirlineWinFileSeparator",
           })
         end
 
@@ -74,13 +76,12 @@ local Navic = {
     end
 
     self.ellipsis = self:new({
-      { provider = "  ", hl = { fg = "navic_separator" } },
+      { provider = "  ", hl = "HeirlineWinFileSeparator" },
     }, 1)
 
     self.display_count = display_count
   end,
   update = { "CursorMoved", "BufEnter", "BufWritePost", "VimResized", "WinResized" },
-  hl = { fg = "navic_color", bg = "background_light" },
   flexible = 1,
   make_navic_flexible_el(0),
   make_navic_flexible_el(1),
@@ -88,28 +89,29 @@ local Navic = {
   make_navic_flexible_el(3),
   {
     provider = " ",
-    hl = { fg = "navic_separator", bg = "background_light" },
+    hl = "HeirlineWinFileSeparator",
   },
 }
 
 local FilePath = {
   init = function(self) self.filename = vim.fn.expand("%:t") end,
   update = { "BufEnter", "BufWritePost", "VimResized", "WinResized" },
-  hl = { fg = "navic_file", bg = "background_light" },
+  hl = "HeirlineWinFile",
   flexible = false,
   provider = function(self) return self.filename end,
 }
 
 local WinWrapper = {
-  { provider = "", hl = { fg = "background_light" } },
+  hl = "HeirlineWinFileBackground",
+  Space,
   FilePath,
   {
     condition = function() return #(require("nvim-navic").get_data() or {}) > 0 end,
     provider = " > ",
-    hl = { fg = "navic_separator", bg = "background_light" },
+    hl = "HeirlineWinFileSeparator",
   },
   Navic,
-  { provider = "", hl = { fg = "background_light" } },
+  Space,
 }
 
 return WinWrapper

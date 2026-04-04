@@ -47,9 +47,9 @@ local LineNumber = {
     hl = function(self)
       local mode = vim.fn.mode(1):sub(1, 1)
       if vim.v.lnum == vim.fn.getcurpos()[2] then
-        return { fg = self.mode_colors[mode], bold = true }
+        return "HeirlineColumnCursorLineNr" .. self.mode_colors[mode]
       else
-        return { fg = "col_number", bold = false }
+        return "HeirlineColumnLineNr"
       end
     end,
   },
@@ -68,7 +68,7 @@ local Fold = {
       return ""
     end
   end,
-  hl = { fg = "col_fold" },
+  hl = "HeirlineColumnFold",
 }
 
 local GitSigns = {

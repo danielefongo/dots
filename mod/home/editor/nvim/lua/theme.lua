@@ -99,7 +99,8 @@ local lush = function()
 
       NonText({ fg = colors.grey8 }),
       Text({ fg = colors.foreground }),
-      Normal({ bg = colors.background, fg = colors.foreground }),
+      Normal({ bg = colors.background, fg = colors.grey8 }),
+      NormalNC({ Normal }),
       NormalFloat({ bg = colors.background_alt2, fg = colors.foreground }),
       FloatBorder({ bg = colors.background }),
       FloatShadow({ bg = colors.background }),
@@ -120,11 +121,11 @@ local lush = function()
       Folded({ bg = colors.background_alt2, fg = colors.grey6 }),
       Title({ Text, gui = "bold" }),
       Delimiter({ fg = colors.grey7 }),
-      StatusLine({ bg = colors.background_alt1, fg = colors.yellow }),
-      StatusLineNC({ bg = colors.background_alt2, fg = colors.grey6 }),
+      StatusLine({ bg = colors.background_alt1, fg = colors.foreground }),
+      StatusLineNC({ bg = colors.background_alt1, fg = colors.grey6 }),
       Conceal({ fg = colors.grey6 }),
       MatchParen({ bg = colors.foreground, gui = "bold" }),
-      WinBar({ fg = colors.grey8 }),
+      WinBar({ bg = colors.background }),
       WinBarNC({ WinBar }),
       SpecialKey({ fg = colors.grey4 }),
       Pmenu({ bg = colors.background_alt2 }),
@@ -249,59 +250,48 @@ local lush = function()
       MultiCursorDisabledCursor({ reverse = true }),
       MultiCursorDisabledVisual({ Visual }),
       MultiCursorDisabledSign({ SignColumn }),
+
+      HeirlineStatusDiagnostic({ bold = true, StatusLine }),
+      HeirlineStatusDiagnosticError({ fg = colors.strong_red, HeirlineStatusDiagnostic }),
+      HeirlineStatusDiagnosticHint({ fg = colors.magenta, HeirlineStatusDiagnostic }),
+      HeirlineStatusDiagnosticInfo({ fg = colors.green, HeirlineStatusDiagnostic }),
+      HeirlineStatusDiagnosticSurround({ fg = colors.foreground, HeirlineStatusDiagnostic }),
+      HeirlineStatusDiagnosticWarn({ fg = colors.orange, HeirlineStatusDiagnostic }),
+      HeirlineStatusFileName({ fg = colors.foreground, StatusLine }),
+      HeirlineStatusFileType({ fg = colors.cyan, StatusLine }),
+      HeirlineStatusGitBranch({ fg = colors.orange, bold = true, StatusLine }),
+      HeirlineStatusLsp({ fg = colors.grey6, StatusLine }),
+      HeirlineStatusMode({ bold = true, StatusLine }),
+      HeirlineStatusModeCommand({ fg = colors.orange, HeirlineStatusMode }),
+      HeirlineStatusModeInsert({ fg = colors.blue, HeirlineStatusMode }),
+      HeirlineStatusModeNormal({ fg = colors.green, HeirlineStatusMode }),
+      HeirlineStatusModeTerminal({ fg = colors.red, HeirlineStatusMode }),
+      HeirlineStatusModeVisual({ fg = colors.magenta, HeirlineStatusMode }),
+      HeirlineStatusRuler({ fg = colors.forground, StatusLine }),
+
+      HeirlineColumnCursorLineNr({ bold = true }),
+      HeirlineColumnCursorLineNrCommand({ fg = colors.orange, HeirlineColumnCursorLineNr }),
+      HeirlineColumnCursorLineNrInsert({ fg = colors.blue, HeirlineColumnCursorLineNr }),
+      HeirlineColumnCursorLineNrNormal({ fg = colors.green, HeirlineColumnCursorLineNr }),
+      HeirlineColumnCursorLineNrTerminal({ fg = colors.red, HeirlineColumnCursorLineNr }),
+      HeirlineColumnCursorLineNrVisual({ fg = colors.magenta, HeirlineColumnCursorLineNr }),
+      HeirlineColumnFold({ ColorColumn }),
+      HeirlineColumnLineNr({ LineNr }),
+
+      HeirlineTabBackground({ TabLine }),
+      HeirlineTabFocused({ TabLineSel }),
+      HeirlineTabNotFocused({ TabLineFill }),
+
+      HeirlineWin({ WinBar }),
+      HeirlineWinFile({ fg = colors.blue, HeirlineWin }),
+      HeirlineWinFileBackground({ HeirlineWin }),
+      HeirlineWinFileSeparator({ fg = colors.red, HeirlineWin }),
     }
   end)
 end
-
-local heirline = {
-  -- background
-  background_dark = colors.background_alt1,
-  background_light = colors.background_alt2,
-  background = colors.background,
-  foreground = colors.foreground,
-
-  -- git
-  git_branch = colors.orange,
-
-  -- file
-  file_path = colors.foreground,
-  file_type = colors.cyan,
-
-  -- mode
-  mode_normal = colors.green,
-  mode_insert = colors.blue,
-  mode_visual = colors.magenta,
-  mode_command = colors.orange,
-  mode_terminal = colors.red,
-
-  -- lsp
-  lsp_progress = colors.grey6,
-
-  -- diagnostics
-  diagnostic_error = colors.strong_red,
-  diagnostic_warn = colors.orange,
-  diagnostic_hint = colors.magenta,
-  diagnostic_info = colors.green,
-  diagnostic_surround = colors.foreground,
-
-  -- navic
-  navic_separator = colors.red,
-  navic_color = colors.grey7,
-  navic_file = colors.blue,
-
-  -- tabline
-  tab_focused = colors.cyan,
-  tab_not_focused = colors.background_alt1,
-
-  -- statuscol
-  col_number = colors.grey2,
-  col_focused_number = colors.foreground,
-  col_fold = colors.grey6,
-}
 
 return {
   colors = colors,
   syntax = syntax,
   lush = lush,
-  heirline = heirline,
 }

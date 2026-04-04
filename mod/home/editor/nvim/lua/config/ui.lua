@@ -84,7 +84,7 @@ return {
           end,
         },
       })
-      require("heirline").load_colors(theme.heirline)
+      require("heirline")
     end,
     init = function() vim.opt.laststatus = 3 end,
     keys = {

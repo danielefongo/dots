@@ -4,9 +4,9 @@ local TabPage = {
   provider = function(self) return "%" .. self.tabnr .. "T " .. self.tabnr .. " %T" end,
   hl = function(self)
     if not self.is_active then
-      return { fg = "foreground", bg = "tab_not_focused" }
+      return "HeirlineTabNotFocused"
     else
-      return { fg = "background", bg = "tab_focused" }
+      return "HeirlineTabFocused"
     end
   end,
 }
@@ -14,7 +14,7 @@ local TabPage = {
 local TabPages = {
   condition = function() return #vim.api.nvim_list_tabpages() >= 2 end,
   utils.make_tablist(TabPage),
-  { provider = "%=", hl = { bg = "background" } },
+  { provider = "%=", hl = "HeirlineTabBackground" },
 }
 
 return TabPages
