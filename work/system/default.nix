@@ -13,9 +13,16 @@
     serviceConfig = {
       Type = "notify";
       ExecStart = "${pkgs.docker}/bin/dockerd";
+      ExecStartPre = [
+        "${pkgs.coreutils}/bin/mkdir -p /media/data/dev/docker"
+      ];
     };
     description = "Runs docker daemon";
-    after = [ "network.target" ];
+    after = [
+      "network.target"
+      "secondary-disk.service"
+    ];
+    requires = [ "secondary-disk.service" ];
     wantedBy = [ "multi-user.target" ];
   };
 
@@ -35,6 +42,12 @@
     account    required   pam_unix.so
     password   required   pam_unix.so
     session    required   pam_unix.so
+  '';
+
+  environment.etc."docker/daemon.json".text = ''
+    {
+      "data-root": "/media/data/dev/docker"
+    }
   '';
 
   systemd.services.pcsclite = {
