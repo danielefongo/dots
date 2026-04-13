@@ -4,8 +4,8 @@
   nixpkgs.hostPlatform = "x86_64-linux";
 
   imports = [
-    ./memory.nix
     ./power.nix
+    ./disk.nix
   ];
 
   systemd.services.dockerd = {

@@ -8,7 +8,7 @@ local base_config = {
       },
       cargo = {
         features = "all",
-        targetDir = "target/rust-analyzer",
+        targetDir = vim.env.RUST_ANALYZER_TARGET_DIR or "target/rust-analyzer",
       },
       check = {
         features = "all",
