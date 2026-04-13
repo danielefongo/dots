@@ -1,5 +1,38 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "model": "github-copilot/claude-sonnet-4.5",
-  "theme": "system"
+  "autoupdate": true,
+  "permission": {
+    "*": "ask",
+    "read": {
+      "*": "allow",
+      "*.yaml": "deny",
+      "*.env": "deny",
+      "*.env.*": "deny",
+      "*.env.example": "allow"
+    },
+    "edit": {
+      "*": "ask",
+      "*.elm": "allow",
+      "*.lua": "allow",
+      "*.md": "allow",
+      "*.nix": "allow",
+      "*.py": "allow",
+      "*.rs": "allow",
+      "Cargo.toml": "allow"
+    },
+    "glob": "allow",
+    "grep": "allow",
+    "list": "allow",
+    "bash": {
+      "*": "ask",
+      "rm *": "deny"
+    },
+    "skill": {
+      "*": "ask"
+    },
+    "lsp": "allow",
+    "question": "allow",
+    "todowrite": "allow"
+  }
 }
