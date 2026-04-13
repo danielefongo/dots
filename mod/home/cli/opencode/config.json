@@ -29,7 +29,8 @@
       "rm *": "deny"
     },
     "skill": {
-      "*": "ask"
+      "*": "ask",
+      "caveman*": "allow"
     },
     "lsp": "allow",
     "question": "allow",

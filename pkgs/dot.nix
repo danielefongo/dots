@@ -19,6 +19,7 @@ let
 in
 {
   dot = {
+    outOfStore = mkOutOfStoreSymlink;
     outLink = path: mkOutOfStoreSymlink "${dots_path}/output/${path}";
     outFile = path: "${dots_path}/output/${path}";
 
