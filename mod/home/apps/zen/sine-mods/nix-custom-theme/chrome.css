@@ -14,8 +14,9 @@
     --zen-sidebar-notification-bg: {{ colors.background_alt1 }} !important;
   }
 
-  #titlebar {
+  #titlebar,#navigator-toolbox,#zen-appcontent-wrapper,#zen-sidebar-splitter {
     background-color: {{ colors.background }} !important;
+    opacity: 1 !important;
   }
 
   .urlbar-background {
