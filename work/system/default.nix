@@ -6,6 +6,7 @@
   imports = [
     ./power.nix
     ./disk.nix
+    ./memory.nix
   ];
 
   systemd.services.dockerd = {
