@@ -24,8 +24,8 @@ return {
         keymap = {
           ["<up>"] = { "select_prev", "fallback" },
           ["<down>"] = { "select_next", "fallback" },
-          ["<c-up>"] = { function(cmp) cmp.scroll_documentation_up(4) end },
-          ["<c-down>"] = { function(cmp) cmp.scroll_documentation_down(4) end },
+          ["<pageup>"] = { function(cmp) cmp.scroll_documentation_up(4) end },
+          ["<pagedown>"] = { function(cmp) cmp.scroll_documentation_down(4) end },
           ["<cr>"] = { "accept", "fallback" },
           ["<c-x>"] = { "cancel", "fallback" },
         },

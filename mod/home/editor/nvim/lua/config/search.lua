@@ -32,8 +32,8 @@ return {
               ["gg"] = "list_top",
               ["<c-a>"] = { "select_all", mode = { "n", "i" } },
 
-              ["<c-down>"] = { "preview_scroll_down", mode = { "i", "n" } },
-              ["<c-up>"] = { "preview_scroll_up", mode = { "i", "n" } },
+              ["<PageDown>"] = { "preview_scroll_down", mode = { "i", "n" } },
+              ["<PageUp>"] = { "preview_scroll_up", mode = { "i", "n" } },
 
               ["<c-h>"] = { "toggle_hidden", mode = { "i", "n" } },
               ["<c-i>"] = { "toggle_ignored", mode = { "i", "n" } },
@@ -65,8 +65,8 @@ return {
               ["G"] = "list_bottom",
               ["gg"] = "list_top",
 
-              ["<c-down>"] = "preview_scroll_down",
-              ["<c-up>"] = "preview_scroll_up",
+              ["<PageDown>"] = "preview_scroll_down",
+              ["<PageUp>"] = "preview_scroll_up",
 
               ["<c-h>"] = "toggle_hidden",
               ["<c-i>"] = "toggle_ignored",
