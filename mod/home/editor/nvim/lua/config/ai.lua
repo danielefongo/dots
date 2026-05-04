@@ -16,16 +16,24 @@ return {
           dismiss = "<c-y>",
         },
       },
+      filetypes = {
+        env = false,
+        ["*"] = function()
+          local bufname = vim.api.nvim_buf_get_name(0)
+
+          -- hidden files
+          if string.match(vim.fs.basename(bufname), "^%..*") then return false end
+
+          -- git-ignored files
+          local result = vim.fn.system("git check-ignore -q " .. vim.fn.shellescape(bufname))
+          if vim.v.shell_error == 0 then return false end
+
+          return true
+        end,
+      },
       server_opts_overrides = {},
     },
-    config = function(_, opts)
-      require("copilot").setup(opts)
-      vim.cmd("Copilot disable")
-    end,
-    keys = {
-      lkey("ae", ":Copilot enable<cr>", "enable ai"),
-      lkey("ad", ":Copilot disable<cr>", "disable ai"),
-    },
+    config = function(_, opts) require("copilot").setup(opts) end,
   },
   {
     "olimorris/codecompanion.nvim",
