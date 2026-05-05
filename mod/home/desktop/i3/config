@@ -110,7 +110,7 @@ bindsym $mod+$shift+3 move container to workspace number $ws3
 bindsym $mod+$shift+4 move container to workspace number $ws4
 
 # move workspace
-bindsym $mod+$shift+period move workspace to output next
+bindsym $mod+Page_Down move workspace to output next
 
 # power
 bindsym $mod+u exec rofi-power
