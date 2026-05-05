@@ -1,6 +1,9 @@
 local watcher = vim.uv.new_fs_poll()
 
 local function load_theme()
+  local loaded = package.loaded["theme"]
+  if type(loaded) == "table" and type(loaded.reset) == "function" then pcall(loaded.reset) end
+
   package.loaded["theme"] = nil
 
   local loaders = vim.loader.find("theme", { all = true })

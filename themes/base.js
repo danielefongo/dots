@@ -14,6 +14,7 @@ module.exports = {
     gamma: false,
     colors: {
       background: '{{ "#1f2430" | contrasted(contrast) }}',
+      background_dimmed: "{{ colors.background | light_darken(2) }}",
       background_alt1: "{{ colors.background | light_darken(3) }}",
       background_alt2: "{{ colors.background | light_lighten(3) }}",
       magic_background:

@@ -11,6 +11,11 @@ local function make_navic_flexible_el(count)
   }
 end
 
+local function get_hl(hl_name)
+  local is_active = vim.api.nvim_get_current_win() == tonumber(vim.g.actual_curwin or 0)
+  local separator_hl = is_active and hl_name or hl_name .. "NC"
+end
+
 local Space = { provider = " " }
 
 local Navic = {
@@ -53,6 +58,8 @@ local Navic = {
 
     self.children = {}
 
+    local separator_hl = get_hl("HeirlineWinFileSeparator")
+
     for length = display_count, 0, -1 do
       local shortened = {}
       for i = 1, length do
@@ -62,12 +69,10 @@ local Navic = {
           { provider = d.name:gsub("%%", "%%%%"):gsub("%s*->%s*", "") },
         }
 
-        if i < length then
-          table.insert(child, {
-            provider = " > ",
-            hl = "HeirlineWinFileSeparator",
-          })
-        end
+        if i < length then table.insert(child, {
+          provider = " > ",
+          hl = separator_hl,
+        }) end
 
         table.insert(shortened, child)
       end
@@ -76,39 +81,49 @@ local Navic = {
     end
 
     self.ellipsis = self:new({
-      { provider = "  ", hl = "HeirlineWinFileSeparator" },
+      { provider = "  ", hl = separator_hl },
     }, 1)
 
     self.display_count = display_count
   end,
-  update = { "CursorMoved", "BufEnter", "BufWritePost", "VimResized", "WinResized" },
+
   flexible = 1,
   make_navic_flexible_el(0),
   make_navic_flexible_el(1),
   make_navic_flexible_el(2),
   make_navic_flexible_el(3),
   {
-    provider = " ",
-    hl = "HeirlineWinFileSeparator",
+    provider = " ",
+    hl = get_hl("HeirlineWinFileSeparator"),
   },
 }
 
 local FilePath = {
   init = function(self) self.filename = vim.fn.expand("%:t") end,
-  update = { "BufEnter", "BufWritePost", "VimResized", "WinResized" },
-  hl = "HeirlineWinFile",
+  hl = get_hl("HeirlineWinFile"),
   flexible = false,
   provider = function(self) return self.filename end,
 }
 
 local WinWrapper = {
-  hl = "HeirlineWinFileBackground",
+  hl = get_hl("HeirlineWinFileBackground"),
+  update = {
+    "BufEnter",
+    "BufWritePost",
+    "CursorMoved",
+    "FocusGained",
+    "FocusLost",
+    "VimResized",
+    "WinEnter",
+    "WinLeave",
+    "WinResized",
+  },
   Space,
   FilePath,
   {
     condition = function() return #(require("nvim-navic").get_data() or {}) > 0 end,
     provider = " > ",
-    hl = "HeirlineWinFileSeparator",
+    hl = get_hl("HeirlineWinFileSeparator"),
   },
   Navic,
   Space,

@@ -34,6 +34,7 @@ local colors = {
   cyan = "{{ colors.cyan }}",
   light_cyan = "{{ colors.cyan | lighten }}",
   background = "{{ colors.background }}",
+  background_dimmed = "{{ colors.background_dimmed }}",
   background_alt1 = "{{ colors.background_alt1 }}",
   background_alt2 = "{{ colors.background_alt2 }}",
   grey1 = "{{ colors.grey1 }}",
@@ -100,7 +101,7 @@ local lush = function()
       NonText({ fg = colors.grey8 }),
       Text({ fg = colors.foreground }),
       Normal({ bg = colors.background, fg = colors.grey8 }),
-      NormalNC({ Normal }),
+      NormalNC({ bg = colors.background_dimmed, fg = colors.grey8 }),
       NormalFloat({ bg = colors.background_alt2, fg = colors.foreground }),
       FloatBorder({ bg = colors.background }),
       FloatShadow({ bg = colors.background }),
@@ -126,7 +127,9 @@ local lush = function()
       Conceal({ fg = colors.grey6 }),
       MatchParen({ bg = colors.foreground, gui = "bold" }),
       WinBar({ bg = colors.background }),
-      WinBarNC({ WinBar }),
+      WinBarNC({ bg = colors.background_dimmed }),
+      WinBarContent({ WinBar }),
+      WinBarContentNC({ WinBarNC }),
       SpecialKey({ fg = colors.grey4 }),
       Pmenu({ bg = colors.background_alt2 }),
       PmenuSel({ bg = colors.grey2 }),
@@ -135,8 +138,13 @@ local lush = function()
       TabLine({ bg = colors.background }),
       TabLineSel({ bg = colors.blue, fg = colors.background }),
       TabLineFill({ bg = colors.background_alt1 }),
+      TabLineNC({ bg = colors.background_dimmed }),
       ModeMsg({ fg = colors.yellow }),
       MoreMsg({ fg = colors.foreground }),
+      MsgArea({ Normal }),
+      MsgAreaNC({ NormalNC }),
+      MsgSeparator({ StatusLine }),
+      MsgSeparatorNC({ StatusLineNC }),
       ErrorMsg({ Error }),
       Question({ fg = colors.cyan }),
       WarningMsg({ Warning }),
@@ -284,14 +292,90 @@ local lush = function()
 
       HeirlineWin({ WinBar }),
       HeirlineWinFile({ fg = colors.blue, HeirlineWin }),
+      HeirlineWinFileNC({ fg = colors.grey6, WinBarNC }),
       HeirlineWinFileBackground({ HeirlineWin }),
+      HeirlineWinFileBackgroundNC({ WinBarNC }),
       HeirlineWinFileSeparator({ fg = colors.red, HeirlineWin }),
+      HeirlineWinFileSeparatorNC({ fg = colors.grey4, WinBarNC }),
     }
   end)
 end
+
+local group = vim.api.nvim_create_augroup("TmuxDim", { clear = true })
+local function set_winhl(hl)
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    vim.api.nvim_set_option_value("winhighlight", hl, { win = win })
+  end
+end
+
+local hl_saved
+local hl_saved_colors_name
+
+local function reset()
+  hl_saved = nil
+  hl_saved_colors_name = nil
+end
+
+local function save_highlights()
+  local colors_name = vim.g.colors_name
+
+  if hl_saved and hl_saved_colors_name == colors_name then return end
+
+  local function get(name) return vim.api.nvim_get_hl(0, { name = name, link = false }) end
+  hl_saved = {
+    TabLine = get("TabLine"),
+    TabLineSel = get("TabLineSel"),
+    TabLineFill = get("TabLineFill"),
+    MsgArea = get("MsgArea"),
+    MsgSeparator = get("MsgSeparator"),
+  }
+  hl_saved_colors_name = colors_name
+end
+
+local function restore_highlights()
+  if not hl_saved then return end
+
+  if hl_saved_colors_name ~= vim.g.colors_name then
+    reset()
+    return
+  end
+
+  for name, def in pairs(hl_saved) do
+    vim.api.nvim_set_hl(0, name, def)
+  end
+  reset()
+end
+
+local function dim_highlights()
+  local function get(name) return vim.api.nvim_get_hl(0, { name = name, link = false }) end
+  vim.api.nvim_set_hl(0, "TabLine", get("TabLineNC"))
+  vim.api.nvim_set_hl(0, "TabLineSel", get("TabLineNC"))
+  vim.api.nvim_set_hl(0, "TabLineFill", get("TabLineNC"))
+  vim.api.nvim_set_hl(0, "MsgArea", get("MsgAreaNC"))
+  vim.api.nvim_set_hl(0, "MsgSeparator", get("MsgSeparatorNC"))
+end
+
+vim.api.nvim_create_autocmd("FocusLost", {
+  group = group,
+  callback = function()
+    save_highlights()
+    dim_highlights()
+    set_winhl(
+      "Normal:NormalNC,WinBar:WinBarNC,WinBarContent:WinBarContentNC,HeirlineWinFile:WinBarNC,HeirlineWinFileBackground:WinBarNC,HeirlineWinFileSeparator:WinBarNC,StatusLine:StatusLineNC"
+    )
+  end,
+})
+vim.api.nvim_create_autocmd("FocusGained", {
+  group = group,
+  callback = function()
+    set_winhl("")
+    restore_highlights()
+  end,
+})
 
 return {
   colors = colors,
   syntax = syntax,
   lush = lush,
+  reset = reset,
 }
